@@ -16,8 +16,10 @@ export default class MapGen extends Component {
 
         new GeoSearchControl({
             provider: provider,                               // required
+            autoComplete: true,             // optional: true|false  - default true
+            autoCompleteDelay: 250,         // optional: number      - default 250
             showMarker: true,                                   // optional: true|false  - default true
-            showPopup: false,                                   // optional: true|false  - default false
+            showPopup: true,                                   // optional: true|false  - default false
             marker: {                                           // optional: L.Marker    - default L.Icon.Default
                 icon: new L.Icon.Default(),
                 draggable: false,

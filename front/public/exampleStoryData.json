@@ -24,5 +24,14 @@
 		"adresse": "15 rue des Boulets 69009 LYON",
 		"latitude": 40.76,
 		"longitude": 4.79934
+	},
+	{
+		"name": "Casino 3",
+		"description": "Désolé, on n'a pas de noix de cajou !",
+		"image": "img/casino.png",
+		"url": "https://google.com",
+		"adresse": "15 rue des Boulets 69009 LYON",
+		"latitude": 35.76,
+		"longitude": 4.79934
 	}
 ]

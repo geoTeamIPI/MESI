@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d41b0dd3-3ad4-42f9-ab6b-4438ba011e3f" name="Default" comment="">
-<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/public/index.html" afterDir="false" />
@@ -10,9 +9,6 @@
       <change beforePath="$PROJECT_DIR$/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/MapGen.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/MapGen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/index.js" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
->>>>>>> 52daf39a5ea3d225083d125cff756461b9d1f922
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,7 +22,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-<<<<<<< HEAD
       <file leaf-file-name="MapGen.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front/src/MapGen.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -38,11 +33,6 @@
               </folding>
             </state>
           </provider>
-=======
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor" />
->>>>>>> 52daf39a5ea3d225083d125cff756461b9d1f922
         </entry>
       </file>
       <file leaf-file-name="MapGenReact.js" pinned="false" current-in-tab="false">
@@ -187,7 +177,6 @@
               <item name="MESI" type="462c0819:PsiDirectoryNode" />
               <item name="front" type="462c0819:PsiDirectoryNode" />
             </path>
-<<<<<<< HEAD
             <path>
               <item name="MESI" type="b2602c69:ProjectViewProjectNode" />
               <item name="MESI" type="462c0819:PsiDirectoryNode" />
@@ -213,18 +202,13 @@
               <item name="front" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-=======
->>>>>>> 52daf39a5ea3d225083d125cff756461b9d1f922
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="AndroidView" />
-<<<<<<< HEAD
       <pane id="Scope" />
-=======
       <pane id="PackagesPane" />
->>>>>>> 52daf39a5ea3d225083d125cff756461b9d1f922
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -249,7 +233,6 @@
       </list>
     </option>
   </component>
-<<<<<<< HEAD
   <component name="RunManager">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -293,8 +276,6 @@
       <listeners />
     </configuration>
   </component>
-=======
->>>>>>> 52daf39a5ea3d225083d125cff756461b9d1f922
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -311,7 +292,6 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< HEAD
     <option name="totallyTimeSpent" value="6245000" />
   </component>
   <component name="ToolWindowManager">
@@ -345,43 +325,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
-=======
-    <option name="totallyTimeSpent" value="290000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.14331041" />
-      <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Run" order="3" />
-      <window_info id="Structure" order="5" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.34698522" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
-      <window_info anchor="right" id="Palette" order="5" />
-      <window_info id="Designer" order="0" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="right" id="Theme Preview" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17874141" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="UI Designer" order="1" />
-      <window_info anchor="right" id="Palette&#9;" order="1" />
-      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="Maven Projects" order="4" />
->>>>>>> 52daf39a5ea3d225083d125cff756461b9d1f922
+
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,10 +356,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/front/src/MapGen.js">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="315">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-=======
         <state relative-caret-position="882">
           <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
           <folding>
@@ -464,7 +404,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
           <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
->>>>>>> 52daf39a5ea3d225083d125cff756461b9d1f922
           <folding>
             <element signature="e#0#40#0" expanded="true" />
             <element signature="e#0#6#0" expanded="true" />
@@ -506,15 +445,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/front/src/MapGen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-189">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-            <element signature="e#0#6#0" expanded="true" />
-=======
     <entry file="file://$PROJECT_DIR$/front/src/MapGenReact.js" />
     <entry file="file://$PROJECT_DIR$/front/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -554,20 +484,10 @@
           <caret line="42" column="22" lean-forward="true" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
->>>>>>> 52daf39a5ea3d225083d125cff756461b9d1f922
           </folding>
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/front/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#299#326#0" expanded="true" />
-=======
     <entry file="file://$PROJECT_DIR$/front/src/MapGenReact.js" />
     <entry file="file://$PROJECT_DIR$/front/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -575,17 +495,10 @@
           <caret line="17" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
->>>>>>> 52daf39a5ea3d225083d125cff756461b9d1f922
           </folding>
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/front/src/MapGenReact.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-=======
     <entry file="file://$PROJECT_DIR$/front/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -598,18 +511,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
->>>>>>> 52daf39a5ea3d225083d125cff756461b9d1f922
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/front/src/registerServiceWorker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1134" />
-=======
     <entry file="file://$PROJECT_DIR$/front/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -622,7 +529,6 @@
         <state relative-caret-position="-2060">
           <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
         </state>
->>>>>>> 52daf39a5ea3d225083d125cff756461b9d1f922
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/front/public/manifest.json">
@@ -632,15 +538,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/front/node_modules/react-leaflet/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2079">
-          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-=======
     <entry file="file://$PROJECT_DIR$/front/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -803,6 +700,5 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
->>>>>>> 52daf39a5ea3d225083d125cff756461b9d1f922
   </component>
 </project>

@@ -46,6 +46,7 @@
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
     L.Control.geocoder().addTo(map);
+
     //on click on map event
     function onMapClick(e) {
         console.log(e.latlng);
@@ -109,6 +110,7 @@
         markers[i] = L.marker([dataSample[i].lat, dataSample[i].lng]).addTo(map);
         markers[i].bindPopup("<b>" + dataSample[i].stories[0].title + "</b><br>" + dataSample[i].stories[0].description + "<br>Year : " + dataSample[i].stories[0].date.year);
     }
+
 </script>
 
 </html>

@@ -20,8 +20,7 @@ import geoTeamIPI.GeoPatrimoine.service.UserService;
 @Controller
 @RequestMapping("/users")
 public class UserController {
-	/*
-	 *  LUDOVIC TESTING 
+/*
 	@Autowired
 	private UserService userService;
 	
@@ -60,5 +59,5 @@ public class UserController {
 		 model.put("previousPage", page-1);
 		 return "users/liste";
 		 }
-		 */
+		*/ 
 }

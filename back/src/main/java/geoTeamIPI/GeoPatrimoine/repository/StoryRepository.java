@@ -8,8 +8,8 @@ import geoTeamIPI.GeoPatrimoine.entity.Story;
 
 @Repository
 public interface StoryRepository extends JpaRepository<Story, Long> {
-	/* LUDOVIC TESTING  
-	 * Optional<Story> findById(Long id);
+	  /*
+	 Optional<Story> findById(Long id);
 	 */
 	}
 

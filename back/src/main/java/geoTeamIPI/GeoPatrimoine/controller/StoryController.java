@@ -20,7 +20,7 @@ import geoTeamIPI.GeoPatrimoine.service.UserService;
 @Controller
 @RequestMapping("/stories")
 public class StoryController {
-	/* LUDOVIC TESTING 
+	/*
 	@Autowired
 	private StoryService storyService;
 	
@@ -60,7 +60,8 @@ public class StoryController {
 		 return "stories/liste";
 		 }
 	 
-	    /*@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+	 /*
+	    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
         public RedirectView supprimeEmploye(@PathVariable(value = "id") Long id, RedirectAttributes attributes) {
             employeService.deleteEmploye(id);
     

@@ -24,7 +24,7 @@ public class StoryService {
 			return storyRepository.count();
 		}
 		
-		/* LUDOVIC TESTING 
+		/*
 	    public Page<Story> findAllStories(Integer page, Integer size, String sortProperty, String sortDirection) {
 	        Sort sort = new Sort(new Sort.Order(Sort.Direction.fromString(sortDirection),sortProperty));
 	        Pageable pageable = new PageRequest(page,size,sort);

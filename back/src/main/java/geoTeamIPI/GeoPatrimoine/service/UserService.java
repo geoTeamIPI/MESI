@@ -24,7 +24,7 @@ public class UserService {
 			return userRepository.count();
 		}
 		
-		/* LUDOVIC TESTING 
+		/*
 	    public Page<User> findAllUsers(Integer page, Integer size, String sortProperty, String sortDirection) {
 	        Sort sort = new Sort(new Sort.Order(Sort.Direction.fromString(sortDirection),sortProperty));
 	        Pageable pageable = new PageRequest(page,size,sort);

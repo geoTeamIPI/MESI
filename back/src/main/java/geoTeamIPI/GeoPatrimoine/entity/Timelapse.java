@@ -1,7 +1,5 @@
 package geoTeamIPI.GeoPatrimoine.entity;
 
-import java.util.Collection;
-
 import javax.persistence.*;
 
 @Entity
@@ -20,5 +18,39 @@ public class Timelapse {
     private Integer starting_year; 
     
     @Column
-    private Integer ending_year;    
+    private Integer ending_year;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(String period) {
+		this.period = period;
+	}
+
+	public Integer getStarting_year() {
+		return starting_year;
+	}
+
+	public void setStarting_year(Integer starting_year) {
+		this.starting_year = starting_year;
+	}
+
+	public Integer getEnding_year() {
+		return ending_year;
+	}
+
+	public void setEnding_year(Integer ending_year) {
+		this.ending_year = ending_year;
+	}   
+    
+    
 }

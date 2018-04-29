@@ -16,10 +16,12 @@ public class Doc {
     @Column
     private String comment;
     
-    @ManyToOne
-    private Story story;
-    
     @Lob
     @Column(nullable=false)
     private String path;
+    
+    @ManyToOne
+    private Story story;
+    
+
 }

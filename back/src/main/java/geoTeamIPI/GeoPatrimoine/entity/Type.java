@@ -13,7 +13,7 @@ public class Type {
     private Long id;
 
     @Lob
-    @Column
+    @Column(nullable = false)
     private String name; 
     
     @OneToOne

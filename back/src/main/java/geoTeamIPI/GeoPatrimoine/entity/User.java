@@ -30,6 +30,9 @@ public class User implements Serializable {
     @Column(nullable=false)
     private String profile; 
     
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "creatorUser")
     private Collection<Story> stories;
+    
+    @OneToMany(mappedBy = "voter")
+    private Collection<Vote> votes;
 }

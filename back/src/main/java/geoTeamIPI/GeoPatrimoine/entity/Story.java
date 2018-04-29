@@ -30,22 +30,36 @@ public class Story implements Serializable {
     @Column
     private String content;
     
-    @OneToOne
+    @Column(nullable=false)
+    private Integer starting_year;
+    
+    @Column
+    private Integer starting_month;
+    
+    @Column
+    private Integer starting_day;
+    
+    @Column
+    private Integer ending_year;
+    
+    @Column
+    private Integer ending_month;
+    
+    @Column
+    private Integer ending_day;
+    
+    @ManyToOne
     private User creatorUser;
     
     @ManyToOne
     private Place place;
     
-    @OneToMany(mappedBy = "story")
-    private Collection<Doc> docs;
-    
-    @OneToOne
-    private Timelapse timelapse;
-    
     @OneToOne
     private Type type;
     
-    @ManyToOne
-    private User user;
+    @OneToMany(mappedBy = "story")
+    private Collection<Doc> docs;
     
+    @OneToMany(mappedBy = "votedStory")
+    private Collection<Vote> votes;
 }

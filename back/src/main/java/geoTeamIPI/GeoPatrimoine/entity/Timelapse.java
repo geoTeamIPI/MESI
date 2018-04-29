@@ -14,14 +14,11 @@ public class Timelapse {
     
     @Lob
     @Column(nullable=false)
-    private String name; 
+    private String period; 
     
-    @OneToOne
-    private Story story; 
-       
-    @ManyToOne
-    private Timelapse parentTime;
+    @Column(nullable=false)
+    private Integer starting_year; 
     
-    @OneToMany(mappedBy="parentTime")
-    private Collection<Timelapse> childTime;
+    @Column
+    private Integer ending_year;    
 }

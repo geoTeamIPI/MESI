@@ -24,12 +24,28 @@ public class UserService {
 			return userRepository.count();
 		}
 		
-		/*
-	    public Page<User> findAllUsers(Integer page, Integer size, String sortProperty, String sortDirection) {
-	        Sort sort = new Sort(new Sort.Order(Sort.Direction.fromString(sortDirection),sortProperty));
-	        Pageable pageable = new PageRequest(page,size,sort);
-	        return userRepository.findAll(pageable);
-	    }
-	    */
+		public Page<User> findAllUsers(Integer page, Integer size, String sortProperty, String sortDirection) {
+	        Sort sort = Sort.by(new Sort.Order(Sort.Direction.fromString(sortDirection),sortProperty));
+	        Pageable pageable = PageRequest.of(page, size, sort); 
+			return userRepository.findAll(pageable); 
+		}
+		
+		public <T extends User> T createUser(T user) {
+			return userRepository.save(user);
+		}
+		
+		public <T extends User> T updateUser(Long id, T user) {
+			return userRepository.save(user); 
+		}
+		
+		public void deleteUser(User user) {
+			userRepository.delete(user);
+		}
+		
+		// Vérifier le mot de passe et le nom d'user
+		public User findByEmailAndPassword(String email, String password) {
+			return userRepository.findByEmailAndPassword(email, password);
+			
+		}
 	}
 

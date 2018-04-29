@@ -4,6 +4,11 @@
 <%@ include file="tags/header.jsp" %>
 <!-- Permet de rajouter un header automatiquement  -->
 
+<h2>Bienvenue sur la page d'accueil</h2>
+
+<a href="/users/new">Ajouter un utilisateur</a>
+
+<!--  
 <div class="container">
     <div class="jumbotron">
         <h1>Bienvenue dans l'interface de gestion des ${nbEmployes} employés !</h1>
@@ -57,6 +62,6 @@
         </ul>
     </div>
 </div>
-
+-->
 <!-- Permet de rajouter un footer automatiquement  -->
 <%@ include file="tags/footer.jsp" %>

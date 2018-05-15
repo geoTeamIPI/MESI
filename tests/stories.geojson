@@ -1,0 +1,106 @@
+{
+	"type": "FeatureCollection",
+	"features": [{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [ 4.83249843120575, 45.75702922677463]
+		},
+		"type": "Feature",
+		"properties": {
+			"5065": "1",
+			"5055": "2013-01-02",
+			"5074": "3",
+			"5070": "Titre story 5"
+		}
+	},{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [ 4.83249843120575, 45.75702922677463]
+		},
+		"type": "Feature",
+		"properties": {
+			"5065": "1",
+			"5055": "2013-01-02",
+			"5074": "5",
+			"5070": "Titre story 4"
+		}
+	},{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [ 4.83249843120575, 45.75702922677463]
+		},
+		"type": "Feature",
+		"properties": {
+			"5065": "1",
+			"5055": "2013-01-02",
+			"5074": "1",
+			"5070": "Titre story 3"
+		}
+	}, {
+		"geometry": {
+			"type": "Point",
+			"coordinates": [4.825798273086549, 45.75854877000632]
+		},
+		"type": "Feature",
+		"properties": {
+			"5065": "1",
+			"5055": "2013-01-13",
+			"5074": "4",
+			"5070": "Titre story 2"
+		}
+	},{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [4.825798273086549, 45.75854877000632]
+		},
+		"type": "Feature",
+		"properties": {
+			"5065": "1",
+			"5055": "2013-01-13",
+			"5074": "2",
+			"5070": "Titre story 0"
+		}
+	}, {
+		"geometry": {
+			"type": "Point",
+			"coordinates": [4.845664941924, 45.759368407918835]
+		},
+		"type": "Feature",
+		"properties": {
+			"5065": "2",
+			"5055": "2013-12-13",
+			"5074": "3",
+			"5070": "Titre story 1"
+		}
+	}],
+	"properties": {
+		"fields": {
+			"5065": {
+				"lookup": {
+					"1": "Gratuit",
+					"2": "Payant"
+				},
+				"name": "Tarif"
+			},
+			"5055": {
+				"name": "Date"
+			},
+			"5070": {
+				"name": "Titre"
+			},
+			"5074": {
+				"lookup": {
+					"1": "Batiment",
+					"3": "Statue",
+					"2": "Fontaine",
+					"5": "Monument",
+					"4": "Site historique",
+					"6": "Divers"
+				},
+				"name": "Categorie"
+			}
+		},
+		"attribution": "Historic places",
+		"description": "Stories list in 2017 Lyon, France"
+	}
+}

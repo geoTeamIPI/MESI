@@ -1,114 +1,221 @@
+
 <!DOCTYPE html>
-<html>
 <head>
-
-    <meta charset="UTF-8">
-    <title>leaflet tests</title>
-
-    <!--leaflet css-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
-          integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-          crossorigin=""/>
-    <!--geocoder css-->
-    <!--<link rel="stylesheet" href="node_modules/leaflet-geosearch/dist/style.css">-->
-    <!--leaflet js-->
-    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
-            integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
-            crossorigin=""></script>
-
-    <!--geocoder js-->
-    <!--<script src="node_modules/leaflet-geosearch/dist/bundle.js"></script>-->
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-
-    <style>
-        #mapid {
-            height: 750px;
-        }
-    </style>
-
+  <meta charset="utf-8">
+  <title>ClusterPies</title>
+  <link rel="stylesheet" href="css/leaflet.css" />
+  <link href='css/markerCluster.css' rel='stylesheet' />
+  <link rel="stylesheet" href="css/clusterpies.css" />
 </head>
-
 <body>
+<script src="leaflet-0.7.2/leaflet.js" charset="utf-8"></script>
+<script src='v0.4.0/leaflet.markercluster.js'></script>
+<script src="d3.v3.min.js" charset="utf-8"></script>
 
-<div id="mapid"></div>
-
-</body>
+<div id="container">
+  <div id="map" />
+</div>
 
 <script>
-    let markers = [];
-    let map = L.map('mapid').setView([45.758032279658444, 4.83110727731003], 13);
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-    L.Control.geocoder().addTo(map);
-    //on click on map event
-    function onMapClick(e) {
-        console.log(e.latlng);
-        L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
-    }
-    map.on('click', onMapClick);
-    let dataSample = [
-        {
-            lat: 45.75702922677463,
-            lng: 4.83249843120575,
-            stories: [
-                {
-                    id: 1,
-                    title: "aux fleurs du sud",
-                    description: "c'est blindé de fleurs",
-                    content: "et tu peux en cueillir",
-                    date: {
-                        year: 2018,
-                        month: 4,
-                        day: 25
-                    }
-                }
-            ]
-        },
-        {
-            lat: 45.75854877000632,
-            lng: 4.825798273086549,
-            stories: [
-                {
-                    id: 1,
-                    title: "Eglise évangélique du vieux lyon",
-                    description: "ils y ont fait des orgies !",
-                    content: "et y avait même des vaches :O",
-                    date: {
-                        year: -200,
-                        month: 4,
-                        day: 25
-                    }
-                }
-            ]
-        },
-        {
-            lat: 45.759368407918835,
-            lng: 4.847566494192455,
-            stories: [
-                {
-                    id: 1,
-                    title: "A la place guichard on mangeait des quiches",
-                    description: "quiches au lard, au gruyère et au poivre d'andalousie",
-                    content: "il parait qu'il y avait aussi des morceaux de cadavres humains",
-                    date: {
-                        year: 2018,
-                        month: 4,
-                        day: 25
-                    }
-                }
-            ]
-        }
-    ]
-    for (let i = 0 ; i < dataSample.length ; i++) {
-        markers[i] = L.marker([dataSample[i].lat, dataSample[i].lng]).addTo(map);
-        markers[i].bindPopup("<b>" + dataSample[i].stories[0].title + "</b><br>" + dataSample[i].stories[0].description + "<br>Year : " + dataSample[i].stories[0].date.year);
-    }
-</script>
+  "use strict"
+  var defaultFocusLatitude = 45.76;
+  var defaultFocusLongitude = 4.835;
+  var defaultFocusAltitude = 18;
 
-</html>
+  var geojson,
+    metadata,
+    geojsonPath = 'stories.geojson',
+    categoryField = '5074', //This is the fieldname for marker category (used in the pie and legend)
+    iconField = '5065', //This is the fieldame for marker icon
+    popupFields = ['5065','5055','5074','5070'], //Popup will display these fields
+    tileServer = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    tileAttribution = 'Map data: <a href="http://openstreetmap.org">OSM</a>',
+    rmax = 40, //Maximum radius for cluster pies
+    markerclusters = L.markerClusterGroup({
+      maxClusterRadius: 2*rmax,
+      iconCreateFunction: defineClusterIcon //this is where the magic happens
+    }),
+    map = L.map('map').setView([defaultFocusLatitude, defaultFocusLongitude], defaultFocusAltitude);
+
+  //Add basemap
+  L.tileLayer(tileServer, {attribution: tileAttribution,  maxZoom: 15}).addTo(map);
+  //and the empty markercluster layer
+  map.addLayer(markerclusters);
+
+  //Ready to go, load the geojson
+  d3.json(geojsonPath, function(error, data) {
+      if (!error) {
+          geojson = data;
+          metadata = data.properties;
+          var markers = L.geoJson(geojson, {
+			pointToLayer: defineFeature,
+			onEachFeature: defineFeaturePopup
+          });
+          markerclusters.addLayer(markers);
+          map.fitBounds(markers.getBounds());
+          map.attributionControl.addAttribution(metadata.attribution);
+          renderLegend();
+      } else {
+	  console.log('Could not load data...');
+      }
+  });
+
+function defineFeature(feature, latlng) {
+  var categoryVal = feature.properties[categoryField],
+    iconVal = feature.properties[iconField];
+    var myClass = 'marker category-'+categoryVal+' icon-'+iconVal;
+    var myIcon = L.divIcon({
+        className: myClass,
+        iconSize:null
+    });
+    return L.marker(latlng, {icon: myIcon});
+}
+
+function defineFeaturePopup(feature, layer) {
+  var props = feature.properties,
+    fields = metadata.fields,
+    popupContent = '';
+
+  popupFields.map( function(key) {
+    if (props[key]) {
+      var val = props[key],
+        label = fields[key].name;
+      if (fields[key].lookup) {
+        val = fields[key].lookup[val];
+      }
+      popupContent += '<span class="attribute"><span class="label">'+label+':</span> '+val+'</span>';
+    }
+  });
+  popupContent = '<div class="map-popup">'+popupContent+'</div>';
+  layer.bindPopup(popupContent,{offset: L.point(1,-2)});
+}
+
+function defineClusterIcon(cluster) {
+    var children = cluster.getAllChildMarkers(),
+        n = children.length, //Get number of markers in cluster
+        strokeWidth = 1, //Set clusterpie stroke width
+        r = rmax-2*strokeWidth-(n<10?12:n<100?8:n<1000?4:0), //Calculate clusterpie radius...
+        iconDim = (r+strokeWidth)*2, //...and divIcon dimensions (leaflet really want to know the size)
+        data = d3.nest() //Build a dataset for the pie chart
+          .key(function(d) { return d.feature.properties[categoryField]; })
+          .entries(children, d3.map),
+        //bake some svg markup
+        html = bakeThePie({data: data,
+                            valueFunc: function(d){return d.values.length;},
+                            strokeWidth: 1,
+                            outerRadius: r,
+                            innerRadius: r-10,
+                            pieClass: 'cluster-pie',
+                            pieLabel: n,
+                            pieLabelClass: 'marker-cluster-pie-label',
+                            pathClassFunc: function(d){return "category-"+d.data.key;},
+                            pathTitleFunc: function(d){return metadata.fields[categoryField].lookup[d.data.key]+' ('+d.data.values.length+' accident'+(d.data.values.length!=1?'s':'')+')';}
+                          }),
+        //Create a new divIcon and assign the svg markup to the html property
+        myIcon = new L.DivIcon({
+            html: html,
+            className: 'marker-cluster',
+            iconSize: new L.Point(iconDim, iconDim)
+        });
+    return myIcon;
+}
+
+/*function that generates a svg markup for the pie chart*/
+function bakeThePie(options) {
+    /*data and valueFunc are required*/
+    if (!options.data || !options.valueFunc) {
+        return '';
+    }
+    var data = options.data,
+        valueFunc = options.valueFunc,
+        r = options.outerRadius?options.outerRadius:28, //Default outer radius = 28px
+        rInner = options.innerRadius?options.innerRadius:r-10, //Default inner radius = r-10
+        strokeWidth = options.strokeWidth?options.strokeWidth:1, //Default stroke is 1
+        pathClassFunc = options.pathClassFunc?options.pathClassFunc:function(){return '';}, //Class for each path
+        pathTitleFunc = options.pathTitleFunc?options.pathTitleFunc:function(){return '';}, //Title for each path
+        pieClass = options.pieClass?options.pieClass:'marker-cluster-pie', //Class for the whole pie
+        pieLabel = options.pieLabel?options.pieLabel:d3.sum(data,valueFunc), //Label for the whole pie
+        pieLabelClass = options.pieLabelClass?options.pieLabelClass:'marker-cluster-pie-label',//Class for the pie label
+
+        origo = (r+strokeWidth), //Center coordinate
+        w = origo*2, //width and height of the svg element
+        h = w,
+        donut = d3.layout.pie(),
+        arc = d3.svg.arc().innerRadius(rInner).outerRadius(r);
+
+    //Create an svg element
+    var svg = document.createElementNS(d3.ns.prefix.svg, 'svg');
+
+    //Create the pie chart
+    var vis = d3.select(svg)
+        .data([data])
+        .attr('class', pieClass)
+        .attr('width', w)
+        .attr('height', h);
+
+    vis.append("circle")
+        .attr("cx", origo)
+        .attr("cy", origo)
+        .attr("r", 20)
+        .attr("fill", "white")
+        .attr("fill-opacity", "0.6");
+
+
+    var arcs = vis.selectAll('g.arc')
+        .data(donut.value(valueFunc))
+        .enter().append('svg:g')
+        .attr('class', 'arc')
+        .attr('transform', 'translate(' + origo + ',' + origo + ')');
+
+    arcs.append('svg:path')
+        .attr('class', pathClassFunc)
+        .attr('stroke-width', strokeWidth)
+        .attr('d', arc)
+        .append('svg:title')
+          .text(pathTitleFunc);
+
+    vis.append('text')
+        .attr('x',origo)
+        .attr('y',origo)
+        .attr('class', pieLabelClass)
+        .attr('text-anchor', 'middle')
+        //.attr('dominant-baseline', 'central')
+        /*IE doesn't seem to support dominant-baseline, but setting dy to .3em does the trick*/
+        .attr('dy','.3em')
+        .text(pieLabel);
+    //Return the svg-markup rather than the actual element
+    return serializeXmlNode(svg);
+}
+
+/*Function for generating a legend with the same categories as in the clusterPie*/
+function renderLegend() {
+    var data = d3.entries(metadata.fields[categoryField].lookup),
+      legenddiv = d3.select('body').append('div')
+        .attr('id','legend');
+
+    var heading = legenddiv.append('div')
+        .classed('legendheading', true)
+        .text(metadata.fields[categoryField].name);
+
+    var legenditems = legenddiv.selectAll('.legenditem')
+        .data(data);
+
+    legenditems
+        .enter()
+        .append('div')
+        .attr('class',function(d){return 'category-'+d.key;})
+        .classed({'legenditem': true})
+        .text(function(d){return d.value;});
+}
+
+/*Helper function*/
+function serializeXmlNode(xmlNode) {
+    if (typeof window.XMLSerializer != "undefined") {
+        return (new window.XMLSerializer()).serializeToString(xmlNode);
+    } else if (typeof xmlNode.xml != "undefined") {
+        return xmlNode.xml;
+    }
+    return "";
+}
+
+</script>

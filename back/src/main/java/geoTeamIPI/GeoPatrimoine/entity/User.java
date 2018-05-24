@@ -3,9 +3,6 @@ package geoTeamIPI.GeoPatrimoine.entity;
 import java.util.Collection;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Users")
@@ -16,12 +13,8 @@ public class User {
     private Long id;
 
     @Column(nullable=false)
-    @NotNull
-    @Size(min=3)
     private String email; 
     
-    @Size(min=8)
-    @NotNull
     @Column(nullable=false)
     private String password; 
     

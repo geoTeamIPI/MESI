@@ -23,9 +23,15 @@ public class User {
     @Size(min=8)
     @NotNull
     @Column(nullable=false)
-    private String password; 
-    
-    @Column(nullable=false)
+    private String password;
+
+	@Size(min=8)
+	@NotNull
+	@Column(nullable=false)
+	@Transient
+	private String passwordConfirm;
+
+	@Column(nullable=false)
     private String city; 
     
     @Column(nullable=false)
@@ -92,6 +98,13 @@ public class User {
 	public void setVotes(Collection<Vote> votes) {
 		this.votes = votes;
 	}
-    
-    
+
+
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
 }

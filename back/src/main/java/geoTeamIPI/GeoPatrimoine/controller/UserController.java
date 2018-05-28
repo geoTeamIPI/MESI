@@ -8,8 +8,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
-import org.springframework.restdocs.snippet.Attributes;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -97,8 +97,11 @@ public class UserController {
 			value = "/newBis", 
 			method = RequestMethod.GET
 	)
-	public String formAddUser2() {
-		return "users/formAddUser2"; 
+	public String formAddUser2(Model model) {
+
+		User user = new User();
+		model.addAttribute("userForm", user);
+		return "users/formAddUser2";
 	}
 	
 	/* Post form add User
@@ -134,7 +137,7 @@ public class UserController {
 			 consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
 			 produces = "text/html"
 	)
-    public String checkPersonInfo(@Valid User userForm, BindingResult bindingResult, ModelMap model) {
+    public String checkPersonInfo(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, ModelMap model) {
 		
 		if (!bindingResult.hasErrors()) {
 			model.addAttribute("success", "User created"); 

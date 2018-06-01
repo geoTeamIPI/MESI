@@ -1,53 +1,44 @@
 <%@ include file ="../tags/header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="th" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <h1>Create a new user</h1>
-<form method="post" action="">
+<form:form method="post" action="" modelAttribute="user">
 	<p>
 		<label for="email">Email*</label>
-		<input type="text" name="email" />
+		<form:input path="email" type="text" id="email" value = ""/>
+		<form:errors path="email" />
 
 	</p>
 	<p>
 		<label for="password">Password*</label>
-		<input type="password" name="password" />
+		<form:input path="password" type="password" id="password" />
+		<form:errors path="password" />
 	</p>
 	<p>
 		<label for="passwordConfirm">Confirm password*</label>
-		<input type="password" name="passwordConfirm" />
+		<form:input path="passwordConfirm" type="password" id="passwordConfirm" />
+		<form:errors path="passwordConfirm" />
 	</p>
 	<p>
 		<label for="city">City</label>
-		<input type="text" name="city" />
+		<form:input path="city" type="text" id="city" />
+		<form:errors path="city" />
 	</p>
 	<p>
 		<input type="submit" value="valider" />
 	</p>
-</form>
+</form:form>
 
-<c:if test="${show == false }" >
-	<ul>
-		<c:if test="${!empty emptyEmail}">
-			<li>${emptyEmail}</li>
-		</c:if>
-		<c:if test="${!empty emptyPassword}">
-			<li>${emptyPassword}</li>
-		</c:if>
-		<c:if test="${!empty notEqualPasswords}">
-			<li>${notEqualPasswords}</li>
-		</c:if>
-	</ul>
-</c:if>
-
-<c:if test="${show == true }" >
-	Voici les résultats de la soumission : 
-	<ul><li>Email : ${email} </li>
-		<li> Password : ${password}</li>
-		<li> City : ${city} </li>
-		<li>Profile : ${profile}</li>
-	</ul>
-</c:if>
+<th:if test="${!empty notMatchedPwd}">
+	${notMatchedPwd}
+</th:if>
+<th:if test="${!empty emailExists}">
+	${emailExists}
+</th:if>
+<th:if test="${!empty success}">
+	${success}
+</th:if>
 
 
 <%@ include file ="../tags/footer.jsp" %>

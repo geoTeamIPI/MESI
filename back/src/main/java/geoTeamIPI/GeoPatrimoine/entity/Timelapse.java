@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Timelapse {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Lob

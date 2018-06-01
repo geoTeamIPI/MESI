@@ -1,5 +1,7 @@
 package geoTeamIPI.GeoPatrimoine.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,21 +22,34 @@ public class UserService {
 			return userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Failed to get an user with the id=" + id +"!!!"));
 		}
 		
+		public User findByEmail(String email) {
+			return userRepository.findByEmail(email); 
+		}
+		
 		public Long countAllUsers() {
 			return userRepository.count();
 		}
 		
-		public Page<User> findAllUsers(Integer page, Integer size, String sortProperty, String sortDirection) {
+		/*public Page<User> findAllUsers(Integer page, Integer size, String sortProperty, String sortDirection) {
 	        Sort sort = Sort.by(new Sort.Order(Sort.Direction.fromString(sortDirection),sortProperty));
 	        Pageable pageable = PageRequest.of(page, size, sort); 
 			return userRepository.findAll(pageable); 
+		}*/
+		
+		public List<User> findAllUsers(){
+			return userRepository.findAll(); 
 		}
 		
-		public <T extends User> T createUser(T user) {
+		/*public <T extends User> T createUser(T user) {
 			return userRepository.save(user);
+		}*/
+		
+		public User createUser(User user) {
+			return userRepository.save(user); 
 		}
 		
 		public <T extends User> T updateUser(Long id, T user) {
+			user.setId(id);
 			return userRepository.save(user); 
 		}
 		

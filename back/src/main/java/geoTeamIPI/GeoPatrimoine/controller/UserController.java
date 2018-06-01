@@ -1,5 +1,6 @@
 package geoTeamIPI.GeoPatrimoine.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,11 +9,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,11 +40,15 @@ public class UserController {
 	public static final String USER_ADMIN = "admin"; 
 	public static final String USER_MODERATOR = "moderator"; 
 	public static final String TOO_SHORT_EMAIL = "L'email est trop court"; 
+	public static final String EMAIL_EXISTS = "L'email existe déjà dans la base"; 
 	public static final String TOO_SHORT_PWD = "Le mot de passe doit contenir au moins 8 caractères"; 
 	public static final String EMPTY_EMAIL = "L'email ne peut pas être vide"; 
+	public static final String EXISTING_EMAIL = "L'email ne peut pas être vide"; 
 	public static final String INCORRECT_FORMAT_EMAIL = "L'email n'est pas valide"; 
 	public static final String EMPTY_PWD = "Le mot de passe ne peut être vide";
 	public static final String NOT_SAME_PWD = "Les deux mots de passe ne correspondent pas"; 
+	public static final String USER_CREATED = "Votre compte a bien été créé. Un email vient de vous être envoyé"; 
+	public static final String USER_UPDATED = "Vos données ont bien été mis à jour"; 
 	
 	@Autowired
 	private UserService userService;
@@ -60,7 +68,7 @@ public class UserController {
 			 method = RequestMethod.GET,
 			 params={"page", "size", "sortProperty", "sortDirection"}
 			 )	 
-	 public String afficheListeUsers(Map<String,Object> model,
+	 public String users(Model model,
 			 @RequestParam("page") Integer page,
 			 @RequestParam("size") Integer size,
 			 @RequestParam("sortProperty") String sortProperty,
@@ -83,149 +91,105 @@ public class UserController {
 		 }
 	*/
 	
-	/* GET FORM
-	@RequestMapping(
-			value = "/new", 
-			method = RequestMethod.GET
-	)
-	public String formAddUser() {
-		return "users/formAddUser"; 
-	}*/
+	@GetMapping("")
+	public String showUsers(Model model) {
+		List<User> users = userService.findAllUsers();  
+		model.addAttribute("users", users); 
+		return "users/liste"; 
+	}
 	
 	// GET FORM2
 	@RequestMapping(
-			value = "/newBis", 
+			value = "/new", 
 			method = RequestMethod.GET
 	)
-	public String formAddUser2(Model model) {
+	public String createPersonInfoView(Model model) {
 
-		User user = new User();
-		model.addAttribute("userForm", user);
-		return "users/formAddUser2";
+		model.addAttribute("user", new User());
+		return "users/formAddUser";
 	}
 	
-	/* Post form add User
 	@RequestMapping(
 			value = "/new", 
 			method = RequestMethod.POST, 
 			 consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
 			 produces = "text/html"
 	)
-	public String confirmAddUser(@Valid @ModelAttribute("user")User user, 
-		      BindingResult result, ModelMap model) {
-		if (result.hasErrors()) {
-			return "erreur"; 
-		}
-	
-		model.addAttribute("email", user.getEmail()); 
-		model.addAttribute("password", user.getPassword()); 
-		model.addAttribute("city", user.getCity()); 
-		model.addAttribute("profile", user.getProfile()); 
-		return "users/formAddUser"; 
-	}*/
-	
-	public boolean tooShort(String field, int length){
-		if (field.length() < length) {
-			return true; 
-		}
-		return false; 
-	}
-	
-	@RequestMapping(
-			value = "/newBis", 
-			method = RequestMethod.POST, 
-			 consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
-			 produces = "text/html"
-	)
-    public String checkPersonInfo(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, ModelMap model) {
+    public String createPersonInfo(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+		
+		Boolean createUser = true; 
 		
 		if (!bindingResult.hasErrors()) {
-			model.addAttribute("success", "User created"); 
+			if (!user.getPassword().equals(user.getPasswordConfirm())){
+				model.addAttribute("notMatchedPwd", NOT_SAME_PWD);
+				createUser = false;  
+			} 
+			User findEmailUser = userService.findByEmail(user.getEmail());
+			if (findEmailUser != null) {
+				model.addAttribute("emailExists", EMAIL_EXISTS); 
+				createUser = false; 
+			}
+			if (createUser == true) {
+				user.setProfile(USER_NORMAL);
+				// Trouver une méthode de hashage du mot de passe
+				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+				user.setPassword(passwordEncoder.encode(user.getPassword()));
+				model.addAttribute("success", "User created"); 
+				userService.createUser(user);
+			}
 		}
 		
-        return "users/formAddUser2";
+        return "users/formAddUser";
     }
 	
 	
-	// POST - version test qui fonctionne sans ajout à la base pour l'instant
+	 // PUT 
 	@RequestMapping(
-			value = "/new", 
-			method = RequestMethod.POST, 
-			 consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
-			 produces = "text/html"
+			value = "/{idUser}", 
+			method = RequestMethod.GET
 	)
-	public String confirmAddUser(User user, 
-			BindingResult result, ModelMap model, HttpServletRequest request) {
+	public String updateUserInfoView(Model model, @PathVariable("idUser") Long idUser) {
+			User user = userService.findById(idUser);
+			if (user == null) {
+				// Throw an exception
+				
+			}
+			model.addAttribute("user", user); 
+		return "users/formUpdateUser"; 
+	}
 		
-		Boolean show = true; 
-		String email = request.getParameter("email"); 
-		if (email.trim().isEmpty()) {
-			model.addAttribute("emptyEmail", EMPTY_EMAIL);
-			show = false; 
-		}
-		
-		if (tooShort(email, 3)) {
-			model.addAttribute("tooShortEmail", TOO_SHORT_EMAIL);
-			show = false; 
-		}
-		
-		if (!email.matches("@")) {
-			model.addAttribute("incorrectEmailFormat", INCORRECT_FORMAT_EMAIL); 
-		}
-		
-		String password = request.getParameter("password"); 
-		String passwordConfirm = request.getParameter("passwordConfirm"); 
-		if(password.trim().isEmpty() || passwordConfirm.trim().isEmpty() ) {
-			model.addAttribute("emptyPassword", EMPTY_PWD);
-			show = false; 
-		}
-		
-		if (tooShort(password, 8) || tooShort(passwordConfirm, 8)) {
-			model.addAttribute("tooShortPassword", TOO_SHORT_PWD); 
-			show = false; 
-		}
-		
-		if (!password.equals(passwordConfirm)){
-			model.addAttribute("notEqualPasswords", NOT_SAME_PWD); 
-			show = false; 
-		}
-		
-		String city = request.getParameter("city"); 
-		
-		user.setEmail(email);
-		user.setPassword(password);
-		user.setCity(city);
-		user.setProfile(USER_NORMAL);
-		
-		model.addAttribute("email", user.getEmail()); 
-		model.addAttribute("password", user.getPassword()); 
-		model.addAttribute("city", user.getCity()); 
-		model.addAttribute("profile", user.getProfile());
-		model.addAttribute("show", show);
-		
-		/* Sauvegarde en base
-		userService.createUser(user);*/
-		
-		//model.put("user", new User()); 
-		return "users/formAddUser"; 
+		@RequestMapping(
+				value = "/{idUser}", 
+				method = RequestMethod.PUT, 
+				consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
+				produces = "text/html"
+		)
+		public String updateUserInfo(@PathVariable("idUser") Long idUser, @ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+			if (!bindingResult.hasErrors()) {
+				if (!user.getPassword().equals(user.getPasswordConfirm())){
+					model.addAttribute("notMatchedPwd", NOT_SAME_PWD); 
+				} else {
+					model.addAttribute("success", USER_UPDATED); 
+					PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+					user.setPassword(passwordEncoder.encode(user.getPassword()));
+					userService.updateUser(idUser, user); 
+				}
+			}
+		return "users/formUpdateUser"; 
 	}
 	
-	
-	
-	 /* POST - Autre version
-	 @RequestMapping(
-			 value = "", 
-			 method = RequestMethod.POST, 
-			 consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
-			 produces = "text/html"
-	)
-	public RedirectView createUser(User user, RedirectAttributes attributes) {
-		 user = userService.createUser(user);
-		 attributes.addAttribute("Success", "User created with success");
-		 return new RedirectView("/");
-	 }*/
-	 
-	 // PUT 
 	 
 	 // DELETE 
+		@RequestMapping(
+				value = "/{idUser}", 
+				method = RequestMethod.DELETE
+		)
+		public ModelAndView deleteUser(@PathVariable("idUser") Long idUser) {
+			User user = userService.findById(idUser); 
+			if (user == null) {
+				// Throw an exception
+			}
+			return new ModelAndView(new RedirectView("index")); 
+		}
+	
 }

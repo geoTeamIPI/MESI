@@ -7,6 +7,7 @@
 <h2>Bienvenue sur la page d'accueil</h2>
 
 <a href="/users/new">Ajouter un utilisateur</a>
+<a href="/users">Liste des utilisateurs</a>
 
 <!--  
 <div class="container">

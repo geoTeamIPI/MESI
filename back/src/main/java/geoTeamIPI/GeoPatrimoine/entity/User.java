@@ -3,6 +3,8 @@ package geoTeamIPI.GeoPatrimoine.entity;
 import java.util.Collection;
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertFalse;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
@@ -12,12 +14,13 @@ import javax.validation.constraints.Size;
 public class User {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable=false)
     @NotNull
     @Size(min=3)
+    @Email
     private String email; 
     
     @Size(min=8)
@@ -30,7 +33,8 @@ public class User {
 	@Column(nullable=false)
 	@Transient
 	private String passwordConfirm;
-
+	
+	@NotNull
 	@Column(nullable=false)
     private String city; 
     

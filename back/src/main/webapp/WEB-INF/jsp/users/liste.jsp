@@ -6,7 +6,9 @@
 
 <c:forEach items="${users}" var="user">
 	Email : ${user.email}
-	<a href="users/${user.id}">modifier</a>
+	<a href="users/details/${user.id}">D</a>
+	<a href="users/update/${user.id}">Modifier</a>
+	<a href="">Supprimer</a>
 	<br />
 </c:forEach>
 

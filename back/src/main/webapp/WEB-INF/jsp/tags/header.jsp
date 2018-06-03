@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<a href="/">Retour à l'accueil</a>
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">

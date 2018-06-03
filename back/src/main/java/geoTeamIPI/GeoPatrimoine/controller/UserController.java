@@ -43,12 +43,16 @@ public class UserController {
 	public static final String EMAIL_EXISTS = "L'email existe déjà dans la base"; 
 	public static final String TOO_SHORT_PWD = "Le mot de passe doit contenir au moins 8 caractères"; 
 	public static final String EMPTY_EMAIL = "L'email ne peut pas être vide"; 
-	public static final String EXISTING_EMAIL = "L'email ne peut pas être vide"; 
+	public static final String ERR_SEARCHING_USER = "L'utilisateur n'existe pas"; 
 	public static final String INCORRECT_FORMAT_EMAIL = "L'email n'est pas valide"; 
 	public static final String EMPTY_PWD = "Le mot de passe ne peut être vide";
 	public static final String NOT_SAME_PWD = "Les deux mots de passe ne correspondent pas"; 
 	public static final String USER_CREATED = "Votre compte a bien été créé. Un email vient de vous être envoyé"; 
 	public static final String USER_UPDATED = "Vos données ont bien été mis à jour"; 
+	public static final String PWD_UPDATED = "Mot de passe mis à jour"; 
+	public static final String ERR_IDENTIFICATION = "Erreur d'identification";
+	public static final String SUCCESS_IDENTIFICATION = "Vous êtes maintenant connecté";
+	public static final String PWD_NO_EXISTS = "Ce mot de passe n'existe pas";
 	
 	@Autowired
 	private UserService userService;
@@ -91,6 +95,7 @@ public class UserController {
 		 }
 	*/
 	
+	// GET LIST USER
 	@GetMapping("")
 	public String showUsers(Model model) {
 		List<User> users = userService.findAllUsers();  
@@ -98,7 +103,17 @@ public class UserController {
 		return "users/liste"; 
 	}
 	
-	// GET FORM2
+	/* 
+	 * 
+	 * 
+	 * 
+	 * FORM ADD USER 
+	 * 
+	 * 
+	 * 
+	 * */
+	
+	// GET 
 	@RequestMapping(
 			value = "/new", 
 			method = RequestMethod.GET
@@ -109,6 +124,7 @@ public class UserController {
 		return "users/formAddUser";
 	}
 	
+	// POST
 	@RequestMapping(
 			value = "/new", 
 			method = RequestMethod.POST, 
@@ -119,6 +135,7 @@ public class UserController {
 		
 		Boolean createUser = true; 
 		
+		// Cas où il n'y a pas d'erreur 
 		if (!bindingResult.hasErrors()) {
 			if (!user.getPassword().equals(user.getPasswordConfirm())){
 				model.addAttribute("notMatchedPwd", NOT_SAME_PWD);
@@ -129,67 +146,161 @@ public class UserController {
 				model.addAttribute("emailExists", EMAIL_EXISTS); 
 				createUser = false; 
 			}
+			
 			if (createUser == true) {
 				user.setProfile(USER_NORMAL);
-				// Trouver une méthode de hashage du mot de passe
 				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 				user.setPassword(passwordEncoder.encode(user.getPassword()));
-				model.addAttribute("success", "User created"); 
+				model.addAttribute("successUserCreated", USER_CREATED); 
 				userService.createUser(user);
+				// Envoi du mail (trouver le service
+				return "users/success"; 
 			}
+
 		}
 		
         return "users/formAddUser";
     }
 	
+	/* 
+	 * 
+	 * 
+	 * 
+	 * FORM UPDATE USER 
+	 * 
+	 * 
+	 * */
 	
-	 // PUT 
+	 // GET 
 	@RequestMapping(
-			value = "/{idUser}", 
+			value = "/update/{idUser}", 
 			method = RequestMethod.GET
 	)
 	public String updateUserInfoView(Model model, @PathVariable("idUser") Long idUser) {
 			User user = userService.findById(idUser);
 			if (user == null) {
 				// Throw an exception
-				
+				return "erreur"; 
 			}
 			model.addAttribute("user", user); 
 		return "users/formUpdateUser"; 
 	}
-		
-		@RequestMapping(
-				value = "/{idUser}", 
-				method = RequestMethod.PUT, 
-				consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
-				produces = "text/html"
-		)
-		public String updateUserInfo(@PathVariable("idUser") Long idUser, @ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
-			if (!bindingResult.hasErrors()) {
-				if (!user.getPassword().equals(user.getPasswordConfirm())){
-					model.addAttribute("notMatchedPwd", NOT_SAME_PWD); 
-				} else {
-					model.addAttribute("success", USER_UPDATED); 
-					PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-					user.setPassword(passwordEncoder.encode(user.getPassword()));
-					userService.updateUser(idUser, user); 
-				}
-			}
-		return "users/formUpdateUser"; 
+	
+	// POST
+	@RequestMapping(
+			value = "/update/{idUser}", 
+			method = RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
+			produces = "text/html"
+	)
+	public String updateUserInfo(@ModelAttribute("user") @Valid User user, @PathVariable("idUser") Long idUser, BindingResult bindingResult, Model model) {
+		// Ignore les erreurs liés au password
+		if (!bindingResult.hasErrors()) {
+				User userSearch = userService.findById(idUser);
+				user.setPassword(userSearch.getPassword());
+				user.setProfile(userSearch.getProfile());
+				userService.updateUser(idUser, user); 
+				model.addAttribute("successUserUdpated", USER_UPDATED); 
+				return "users/success";
+		} 
+		return "users/formUpdateUser";
+
+	}
+
+	// DELETE 
+	@RequestMapping(
+			value = "/{idUser}", 
+			method = RequestMethod.GET
+	)
+	public String deleteUser(@PathVariable("idUser") Long idUser) {
+		User user = userService.findById(idUser); 
+		userService.deleteUser(user);
+		return "users/liste"; 
 	}
 	
-	 
-	 // DELETE 
-		@RequestMapping(
-				value = "/{idUser}", 
-				method = RequestMethod.DELETE
-		)
-		public ModelAndView deleteUser(@PathVariable("idUser") Long idUser) {
-			User user = userService.findById(idUser); 
-			if (user == null) {
-				// Throw an exception
-			}
-			return new ModelAndView(new RedirectView("index")); 
-		}
+	// GET FORM IDENTIFICATION
+	@RequestMapping(
+			value = "/connexion", 
+			method = RequestMethod.GET
+	)
+	public String connexionUserView(Model model) {
+		model.addAttribute("user", new User()); 
+		return "users/connexion"; 
+	}
 	
+	// POST IDENTIFICATION
+	@RequestMapping(
+			value = "/connexion", 
+			method = RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
+			produces = "text/html"	
+	)
+	public String checkConnexionUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+		if (!bindingResult.hasErrors()) {
+			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			User userSearch = userService.findByEmailAndPassword(user.getEmail(), user.getPassword()); 
+			if (userSearch == null) {
+				model.addAttribute("errIdentification", ERR_IDENTIFICATION);
+			} else {
+				model.addAttribute("successIdentification", SUCCESS_IDENTIFICATION);
+				// Regarder pour avoir les sessions
+				return "users/sucess";
+			}
+		}
+		return "users/connexion"; 
+	}
+	
+	/* FORM UPDATING PASSWORD */
+	
+	// GET 
+	@RequestMapping(
+		value = "/changePassword/{idUser}", 
+		method = RequestMethod.GET
+	)
+	public String updatePwdUserView(@PathVariable("idUser") Long idUser, Model model) {
+		User userSearch = userService.findById(idUser); 
+		if (userSearch == null) {
+			return "erreur"; 
+		}
+		userSearch.setPassword("");
+		model.addAttribute("user", userSearch); 
+		return "users/formUpdatePwd"; 
+	}
+	
+	// POST
+	@RequestMapping(
+			value = "/changePassword/{idUser}", 
+			method = RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
+			produces = "text/html"	
+	)
+	public String updatePwdUser(@PathVariable("idUser") Long idUser, @ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+		if (!bindingResult.hasErrors() && !user.getOldPassword().trim().equals("")) {
+				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+				String oldPwdEncode = passwordEncoder.encode(user.getOldPassword());
+				User userSearchPwd = userService.findById(idUser);
+				// valeurs non nulles 
+				user.setCity(userSearchPwd.getCity());
+				user.setEmail(userSearchPwd.getEmail());
+				model.addAttribute("oldPwdEncode", oldPwdEncode); 
+				model.addAttribute("currentPwdEncode", userSearchPwd.getPassword()); 
+				// Ancien mot de passe encodé = mot de passe encodé dans la base
+				if (passwordEncoder.matches(oldPwdEncode, userSearchPwd.getPassword())) {
+					// vérifier si les deux mots de passe correspondent 
+					if (user.getPassword().equals(user.getPasswordConfirm())){
+						userService.updateUser(idUser, user);
+						model.addAttribute("pwdUpdated",PWD_UPDATED);
+						return "users/success"; 
+					} else {
+						model.addAttribute("notMatchedPwd", NOT_SAME_PWD);
+					}
+				} else {
+					model.addAttribute("pwdNoExists", PWD_NO_EXISTS);
+				}
+		}
+		
+		return "users/formUpdatePwd"; 
+	}
+
 }

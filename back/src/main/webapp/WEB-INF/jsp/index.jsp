@@ -8,6 +8,7 @@
 
 <a href="/users/new">Ajouter un utilisateur</a>
 <a href="/users">Liste des utilisateurs</a>
+<a href="/users/connexion">Connexion</a>
 
 <!--  
 <div class="container">

@@ -23,17 +23,24 @@ public class User {
     @Email
     private String email; 
     
-    @Size(min=8)
     @NotNull
     @Column(nullable=false)
     private String password;
-
-	@Size(min=8)
-	@NotNull
-	@Column(nullable=false)
+    
 	@Transient
 	private String passwordConfirm;
 	
+	@Transient
+	private String oldPassword; 
+	
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
+	}
+
 	@NotNull
 	@Column(nullable=false)
     private String city; 

@@ -238,14 +238,13 @@ public class UserController {
 	public String checkConnexionUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors()) {
 			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			user.setPassword(passwordEncoder.encode(user.getPassword()));
-			User userSearch = userService.findByEmailAndPassword(user.getEmail(), user.getPassword()); 
-			if (userSearch == null) {
+			User userSearch = userService.findByEmail(user.getEmail()); 
+			if (userSearch == null || passwordEncoder.matches(user.getPassword(), userSearch.getPassword())) {
 				model.addAttribute("errIdentification", ERR_IDENTIFICATION);
 			} else {
 				model.addAttribute("successIdentification", SUCCESS_IDENTIFICATION);
 				// Regarder pour avoir les sessions
-				return "users/sucess";
+				return "users/success";
 			}
 		}
 		return "users/connexion"; 
@@ -278,17 +277,18 @@ public class UserController {
 	public String updatePwdUser(@PathVariable("idUser") Long idUser, @ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors() && !user.getOldPassword().trim().equals("")) {
 				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-				String oldPwdEncode = passwordEncoder.encode(user.getOldPassword());
 				User userSearchPwd = userService.findById(idUser);
 				// valeurs non nulles 
 				user.setCity(userSearchPwd.getCity());
 				user.setEmail(userSearchPwd.getEmail());
-				model.addAttribute("oldPwdEncode", oldPwdEncode); 
-				model.addAttribute("currentPwdEncode", userSearchPwd.getPassword()); 
+				user.setProfile(userSearchPwd.getProfile()); 
 				// Ancien mot de passe encodé = mot de passe encodé dans la base
-				if (passwordEncoder.matches(oldPwdEncode, userSearchPwd.getPassword())) {
+				if (passwordEncoder.matches(user.getOldPassword(), userSearchPwd.getPassword())) {
+					model.addAttribute("oldPwdEncode", user.getOldPassword()); 
+					model.addAttribute("currentPwdEncode", userSearchPwd.getPassword());
 					// vérifier si les deux mots de passe correspondent 
 					if (user.getPassword().equals(user.getPasswordConfirm())){
+						user.setPassword(passwordEncoder.encode(user.getPassword()));
 						userService.updateUser(idUser, user);
 						model.addAttribute("pwdUpdated",PWD_UPDATED);
 						return "users/success"; 

@@ -15,6 +15,8 @@
 		<form:input path="password" type="password" id="password" />
 		<form:errors path="password" />
 	</p>
+	
+		<form:hidden path="city" value="nonNull" />
 	<p>
 		<input type="submit" value="valider" />
 	</p>

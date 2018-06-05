@@ -35,7 +35,7 @@
 </th:if>
 
 Ancien mot de passe : ${oldPwdEncode}
-Nouveau mot de passe : ${currentPwdEncode}
+Mot de passe actuel : ${currentPwdEncode}
 
 
 <%@ include file ="../tags/footer.jsp" %>

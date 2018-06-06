@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<form:form method="post" action="" modelAttribute="user">
+<form:form method="post" action="login" modelAttribute="user">
 	<p>
 		<label for="email">Email*</label>
 		<form:input path="email" type="text" id="email" />

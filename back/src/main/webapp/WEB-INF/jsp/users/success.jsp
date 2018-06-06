@@ -17,6 +17,8 @@
 	${successIdentification}
 </th>
 
+<a href="/">Retour à l'accueil</a>
+
 
 
 <%@ include file ="../tags/footer.jsp" %>

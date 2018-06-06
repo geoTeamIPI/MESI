@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -34,6 +38,7 @@ import geoTeamIPI.GeoPatrimoine.service.UserService;
 
 @Controller
 @RequestMapping("/users")
+@SessionAttributes("user")
 public class UserController {
 	
 	public static final String USER_NORMAL = "user"; 
@@ -53,6 +58,7 @@ public class UserController {
 	public static final String ERR_IDENTIFICATION = "Erreur d'identification";
 	public static final String SUCCESS_IDENTIFICATION = "Vous êtes maintenant connecté";
 	public static final String PWD_NO_EXISTS = "Ce mot de passe n'existe pas";
+	public static final String LOGOUT_SUCCESS = "Vous avez bien été déconnecté"; 
 	
 	@Autowired
 	private UserService userService;
@@ -101,6 +107,15 @@ public class UserController {
 		List<User> users = userService.findAllUsers();  
 		model.addAttribute("users", users); 
 		return "users/liste"; 
+	}
+	
+	// GET USER
+	// Je récupère les données stockés 
+	@GetMapping("/infos")
+	public String infoUser(@SessionAttribute("user") User user, HttpSession session, Model model) {
+			User userInfos = userService.findByEmail((String) session.getAttribute("email"));
+			model.addAttribute("user", userInfos); 
+			return "users/detailsUser";
 	}
 	
 	/* 
@@ -230,12 +245,12 @@ public class UserController {
 	
 	// POST IDENTIFICATION
 	@RequestMapping(
-			value = "/connexion", 
+			value = "/login", 
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
 			produces = "text/html"	
 	)
-	public String checkConnexionUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+	public String login(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model, HttpSession session) {
 		if (!bindingResult.hasErrors()) {
 			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			User userSearch = userService.findByEmail(user.getEmail()); 
@@ -243,12 +258,23 @@ public class UserController {
 				model.addAttribute("errIdentification", ERR_IDENTIFICATION);
 			} else {
 				model.addAttribute("successIdentification", SUCCESS_IDENTIFICATION);
+				session.setAttribute("email", user.getEmail());
 				// Regarder pour avoir les sessions
 				return "users/success";
 			}
 		}
 		return "users/connexion"; 
 	}
+	
+	/* DECONNEXION */
+	@GetMapping("/logout")
+	public String logout(HttpSession session, Model model) {
+		session.invalidate();
+		model.addAttribute("logoutSuccess", LOGOUT_SUCCESS); 
+		return "users/logout";
+	}
+	
+	
 	
 	/* FORM UPDATING PASSWORD */
 	

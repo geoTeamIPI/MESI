@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="th" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Create a new user</h1>
+<h1>Création d'un nouvel utilisateur</h1>
 <form:form method="post" action="" modelAttribute="user">
 	<p>
 		<label for="email">Email*</label>

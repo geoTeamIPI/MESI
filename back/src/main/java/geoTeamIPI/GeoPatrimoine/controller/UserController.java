@@ -258,7 +258,8 @@ public class UserController {
 				model.addAttribute("errIdentification", ERR_IDENTIFICATION);
 			} else {
 				model.addAttribute("successIdentification", SUCCESS_IDENTIFICATION);
-				session.setAttribute("email", user.getEmail());
+				session.setAttribute("email", userSearch.getEmail());
+				session.setAttribute("profile", userSearch.getProfile());
 				// Regarder pour avoir les sessions
 				return "users/success";
 			}

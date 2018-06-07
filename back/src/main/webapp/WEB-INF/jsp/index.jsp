@@ -6,8 +6,11 @@
 
 <h2>Bienvenue sur la page d'accueil</h2>
 
-<a href="/users/new">Ajouter un utilisateur</a>
-<a href="/users">Liste des utilisateurs</a>
+
+<th:if test="${!empty email && (profile=='admin' || profile=='moderator')}">
+	<a href="/users/new">Ajouter un utilisateur</a>
+	<a href="/users">Liste des utilisateurs</a>
+</th:if>
 <th:choose>
 	<th:when test="${empty email}"><a href="/users/connexion">Connexion</a></th:when>
 	<th:otherwise>

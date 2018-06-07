@@ -17,7 +17,9 @@ public class IndexController {
 	)
 	public String index(HttpSession session, Model model) {
 		String email = (String) session.getAttribute("email"); 
+		String profile = (String) session.getAttribute("profile"); 
 		model.addAttribute("email", email); 
+		model.addAttribute("profile", profile); 
 		return "index"; 
 	}
 

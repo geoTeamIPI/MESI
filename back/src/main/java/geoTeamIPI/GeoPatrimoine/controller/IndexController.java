@@ -4,23 +4,38 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import geoTeamIPI.GeoPatrimoine.entity.User;
+
 @Controller
 public class IndexController {
 	
-	@RequestMapping(
-			value = "/", 
-			method = RequestMethod.GET
-	)
-	public String index(HttpSession session, Model model) {
-		String email = (String) session.getAttribute("email"); 
-		String profile = (String) session.getAttribute("profile"); 
-		model.addAttribute("email", email); 
-		model.addAttribute("profile", profile); 
+	// Inclusion de la session dans le header 
+	public String header(HttpSession session, Model model) {
+		String sEmail = (String) session.getAttribute("email"); 
+		String sProfile = (String) session.getAttribute("profile"); 
+		model.addAttribute("email", sEmail); 
+		model.addAttribute("profile", sProfile); 
+		model.addAttribute("userNormal", UserController.USER_NORMAL); 
+		model.addAttribute("userAdmin", UserController.USER_ADMIN); 
+		model.addAttribute("userModerator", UserController.USER_MODERATOR); 
+		return "tags/header"; 
+	}
+	
+	@GetMapping("/index")
+	public String index() {
 		return "index"; 
 	}
+
+	
+	
+	
+	
+	// Logout 
+	
 
 }

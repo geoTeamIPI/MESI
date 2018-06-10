@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="th" %>
 
 <html lang="en" >
 <head>
@@ -6,8 +7,16 @@
 </head>
 <body>
 
-<a href="/">Retour à l'accueil</a>
+	<a href="/">Retour à l'accueil</a>
+	<th:choose>
+		<th:when test="${empty email}"><a href="/user/login">Login</a></th:when>
+		<th:otherwise>
+			${email} <a href="/user/myAccount">Mon compte</a>
+			<a href="/user/logout">Déconnexion</a>
+		</th:otherwise>
+	</th:choose>
 
+<!-- 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -35,7 +44,7 @@
     </div>
 </nav>
 
-<% if (request.getParameter("success") != null) { %>
+<!-- <% if (request.getParameter("success") != null) { %>
 <div class = "alert alert-success alert-dismissible" role="alert">
     <button type = "button" class = "close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -43,3 +52,5 @@
     ${param["success"]}
 </div>
     <%}%>
+    
+ -->

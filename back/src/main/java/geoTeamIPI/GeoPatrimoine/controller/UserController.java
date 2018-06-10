@@ -10,6 +10,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -24,9 +26,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -37,7 +37,6 @@ import geoTeamIPI.GeoPatrimoine.service.StoryService;
 import geoTeamIPI.GeoPatrimoine.service.UserService;
 
 @Controller
-@RequestMapping("/users")
 @SessionAttributes("user")
 public class UserController {
 	
@@ -62,19 +61,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	/*
-	@RequestMapping(
-			value="/{id}",
-			method=RequestMethod.GET)
-	public String detailStory(@PathVariable(value="id") Long id , Map<String,Object> model) {
-		User user = userService.findById(id);
-		model.put("user", user);
-		return "users/details";
-	}*/
 	
-	/*
 	 @RequestMapping (
-			 value = "",
+			 value = "/users",
 			 method = RequestMethod.GET,
 			 params={"page", "size", "sortProperty", "sortDirection"}
 			 )	 
@@ -83,38 +72,45 @@ public class UserController {
 			 @RequestParam("size") Integer size,
 			 @RequestParam("sortProperty") String sortProperty,
 			 @RequestParam("sortDirection") String sortDirection) {
-			 Page<User> pagin = userService.findAllUsers(page, size, sortProperty, sortDirection);
-			 model.put("pagination", pagin);
-			 model.put("listePagination", pagin.getContent());
-			 model.put("hasNext", pagin.hasNext());
-			 model.put("hasPrevious", pagin.hasPrevious());
-			 model.put("start", page*size + 1);
-			 model.put("end", Math.min(page*size + size, pagin.getTotalElements()));
-			 model.put("total", pagin.getTotalElements());
-			 model.put("pageActuel", page + 1);
-			 model.put("sizeActuel", size);
-			 model.put("sortPropertyActuel", sortProperty);
-			 model.put("sortDirectionActuel", sortDirection);
-			 model.put("nextPage", page+1);
-			 model.put("previousPage", page-1);
+			 Page<User> listeUsers = userService.findAllUsers(page, size, sortProperty, sortDirection);
+			 model.addAttribute("users", listeUsers.getContent());
+			 model.addAttribute("hasNext", listeUsers.hasNext());
+			 model.addAttribute("hasPrevious", listeUsers.hasPrevious());
+			 model.addAttribute("start", page*size + 1);
+			 model.addAttribute("end", Math.min(page*size + size, listeUsers.getTotalElements()));
+			 model.addAttribute("total", listeUsers.getTotalElements());
+			 model.addAttribute("page", page + 1);
+			 model.addAttribute("size", size);
+			 model.addAttribute("sortProperty", sortProperty);
+			 model.addAttribute("sortDirection", sortDirection);
+			 model.addAttribute("nextPage", page+1);
+			 model.addAttribute("previousPage", page-1);
 			 return "users/liste";
 		 }
-	*/
 	
-	// GET LIST USER
-	@GetMapping("")
-	public String showUsers(Model model) {
+	/* GET LIST USER
+	@GetMapping("/users")
+	public String listUsers(Model model) {
 		List<User> users = userService.findAllUsers();  
 		model.addAttribute("users", users); 
 		return "users/liste"; 
-	}
+	}*/
 	
 	// GET USER
 	// Je récupère les données stockés 
-	@GetMapping("/infos")
-	public String infoUser(@SessionAttribute("user") User user, HttpSession session, Model model) {
+	@GetMapping("/user/infos")
+	public String infoUser(HttpSession session, Model model) {
 			User userInfos = userService.findByEmail((String) session.getAttribute("email"));
+			model.addAttribute("user", userInfos);
+			return "users/detailsUser";
+	}
+	
+	// GET USER - ADMIN MODE
+	@GetMapping("/user/infos/{idUser}")
+	public String infoUser(@PathVariable("idUser") Long idUser, HttpSession session, Model model) {
+			User userInfos = userService.findById(idUser);
 			model.addAttribute("user", userInfos); 
+			model.addAttribute("idUser", idUser); 
 			return "users/detailsUser";
 	}
 	
@@ -129,24 +125,28 @@ public class UserController {
 	 * */
 	
 	// GET 
-	@RequestMapping(
-			value = "/new", 
-			method = RequestMethod.GET
-	)
-	public String createPersonInfoView(Model model) {
+	@GetMapping("/user/new")
+	public String createUser(Model model, HttpSession session) {
 
 		model.addAttribute("user", new User());
+		String sEmail = (String) session.getAttribute("email"); 
+		String sProfile = (String) session.getAttribute("profile");
+		model.addAttribute("userNormal", USER_NORMAL); 
+		model.addAttribute("userAdmin", USER_ADMIN);
+		model.addAttribute("userModerator", USER_MODERATOR); 
+		model.addAttribute("sEmail", sEmail); 
+		model.addAttribute("sProfile", sProfile); 
 		return "users/formAddUser";
 	}
 	
 	// POST
 	@RequestMapping(
-			value = "/new", 
+			value = "/user/new", 
 			method = RequestMethod.POST, 
 			 consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
 			 produces = "text/html"
 	)
-    public String createPersonInfo(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+    public String createuser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
 		
 		Boolean createUser = true; 
 		
@@ -168,7 +168,11 @@ public class UserController {
 				user.setPassword(passwordEncoder.encode(user.getPassword()));
 				model.addAttribute("successUserCreated", USER_CREATED); 
 				userService.createUser(user);
-				// Envoi du mail (trouver le service
+				// Send email - Does not work - find how it works
+				/*SimpleMailMessage simpleMailMessage = new SimpleMailMessage(); 
+				simpleMailMessage.setSubject("Test envoie email création de compte");
+				simpleMailMessage.setText("Test envoi email création de compte");
+				mailSender.send(simpleMailMessage);*/
 				return "users/success"; 
 			}
 
@@ -186,66 +190,94 @@ public class UserController {
 	 * 
 	 * */
 	
-	 // GET 
-	@RequestMapping(
-			value = "/update/{idUser}", 
-			method = RequestMethod.GET
-	)
-	public String updateUserInfoView(Model model, @PathVariable("idUser") Long idUser) {
+	 // GET - ADMIN MODE
+	@GetMapping("/user/update/{idUser}")
+	public String updateUser(Model model, @PathVariable("idUser") Long idUser) {
 			User user = userService.findById(idUser);
-			if (user == null) {
-				// Throw an exception
-				return "erreur"; 
-			}
 			model.addAttribute("user", user); 
+			model.addAttribute("idUser", idUser);  
 		return "users/formUpdateUser"; 
 	}
 	
-	// POST
+	// POST - ADMIN MODE
 	@RequestMapping(
-			value = "/update/{idUser}", 
+			value = "/user/update/{idUser}", 
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
 			produces = "text/html"
 	)
-	public String updateUserInfo(@ModelAttribute("user") @Valid User user, @PathVariable("idUser") Long idUser, BindingResult bindingResult, Model model) {
+	public String updateUser(@ModelAttribute("user") @Valid User user, @PathVariable("idUser") Long idUser, BindingResult bindingResult, Model model) {
 		// Ignore les erreurs liés au password
 		if (!bindingResult.hasErrors()) {
 				User userSearch = userService.findById(idUser);
 				user.setPassword(userSearch.getPassword());
 				user.setProfile(userSearch.getProfile());
 				userService.updateUser(idUser, user); 
-				model.addAttribute("successUserUdpated", USER_UPDATED); 
+				model.addAttribute("successUserUdpated", USER_UPDATED);
 				return "users/success";
 		} 
 		return "users/formUpdateUser";
-
+	}
+	
+	// GET - UPDATE PERSONAL INFOS (ADMIN AND NORMAL USERS)
+	@GetMapping("/user/update")
+	public String updateUser(HttpSession session, Model model) {
+		String sEmail = (String) session.getAttribute("email"); 
+		String sProfile = (String) session.getAttribute("profile"); 
+		User userSearch = userService.findByEmail(sEmail); 
+		model.addAttribute("user", userSearch);
+		model.addAttribute("userNormal", UserController.USER_NORMAL); 
+		model.addAttribute("userAdmin", UserController.USER_ADMIN); 
+		model.addAttribute("userModerator", UserController.USER_MODERATOR); 
+		model.addAttribute("sProfile", sProfile);
+		return "users/formUpdateUser"; 
+	}
+	
+	// POST - NORMAL USER
+	@RequestMapping(
+			value = "/user/update", 
+			method = RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
+			produces = "text/html"
+	)
+	public String updateUser(@ModelAttribute("user") @Valid User user, HttpSession session, BindingResult bindingResult, Model model) {
+		// Ignore les erreurs liés au password
+		if (!bindingResult.hasErrors()) {
+				String email = (String) session.getAttribute("email"); 
+				String profile = (String) session.getAttribute("profile"); 
+				User userSearch = userService.findByEmail(email);
+				user.setPassword(userSearch.getPassword());
+				if (profile == USER_NORMAL) {
+					user.setProfile(userSearch.getProfile());
+				}
+				userService.updateUser(userSearch.getId(), user);
+				model.addAttribute("successUserUdpated", USER_UPDATED);
+				return "users/success";
+		}
+		return "users/formUpdateUser";
 	}
 
 	// DELETE 
 	@RequestMapping(
-			value = "/{idUser}", 
+			value = "/user/delete/{idUser}", 
 			method = RequestMethod.GET
 	)
 	public String deleteUser(@PathVariable("idUser") Long idUser) {
 		User user = userService.findById(idUser); 
 		userService.deleteUser(user);
-		return "users/liste"; 
+		return "redirect:/users"; 
 	}
 	
 	// GET FORM IDENTIFICATION
-	@RequestMapping(
-			value = "/connexion", 
-			method = RequestMethod.GET
-	)
-	public String connexionUserView(Model model) {
+	@GetMapping("/user/login")
+	public String login(Model model) {
 		model.addAttribute("user", new User()); 
 		return "users/connexion"; 
 	}
 	
 	// POST IDENTIFICATION
 	@RequestMapping(
-			value = "/login", 
+			value = "/user/login", 
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
 			produces = "text/html"	
@@ -254,25 +286,25 @@ public class UserController {
 		if (!bindingResult.hasErrors()) {
 			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			User userSearch = userService.findByEmail(user.getEmail()); 
-			if (userSearch == null || passwordEncoder.matches(user.getPassword(), userSearch.getPassword())) {
+			if (userSearch == null || !passwordEncoder.matches(user.getPassword(), userSearch.getPassword())) {
 				model.addAttribute("errIdentification", ERR_IDENTIFICATION);
 			} else {
 				model.addAttribute("successIdentification", SUCCESS_IDENTIFICATION);
 				session.setAttribute("email", userSearch.getEmail());
 				session.setAttribute("profile", userSearch.getProfile());
 				// Regarder pour avoir les sessions
-				return "users/success";
+				return "redirect:/user/myAccount";
 			}
 		}
 		return "users/connexion"; 
 	}
 	
 	/* DECONNEXION */
-	@GetMapping("/logout")
+	@GetMapping("/user/logout")
 	public String logout(HttpSession session, Model model) {
 		session.invalidate();
 		model.addAttribute("logoutSuccess", LOGOUT_SUCCESS); 
-		return "users/logout";
+		return "redirect:/";
 	}
 	
 	
@@ -280,43 +312,42 @@ public class UserController {
 	/* FORM UPDATING PASSWORD */
 	
 	// GET 
-	@RequestMapping(
-		value = "/changePassword/{idUser}", 
-		method = RequestMethod.GET
-	)
-	public String updatePwdUserView(@PathVariable("idUser") Long idUser, Model model) {
-		User userSearch = userService.findById(idUser); 
-		if (userSearch == null) {
-			return "erreur"; 
-		}
-		userSearch.setPassword("");
-		model.addAttribute("user", userSearch); 
+	@GetMapping("/user/changePassword")
+	public String updatePwdUserView(Model model, HttpSession session) {
+		if (session.getAttribute("email") != null) {
+			String email = (String) session.getAttribute("email"); 
+			User userSearch = userService.findByEmail(email); 
+			if (userSearch == null) {
+				return "erreur"; 
+			}
+			userSearch.setPassword("");
+			model.addAttribute("user", userSearch);
+	}
 		return "users/formUpdatePwd"; 
 	}
 	
 	// POST
 	@RequestMapping(
-			value = "/changePassword/{idUser}", 
+			value = "/user/changePassword", 
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
 			produces = "text/html"	
 	)
-	public String updatePwdUser(@PathVariable("idUser") Long idUser, @ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+	public String updatePwdUser(HttpSession session, @ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors() && !user.getOldPassword().trim().equals("")) {
 				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-				User userSearchPwd = userService.findById(idUser);
+				String email = (String) session.getAttribute("email"); 
+				User userSearchPwd = userService.findByEmail(email); 
 				// valeurs non nulles 
 				user.setCity(userSearchPwd.getCity());
 				user.setEmail(userSearchPwd.getEmail());
 				user.setProfile(userSearchPwd.getProfile()); 
 				// Ancien mot de passe encodé = mot de passe encodé dans la base
 				if (passwordEncoder.matches(user.getOldPassword(), userSearchPwd.getPassword())) {
-					model.addAttribute("oldPwdEncode", user.getOldPassword()); 
-					model.addAttribute("currentPwdEncode", userSearchPwd.getPassword());
 					// vérifier si les deux mots de passe correspondent 
 					if (user.getPassword().equals(user.getPasswordConfirm())){
 						user.setPassword(passwordEncoder.encode(user.getPassword()));
-						userService.updateUser(idUser, user);
+						userService.updateUser(userSearchPwd.getId(), user);
 						model.addAttribute("pwdUpdated",PWD_UPDATED);
 						return "users/success"; 
 					} else {
@@ -328,6 +359,12 @@ public class UserController {
 		}
 		
 		return "users/formUpdatePwd"; 
+	}
+	
+	// GET MY ACCOUNT WELCOMING 
+	@GetMapping("/user/myAccount")
+	public String myAccount(Model model) {
+		return "myAccount"; 
 	}
 
 }

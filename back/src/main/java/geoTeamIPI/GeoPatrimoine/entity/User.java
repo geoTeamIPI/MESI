@@ -3,10 +3,10 @@ package geoTeamIPI.GeoPatrimoine.entity;
 import java.util.Collection;
 
 import javax.persistence.*;
-import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -18,12 +18,12 @@ public class User {
     private Long id;
 
     @Column(nullable=false)
-    @NotNull
+    @NotBlank
     @Size(min=3)
     @Email
     private String email; 
     
-    @NotNull
+    @NotBlank
     @Column(nullable=false)
     private String password;
     
@@ -41,7 +41,7 @@ public class User {
 		this.oldPassword = oldPassword;
 	}
 
-	@NotNull
+    @NotBlank
 	@Column(nullable=false)
     private String city; 
     

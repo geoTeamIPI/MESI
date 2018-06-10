@@ -36,9 +36,14 @@ public class UserService {
 			return userRepository.findAll(pageable); 
 		}*/
 		
-		public List<User> findAllUsers(){
-			return userRepository.findAll(); 
+		public Page<User> findAllUsers(Integer page, Integer size, String sortProperty, String sortDirection){
+	        @SuppressWarnings("deprecation")
+			Sort sort = new Sort(new Sort.Order(Sort.Direction.fromString(sortDirection),sortProperty));
+	        @SuppressWarnings("deprecation")
+			Pageable pageable = new PageRequest(page,size,sort);
+			return userRepository.findAll(pageable); 
 		}
+
 		
 		/*public <T extends User> T createUser(T user) {
 			return userRepository.save(user);

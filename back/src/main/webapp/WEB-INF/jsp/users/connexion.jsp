@@ -21,6 +21,7 @@
 		<input type="submit" value="valider" />
 	</p>
 </form:form>
+Pas encore inscrit, cliquez <a href="/user/new">ici</a>
 
 <th:if test="${!empty errIdentification}">
 	${errIdentification}

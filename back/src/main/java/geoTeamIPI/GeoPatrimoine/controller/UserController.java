@@ -265,7 +265,7 @@ public class UserController {
 	public String deleteUser(@PathVariable("idUser") Long idUser) {
 		User user = userService.findById(idUser); 
 		userService.deleteUser(user);
-		return "redirect:/users"; 
+		return "redirect:/users?page=0&size=10&sortDirection=ASC&sortProperty=email"; 
 	}
 	
 	// GET FORM IDENTIFICATION

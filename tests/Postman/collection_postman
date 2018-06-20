@@ -1,0 +1,278 @@
+{
+	"info": {
+		"_postman_id": "67c2dd06-fabc-431a-a663-499224161240",
+		"name": "GeoTeam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"description": "All admin web services\n",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eb382379-bb27-465b-9b8e-893bf79f0fd7",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : \"45\",\n    \"email\": \"jules@gmail.com\",\n    \"password\": \"jules\",\n    \"passwordConfirm\": \"jules\",\n    \"oldPassword\": null,\n    \"city\": \"Lyon\",\n    \"profile\": \"user\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Infos User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/user/infos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"infos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\n        \"email\": \"popo@gmail.com\",\n        \"password\": \"cedric\",\n        \"passwordConfirm\": \"cedric\",\n        \"oldPassword\": null,\n        \"city\": \"Lyon\",\n        \"profile\": \"user\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/update/48",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"update",
+								"48"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/users/delete/48",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"delete",
+								"48"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Normal",
+			"description": "",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "papi",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "papi@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "F593D0113419335037F1963DFFB09781"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"papi@gmail.com\",\n    \"password\": \"papivalence\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update your infos",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "papi",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "papi@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Client-Session-Id",
+								"value": "F593D0113419335037F1963DFFB09781",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"papi@gmail.com\",\n    \"oldPassword\" : \"jean\", \n    \"password\" : \"luc\", \n    \"passwordConfirm\" : \"jean\",\n    \"city\": null,\n    \"profile\": \"user\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Personal Infos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/users/infos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"infos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registering",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"valentin@gmail.com\",\n    \"password\" : \"valentin\", \n    \"passwordConfirm\" : \"valentin\",\n    \"city\": \"Valence\"\n}"
+						},
+						"url": {
+							"raw": "/user/registering",
+							"path": [
+								"user",
+								"registering"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

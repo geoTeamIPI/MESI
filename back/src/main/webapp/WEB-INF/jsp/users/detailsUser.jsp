@@ -7,7 +7,7 @@
 
 <th:choose>
 	<th:when test="${empty idUser}">
-		Modifier mes informations
+		<a href="/user/update/${idUser}">Modifier mes informations</a>
 	</th:when>
 	<th:otherwise>
 		<a href="/user/update">Modifier ses informations</a>

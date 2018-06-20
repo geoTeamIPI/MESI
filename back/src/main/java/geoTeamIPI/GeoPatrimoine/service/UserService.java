@@ -43,6 +43,10 @@ public class UserService {
 			Pageable pageable = new PageRequest(page,size,sort);
 			return userRepository.findAll(pageable); 
 		}
+		
+		public List<User> findAllUsers(){
+			return userRepository.findAll(); 
+		}
 
 		
 		/*public <T extends User> T createUser(T user) {

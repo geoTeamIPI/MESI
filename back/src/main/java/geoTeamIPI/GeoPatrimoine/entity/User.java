@@ -3,16 +3,23 @@ package geoTeamIPI.GeoPatrimoine.entity;
 import java.util.Collection;
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertFalse;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Users")
 public class User {
-
+	
+	public interface RequiredPassword { };
+	public interface RequiredCity { };
+	public interface requiredAllFields { };
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,7 +30,7 @@ public class User {
     @Email
     private String email; 
     
-    @NotBlank
+    @NotBlank(groups= {RequiredPassword.class, requiredAllFields.class})
     @Column(nullable=false)
     private String password;
     
@@ -41,19 +48,20 @@ public class User {
 		this.oldPassword = oldPassword;
 	}
 
-    @NotBlank
+    @NotBlank(groups={RequiredCity.class, requiredAllFields.class})
 	@Column(nullable=false)
     private String city; 
     
     @Column(nullable=false)
     private String profile; 
     
+    /*
     @OneToMany(mappedBy = "creatorUser")
     private Collection<Story> stories;
     
     @OneToMany(mappedBy = "voter")
     private Collection<Vote> votes;
-
+	*/
 	public Long getId() {
 		return id;
 	}
@@ -93,7 +101,7 @@ public class User {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-
+	/*
 	public Collection<Story> getStories() {
 		return stories;
 	}
@@ -110,7 +118,7 @@ public class User {
 		this.votes = votes;
 	}
 
-
+	*/
 	public String getPasswordConfirm() {
 		return passwordConfirm;
 	}
@@ -118,4 +126,5 @@ public class User {
 	public void setPasswordConfirm(String passwordConfirm) {
 		this.passwordConfirm = passwordConfirm;
 	}
+
 }

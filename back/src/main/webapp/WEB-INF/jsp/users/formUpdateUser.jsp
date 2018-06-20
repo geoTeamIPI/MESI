@@ -16,6 +16,22 @@
 		<form:input path="city" type="text" id="city" value="${user.city}"/>
 		<form:errors path="city" />
 	</p>
+	<!--   Test : formulaire de modification de mot de passe inclus -->
+	<p>
+		<label for="oldPassword">Ancien mot de passe</label>
+		<form:input path="oldPassword" type="password" id="oldPassword"/>
+	</p>
+	<p>
+		<label for="password">Nouveau mot de passe</label>
+		<form:input path="password" type="password" id="password" />
+		<form:errors path="password" />
+		<form:hidden path="password" />
+	</p>
+	<p>
+		<label for="passwordConfirm">Confirmer le nouveau mot de passe</label>
+		<form:input path="passwordConfirm" type="password" id="passwordConfirm" />
+	</p>
+	<!-- Fin test -->
 	<th:if test="${!empty sProfile && (sProfile == userAdmin || sProfile == userModerator)}">
 	<p>
 		<label for="city">Profile</label>
@@ -41,16 +57,22 @@
 		<form:errors path="profile" />
 	</th:if>
 	</p>
-		<!--  Eviter le password null -->
-		<form:hidden path="password" value="${user.password}" />
 	<p>
 		<input type="submit" value="valider" />
 	</p>
 </form:form>
-
+<br />
 
 <th:if test="${empty idUser}">
 	<a href = "/user/changePassword">Changer mon mot de passe</a>
+</th:if>
+
+<th:if test="${!empty notMatchedPwd}">
+	${notMatchedPwd}
+</th:if>
+
+<th:if test="${!empty pwdNoExists}">
+	${pwdNoExists}
 </th:if>
 
 <%@ include file ="../tags/footer.jsp" %>

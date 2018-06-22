@@ -79,6 +79,7 @@ public class UserController {
 	public static final String USER_NO_EXISTS = "Utilisateur non existant"; 
 	public static final String ERR_USER_UPDATED = "Erreur de mise à jour de vos données";
 	public static final String EMPTY_CITY = "Champs ville requis"; 
+	public static final String EMPTY_SESSION = "Pas de session utilisateur"; 
 	
 	@Autowired
 	private UserService userService;
@@ -103,7 +104,7 @@ public class UserController {
 		binder.addValidators(userValidator); 
 	}*/
 	
-
+	
 	
 	// ADD USER - ADMIN MODE
 	@PostMapping("/users/add")
@@ -159,7 +160,7 @@ public class UserController {
 	// UPDATE PERSONAL INFOS - NORMAL AND ADMIN MODE
 	@PostMapping("/users/update")
 	public ResponseEntity<String> updateUser(@Validated({requiredAllFields.class}) @RequestBody User user, BindingResult result, HttpSession session) throws Exception{
-		String sEmail = "albert@gmail.com";
+		String sEmail = (String) session.getAttribute("sEmail"); 
 		user.setEmail(sEmail);
 		User userSearch = userService.findByEmail(user.getEmail()); 
 		if (userSearch == null) {
@@ -173,14 +174,14 @@ public class UserController {
 				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); ; 
 				user.setPassword(passwordEncoder.encode(user.getPassword()));
 			} else {
-				return new ResponseEntity<String>(ERR_USER_UPDATED + " " + user.getId(), HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<String>(ERR_USER_UPDATED + " " + user.getId() + sEmail, HttpStatus.BAD_REQUEST);
 			}
 		} else {
 			user.setPassword(userSearch.getPassword());
 		}
 		// Password good and the fields are not empty
 		userService.updateUser(userSearch.getId(), user);
-		return new ResponseEntity<String>(USER_UPDATED + " " + user.getId(), HttpStatus.OK);
+		return new ResponseEntity<String>(USER_UPDATED + " " + user.getId() + sEmail, HttpStatus.OK);
 }
 	
 	// DELETE USER - ADMIN MODE
@@ -213,8 +214,8 @@ public class UserController {
 	// INFOS USER - NORMAL MODE
 	@GetMapping("/user/infos")
 	public User infosUser(HttpSession session) {
-		String sEmail = "papi@gmail.com";
-		if (!sEmail.isEmpty() || !sEmail.isEmpty()) {
+		if (session.getId() != null) {
+			String sEmail = (String) session.getAttribute("sEmail"); 
 			User userInfos = userService.findByEmail(sEmail);
 			return userInfos;
 		}
@@ -224,19 +225,33 @@ public class UserController {
 	// LOGIN
 	@RequestMapping(value="/user/login", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<String> login(@RequestBody @Validated({RequiredPassword.class}) User user, BindingResult result, HttpSession session) {
-		User userSearch = userService.findByEmail(user.getEmail());
-		if (userSearch != null) {
-			if  (!result.hasErrors()) {
-				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-				if (passwordEncoder.matches(user.getPassword(), userSearch.getPassword())){
-					session.setAttribute("sEmail", user.getEmail());
-					session.setAttribute("sProfile", userSearch.getProfile());
-					String sEmail = (String) session.getAttribute("email");
-					return new ResponseEntity<String>(SUCCESS_IDENTIFICATION + "Variable de session " + sEmail + " envoyée", HttpStatus.OK); 
+		if (session.getAttribute("sEmail") == null) {
+			User userSearch = userService.findByEmail(user.getEmail());
+			if (userSearch != null) {
+				if  (!result.hasErrors()) {
+					PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+					if (passwordEncoder.matches(user.getPassword(), userSearch.getPassword())){
+						session.setAttribute("sEmail", user.getEmail());
+						session.setAttribute("sProfile", userSearch.getProfile());
+						String sEmail = (String) session.getAttribute("sEmail");
+						String sProfile = (String) session.getAttribute("sProfile");
+						return new ResponseEntity<String>(sEmail + " " + sProfile, HttpStatus.OK); 
+					}
 				}
 			}
 		}
 		return new ResponseEntity<String>(ERR_IDENTIFICATION, HttpStatus.BAD_REQUEST); 
+	}
+	
+	/* DECONNEXION */
+	@GetMapping("/user/logout")
+	public ResponseEntity<String> logout(HttpSession session) {
+		if (session.isNew()) {
+			return new ResponseEntity<String>(EMPTY_SESSION, HttpStatus.OK);
+		}
+		session.invalidate();
+		return new ResponseEntity<String>(LOGOUT_SUCCESS , HttpStatus.OK); 
+
 	}
 	
 	/* END TEST POSTMAN */
@@ -515,13 +530,7 @@ public class UserController {
 //		return "users/connexion"; 
 //	}
 //	
-//	/* DECONNEXION */
-//	@GetMapping("/user/logout")
-//	public String logout(HttpSession session, Model model) {
-//		session.invalidate();
-//		model.addAttribute("logoutSuccess", LOGOUT_SUCCESS); 
-//		return "redirect:/";
-//	}
+
 //	
 //	
 //	

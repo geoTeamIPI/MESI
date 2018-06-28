@@ -35,7 +35,7 @@ public class UserValidator implements Validator{
 
 		// if the password is not null and it does not exist
 		if (!passwordEncoder.matches(user.getOldPassword(), userSearch.getPassword())){
-			errors.rejectValue("oldPassword", UserController.PWD_NO_EXISTS);
+			errors.rejectValue("oldPassword", UserHelper.PWD_NO_EXISTS);
 		}
 		
 		/* if the password is not empty and the two passwords are not equals

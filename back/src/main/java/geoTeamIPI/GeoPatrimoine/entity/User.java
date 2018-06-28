@@ -48,10 +48,11 @@ public class User {
 		this.oldPassword = oldPassword;
 	}
 
-    @NotBlank(groups={RequiredCity.class, requiredAllFields.class})
+    @NotBlank
 	@Column(nullable=false)
     private String city; 
     
+    @NotBlank
     @Column(nullable=false)
     private String profile; 
     

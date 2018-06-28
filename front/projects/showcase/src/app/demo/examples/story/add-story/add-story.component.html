@@ -1,0 +1,18 @@
+<div class="form-container">
+  <form>
+  <h2 class="text-center">Add Story</h2>
+  <mat-form-field>
+    <input matInput [(ngModel)]="story.title" placeholder="title" name="title" id="title">
+  </mat-form-field>
+<br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="story.description" placeholder="description" name="description" class="form-control" id="description">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <textarea matInput [(ngModel)]="story.content" placeholder="content" name="content" class="form-control" id="content"></textarea>
+  </mat-form-field>
+  <br>
+  <button mat-button (click)="createStory()">Create</button>
+</form>
+</div>

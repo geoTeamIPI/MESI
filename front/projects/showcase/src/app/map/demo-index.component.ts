@@ -1,13 +1,16 @@
 import { AfterViewInit, Component, ElementRef, NgZone, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Routes } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { cloneDeep, groupBy } from 'lodash-es';
+import { groupBy } from 'lodash-es';
 import { first } from 'rxjs/operators';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import { State } from '../app.module';
 import * as fromShowcase from '../app.selectors';
 import * as demo from './demo.actions';
 import { Category, DEMO_ROUTES } from './demo.module';
+import { Story } from '../story/story.model';
+import { StoryLocation } from '../story/story-location.model';
+import { StoryService } from '../story/story.service';
 
 type RoutesByCategory = { [P in Category]: Routes };
 
@@ -20,6 +23,10 @@ export class DemoIndexComponent implements OnInit, AfterViewInit {
   originalRoutes: RoutesByCategory;
   categories: Category[];
   searchTerm: string;
+
+  newStory: Story = new Story();
+  storyLoc : StoryLocation = new StoryLocation();
+  storyService : StoryService;
 
   isEditing$ = this.store.pipe(select(fromShowcase.isDemoEditing));
   isSidenavOpen$ = this.store.pipe(select(fromShowcase.isDemoSidenavOpen));
@@ -54,21 +61,15 @@ export class DemoIndexComponent implements OnInit, AfterViewInit {
     this.store.dispatch(new demo.ToggleSidenavEnd());
   }
 
-  search() {
-    // Quick and dirty
-    this.routes = cloneDeep(this.originalRoutes);
-    Object.values(this.routes).forEach((category) => {
-      category.forEach((route, index) => {
-        if (route.data && !(<string>route.data.label).toLowerCase().includes(this.searchTerm.toLowerCase())) {
-          delete category[index];
-        }
-      });
-    });
-  }
+  createStory(): void {
 
-  clearSearch() {
-    this.searchTerm = '';
-    this.routes = this.originalRoutes;
-  }
+    this.newStory.storyLocation = this.storyLoc;
+    console.log(this.newStory);
+    this.storyService.createStory(this.newStory)
+      .subscribe( data => {
+        alert("Story created successfully.");
+      });
+
+  };
 
 }

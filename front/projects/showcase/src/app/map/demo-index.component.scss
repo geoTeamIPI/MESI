@@ -33,3 +33,11 @@ a.active {
   background-color: mat-color(mat-palette($mat-indigo)) !important;
 }
 
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container > * {
+  width: 100%;
+}

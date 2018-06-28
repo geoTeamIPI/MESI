@@ -8,24 +8,25 @@
     </mat-form-field> -->
     <!-- <add-story></add-story> -->
 
-    <mat-nav-list>
-      <ng-container *ngFor="let cat of categories">
-        <h3 matSubheader>{{cat}}</h3>
-        <ng-container *ngFor="let route of $any(routes)[cat]">
-          <a
-            *ngIf="route"
-            mat-list-item
-            [routerLink]="'/map/'+((isEditing$ | async) ? '/edit/' : '')+route.path"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ _routerLinkActiveWakeUpHack_: (isEditing$ | async) }"
-            #exampleLink
-          >
-            {{route.data.label}}
-          </a>
-        </ng-container>
-        <mat-divider></mat-divider>
-      </ng-container>
-    </mat-nav-list>
+    <div class="form-container">
+      <form>
+        <h2 class="text-center">Add Story</h2>
+        <mat-form-field>
+          <input matInput [(ngModel)]="newStory.title" placeholder="title" name="title" id="title">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput [(ngModel)]="newStory.description" placeholder="description" name="description" class="form-control" id="description">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <textarea matInput [(ngModel)]="newStory.content" placeholder="content" name="content" class="form-control" id="content"></textarea>
+        </mat-form-field>
+        <br>
+        <button mat-button (click)="createStory()">Create</button>
+      </form>
+    </div>
+
   </mat-sidenav>
   <mat-sidenav-content>
     <section class="content">

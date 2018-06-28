@@ -5,6 +5,10 @@ import java.util.Collection;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="STORIES")
 public class Story {
@@ -26,31 +30,31 @@ public class Story {
     private String content;
     
     @Column
-    private Integer starting_year;
+    private Integer startingYear;
     
     @Column
-    private Integer starting_month;
+    private Integer startingMonth;
     
     @Column
-    private Integer starting_day;
+    private Integer startingDay;
     
     @Column
-    private Integer ending_year;
+    private Integer endingYear;
     
     @Column
-    private Integer ending_month;
+    private Integer endingMonth;
     
     @Column
-    private Integer ending_day;
+    private Integer endingDay;
     
     @Column(nullable=false)
-    private LocalDate date_creation;
+    private LocalDate dateCreation;
     
     @Column
-    private LocalDate date_update;
+    private LocalDate dateUpdate;
     
     @ManyToOne
-    private User creatorUser;
+    private User creator;
     
     @ManyToOne
     private Place place;
@@ -61,9 +65,16 @@ public class Story {
     @OneToMany(mappedBy = "story")
     private Collection<Media> media;
     
+    /**
     @OneToMany(mappedBy = "votedStory")
+    @JsonIgnoreProperties("votedStory")
     private Collection<Vote> votes;
-
+    */
+    
+    /** 
+     * ------------------------------------ GETTERS AND SETTERS---------------------------
+     * */
+    
 	public Long getId() {
 		return id;
 	}
@@ -97,75 +108,75 @@ public class Story {
 	}
 
 	public Integer getStarting_year() {
-		return starting_year;
+		return startingYear;
 	}
 
 	public void setStarting_year(Integer starting_year) {
-		this.starting_year = starting_year;
+		this.startingYear = starting_year;
 	}
 
 	public Integer getStarting_month() {
-		return starting_month;
+		return startingMonth;
 	}
 
 	public void setStarting_month(Integer starting_month) {
-		this.starting_month = starting_month;
+		this.startingMonth = starting_month;
 	}
 
 	public Integer getStarting_day() {
-		return starting_day;
+		return startingDay;
 	}
 
 	public void setStarting_day(Integer starting_day) {
-		this.starting_day = starting_day;
+		this.startingDay = starting_day;
 	}
 
 	public Integer getEnding_year() {
-		return ending_year;
+		return endingYear;
 	}
 
 	public void setEnding_year(Integer ending_year) {
-		this.ending_year = ending_year;
+		this.endingYear = ending_year;
 	}
 
 	public Integer getEnding_month() {
-		return ending_month;
+		return endingMonth;
 	}
 
 	public void setEnding_month(Integer ending_month) {
-		this.ending_month = ending_month;
+		this.endingMonth = ending_month;
 	}
 
 	public Integer getEnding_day() {
-		return ending_day;
+		return endingDay;
 	}
 
 	public void setEnding_day(Integer ending_day) {
-		this.ending_day = ending_day;
+		this.endingDay = ending_day;
 	}
 
 	public LocalDate getDate_creation() {
-		return date_creation;
+		return dateCreation;
 	}
 
 	public void setDate_creation(LocalDate date_creation) {
-		this.date_creation = date_creation;
+		this.dateCreation = date_creation;
 	}
 
 	public LocalDate getDate_update() {
-		return date_update;
+		return dateUpdate;
 	}
 
 	public void setDate_update(LocalDate date_update) {
-		this.date_update = date_update;
+		this.dateUpdate = date_update;
 	}
 
-	public User getCreatorUser() {
-		return creatorUser;
+	public User getCreator() {
+		return creator;
 	}
 
-	public void setCreatorUser(User creatorUser) {
-		this.creatorUser = creatorUser;
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
 
 	public Place getPlace() {
@@ -183,7 +194,7 @@ public class Story {
 	public void setType(Type type) {
 		this.type = type;
 	}
-
+	
 	public Collection<Media> getMedia() {
 		return media;
 	}
@@ -191,7 +202,8 @@ public class Story {
 	public void setMedia(Collection<Media> media) {
 		this.media = media;
 	}
-
+	
+	/**
 	public Collection<Vote> getVotes() {
 		return votes;
 	}
@@ -199,6 +211,6 @@ public class Story {
 	public void setVotes(Collection<Vote> votes) {
 		this.votes = votes;
 	}
-    
-    
+	*/
+
 }

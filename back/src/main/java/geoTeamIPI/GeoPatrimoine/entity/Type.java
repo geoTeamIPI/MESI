@@ -1,7 +1,5 @@
 package geoTeamIPI.GeoPatrimoine.entity;
 
-import java.util.Collection;
-
 import javax.persistence.*;
 
 @Entity
@@ -16,14 +14,20 @@ public class Type {
     @Column(nullable = false)
     private String name; 
     
+    /**
     @OneToOne
     private Story story;
+    */
     
+    /**
     @ManyToOne
     private Type parentType;
+    */
     
+    /**
     @OneToMany(mappedBy="parentType")
     private Collection<Type> childType;
+    */
 
 	public Long getId() {
 		return id;
@@ -41,6 +45,7 @@ public class Type {
 		this.name = name;
 	}
 
+	/**
 	public Story getStory() {
 		return story;
 	}
@@ -48,7 +53,9 @@ public class Type {
 	public void setStory(Story story) {
 		this.story = story;
 	}
-
+	*/
+ 
+	/**
 	public Type getParentType() {
 		return parentType;
 	}
@@ -64,6 +71,7 @@ public class Type {
 	public void setChildType(Collection<Type> childType) {
 		this.childType = childType;
 	}
+	*/
     
     
 }

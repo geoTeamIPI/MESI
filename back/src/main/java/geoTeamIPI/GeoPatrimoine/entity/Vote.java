@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="Votes")
 public class Vote{
@@ -27,15 +29,26 @@ public class Vote{
     @Column
 	public Comment comment;
 	
+    /**
     @ManyToOne
+    @JsonIgnore
     private User voter;
+    */
 
+    /**
     @ManyToOne
+    @JsonIgnore
     private Story votedStory;
+    */
+    
     
     @Column(nullable=false)
     private Boolean value;
 
+    /** 
+     * ------------------------------------ GETTERS AND SETTERS---------------------------
+     * */
+    
 	public Long getId() {
 		return id;
 	}
@@ -68,6 +81,8 @@ public class Vote{
 		this.comment = comment;
 	}
 
+	
+	/**
 	public User getVoter() {
 		return voter;
 	}
@@ -75,7 +90,9 @@ public class Vote{
 	public void setVoter(User voter) {
 		this.voter = voter;
 	}
+	*/
 
+	/**
 	public Story getVotedStory() {
 		return votedStory;
 	}
@@ -83,6 +100,8 @@ public class Vote{
 	public void setVotedStory(Story votedStory) {
 		this.votedStory = votedStory;
 	}
+	*/
+	
 
 	public Boolean getValue() {
 		return value;

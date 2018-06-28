@@ -1,14 +1,22 @@
-INSERT INTO `places` (`id`, `longitude`, `latitude`, `number_street`, `street`, `city`, `zip_code`) VALUES
+--
+-- Contenu de la table `places`
+--
+
+INSERT INTO `places` (`id`, `longitude`, `latitude`, `number_street`, `street`, `city`, `zipcode`) VALUES
 (1, '45.779557', '4.827420', NULL, 'Rue Hénon', 'Lyon', '69004'),
 (2, '45.788307', '4.813071', '49-43', 'rue des Docks', 'Lyon', '69009'),
 (3, '45.780279', '4.805270', '10', 'rue du 24 mars 1852', 'Lyon', '69009'),
 (4, '45.766118', '4.805506', '57-55', 'rue du Sergent Michel Berthet', 'Lyon', '69009');
 
 
+--
+-- Contenu de la table `users`
+--
+
 INSERT INTO `users` (`id`, `email`, `password`, `city`, `profile`) VALUES
 (1, 'toto@yahoo.fr', 'pwd', 'Lyon', 'user'),
 (2, 'tata@gmail.com', 'pwd', 'Villeurbanne', 'user'),
-(3, 'titi@yahoo.fr', 'pwd', 'L''Arbresle', 'user'),
+(3, 'titi@yahoo.fr', 'pwd', 'L\'Arbresle', 'user'),
 (4, 'stephane@yahoo.fr', 'pwd', '', 'user'),
 (5, 'cedric.becbenzene@gnail.com', 'pwd', 'Lyon', 'user'),
 (6, 'stephane.rip@zombie.fr', 'pwd', 'Lyon', 'user'),
@@ -31,7 +39,12 @@ INSERT INTO `users` (`id`, `email`, `password`, `city`, `profile`) VALUES
 (56, 'albert@gmail.com', '$2a$10$BnSyscLZVNcm6drPM92V6uO82STW8WYJdnMSH.z8fXQYz0tRIwVkG', 'Lyon', 'user');
 
 
-INSERT INTO `types` (`id`, `name`, `type_id`) VALUES
+
+--
+-- Contenu de la table `types`
+--
+
+INSERT INTO `types` (`id`, `name`, `typeParent_id`) VALUES
 (1, 'Monument', NULL),
 (2, 'Décoration', NULL),
 (3, 'Mobilier urbain', NULL),
@@ -42,7 +55,12 @@ INSERT INTO `types` (`id`, `name`, `type_id`) VALUES
 (8, 'Bibliothèque', 1),
 (9, 'Porte', 2),
 (10, 'Enseigne', 2),
-(11, 'Bouche d''égout', 3);
+(11, 'Bouche d\'égout', 3);
+
+
+--
+-- Contenu de la table `timelapses`
+--
 
 INSERT INTO `timelapses` (`id`, `period`, `starting_year`, `ending_year`) VALUES
 (1, 'Antiquité', -3500, 476),
@@ -56,17 +74,26 @@ INSERT INTO `timelapses` (`id`, `period`, `starting_year`, `ending_year`) VALUES
 (9, 'Temps modernes', 1945, NULL);
 
 
-INSERT INTO `stories` (`id`, `title`, `description`, `content`, `creator_id`, `place_id`, `type_id`, `starting_year`, `starting_month`, `starting_day`, `ending_year`, `ending_month`, `ending_day`, `date_creation`, `date_update`) VALUES
+
+--
+-- Contenu de la table `stories`
+--
+
+INSERT INTO `stories` (`id`, `title`, `description`, `content`, `creator_id`, `place_id`, `type_id`, `startingYear`, `startingMonth`, `startingDay`, `endingYear`, `endingMonth`, `endingDay`, `dateCreation`, `dateUpdate`) VALUES
 (1, 'Belle statue!!!', 'Wow elle est trop belle cette statue', 'Y a plein de crottes de pigeons dessus', 1, 1, 4, 1800, 10, 25, NULL, NULL, NULL, '2013-05-15', '2017-07-07'),
 (2, 'Statue de la vierge', 'Magnifique statue de la vierge du 15eme siècle érigée par Charles de La Frite suite à une commande du cardinal de Lasagne ', 'cette statue de la vierge est en hommage à la mère de Skywalker (Shmi Skywalker) qui mourra dans un camps des homme des sables', 2, 1, 7, 1400, NULL, NULL, NULL, NULL, NULL, '2015-12-11', NULL),
-(3, 'CGI c''est de la bombe ', 'CGI, monument historique des UDEV', '', 3, 2, 6, 1990, NULL, NULL, NULL, NULL, NULL, '2018-01-15', NULL),
+(3, 'CGI c\'est de la bombe ', 'CGI, monument historique des UDEV', '', 3, 2, 6, 1990, NULL, NULL, NULL, NULL, NULL, '2018-01-15', NULL),
 (4, 'Batiment de CGI', 'Tellement de bons souvenirs pour moi là-bas!!!!!!!!!!!!', '', 6, 2, 2, 1987, 2, 24, NULL, NULL, NULL, '2010-01-28', '2010-02-02'),
 (5, 'Petite histoire salace', 'Celle des employés CGI qui font gollum gollum dans les toilettes du 3ème étage ', '', 4, 2, 4, 2018, 10, 2, NULL, NULL, NULL, '2018-03-14', NULL),
-(6, 'Plaque d égout ', 'du 32ème siècle aprés Jesus Christ', 'Et oui c''est une plaque d''égout du futur!!', 6, 3, 7, 2257, NULL, NULL, NULL, NULL, NULL, '2017-08-05', NULL),
-(7, 'Entrée du métro George de Loup ', 'Oui il s agit d''une nouvelle station de métro  en mémoire à George le Conquérant qui montait un loup pour attaquer ses ennemis ', 'Vous remarquerez ces magnifiques statues de CN News et 20 minutes à l''entrée!', 3, 4, 4, 1789, 11, 25, NULL, NULL, NULL, '2014-10-18', NULL);
+(6, 'Plaque d égout ', 'du 32ème siècle aprés Jesus Christ', 'Et oui c\'est une plaque d\'égout du futur!!', 6, 3, 7, 2257, NULL, NULL, NULL, NULL, NULL, '2017-08-05', NULL),
+(7, 'Entrée du métro George de Loup ', 'Oui il s agit d\'une nouvelle station de métro  en mémoire à George le Conquérant qui montait un loup pour attaquer ses ennemis ', 'Vous remarquerez ces magnifiques statues de CN News et 20 minutes à l\'entrée!', 3, 4, 4, 1789, 11, 25, NULL, NULL, NULL, '2014-10-18', NULL);
 
 
-INSERT INTO `votes` (`id`, `voter_id`, `story_id`, `value`, `comment`, `date_creation`, `date_update`) VALUES
+--
+-- Contenu de la table `votes`
+--
+
+INSERT INTO `votes` (`id`, `voter_id`, `votedstory_id`, `value`, `comment`, `date_creation`, `date_update`) VALUES
 (1, 1, 2, 1, 'Excellent', '2018-04-15', '2018-04-16'),
 (2, 1, 5, 1, 'Tres_bon', '2017-09-23', NULL),
 (3, 1, 7, 1, 'Excellent', '2018-01-03', NULL),
@@ -77,7 +104,12 @@ INSERT INTO `votes` (`id`, `voter_id`, `story_id`, `value`, `comment`, `date_cre
 (8, 8, 7, 1, 'Excellent', '2018-02-26', NULL),
 (9, 7, 6, 1, 'bon', '2018-02-09', NULL);
 
+
+--
+-- Contenu de la table `media`
+--
+
 INSERT INTO `media` (`id`, `name`, `comment`, `path`, `story_id`, `date_creation`, `date_update`) VALUES
 (1, 'De belles noix!!!!!', NULL, '/disquedur/pics/noix.jpg', 3, '2018-01-15', NULL),
 (2, 'Statue couverte de merde', NULL, '/disquedur/pics/statueshit.jpg', 1, '2013-05-15', '2017-07-07'),
-(3, "Plaque d'égout", 'Remarquez ces détails hallucinants sur le pingouin pendant sa période où il vivait dans les égouts de Gotham', '/disquedur/pics/plaqueegout.jpg', 6, '2017-08-05', NULL);
+(3, 'Plaque d\'égout', 'Remarquez ces détails hallucinants sur le pingouin pendant sa période où il vivait dans les égouts de Gotham', '/disquedur/pics/plaqueegout.jpg', 6, '2017-08-05', NULL);

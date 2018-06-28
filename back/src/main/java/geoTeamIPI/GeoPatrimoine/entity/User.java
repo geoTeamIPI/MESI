@@ -3,14 +3,13 @@ package geoTeamIPI.GeoPatrimoine.entity;
 import java.util.Collection;
 
 import javax.persistence.*;
-import javax.validation.constraints.AssertFalse;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="Users")
@@ -58,10 +57,18 @@ public class User {
     /*
     @OneToMany(mappedBy = "creatorUser")
     private Collection<Story> stories;
+    */
     
+    /**
     @OneToMany(mappedBy = "voter")
+    @JsonIgnoreProperties("voter")
     private Collection<Vote> votes;
-	*/
+    */
+    
+    /** 
+     * ------------------------------------ GETTERS AND SETTERS---------------------------
+     * */
+	
 	public Long getId() {
 		return id;
 	}
@@ -101,7 +108,8 @@ public class User {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-	/*
+	
+	/**
 	public Collection<Story> getStories() {
 		return stories;
 	}
@@ -109,7 +117,9 @@ public class User {
 	public void setStories(Collection<Story> stories) {
 		this.stories = stories;
 	}
+	*/
 
+	/**
 	public Collection<Vote> getVotes() {
 		return votes;
 	}
@@ -117,8 +127,9 @@ public class User {
 	public void setVotes(Collection<Vote> votes) {
 		this.votes = votes;
 	}
-
 	*/
+
+	
 	public String getPasswordConfirm() {
 		return passwordConfirm;
 	}

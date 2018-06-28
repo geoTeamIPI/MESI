@@ -1,7 +1,5 @@
 package geoTeamIPI.GeoPatrimoine.entity;
 
-import java.util.Collection;
-
 import javax.persistence.*;
 
 @Entity
@@ -30,8 +28,10 @@ public class Place {
     @Column
     private String zipcode;
     
+    /** FAIT PLANTER POSTMAN 
     @OneToMany(mappedBy = "place")
     private Collection<Story> stories;
+    */
 
 	public Long getId() {
 		return id;
@@ -89,6 +89,7 @@ public class Place {
 		this.zipcode = zipcode;
 	}
 
+	/**
 	public Collection<Story> getStories() {
 		return stories;
 	}
@@ -96,6 +97,6 @@ public class Place {
 	public void setStories(Collection<Story> stories) {
 		this.stories = stories;
 	}
+	*/
 
-    
 }

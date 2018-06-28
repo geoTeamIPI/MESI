@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { first, withLatestFrom } from 'rxjs/operators';
 import { State } from './app.module';
 import * as fromApp from './app.selectors';
-import * as demo from './demo/demo.actions';
+import * as demo from './map/demo.actions';
 
 @Component({
   selector: 'showcase-root',

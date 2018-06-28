@@ -3,59 +3,52 @@ package geoTeamIPI.GeoPatrimoine.entity;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="Votes")
-public class Vote{
+@Table(name = "Votes")
+@IdClass(VoteId.class)
+public class Vote {
+
+	@EmbeddedId
+	private VotePk id;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-	
-    @Column(nullable=false)
-    private LocalDate date_creation;
-    
-    @Column
-    private LocalDate date_update;
-    
-    @Column
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "voter_id", referencedColumnName = "id")
+	private User voter;
+
+	@Id
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "votedStory_id", referencedColumnName = "id")
+	private Story votedStory;
+
+	@Column(nullable = false)
+	private LocalDate date_creation;
+
+	@Column
+	private LocalDate date_update;
+
+	@Column
 	public Comment comment;
-	
-    /**
-    @ManyToOne
-    @JsonIgnore
-    private User voter;
-    */
 
-    /**
-    @ManyToOne
-    @JsonIgnore
-    private Story votedStory;
-    */
-    
-    
-    @Column(nullable=false)
-    private Boolean value;
+	@Column(nullable = false)
+	private Boolean value;
 
-    /** 
-     * ------------------------------------ GETTERS AND SETTERS---------------------------
-     * */
-    
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	/**
+	 * ------------------------------------ GETTERS AND SETTERS---------------------------
+	 */
 
 	public LocalDate getDate_creation() {
 		return date_creation;
@@ -81,8 +74,22 @@ public class Vote{
 		this.comment = comment;
 	}
 
-	
-	/**
+	public Boolean getValue() {
+		return value;
+	}
+
+	public void setValue(Boolean value) {
+		this.value = value;
+	}
+
+	public VotePk getId() {
+		return id;
+	}
+
+	public void setId(VotePk id) {
+		this.id = id;
+	}
+
 	public User getVoter() {
 		return voter;
 	}
@@ -90,9 +97,7 @@ public class Vote{
 	public void setVoter(User voter) {
 		this.voter = voter;
 	}
-	*/
 
-	/**
 	public Story getVotedStory() {
 		return votedStory;
 	}
@@ -100,15 +105,31 @@ public class Vote{
 	public void setVotedStory(Story votedStory) {
 		this.votedStory = votedStory;
 	}
-	*/
-	
 
-	public Boolean getValue() {
-		return value;
-	}
+	/**
+	 * ------------------------------------ OLD MODEL ---------------------------
+	 */
 
-	public void setValue(Boolean value) {
-		this.value = value;
-	} 
-      
+	/**
+	 * @ManyToOne
+	 * @JsonIgnore private User voter;
+	 */
+
+	/**
+	 * @ManyToOne
+	 * @JsonIgnore private Story votedStory;
+	 */
+
+	/**
+	 * public User getVoter() { return voter; }
+	 * 
+	 * public void setVoter(User voter) { this.voter = voter; }
+	 */
+
+	/**
+	 * public Story getVotedStory() { return votedStory; }
+	 * 
+	 * public void setVotedStory(Story votedStory) { this.votedStory = votedStory; }
+	 */
+
 }

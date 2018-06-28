@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import {  ActivatedRoute } from '@angular/router';
 
 import { Story } from '../story.model';
 import { StoryLocation } from '../story-location.model';

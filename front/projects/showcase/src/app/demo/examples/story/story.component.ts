@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Story } from './story.model';
 import { StoryService } from './story.service';
@@ -13,7 +12,7 @@ export class StoryComponent implements OnInit {
 
   stories: Story[];
 
-  constructor(private router: Router, private storyService: StoryService) {
+  constructor( private storyService: StoryService) {
 
   }
 

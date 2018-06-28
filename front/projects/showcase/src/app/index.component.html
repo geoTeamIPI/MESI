@@ -6,7 +6,8 @@
       mat-button
       (click)="toggleSidenav()"
     >
-      <mat-icon>menu</mat-icon>
+      <!-- <mat-icon>menu</mat-icon> -->
+      Create a Story
     </button>
     <a mat-button routerLink="/">
       Home
@@ -14,27 +15,10 @@
     <a mat-button routerLink="/demo">
       Map
     </a>
-    <a mat-button routerLink="/doc">
-      Documentation
-    </a>
+    
   </div>
   <div>
-    <mat-slide-toggle
-      *ngIf="isInDemo$ | async"
-      color="accent"
-      [ngModel]="isDemoEditing$ | async"
-      (ngModelChange)="toggleEdit()"
-    >
-      Edit!
-    </mat-slide-toggle>
-    <button
-      *ngIf="isInDemo$ | async"
-      class="menu-button"
-      mat-button
-      (click)="toggleNewStory()"
-    >
-      <mat-icon>menu</mat-icon>
-    </button>
+    <p style="font-size: 12px;">Share your version of anywhere's history</p>
   </div>
 </mat-toolbar>
 <router-outlet></router-outlet>

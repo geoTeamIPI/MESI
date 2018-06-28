@@ -5,7 +5,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  sidenavOpen: true
+  sidenavOpen: false
 };
 
 export function reducer(state = initialState, action: DemoActions): State {

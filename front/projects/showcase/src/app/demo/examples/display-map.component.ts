@@ -100,6 +100,14 @@ export class ClusterPopupComponent implements OnChanges {
       }"
       [trackUserLocation]="true"
     ></mgl-control>
+    <mgl-control
+      mglNavigation
+    ></mgl-control>
+    <mgl-control
+      mglScale
+      unit="metric"
+      position="top-right"
+    ></mgl-control>
   </mgl-map>
  
   `,

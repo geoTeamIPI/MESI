@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import geoTeamIPI.GeoPatrimoine.entity.Story;
+import geoTeamIPI.GeoPatrimoine.entity.User;
 import geoTeamIPI.GeoPatrimoine.repository.StoryRepository;
 
 @Service
@@ -32,6 +33,18 @@ public class StoryService {
 		@SuppressWarnings("deprecation")
 		Pageable pageable = new PageRequest(page, size, sort);
 		return storyRepository.findAll(pageable);
+	}
+
+	public List<Story> findAllStoriesOfUser(User user) {
+		return storyRepository.findByCreator(user);
+	}
+
+	public Page<Story> findAllStoriesOfUser(User user, Integer page, Integer size, String sortProperty, String sortDirection) {
+		@SuppressWarnings("deprecation")
+		Sort sort = new Sort(new Sort.Order(Sort.Direction.fromString(sortDirection), sortProperty));
+		@SuppressWarnings("deprecation")
+		Pageable pageable = new PageRequest(page, size, sort);
+		return storyRepository.findAllByCreator(user, pageable);
 	}
 
 	public Story createStory(Story story) {

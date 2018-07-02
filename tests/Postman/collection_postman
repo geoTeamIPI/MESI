@@ -14,16 +14,16 @@
 					"description": "",
 					"item": [
 						{
-							"name": "Delete User",
+							"name": "User Delete",
 							"request": {
-								"method": "GET",
+								"method": "DELETE",
 								"header": [],
 								"body": {
 									"mode": "raw",
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/users/delete/48",
+									"raw": "http://localhost:8080/users/delete/58",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -32,14 +32,14 @@
 									"path": [
 										"users",
 										"delete",
-										"48"
+										"58"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Update User",
+							"name": "User Update",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -50,10 +50,10 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "   {\n        \"email\": \"popo@gmail.com\",\n        \"password\": \"cedric\",\n        \"passwordConfirm\": \"cedric\",\n        \"oldPassword\": null,\n        \"city\": \"Lyon\",\n        \"profile\": \"user\"\n    }"
+									"raw": "   {\n        \"email\": \"testing.postman@yahoo.fr\",\n        \"password\": \"1234\",\n        \"passwordConfirm\": \"1234\",\n        \"oldPassword\": null,\n        \"city\": \"Marseille\",\n        \"profile\": \"user\"\n    }"
 								},
 								"url": {
-									"raw": "http://localhost:8080/users/update/48",
+									"raw": "http://localhost:8080/users/update/58",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -62,14 +62,14 @@
 									"path": [
 										"users",
 										"update",
-										"48"
+										"58"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Infos User",
+							"name": "User Display",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -78,7 +78,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/users/infos/2",
+									"raw": "http://localhost:8080/users/infos/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -87,14 +87,14 @@
 									"path": [
 										"users",
 										"infos",
-										"2"
+										"1"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Create User",
+							"name": "User Create",
 							"event": [
 								{
 									"listen": "test",
@@ -117,7 +117,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"the.ultimate.testeur@yahoo.fr\",\n    \"password\": \"jules\",\n    \"passwordConfirm\": \"jules\",\n    \"oldPassword\": null,\n    \"city\": \"Paris\",\n    \"profile\": \"user\"\n}"
+									"raw": "{\n    \"email\": \"testing.postman@yahoo.fr\",\n    \"password\": \"1234\",\n    \"passwordConfirm\": \"1234\",\n    \"oldPassword\": null,\n    \"city\": \"Lyon\",\n    \"profile\": \"user\"\n}"
 								},
 								"url": {
 									"raw": "http://localhost:8080/users/add",
@@ -129,6 +129,58 @@
 									"path": [
 										"users",
 										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "User Err",
+					"description": "",
+					"item": [
+						{
+							"name": "User Display Err",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/users/infos/0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"infos",
+										"0"
 									]
 								}
 							},
@@ -179,7 +231,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"papi@gmail.com\",\n    \"password\": \"papivalence\"\n}"
+									"raw": "{\n    \"email\": \"testing.postman@yahoo.fr\",\n    \"password\": \"1234\"\n}"
 								},
 								"url": {
 									"raw": "http://localhost:8080/user/login",
@@ -208,10 +260,15 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"valentin@gmail.com\",\n    \"password\" : \"valentin\", \n    \"passwordConfirm\" : \"valentin\",\n    \"city\": \"Valence\"\n}"
+									"raw": "{\n    \"email\": \"kirikou@gmail.com\",\n    \"password\" : \"1234\", \n    \"passwordConfirm\" : \"1234\",\n    \"city\": \"Valence\"\n}"
 								},
 								"url": {
-									"raw": "/user/registering",
+									"raw": "http://localhost:8080/user/registering",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
 									"path": [
 										"user",
 										"registering"
@@ -228,7 +285,7 @@
 					"description": "",
 					"item": [
 						{
-							"name": "Update your infos",
+							"name": "User update",
 							"request": {
 								"auth": {
 									"type": "basic",
@@ -259,17 +316,17 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"papi@gmail.com\",\n    \"oldPassword\" : \"jean\", \n    \"password\" : \"luc\", \n    \"passwordConfirm\" : \"jean\",\n    \"city\": null,\n    \"profile\": \"user\"\n}"
+									"raw": "{\n    \"email\": \"testing.postman@yahoo.fr\",\n    \"oldPassword\" : null, \n    \"password\" : null, \n    \"passwordConfirm\" : null,\n    \"city\": \"Marseille\",\n    \"profile\": \"user\"\n}"
 								},
 								"url": {
-									"raw": "http://localhost:8080/users/update",
+									"raw": "http://localhost:8080/user/update",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"users",
+										"user",
 										"update"
 									]
 								}
@@ -277,7 +334,7 @@
 							"response": []
 						},
 						{
-							"name": "Personal Infos",
+							"name": "User Display",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -286,14 +343,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/users/infos",
+									"raw": "http://localhost:8080/user/infos",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"users",
+										"user",
 										"infos"
 									]
 								}
@@ -320,7 +377,51 @@
 					"description": "",
 					"item": [
 						{
-							"name": "List all Stories",
+							"name": "Stories Count all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/stories/count",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"count"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Stories Count all of User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/stories/count/user/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"count",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Stories List all",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -337,6 +438,226 @@
 									"port": "8080",
 									"path": [
 										"stories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Stories List all pagination",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/pagin?page=0&size=5&sortProperty=id&sortDirection=ASC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"pagin"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "sortProperty",
+											"value": "id"
+										},
+										{
+											"key": "sortDirection",
+											"value": "ASC"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Stories List all of User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/user/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Stories List all of User pagination",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/user/1/pagin?page=0&size=2&sortProperty=id&sortDirection=ASC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"user",
+										"1",
+										"pagin"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "2"
+										},
+										{
+											"key": "sortProperty",
+											"value": "id"
+										},
+										{
+											"key": "sortDirection",
+											"value": "ASC"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Story Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"title\": \"Testing postman numero 4\",\n        \"creator\": {\n            \"id\": 1\n        },\n        \"place\": {\n            \"id\": 1\n        },\n        \"type\": {\n            \"id\": 1\n        }\n    }"
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Story Display",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/display/16",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"display",
+										"16"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Story Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/delete/16",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"delete",
+										"16"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Story Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 11,\n    \"title\": \"Testing postman numero update\",\n    \"dateCreation\": \"2018-06-29\",\n    \"dateUpdate\": \"2018-07-02\",\n    \"creator\": {\n        \"id\": 1\n    },\n    \"place\": {\n        \"id\": 2\n    }, \n    \"type\":{\n    \t\"id\":1\n    }\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/update/16",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"update",
+										"16"
 									]
 								}
 							},

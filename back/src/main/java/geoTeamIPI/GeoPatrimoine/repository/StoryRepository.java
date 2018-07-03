@@ -20,7 +20,7 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 	
 	Story findbyTimelapse (Timelapse timelapse);
 	
-	
+	Story findbyDateUpdate (Date date);
 	
 	
 	

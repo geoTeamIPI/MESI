@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import geoTeamIPI.GeoPatrimoine.entity.Place;
 import geoTeamIPI.GeoPatrimoine.entity.Story;
 import geoTeamIPI.GeoPatrimoine.entity.Timelapse;
 import geoTeamIPI.GeoPatrimoine.entity.Type;
@@ -22,7 +24,7 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 	
 	Story findbyDateUpdate (Date date);
 	
-	
+	List<Story> findbyPlace (Place place);
 	
 	}
 

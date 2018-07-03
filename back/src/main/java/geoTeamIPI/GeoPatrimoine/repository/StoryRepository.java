@@ -32,6 +32,7 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 	@Query ("Select * from place where longitude> :longitude and latitude> :latitude")
 	List<Story> findbyLongMoinsLatMoins (@Param("longitude") float longitude, @Param("latitude") float latitude);
 	
-	
+	@Query ("Select * from story where title= ':title' ")
+	List<Story> findbyKeyword (@Param("title") String title);
 	}
 

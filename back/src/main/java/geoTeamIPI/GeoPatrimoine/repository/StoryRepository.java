@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import geoTeamIPI.GeoPatrimoine.entity.Place;
@@ -24,7 +26,12 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 	
 	Story findbyDateUpdate (Date date);
 	
-	List<Story> findbyPlace (Place place);
+	@Query ("Select * from place where longitude< :longitude and latitude< :latitude")
+	List<Story> findbyLongPlusLatPlus (@Param("longitude") float longitude, @Param("latitude") float latitude);
+	
+	@Query ("Select * from place where longitude> :longitude and latitude> :latitude")
+	List<Story> findbyLongMoinsLatMoins (@Param("longitude") float longitude, @Param("latitude") float latitude);
+	
 	
 	}
 

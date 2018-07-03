@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,6 +46,12 @@ public class StoryController {
 		return storyService.findAllStoriesOfUser(user).size();
 	}
 
+	// COUNT ALL MY STORIES - ADMIN AND USER MODES
+	@GetMapping("/count/myself")
+	public int countAllOfMyself(@RequestHeader(value = "idConnectedUser") Long idConnectedUser) {
+		return storyService.countAllStoriesOfMyself(idConnectedUser);
+	}
+
 	// LIST ALL STORIES - ADMIN AND USER MODES
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
 	public List<Story> listAll() {
@@ -76,9 +83,27 @@ public class StoryController {
 		return pagin;
 	}
 
+	// LIST ALL MY STORIES - ADMIN AND USER MODES
+	@RequestMapping(value = "/user/myself", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Story> listAllOfMyself(@RequestHeader(value = "idConnectedUser") Long idConnectedUser) {
+		return storyService.findAllStoriesOfMyself(idConnectedUser);
+	}
+
+	// LIST ALL MY STORIES WITH PAGINATION - ADMIN AND USER MODES
+	@RequestMapping(value = "/user/myself/pagin", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public Page<Story> listAllOfMyselfPagination(@RequestHeader(value = "idConnectedUser") Long idConnectedUser,
+			@RequestParam("page") Integer page,
+			@RequestParam("size") Integer size, @RequestParam("sortProperty") String sortProperty,
+			@RequestParam("sortDirection") String sortDirection) {
+		Page<Story> pagin = storyService.findAllStoriesOfMyself(idConnectedUser, page, size, sortProperty, sortDirection);
+		return pagin;
+	}
+
 	// CREATE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	// public Story create(@RequestBody Story story, BindingResult result, @RequestHeader(value = "id") Long id) {
 	public Story create(@RequestBody Story story, BindingResult result) {
+		// return this.storyService.createStory(story, id);
 		return this.storyService.createStory(story);
 	}
 

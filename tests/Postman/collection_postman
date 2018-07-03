@@ -398,6 +398,33 @@
 							"response": []
 						},
 						{
+							"name": "Stories Count all of Myself",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "idConnectedUser",
+										"value": "1"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/stories/count/myself",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"count",
+										"myself"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Stories Count all of User",
 							"request": {
 								"method": "GET",
@@ -453,7 +480,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/stories/pagin?page=0&size=5&sortProperty=id&sortDirection=ASC",
+									"raw": "http://localhost:8080/stories/pagin?page=0&size=2&sortProperty=id&sortDirection=ASC",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -470,7 +497,7 @@
 										},
 										{
 											"key": "size",
-											"value": "5"
+											"value": "2"
 										},
 										{
 											"key": "sortProperty",
@@ -530,6 +557,85 @@
 										"stories",
 										"user",
 										"1",
+										"pagin"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "2"
+										},
+										{
+											"key": "sortProperty",
+											"value": "id"
+										},
+										{
+											"key": "sortDirection",
+											"value": "ASC"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Stories List all of Myself",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "idConnectedUser",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/user/myself",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"user",
+										"myself"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Stories List all of Myself pagination",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "idConnectedUser",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/user/myself/pagin?page=0&size=2&sortProperty=id&sortDirection=ASC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"user",
+										"myself",
 										"pagin"
 									],
 									"query": [

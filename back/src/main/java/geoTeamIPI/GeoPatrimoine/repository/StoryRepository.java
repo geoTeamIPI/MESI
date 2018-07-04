@@ -46,4 +46,5 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 	 * @Query("Select s from STORIES s where title= ':keyword' or title like %:keyword%  or description like %:keyword% "
 	 * ) List<Story> findbyKeyword(@Param("keyword") String keyword);
 	 */
+
 }

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import geoTeamIPI.GeoPatrimoine.entity.Story;
+import geoTeamIPI.GeoPatrimoine.entity.Type;
 import geoTeamIPI.GeoPatrimoine.entity.User;
 import geoTeamIPI.GeoPatrimoine.repository.StoryRepository;
 import geoTeamIPI.GeoPatrimoine.repository.UserRepository;
@@ -110,12 +111,14 @@ public class StoryService {
 	}
 
 	/**
-	 * public Story findByPlace(Place place) { return
-	 * storyRepository.findByPlace(place); }
-	 * 
-	 * public Story findByType(Type type) { return storyRepository.findByType(type);
-	 * }
+	 * public Story findByLongMoinsLatMoins(Place place) { return
+	 * storyRepository.findByLongMoinsLatMoins(place.getLongitude(),
+	 * place.getLatitude()); }
 	 */
+
+	public Story findByType(Type type) {
+		return storyRepository.findByType(type);
+	}
 
 	public Story findByDateCreation(LocalDate date_creation) {
 		return storyRepository.findByDateCreation(date_creation);

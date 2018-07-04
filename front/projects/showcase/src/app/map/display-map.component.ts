@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material';
-import { LngLatLike } from 'mapbox-gl';
+import { LngLatLike, MapMouseEvent } from 'mapbox-gl';
 import { Cluster, Supercluster } from 'supercluster';
+
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -26,9 +27,15 @@ export class ClusterPopupComponent implements OnChanges {
   @Input() supercluster: Supercluster;
   @Input() count: number;
 
+  mapMouseEvent: MapMouseEvent;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   leaves: GeoJSON.Feature<GeoJSON.Point>[];
+
+  onMapClick() {
+    console.log(this.mapMouseEvent.type);
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.changePage();
@@ -54,10 +61,11 @@ export class ClusterPopupComponent implements OnChanges {
       [style]="'mapbox://styles/mapbox/streets-v9'"
       [zoom]="[3]"
       [center]="[-103.59179687498357, 40.66995747013945]"
+      (click)="onMapClick()"
     >
       <mgl-control
         mglGeocoder
-        [searchInput]="'Paris'"
+        [searchInput]=""
       ></mgl-control>
       <mgl-marker-cluster
         *ngIf="earthquakes"

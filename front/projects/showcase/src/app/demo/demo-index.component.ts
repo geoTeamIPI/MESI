@@ -8,7 +8,6 @@ import { State } from '../app.module';
 import * as fromShowcase from '../app.selectors';
 import * as demo from './demo.actions';
 import { Category, DEMO_ROUTES } from './demo.module';
-import { AddStoryComponent } from './examples/story/add-story/add-story.component';
 
 type RoutesByCategory = { [P in Category]: Routes };
 
@@ -21,7 +20,6 @@ export class DemoIndexComponent implements OnInit, AfterViewInit {
   originalRoutes: RoutesByCategory;
   categories: Category[];
   searchTerm: string;
-  addstory: AddStoryComponent;
 
   isEditing$ = this.store.pipe(select(fromShowcase.isDemoEditing));
   isSidenavOpen$ = this.store.pipe(select(fromShowcase.isDemoSidenavOpen));

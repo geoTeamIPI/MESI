@@ -44,6 +44,24 @@ import { ZoomtoLinestringComponent } from './examples/zoomto-linestring.componen
 import { StackblitzEditGuard } from './stackblitz-edit/stackblitz-edit-guard.service';
 import { StackblitzEditComponent } from './stackblitz-edit/stackblitz-edit.component';
 
+import { StoryComponent } from "../story/story.component";
+import { AddStoryComponent } from "../story/add-story/add-story.component";
+import { ListUsersComponent } from "../user/list-users/list-users.component";
+import { CreateUserComponent } from "../user/create-user/create-user.component";
+import { InfosUsersComponent } from "../user/infos-users/infos-users.component";
+import { UpdateUserComponent } from "../user/update-user/update-user.component";
+import { LoginComponent } from "../login/login.component";
+import { LogoutComponent } from "../logout/logout.component";
+import { AdminGuards } from "../admin.guards";
+import { AdminComponent } from "../user/account/admin/admin.component";
+import { NormalComponent } from "../user/account/normal/normal.component";
+import { UserGuards } from "../user.guards";
+import { InfosAccountComponent } from "../user/infos-account/infos-account.component";
+import { UpdateAccountComponent } from "../user/update-account/update-account.component";
+import { NotFoundComponent } from "../not-found/not-found.component";
+import { RegisteringAccountComponent } from "../user/registering-account/registering-account.component";
+
+
 export enum Category {
   PROFILE = 'User',
   STORIES = 'Stories'
@@ -58,6 +76,7 @@ export const DEMO_ROUTES: Routes = [
       { path: 'edit/:demoUrl', component: StackblitzEditComponent, canActivate: [StackblitzEditGuard] },
       { path: 'display-map', component: DisplayMapComponent, data: { label: 'Show Stories MAP', cat: Category.STORIES } },
       { path: 'ngx-drag-a-marker', component: NgxDragAMarkerComponent, data: { label: 'Create a story', cat: Category.STORIES } },
+      
       // { path: 'set-style', component: SetStyleComponent, data: { label: 'Change a map\'s style', cat: Category.STYLES } },
       // { path: 'satellite-map', component: SatelliteMapComponent, data: { label: 'Display a satellite map', cat: Category.STYLES } },
       // { path: 'add-image-generated', component: AddImageGeneratedComponent, data: { label: 'Add a generated icon to the map', cat: Category.LAYERS } },
@@ -89,7 +108,78 @@ export const DEMO_ROUTES: Routes = [
       // { path: 'zoomto-linestring', component: ZoomtoLinestringComponent, data: { label: 'Fit to the bounds of a LineString', cat: Category.USER_INTERACTION } },
       // { path: 'ngx-marker-cluster', component: NgxMarkerClusterComponent, data: { label: '[NGX] Create a clusters of html markers', cat: Category.CONTROLS_AND_OVERLAYS } },
       // { path: 'mapbox-gl-geocoder', component: MapboxGlGeocoderComponent, data: { label: 'Add a geocoder', cat: Category.CONTROLS_AND_OVERLAYS } },
-      { path: '**', redirectTo: 'display-map' }
+      // { path: '**', redirectTo: 'display-map' }, 
+      { path: "logout", component: LogoutComponent }, 
+
+      { path: "login", component: LoginComponent }, 
+      { path: "account/admin", component: AdminComponent, 
+        canActivate: [AdminGuards],
+        children: [
+              { path: "users",
+               component: ListUsersComponent, 
+              },
+              { path: "users/add", 
+                component: CreateUserComponent,
+              },
+              { path: "users/infos/:id", 
+                component: InfosUsersComponent, 
+              },
+              { path: "users/update/:id", 
+                component: UpdateUserComponent,     
+              }, 
+              {
+                path: "infos", 
+                component: InfosAccountComponent
+              }, 
+              {
+              path: "update",
+              component: UpdateAccountComponent
+            }, 
+            {
+              path: "stories",
+              component: StoryComponent
+            },
+            {
+              path: "stories/create",
+              component: AddStoryComponent
+            }
+          ]
+        }, 
+        {
+          path: "account/user", 
+          component: NormalComponent, 
+          canActivate: [UserGuards], 
+          children: [
+            {
+              path: "infos", 
+              component: InfosAccountComponent
+            }, 
+            {
+              path: "update",
+              component: UpdateAccountComponent
+            }, 
+            {
+              path: "stories",
+              component: StoryComponent
+            },
+            {
+              path: "stories/create",
+              component: AddStoryComponent
+            }
+          ]
+        },
+        {
+          path: "registering", 
+          component: RegisteringAccountComponent
+        }, 
+        {
+          path: "404", 
+          component: NotFoundComponent
+        }, 
+        {
+          path: "**", 
+          redirectTo: "404"
+        }
     ]
   }
 ];

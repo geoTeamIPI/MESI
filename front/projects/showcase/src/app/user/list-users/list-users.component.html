@@ -1,0 +1,14 @@
+<h2>Liste des utilisateurs</h2>
+
+<table>
+  <!--<tr>
+    <td><a routerLink="users/add">Ajouter nouvel utilisateur</a></td>
+  </tr>-->
+  <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }">
+    <td>{{user.email}}</td>
+    <td><a class="btn btn-infos" role="button" routerLink="infos/{{user.id}}">Détails</a></td>
+    <td><button class="btn btn-danger" (click)="deleteUser(user.id)">Supprimer</button></td>
+    <td><a class="btn" role="button" routerLink="update/{{user.id}}">Modifier</a></td>
+  </tr>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

@@ -1,0 +1,12 @@
+<h2>Détails de l'user</h2>
+<div *ngIf="user">
+  <tr>
+    <td><label>Email : </label></td><td>{{user.email}}</td>
+  </tr>
+  <tr>
+    <td><label for="">Ville : </label></td><td>{{user.city}}</td>
+  </tr>
+  <tr>
+    <td><label for="">Profil : </label></td><td>{{user.profile}}</td>
+  </tr>
+</div>

@@ -1,0 +1,13 @@
+.btn{
+    height: 5em;
+    line-height: 4em;
+    width: 100%;  
+}
+
+.row{
+    margin-bottom: 15px; 
+}
+
+.row .col:not(.col:last-child){
+    margin-right: 10px; 
+}

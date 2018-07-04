@@ -1,9 +1,11 @@
 package geoTeamIPI.GeoPatrimoine.repository;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,15 +20,23 @@ import geoTeamIPI.GeoPatrimoine.entity.User;
 @Repository
 public interface StoryRepository extends JpaRepository<Story, Long> {
 	
-	List<Story> findByUser(User user);
-	
 	Story findByType(Type type);
 	
 	Story findbyTimelapse (Timelapse timelapse);
-	
-	Story findbyDateUpdate (Date date);
-	
-	@Query ("Select * from place where longitude< :longitude and latitude< :latitude")
+
+	Story findByDateCreation(LocalDate date_creation);
+
+	Story findByDateUpdate(LocalDate dateUpdate);
+  
+  List<Story> findByCreator(User user);
+
+	List<Story> findByCreator(Optional<User> user);
+
+	Page findAllByCreator(User user, Pageable pageable);
+
+	Page findAllByCreator(Optional<User> user, Pageable pageable);
+  
+  	@Query ("Select * from place where longitude< :longitude and latitude< :latitude")
 	List<Story> findbyLongPlusLatPlus (@Param("longitude") float longitude, @Param("latitude") float latitude);
 	
 	@Query ("Select * from place where longitude> :longitude and latitude> :latitude")
@@ -36,3 +46,11 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 	List<Story> findbyKeyword (@Param("keyword") String keyword);
 	}
 
+	// --------------------------------------------A VERIFIER TOUT CE QUI EST EN DESSOUS
+
+	/**
+	 * Story findByPlace(Place place);
+	 * 
+	 * Story findByType(Type type);
+	 */
+}

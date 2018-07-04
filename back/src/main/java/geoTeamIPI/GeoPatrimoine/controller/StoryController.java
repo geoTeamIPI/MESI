@@ -99,16 +99,22 @@ public class StoryController {
 		return pagin;
 	}
 
+	/**
+	 * 
+	 * DO NOT KEEP THIS ONE IN THE FUTURE AND KEEP "CREATE A STORY OF MYSELF" with the map /add
+	 * 
+	 */
 	// CREATE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces = APPLICATION_JSON_CHARSET_UTF_8)
 	public Story create(@RequestBody Story story, BindingResult result) {
 		return this.storyService.createStory(story);
 	}
 
-	// CREATE A STORY - ADMIN AND USER MODES
+	// CREATE A STORY OF MYSELF - ADMIN AND USER MODES
 	@RequestMapping(value = "/add/myself", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	public Story create(@RequestBody Story story, BindingResult result, @RequestHeader(value = "idConnectedUser") Long id) {
-		return this.storyService.createStory(story, id);
+	public Story createOfMyself(@RequestBody Story story, BindingResult result, @RequestHeader(value = "idConnectedUser") Long id) {
+		User user = userService.findById(id);
+		return this.storyService.createStory(story, user);
 	}
 
 	// DISPLAY A STORY - ADMIN AND USER MODES
@@ -118,6 +124,11 @@ public class StoryController {
 		return result;
 	}
 
+	/**
+	 * 
+	 * DO NOT KEEP THIS ONE IN THE FUTURE AND KEEP "DELETE A STORY OF MYSELF" with the map /delete{id}
+	 * 
+	 */
 	// DELETE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable("id") Long id) {
@@ -125,10 +136,30 @@ public class StoryController {
 		this.storyService.deleteStory(result);
 	}
 
+	// DELETE A STORY OF MYSELF - ADMIN AND USER MODES
+	@RequestMapping(value = "/delete/{id}/myself", method = RequestMethod.DELETE)
+	public void deleteOfMyself(@PathVariable("id") Long id, @RequestHeader(value = "idConnectedUser") Long idUser) {
+		Story result = storyService.findById(id);
+		User user = userService.findById(idUser);
+		this.storyService.deleteStory(result, user);
+	}
+
+	/**
+	 * 
+	 * DO NOT KEEP THIS ONE IN THE FUTURE AND KEEP "UPDATE A STORY OF MYSELF" with the map /update{id}
+	 * 
+	 */
 	// UPDATE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
 	public Story update(@PathVariable("id") Long id, @RequestBody Story story) {
 		return this.storyService.updateStory(id, story);
+	}
+
+	// UPDATE A STORY OF MYSELF - ADMIN AND USER MODES
+	@RequestMapping(value = "/update/{id}/myself", method = RequestMethod.PUT)
+	public void updateOfMyself(@PathVariable("id") Long id, @RequestBody Story story, @RequestHeader(value = "idConnectedUser") Long idUser) {
+		User user = userService.findById(idUser);
+		this.storyService.updateStory(id, story, user);
 	}
 
 }

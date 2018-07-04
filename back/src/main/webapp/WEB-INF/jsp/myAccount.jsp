@@ -4,9 +4,20 @@
 <!-- Permet de rajouter un header automatiquement  -->
 
 
-<h2>Bienvenue sur notre site</h2>
+<h2>Bienvenue sur votre compte - Que souhaitez vous-faire ?</h2>
 
-
+<th:choose>
+	<th:when test="${!empty email && (profile=='admin' || profile=='moderator')}">
+		<a href="/user/new">Ajouter un utilisateur</a>
+		<a href="/users?page=0&size=10&sortDirection=ASC&sortProperty=email">Liste des utilisateurs</a>
+		<a href="/stories">Listes des stories</a>
+	</th:when>
+	<th:otherwise>
+		<a href="/stories">Mes stories</a>
+		<a href="/stories/new">Ajouter une nouvelle story</a>
+	</th:otherwise>
+</th:choose>
+<a href="/user/infos">Mes infos personnelles</a>
 
 <!-- 
 <div class="container">

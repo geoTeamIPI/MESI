@@ -4,8 +4,10 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="DOCS")
+@Table(name="MEDIA")
 public class Media {
 
     @Id
@@ -23,6 +25,7 @@ public class Media {
     private String path;
     
     @ManyToOne
+    @JsonIgnore
     private Story story;
     
     @Column(nullable=false)
@@ -30,6 +33,10 @@ public class Media {
     
     @Column
     private LocalDate date_update;
+    
+    /** 
+     * ------------------------------------ GETTERS AND SETTERS---------------------------
+     * */
 
 	public Long getId() {
 		return id;
@@ -86,6 +93,4 @@ public class Media {
 	public void setDate_update(LocalDate date_update) {
 		this.date_update = date_update;
 	}
-    
-    
 }

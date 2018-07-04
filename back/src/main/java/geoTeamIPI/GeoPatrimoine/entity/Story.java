@@ -2,67 +2,84 @@ package geoTeamIPI.GeoPatrimoine.entity;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Optional;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="STORIES")
+@Table(name = "STORIES")
 public class Story {
 
 	@Id
 	@Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable=false)
-    private String title;
-    
-    @Lob
-    @Column
-    private String description;
-    
-    @Lob
-    @Column
-    private String content;
-    
-    @Column
-    private Integer starting_year;
-    
-    @Column
-    private Integer starting_month;
-    
-    @Column
-    private Integer starting_day;
-    
-    @Column
-    private Integer ending_year;
-    
-    @Column
-    private Integer ending_month;
-    
-    @Column
-    private Integer ending_day;
-    
-    @Column(nullable=false)
-    private LocalDate date_creation;
-    
-    @Column
-    private LocalDate date_update;
-    
-    @ManyToOne
-    private User creatorUser;
-    
-    @ManyToOne
-    private Place place;
-    
-    @OneToOne
-    private Type type;
-    
-    @OneToMany(mappedBy = "story")
-    private Collection<Media> media;
-    
-    @OneToMany(mappedBy = "votedStory")
-    private Collection<Vote> votes;
+	@Column(nullable = false)
+	private String title;
+
+	@Lob
+	@Column
+	private String description;
+
+	@Lob
+	@Column
+	private String content;
+
+	@Column
+	private Integer startingYear;
+
+	@Column
+	private Integer startingMonth;
+
+	@Column
+	private Integer startingDay;
+
+	@Column
+	private Integer endingYear;
+
+	@Column
+	private Integer endingMonth;
+
+	@Column
+	private Integer endingDay;
+
+	@Column(nullable = false)
+	private LocalDate dateCreation;
+
+	@Column
+	private LocalDate dateUpdate;
+
+	@ManyToOne
+	private User creator;
+
+	@ManyToOne
+	private Place place;
+
+	@OneToOne
+	private Type type;
+
+	@OneToMany(mappedBy = "story")
+	private Collection<Media> media;
+
+	@OneToMany(mappedBy = "votedStory")
+	@JsonIgnore
+	private Collection<Vote> userAssoc;
+
+	/**
+	 * ------------------------------------ GETTERS AND SETTERS---------------------------
+	 */
 
 	public Long getId() {
 		return id;
@@ -96,76 +113,76 @@ public class Story {
 		this.content = content;
 	}
 
-	public Integer getStarting_year() {
-		return starting_year;
+	public Integer getStartingYear() {
+		return startingYear;
 	}
 
-	public void setStarting_year(Integer starting_year) {
-		this.starting_year = starting_year;
+	public void setStartingYear(Integer startingYear) {
+		this.startingYear = startingYear;
 	}
 
-	public Integer getStarting_month() {
-		return starting_month;
+	public Integer getStartingMonth() {
+		return startingMonth;
 	}
 
-	public void setStarting_month(Integer starting_month) {
-		this.starting_month = starting_month;
+	public void setStartingMonth(Integer startingMonth) {
+		this.startingMonth = startingMonth;
 	}
 
-	public Integer getStarting_day() {
-		return starting_day;
+	public Integer getStartingDay() {
+		return startingDay;
 	}
 
-	public void setStarting_day(Integer starting_day) {
-		this.starting_day = starting_day;
+	public void setStartingDay(Integer startingDay) {
+		this.startingDay = startingDay;
 	}
 
-	public Integer getEnding_year() {
-		return ending_year;
+	public Integer getEndingYear() {
+		return endingYear;
 	}
 
-	public void setEnding_year(Integer ending_year) {
-		this.ending_year = ending_year;
+	public void setEndingYear(Integer endingYear) {
+		this.endingYear = endingYear;
 	}
 
-	public Integer getEnding_month() {
-		return ending_month;
+	public Integer getEndingMonth() {
+		return endingMonth;
 	}
 
-	public void setEnding_month(Integer ending_month) {
-		this.ending_month = ending_month;
+	public void setEndingMonth(Integer endingMonth) {
+		this.endingMonth = endingMonth;
 	}
 
-	public Integer getEnding_day() {
-		return ending_day;
+	public Integer getEndingDay() {
+		return endingDay;
 	}
 
-	public void setEnding_day(Integer ending_day) {
-		this.ending_day = ending_day;
+	public void setEndingDay(Integer endingDay) {
+		this.endingDay = endingDay;
 	}
 
-	public LocalDate getDate_creation() {
-		return date_creation;
+	public LocalDate getDateCreation() {
+		return dateCreation;
 	}
 
-	public void setDate_creation(LocalDate date_creation) {
-		this.date_creation = date_creation;
+	public void setDateCreation(LocalDate dateCreation) {
+		this.dateCreation = dateCreation;
 	}
 
-	public LocalDate getDate_update() {
-		return date_update;
+	public LocalDate getDateUpdate() {
+		return dateUpdate;
 	}
 
-	public void setDate_update(LocalDate date_update) {
-		this.date_update = date_update;
+	public void setDateUpdate(LocalDate dateUpdate) {
+		this.dateUpdate = dateUpdate;
 	}
 
-	public User getCreatorUser() {
-		return creatorUser;
+	public User getCreator() {
+		return creator;
 	}
 
-	public void setCreatorUser(User creatorUser) {
-		this.creatorUser = creatorUser;
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
 
 	public Place getPlace() {
@@ -192,13 +209,30 @@ public class Story {
 		this.media = media;
 	}
 
-	public Collection<Vote> getVotes() {
-		return votes;
+	public Collection<Vote> getUserAssoc() {
+		return userAssoc;
 	}
 
-	public void setVotes(Collection<Vote> votes) {
-		this.votes = votes;
+	public void setUserAssoc(Collection<Vote> userAssoc) {
+		this.userAssoc = userAssoc;
 	}
-    
-    
+
+	public void setCreatorOpt(Optional<User> user) {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * ------------------------------------ PREVIOUS MODEL---------------------------
+	 */
+
+	/**
+	 * @OneToMany(mappedBy = "votedStory") @JsonIgnoreProperties("votedStory") private Collection<Vote> votes;
+	 */
+
+	/**
+	 * public Collection<Vote> getVotes() { return votes; }
+	 * 
+	 * public void setVotes(Collection<Vote> votes) { this.votes = votes; }
+	 */
+
 }

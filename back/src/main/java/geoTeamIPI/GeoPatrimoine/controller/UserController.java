@@ -112,7 +112,7 @@ public class UserController {
 			@RequestHeader(value = "semail") String sEmail,
 			BindingResult result)
 			throws Exception {
-		// String sEmail = (String) session.getAttribute("sEmail");
+
 		user.setEmail(sEmail);
 		User userSearch = userService.findByEmail(user.getEmail());
 		if (userSearch == null) {
@@ -140,7 +140,7 @@ public class UserController {
 	}
 
 	// DELETE USER - ADMIN MODE
-	@DeleteMapping("/users/{idUser}")
+	@DeleteMapping("/users/delete/{idUser}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void deleteUser(@PathVariable("idUser") Long idUser) {
 		User userSearch = userService.findById(idUser);
@@ -207,6 +207,7 @@ public class UserController {
 		if (session.isNew()) {
 			return new ResponseEntity<String>(UserHelper.EMPTY_SESSION, HttpStatus.OK);
 		}
+
 		session.invalidate();
 		return new ResponseEntity<String>(UserHelper.LOGOUT_SUCCESS, HttpStatus.OK);
 	}

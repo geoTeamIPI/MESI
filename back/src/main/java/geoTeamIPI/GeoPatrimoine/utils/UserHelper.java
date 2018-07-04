@@ -29,3 +29,4 @@ public class UserHelper {
 	public static final String ERROR_REQUEST = "Erreur dans l'envoi de la requête"; 
 	
 }
+

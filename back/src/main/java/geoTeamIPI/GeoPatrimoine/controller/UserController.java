@@ -1,11 +1,12 @@
 package geoTeamIPI.GeoPatrimoine.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.h2.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -150,14 +150,13 @@ public class UserController {
 		userService.deleteUser(userSearch);
 	}
 
-	// LIST USERS - ADMIN MODE
-	@RequestMapping(value = "/users", params = { "page", "size", "sortProperty", "sortDirection" }, method = RequestMethod.GET)
-	public Page<User> users(
-			@RequestParam("page") Integer page,
-			@RequestParam("size") Integer size,
-			@RequestParam("sortProperty") String sortProperty,
-			@RequestParam("sortDirection") String sortDirection) {
-		return userService.findAllUsers(page, size, sortProperty, sortDirection);
+	/*
+	 * LIST USERS - ADMIN MODE
+	 * 
+	 */
+	@GetMapping("/users")
+	public List<User> users() {
+		return userService.findAllUsers();
 	}
 
 	// INFOS USER - ADMIN MODE

@@ -50,7 +50,8 @@ public class StoryService {
 		return storyRepository.findByCreator(user);
 	}
 
-	public Page<Story> findAllStoriesOfUser(User user, Integer page, Integer size, String sortProperty, String sortDirection) {
+	public Page<Story> findAllStoriesOfUser(User user, Integer page, Integer size, String sortProperty,
+			String sortDirection) {
 		@SuppressWarnings("deprecation")
 		Sort sort = new Sort(new Sort.Order(Sort.Direction.fromString(sortDirection), sortProperty));
 		@SuppressWarnings("deprecation")
@@ -63,7 +64,8 @@ public class StoryService {
 		return storyRepository.findByCreator(user);
 	}
 
-	public Page<Story> findAllStoriesOfMyself(Long idUser, Integer page, Integer size, String sortProperty, String sortDirection) {
+	public Page<Story> findAllStoriesOfMyself(Long idUser, Integer page, Integer size, String sortProperty,
+			String sortDirection) {
 		@SuppressWarnings("deprecation")
 		Optional<User> connectedUser = userRepository.findById(idUser);
 		Sort sort = new Sort(new Sort.Order(Sort.Direction.fromString(sortDirection), sortProperty));
@@ -87,7 +89,8 @@ public class StoryService {
 	}
 
 	public Story findById(Long id) {
-		return storyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Failed to get a story with the id=" + id + "!!!"));
+		return storyRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Failed to get a story with the id=" + id + "!!!"));
 	}
 
 	public void deleteStory(Story story) {
@@ -99,16 +102,19 @@ public class StoryService {
 		return storyRepository.save(story);
 	}
 
-	// --------------------------------------------A VERIFIER TOUT CE QUI EST EN DESSOUS
+	// --------------------------------------------A VERIFIER TOUT CE QUI EST EN
+	// DESSOUS
+
+	public List<Story> findByCreator(User creatorUser) {
+		return storyRepository.findByCreator(creatorUser);
+	}
 
 	/**
-	 * public Story findByCreatorUser(User creatorUser) { return storyRepository.findBycreatorUser(creatorUser); }
-	 */
-
-	/**
-	 * public Story findByPlace(Place place) { return storyRepository.findByPlace(place); }
+	 * public Story findByPlace(Place place) { return
+	 * storyRepository.findByPlace(place); }
 	 * 
-	 * public Story findByType(Type type) { return storyRepository.findByType(type); }
+	 * public Story findByType(Type type) { return storyRepository.findByType(type);
+	 * }
 	 */
 
 	public Story findByDateCreation(LocalDate date_creation) {

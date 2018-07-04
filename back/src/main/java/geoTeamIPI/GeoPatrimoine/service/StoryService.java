@@ -116,6 +116,12 @@ public class StoryService {
 	 * place.getLatitude()); }
 	 */
 
+	/**
+	 * public Story findByLongPlusLatPlus(Place place) {
+	 * StoryRepository.findByLongPlusLatPlus(place.getLongitude(),
+	 * place.getLatitude()) }
+	 */
+
 	public Story findByType(Type type) {
 		return storyRepository.findByType(type);
 	}

@@ -7,8 +7,6 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import geoTeamIPI.GeoPatrimoine.entity.Story;
@@ -34,8 +32,11 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 
 	Page findAllByCreator(Optional<User> user, Pageable pageable);
 
-	@Query("Select p from places p where longitude< :longitudeScreen")
-	List<Story> findByLongPlusLatPlus(@Param("longitudeScreen") String longitude);
+	/**
+	 * @Query("Select p from places p where longitude< :longitudeScreen")
+	 * List<Story> findByLongPlusLatPlus(@Param("longitudeScreen") String
+	 * longitude);
+	 */
 
 	/*
 	 * @Query("Select p.* from PLACES p where longitude> :longitude and latitude> :latitude"
@@ -44,13 +45,5 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 	 * 
 	 * @Query("Select s from STORIES s where title= ':keyword' or title like %:keyword%  or description like %:keyword% "
 	 * ) List<Story> findbyKeyword(@Param("keyword") String keyword);
-	 */
-	// --------------------------------------------A VERIFIER TOUT CE QUI EST EN
-	// DESSOUS
-
-	/**
-	 * Story findByPlace(Place place);
-	 * 
-	 * Story findByType(Type type);
 	 */
 }

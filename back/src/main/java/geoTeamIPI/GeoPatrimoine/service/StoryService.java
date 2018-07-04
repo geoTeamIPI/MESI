@@ -78,10 +78,9 @@ public class StoryService {
 		return storyRepository.save(story);
 	}
 
-	public Story createStory(Story story, Long idUser) {
+	public Story createStory(Story story, User user) {
 		LocalDate todaysDate = LocalDate.now();
-		Optional<User> user = userRepository.findById(idUser);
-		story.setCreatorOpt(user);
+		story.setCreator(user);
 		story.setDateCreation(todaysDate);
 		return storyRepository.save(story);
 	}
@@ -94,9 +93,34 @@ public class StoryService {
 		storyRepository.delete(story);
 	}
 
+	public void deleteStory(Story story, User user) {
+		Long idCreator = story.getCreator().getId();
+		Long idConnectedUser = user.getId();
+		if (idCreator == idConnectedUser) {
+			storyRepository.delete(story);
+		} else {
+			// throw denied
+		}
+	}
+
 	public <T extends Story> T updateStory(Long id, T story) {
 		story.setId(id);
 		return storyRepository.save(story);
+	}
+
+	public <T extends Story> void updateStory(Long id, Story story, User user) {
+		Story storyOriginal = findById(id);
+		Long idCreator = storyOriginal.getCreator().getId();
+		System.out.println(idCreator);
+		Long idConnectedUser = user.getId();
+		System.out.println(idConnectedUser);
+		story.setId(id);
+		if (idCreator == idConnectedUser) {
+			story.setCreator(user);
+			storyRepository.save(story);
+		} else {
+			// throw denied
+		}
 	}
 
 	// --------------------------------------------A VERIFIER TOUT CE QUI EST EN DESSOUS

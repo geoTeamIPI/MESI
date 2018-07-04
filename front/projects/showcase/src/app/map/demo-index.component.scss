@@ -1,0 +1,43 @@
+@import '~@angular/material/theming';
+
+:host, .content {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+mat-sidenav {
+  width: 345px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+mat-nav-list {
+  overflow-y: auto;
+}
+
+mat-sidenav-container {
+  flex: 1;
+}
+
+.content {
+  height: 100%;
+}
+
+mat-form-field.search {
+  margin-bottom: -1.25em;
+}
+
+a.active {
+  background-color: mat-color(mat-palette($mat-indigo)) !important;
+}
+//
+//.form-container {
+//  display: flex;
+//  flex-direction: column;
+//}
+
+.form-container > * {
+  width: 100% !important;
+}

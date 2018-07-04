@@ -1,3 +1,4 @@
+
 package geoTeamIPI.GeoPatrimoine.exception;
 
 import javax.persistence.EntityExistsException;
@@ -42,3 +43,4 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 }
+

@@ -61,6 +61,7 @@ public class User {
 	@Column(nullable = false)
 	private String city;
 
+  @NotBlank
 	@Column(nullable = false)
 	private String profile;
 

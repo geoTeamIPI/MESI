@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <div>
+    <button
+      *ngIf="isInDemo$ | async"
+      class="menu-button"
+      mat-button
+      (click)="toggleSidenav()"
+    >
+      <!-- <mat-icon>menu</mat-icon> -->
+      Create a Story
+    </button>
+    <a mat-button routerLink="/">
+      Home
+    </a>
+    <a mat-button routerLink="/demo">
+      Map
+    </a>
+    
+  </div>
+  <div>
+    <p style="font-size: 12px;">Share your version of anywhere's history</p>
+  </div>
+</mat-toolbar>
+<router-outlet></router-outlet>

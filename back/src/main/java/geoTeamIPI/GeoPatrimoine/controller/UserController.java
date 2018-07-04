@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -106,10 +107,12 @@ public class UserController {
 	}
 
 	// UPDATE PERSONAL INFOS - NORMAL AND ADMIN MODE
-	@PostMapping("/user/update")
-	public User updateUser(@Validated({ requiredAllFields.class }) @RequestBody User user, BindingResult result, HttpSession session)
+	@RequestMapping(value = "/user/update", method = RequestMethod.POST)
+	public User updateUser(@Validated @RequestBody User user,
+			@RequestHeader(value = "semail") String sEmail,
+			BindingResult result)
 			throws Exception {
-		String sEmail = (String) session.getAttribute("sEmail");
+
 		user.setEmail(sEmail);
 		User userSearch = userService.findByEmail(user.getEmail());
 		if (userSearch == null) {
@@ -122,13 +125,15 @@ public class UserController {
 			userValidator.validate(user, result);
 			if (!result.hasErrors() && user.getPassword().equals(user.getPasswordConfirm())) {
 				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-				;
 				user.setPassword(passwordEncoder.encode(user.getPassword()));
 			} else {
 				UserExceptionHandler.userIllegalArguments();
 			}
 		} else {
 			user.setPassword(userSearch.getPassword());
+		}
+		if (userSearch.getProfile() == UserHelper.USER_NORMAL) {
+			user.setProfile(UserHelper.USER_NORMAL);
 		}
 		// Password good and the fields are not empty
 		return userService.updateUser(userSearch.getId(), user);
@@ -145,7 +150,10 @@ public class UserController {
 		userService.deleteUser(userSearch);
 	}
 
-	// LIST USERS - ADMIN MODE
+	/*
+	 * LIST USERS - ADMIN MODE
+	 * 
+	 */
 	@GetMapping("/users")
 	public List<User> users() {
 		return userService.findAllUsers();
@@ -163,12 +171,11 @@ public class UserController {
 
 	// INFOS USER - NORMAL MODE
 	@GetMapping("/user/infos")
-	public User infosUser(HttpSession session) {
-		if (session.getAttribute("sEmail") == null) {
+	public User infosUser(@RequestHeader("semail") String sEmail) {
+		User userInfos = userService.findByEmail(sEmail);
+		if (userInfos == null) {
 			UserExceptionHandler.userNotFound();
 		}
-		String sEmail = (String) session.getAttribute("sEmail");
-		User userInfos = userService.findByEmail(sEmail);
 		return userInfos;
 	}
 
@@ -190,6 +197,7 @@ public class UserController {
 		user.setCity(userSearch.getCity());
 		session.setAttribute("sEmail", user.getEmail());
 		session.setAttribute("sProfile", user.getProfile());
+
 		return userSearch;
 	}
 
@@ -199,6 +207,7 @@ public class UserController {
 		if (session.isNew()) {
 			return new ResponseEntity<String>(UserHelper.EMPTY_SESSION, HttpStatus.OK);
 		}
+
 		session.invalidate();
 		return new ResponseEntity<String>(UserHelper.LOGOUT_SUCCESS, HttpStatus.OK);
 	}

@@ -78,6 +78,14 @@ public class StoryService {
 		return storyRepository.save(story);
 	}
 
+	public Story createStory(Story story, Long idUser) {
+		LocalDate todaysDate = LocalDate.now();
+		Optional<User> user = userRepository.findById(idUser);
+		story.setCreatorOpt(user);
+		story.setDateCreation(todaysDate);
+		return storyRepository.save(story);
+	}
+
 	public Story findById(Long id) {
 		return storyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Failed to get a story with the id=" + id + "!!!"));
 	}

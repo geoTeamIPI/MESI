@@ -2,6 +2,7 @@ package geoTeamIPI.GeoPatrimoine.entity;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -214,6 +215,10 @@ public class Story {
 
 	public void setUserAssoc(Collection<Vote> userAssoc) {
 		this.userAssoc = userAssoc;
+	}
+
+	public void setCreatorOpt(Optional<User> user) {
+		// TODO Auto-generated method stub
 	}
 
 	/**

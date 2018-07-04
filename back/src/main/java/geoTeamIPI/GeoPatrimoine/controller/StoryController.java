@@ -101,10 +101,14 @@ public class StoryController {
 
 	// CREATE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	// public Story create(@RequestBody Story story, BindingResult result, @RequestHeader(value = "id") Long id) {
 	public Story create(@RequestBody Story story, BindingResult result) {
-		// return this.storyService.createStory(story, id);
 		return this.storyService.createStory(story);
+	}
+
+	// CREATE A STORY - ADMIN AND USER MODES
+	@RequestMapping(value = "/add/myself", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public Story create(@RequestBody Story story, BindingResult result, @RequestHeader(value = "idConnectedUser") Long id) {
+		return this.storyService.createStory(story, id);
 	}
 
 	// DISPLAY A STORY - ADMIN AND USER MODES

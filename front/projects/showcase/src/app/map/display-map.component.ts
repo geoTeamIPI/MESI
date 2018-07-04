@@ -34,6 +34,7 @@ export class ClusterPopupComponent implements OnChanges {
   leaves: GeoJSON.Feature<GeoJSON.Point>[];
 
   onMapClick() {
+    console.log("caca");
     console.log(this.mapMouseEvent.type);
   }
 

@@ -30,7 +30,8 @@ public class UserValidator implements Validator {
 		User userSearch = userService.findByEmail(user.getEmail());
 
 		// if the password is not null and it does not exist
-		if (!passwordEncoder.matches(user.getOldPassword(), userSearch.getPassword())) {
+		if (!passwordEncoder.matches(user.getOldPassword(), userSearch.getPassword())){
+
 			errors.rejectValue("oldPassword", UserHelper.PWD_NO_EXISTS);
 		}
 

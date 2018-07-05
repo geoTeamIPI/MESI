@@ -18,7 +18,12 @@
     
   </div>
   <div>
-    <p style="font-size: 12px;">Share your version of anywhere's history</p>
+    <a mat-button *ngIf="!isAutenthicated" routerLink = "/login" >Login</a>
+    <div *ngIf="isAutenthicated">
+        Bienvenue {{currentUser.email}} - <a routerLink ="/logout"> Logout</a>
+        <a mat-button *ngIf = "currentUser.profile == 'user'" routerLink="/account/user">Mon compte</a>
+        <a mat-button *ngIf = "currentUser.profile != 'user'" routerLink="/account/admin">Mon compte</a>
+    </div>  
   </div>
 </mat-toolbar>
 <router-outlet></router-outlet>

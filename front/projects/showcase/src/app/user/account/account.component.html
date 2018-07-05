@@ -1,0 +1,12 @@
+Bienvenue sur ton compte {{currentUser.email}}
+
+
+
+<!-- ADMIN PART -->
+<div *ngIf = "currentUser.profile != 'user'">
+    <app-admin></app-admin>
+</div>
+<!-- NORMAL PART -->
+<div *ngIf = "currentUser.profile == 'user'">
+    <app-normal></app-normal>
+</div>

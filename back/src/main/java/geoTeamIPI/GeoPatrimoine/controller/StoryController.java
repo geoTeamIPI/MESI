@@ -3,7 +3,6 @@ package geoTeamIPI.GeoPatrimoine.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import geoTeamIPI.GeoPatrimoine.entity.Story;
@@ -40,16 +38,9 @@ public class StoryController {
 	}
 
 	// COUNT ALL STORIES OF A USER - ADMIN AND USER MODES
-	@RequestMapping(value = "/count/user/{id}", produces = APPLICATION_JSON_CHARSET_UTF_8, method = RequestMethod.GET)
-	public int countAllOfUser(@PathVariable(value = "id") Long id) {
-		User user = userService.findById(id);
-		return storyService.findAllStoriesOfUser(user).size();
-	}
-
-	// COUNT ALL MY STORIES - ADMIN AND USER MODES
-	@GetMapping("/count/myself")
-	public int countAllOfMyself(@RequestHeader(value = "idConnectedUser") Long idConnectedUser) {
-		return storyService.countAllStoriesOfMyself(idConnectedUser);
+	@GetMapping("/count/user")
+	public int countAllOfUser(@RequestHeader(value = "idUser") Long idUser) {
+		return storyService.countAllStories(idUser);
 	}
 
 	// LIST ALL STORIES - ADMIN AND USER MODES
@@ -58,62 +49,16 @@ public class StoryController {
 		return storyService.findAllStories();
 	}
 
-	// LIST ALL STORIES WITH PAGINATION - ADMIN AND USER MODES
-	@RequestMapping(value = "/pagin", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	public Page<Story> listAllPagination(@RequestParam("page") Integer page, @RequestParam("size") Integer size,
-			@RequestParam("sortProperty") String sortProperty, @RequestParam("sortDirection") String sortDirection) {
-		Page<Story> pagin = storyService.findAllStories(page, size, sortProperty, sortDirection);
-		return pagin;
-	}
-
 	// LIST ALL STORIES OF A USER - ADMIN AND USER MODES
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	public List<Story> listAllOfUser(@PathVariable(value = "id") Long id) {
-		User user = userService.findById(id);
-		return storyService.findAllStoriesOfUser(user);
+	@RequestMapping(value = "/user", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Story> listAllOfUser(@RequestHeader(value = "idUser") Long idUser) {
+		return storyService.findAllStories(idUser);
 	}
 
-	// LIST ALL STORIES OF A USER WITH PAGINATION - ADMIN AND USER MODES
-	@RequestMapping(value = "/user/{id}/pagin", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	public Page<Story> listAllOfUserPagination(@PathVariable(value = "id") Long id, @RequestParam("page") Integer page,
-			@RequestParam("size") Integer size, @RequestParam("sortProperty") String sortProperty,
-			@RequestParam("sortDirection") String sortDirection) {
-		User result = userService.findById(id);
-		Page<Story> pagin = storyService.findAllStoriesOfUser(result, page, size, sortProperty, sortDirection);
-		return pagin;
-	}
-
-	// LIST ALL MY STORIES - ADMIN AND USER MODES
-	@RequestMapping(value = "/user/myself", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	public List<Story> listAllOfMyself(@RequestHeader(value = "idConnectedUser") Long idConnectedUser) {
-		return storyService.findAllStoriesOfMyself(idConnectedUser);
-	}
-
-	// LIST ALL MY STORIES WITH PAGINATION - ADMIN AND USER MODES
-	@RequestMapping(value = "/user/myself/pagin", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	public Page<Story> listAllOfMyselfPagination(@RequestHeader(value = "idConnectedUser") Long idConnectedUser,
-			@RequestParam("page") Integer page,
-			@RequestParam("size") Integer size, @RequestParam("sortProperty") String sortProperty,
-			@RequestParam("sortDirection") String sortDirection) {
-		Page<Story> pagin = storyService.findAllStoriesOfMyself(idConnectedUser, page, size, sortProperty, sortDirection);
-		return pagin;
-	}
-
-	/**
-	 * 
-	 * DO NOT KEEP THIS ONE IN THE FUTURE AND KEEP "CREATE A STORY OF MYSELF" with the map /add
-	 * 
-	 */
 	// CREATE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	public Story create(@RequestBody Story story, BindingResult result) {
-		return this.storyService.createStory(story);
-	}
-
-	// CREATE A STORY OF MYSELF - ADMIN AND USER MODES
-	@RequestMapping(value = "/add/myself", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	public Story createOfMyself(@RequestBody Story story, BindingResult result, @RequestHeader(value = "idConnectedUser") Long id) {
-		User user = userService.findById(id);
+	public Story createOfMyself(@RequestBody Story story, BindingResult result, @RequestHeader(value = "idUser") Long idUser) {
+		User user = userService.findById(idUser);
 		return this.storyService.createStory(story, user);
 	}
 
@@ -124,40 +69,17 @@ public class StoryController {
 		return result;
 	}
 
-	/**
-	 * 
-	 * DO NOT KEEP THIS ONE IN THE FUTURE AND KEEP "DELETE A STORY OF MYSELF" with the map /delete{id}
-	 * 
-	 */
 	// DELETE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable("id") Long id) {
-		Story result = storyService.findById(id);
-		this.storyService.deleteStory(result);
-	}
-
-	// DELETE A STORY OF MYSELF - ADMIN AND USER MODES
-	@RequestMapping(value = "/delete/{id}/myself", method = RequestMethod.DELETE)
-	public void deleteOfMyself(@PathVariable("id") Long id, @RequestHeader(value = "idConnectedUser") Long idUser) {
+	public void deleteOfMyself(@PathVariable("id") Long id, @RequestHeader(value = "idUser") Long idUser) {
 		Story result = storyService.findById(id);
 		User user = userService.findById(idUser);
 		this.storyService.deleteStory(result, user);
 	}
 
-	/**
-	 * 
-	 * DO NOT KEEP THIS ONE IN THE FUTURE AND KEEP "UPDATE A STORY OF MYSELF" with the map /update{id}
-	 * 
-	 */
 	// UPDATE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-	public Story update(@PathVariable("id") Long id, @RequestBody Story story) {
-		return this.storyService.updateStory(id, story);
-	}
-
-	// UPDATE A STORY OF MYSELF - ADMIN AND USER MODES
-	@RequestMapping(value = "/update/{id}/myself", method = RequestMethod.PUT)
-	public void updateOfMyself(@PathVariable("id") Long id, @RequestBody Story story, @RequestHeader(value = "idConnectedUser") Long idUser) {
+	public void updateOfMyself(@PathVariable("id") Long id, @RequestBody Story story, @RequestHeader(value = "idUser") Long idUser) {
 		User user = userService.findById(idUser);
 		this.storyService.updateStory(id, story, user);
 	}

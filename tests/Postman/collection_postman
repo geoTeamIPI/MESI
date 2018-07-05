@@ -377,6 +377,280 @@
 					"description": "",
 					"item": [
 						{
+							"name": "Deprecated",
+							"description": "",
+							"item": [
+								{
+									"name": "Stories Count all of User",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {},
+										"url": {
+											"raw": "http://localhost:8080/stories/count/user/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"stories",
+												"count",
+												"user",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Stories List all pagination",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/stories/pagin?page=0&size=2&sortProperty=id&sortDirection=ASC",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"stories",
+												"pagin"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "2"
+												},
+												{
+													"key": "sortProperty",
+													"value": "id"
+												},
+												{
+													"key": "sortDirection",
+													"value": "ASC"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Stories List all of User pagination",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/stories/user/1/pagin?page=0&size=2&sortProperty=id&sortDirection=ASC",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"stories",
+												"user",
+												"1",
+												"pagin"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "2"
+												},
+												{
+													"key": "sortProperty",
+													"value": "id"
+												},
+												{
+													"key": "sortDirection",
+													"value": "ASC"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Stories List all of Myself pagination",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "idConnectedUser",
+												"value": "1"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/stories/user/myself/pagin?page=0&size=2&sortProperty=id&sortDirection=ASC",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"stories",
+												"user",
+												"myself",
+												"pagin"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "2"
+												},
+												{
+													"key": "sortProperty",
+													"value": "id"
+												},
+												{
+													"key": "sortDirection",
+													"value": "ASC"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Stories List all of User",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/stories/user/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"stories",
+												"user",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Story Create",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n        \"title\": \"Testing postman numero 4\",\n        \"creator\": {\n            \"id\": 2\n        },\n        \"place\": {\n            \"id\": 1\n        },\n        \"type\": {\n            \"id\": 1\n        }\n    }"
+										},
+										"url": {
+											"raw": "http://localhost:8080/stories/add",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"stories",
+												"add"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Story Delete",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/stories/delete/21",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"stories",
+												"delete",
+												"21"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Story Update",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\": \"Testing postman numero update\",\n    \"dateCreation\": \"2018-06-29\",\n    \"dateUpdate\": \"2018-07-02\",\n    \"creator\": {\n        \"id\": 1\n    },\n    \"place\": {\n        \"id\": 2\n    }, \n    \"type\":{\n    \t\"id\":1\n    }\n}"
+										},
+										"url": {
+											"raw": "http://localhost:8080/stories/update/20",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"stories",
+												"update",
+												"20"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
 							"name": "Stories Count all",
 							"request": {
 								"method": "GET",
@@ -398,18 +672,18 @@
 							"response": []
 						},
 						{
-							"name": "Stories Count all of Myself",
+							"name": "Stories Count all of User",
 							"request": {
 								"method": "GET",
 								"header": [
 									{
-										"key": "idConnectedUser",
+										"key": "idUser",
 										"value": "1"
 									}
 								],
 								"body": {},
 								"url": {
-									"raw": "http://localhost:8080/stories/count/myself",
+									"raw": "http://localhost:8080/stories/count/user",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -418,30 +692,7 @@
 									"path": [
 										"stories",
 										"count",
-										"myself"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Stories Count all of User",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {},
-								"url": {
-									"raw": "http://localhost:8080/stories/count/user/1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"stories",
-										"count",
-										"user",
-										"1"
+										"user"
 									]
 								}
 							},
@@ -471,123 +722,12 @@
 							"response": []
 						},
 						{
-							"name": "Stories List all pagination",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/stories/pagin?page=0&size=2&sortProperty=id&sortDirection=ASC",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"stories",
-										"pagin"
-									],
-									"query": [
-										{
-											"key": "page",
-											"value": "0"
-										},
-										{
-											"key": "size",
-											"value": "2"
-										},
-										{
-											"key": "sortProperty",
-											"value": "id"
-										},
-										{
-											"key": "sortDirection",
-											"value": "ASC"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Stories List all of User",
 							"request": {
 								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/stories/user/1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"stories",
-										"user",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Stories List all of User pagination",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/stories/user/1/pagin?page=0&size=2&sortProperty=id&sortDirection=ASC",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"stories",
-										"user",
-										"1",
-										"pagin"
-									],
-									"query": [
-										{
-											"key": "page",
-											"value": "0"
-										},
-										{
-											"key": "size",
-											"value": "2"
-										},
-										{
-											"key": "sortProperty",
-											"value": "id"
-										},
-										{
-											"key": "sortDirection",
-											"value": "ASC"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Stories List all of Myself",
-							"request": {
-								"method": "GET",
 								"header": [
 									{
-										"key": "idConnectedUser",
+										"key": "idUser",
 										"value": "1"
 									}
 								],
@@ -596,7 +736,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/stories/user/myself",
+									"raw": "http://localhost:8080/stories/user",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -604,57 +744,7 @@
 									"port": "8080",
 									"path": [
 										"stories",
-										"user",
-										"myself"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Stories List all of Myself pagination",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "idConnectedUser",
-										"value": "1"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/stories/user/myself/pagin?page=0&size=2&sortProperty=id&sortDirection=ASC",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"stories",
-										"user",
-										"myself",
-										"pagin"
-									],
-									"query": [
-										{
-											"key": "page",
-											"value": "0"
-										},
-										{
-											"key": "size",
-											"value": "2"
-										},
-										{
-											"key": "sortProperty",
-											"value": "id"
-										},
-										{
-											"key": "sortDirection",
-											"value": "ASC"
-										}
+										"user"
 									]
 								}
 							},
@@ -668,38 +758,13 @@
 									{
 										"key": "Content-Type",
 										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n        \"title\": \"Testing postman numero 4\",\n        \"creator\": {\n            \"id\": 2\n        },\n        \"place\": {\n            \"id\": 1\n        },\n        \"type\": {\n            \"id\": 1\n        }\n    }"
-								},
-								"url": {
-									"raw": "http://localhost:8080/stories/add",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"stories",
-										"add"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Story Create of Myself",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
 									},
 									{
+<<<<<<< HEAD
 										"key": "idConnectedUser",
+=======
+										"key": "idUser",
+>>>>>>> ludovic
 										"value": "3"
 									}
 								],
@@ -733,7 +798,11 @@
 									"raw": ""
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "http://localhost:8080/stories/display/28",
+=======
+									"raw": "http://localhost:8080/stories/display/31",
+>>>>>>> ludovic
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -742,7 +811,11 @@
 									"path": [
 										"stories",
 										"display",
+<<<<<<< HEAD
 										"28"
+=======
+										"31"
+>>>>>>> ludovic
 									]
 								}
 							},
@@ -752,12 +825,18 @@
 							"name": "Story Delete",
 							"request": {
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "idUser",
+										"value": "3"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "http://localhost:8080/stories/delete/21",
 									"protocol": "http",
 									"host": [
@@ -789,6 +868,9 @@
 								},
 								"url": {
 									"raw": "http://localhost:8080/stories/delete/28/myself",
+=======
+									"raw": "http://localhost:8080/stories/delete/31",
+>>>>>>> ludovic
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -797,8 +879,12 @@
 									"path": [
 										"stories",
 										"delete",
+<<<<<<< HEAD
 										"28",
 										"myself"
+=======
+										"31"
+>>>>>>> ludovic
 									]
 								}
 							},
@@ -812,14 +898,25 @@
 									{
 										"key": "Content-Type",
 										"value": "application/json"
+									},
+									{
+										"key": "idUser",
+										"value": "3"
 									}
 								],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\n    \"title\": \"Testing postman numero update\",\n    \"dateCreation\": \"2018-06-29\",\n    \"dateUpdate\": \"2018-07-02\",\n    \"creator\": {\n        \"id\": 1\n    },\n    \"place\": {\n        \"id\": 2\n    }, \n    \"type\":{\n    \t\"id\":1\n    }\n}"
 								},
 								"url": {
 									"raw": "http://localhost:8080/stories/update/20",
+=======
+									"raw": "{\n    \"title\": \"Testing postman numero a ete update\",\n    \"dateCreation\": \"2018-06-29\",\n    \"dateUpdate\": \"2018-07-02\",\n    \"place\": {\n        \"id\": 2\n    }, \n    \"type\":{\n    \t\"id\":1\n    }\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/update/31",
+>>>>>>> ludovic
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -828,6 +925,7 @@
 									"path": [
 										"stories",
 										"update",
+<<<<<<< HEAD
 										"20"
 									]
 								}
@@ -864,6 +962,9 @@
 										"update",
 										"28",
 										"myself"
+=======
+										"31"
+>>>>>>> ludovic
 									]
 								}
 							},

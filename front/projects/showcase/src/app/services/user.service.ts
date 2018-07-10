@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {Observable} from 'rxjs';
 
 import { User } from "../models/user.model";
@@ -36,16 +36,16 @@ export class UserService {
     return this.http.delete(this.usersUrl + "/" + id);
   }
 
-  public getAccount(email: string): Observable<any>{
+  public getAccount(id: number): Observable<any>{
     return this.http.get(this.userUrl + "/infos", { 
-          headers: {"semail": this.currentUser.email}
+          headers: {"sid": this.currentUser.id.toString()}
     });
   }
 
-  public updateAccount(email: string, user: User): Observable<any> {
+  public updateAccount(id: number, user: User): Observable<any> {
     return this.http.post(this.userUrl + "/update", user, 
       {
-        headers: {"semail": this.currentUser.email}
+        headers: {"sid": this.currentUser.id.toString()}
       }); 
   }
 

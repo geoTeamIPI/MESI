@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 import { MglResizeEventEmitter } from 'ngx-mapbox-gl';
 import { SharedModule } from '../shared.module';
 import { DemoFileLoaderService } from './demo-file-loader.service';
@@ -43,6 +45,9 @@ import { ToggleLayersComponent } from '../demo/examples/toggle-layers.component'
 import { ZoomtoLinestringComponent } from '../demo/examples/zoomto-linestring.component';
 import { StackblitzEditGuard } from '../demo/stackblitz-edit/stackblitz-edit-guard.service';
 import { StackblitzEditComponent } from '../demo/stackblitz-edit/stackblitz-edit.component';
+
+import { UserService } from '../services/user.service';
+import { StoryService } from '../story/story.service';
 
 export enum Category {
   PROFILE = 'User',
@@ -89,7 +94,7 @@ export const DEMO_ROUTES: Routes = [
       // { path: 'zoomto-linestring', component: ZoomtoLinestringComponent, data: { label: 'Fit to the bounds of a LineString', cat: Category.USER_INTERACTION } },
       // { path: 'ngx-marker-cluster', component: NgxMarkerClusterComponent, data: { label: '[NGX] Create a clusters of html markers', cat: Category.CONTROLS_AND_OVERLAYS } },
       // { path: 'mapbox-gl-geocoder', component: MapboxGlGeocoderComponent, data: { label: 'Add a geocoder', cat: Category.CONTROLS_AND_OVERLAYS } },
-      { path: '**', redirectTo: 'display-map' }
+      //{ path: '**', redirectTo: 'display-map' }
     ]
   }
 ];
@@ -99,12 +104,15 @@ export const DEMO_ROUTES: Routes = [
     SharedModule,
     RouterModule,
     StoreModule.forFeature('demo', fromDemo.reducer),
-    EffectsModule.forFeature([DemoEffects])
+    EffectsModule.forFeature([DemoEffects]), 
+    NgxPaginationModule
   ],
   providers: [
     StackblitzEditGuard,
     DemoFileLoaderService,
-    { provide: MglResizeEventEmitter, useExisting: DemoEffects } // Please don't mind me (╭ರ_⊙)
+    { provide: MglResizeEventEmitter, useExisting: DemoEffects }, // Please don't mind me (╭ರ_⊙)
+    UserService, 
+    StoryService
   ],
   declarations: [
     DemoIndexComponent,

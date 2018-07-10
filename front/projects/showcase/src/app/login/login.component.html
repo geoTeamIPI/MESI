@@ -1,19 +1,23 @@
-<h2>Identifiez-vous</h2>
-  <form (ngSubmit)="onSubmit()">
-      <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" required [(ngModel)]="user.email" name="email" placeholder="Email">
-      </div>
+<div class="container">
+    <h2>Identifiez-vous</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" required [(ngModel)]="user.email" name="email" placeholder="Email">
+        </div>
 
-      <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password" placeholder="Mot de passe">
-      </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password" placeholder="Mot de passe">
+        </div>
 
-      <button>Login</button>
-  </form>
-<div *ngIf="invalidLogin && submitted" class="error">
-    <div>Erreur d'identification</div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    Pas encore de compte, s'inscrire <a routerLink = "/registering">ici</a>
+    <div *ngIf="invalidLogin && submitted" class="error">
+        <div class="alert alert-danger">Mot de passe et/ou email incorrect</div>
+    </div>
 </div>
+
 
 

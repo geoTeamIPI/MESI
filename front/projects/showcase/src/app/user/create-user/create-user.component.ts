@@ -2,8 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { User } from "../../models/user.model";
 import { UserService } from "../../services/user.service";
-import { HttpClient } from "@angular/common/http";
-import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "create-user",
@@ -13,7 +12,9 @@ import { NgForm } from "@angular/forms";
 export class CreateUserComponent implements OnInit {
   user: User = new User();
   submitted = false;
-  constructor(private userService: UserService) {}
+  hideProfile = false;  
+
+  constructor(private userService: UserService, private route: Router) {}
 
   profiles = [
     { id: "user", name: "Utilisateur" },
@@ -22,7 +23,11 @@ export class CreateUserComponent implements OnInit {
   ];
   selectedValue = this.profiles[0].id; 
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.route.url.includes("/registering")){
+        this.hideProfile = true; 
+    }
+  }
 
   newUser(): void {
     this.submitted = false;
@@ -32,12 +37,13 @@ export class CreateUserComponent implements OnInit {
   createUser() {
     this.userService
       .createUser(this.user)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => this.submitted = true, error => console.log(error));
     this.user = new User();
   }
 
   onSubmit() {
-    this.submitted = true;
     this.createUser();
   }
+
+
 }

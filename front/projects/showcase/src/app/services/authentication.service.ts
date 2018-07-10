@@ -15,10 +15,10 @@ export class AuthenticationService{
   private userUrl = 'http://localhost:8080/user';
 
   login(email: string, password: string): Observable<any>{
-    return this.http.post<any>(this.userUrl + "/login", {email, password})
+    return this.http.post<any>(this.userUrl + "/login", {email: email, password: password})
     .pipe(map(user => {
         sessionStorage.setItem('currentUser', JSON.stringify(user));
-      }));
+    }));
   }
   
   logout(){

@@ -1,14 +1,13 @@
 <mat-toolbar color="primary">
   <div>
-    <button
+    <!--<button
       *ngIf="isInDemo$ | async"
       class="menu-button"
       mat-button
-      (click)="toggleSidenav()"
-    >
+      (click)="toggleSidenav()">
       <!-- <mat-icon>menu</mat-icon> -->
-      Create a Story
-    </button>
+     <!-- Create a Story -->
+    <!--</button> -->
     <a mat-button routerLink="/">
       Home
     </a>
@@ -18,11 +17,11 @@
     
   </div>
   <div>
-    <a mat-button *ngIf="!isAutenthicated" routerLink = "/login" >Login</a>
+    <a mat-button *ngIf="!isAutenthicated" routerLink = "login" >Login</a>
     <div *ngIf="isAutenthicated">
-        Bienvenue {{currentUser.email}} - <a routerLink ="/logout"> Logout</a>
-        <a mat-button *ngIf = "currentUser.profile == 'user'" routerLink="/account/user">Mon compte</a>
-        <a mat-button *ngIf = "currentUser.profile != 'user'" routerLink="/account/admin">Mon compte</a>
+        Bienvenue {{currentUser.email}} - <a mat-button routerLink ="logout"> Logout</a>
+        <a mat-button *ngIf = "currentUser.profile == 'user'" routerLink="account/user"><mat-icon>account_box</mat-icon></a>
+        <a mat-button *ngIf = "currentUser.profile != 'user'" routerLink="account/admin"><mat-icon>account_box</mat-icon></a>
     </div>  
   </div>
 </mat-toolbar>

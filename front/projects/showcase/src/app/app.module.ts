@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,6 +15,28 @@ import * as fromDemo from './map/demo.reducer';
 import { HomeIndexComponent } from './home/home-index.component';
 import { IndexComponent } from './index.component';
 import { SharedModule } from './shared.module';
+
+import { NgxPaginationModule } from 'ngx-pagination';
+
+import { StoryComponent } from "./story/story.component";
+import { AddStoryComponent } from "./story/add-story/add-story.component";
+import { ListUsersComponent } from "./user/list-users/list-users.component";
+import { CreateUserComponent } from "./user/create-user/create-user.component";
+import { InfosUsersComponent } from "./user/infos-users/infos-users.component";
+import { UpdateUserComponent } from "./user/update-user/update-user.component";
+import { LoginComponent } from "./login/login.component";
+import { LogoutComponent } from "./logout/logout.component";
+import { AdminGuards } from "./admin.guards";
+import { AdminComponent } from "./user/account/admin/admin.component";
+import { NormalComponent } from "./user/account/normal/normal.component";
+import { UserGuards } from "./user.guards";
+import { InfosAccountComponent } from "./user/infos-account/infos-account.component";
+import { UpdateAccountComponent } from "./user/update-account/update-account.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
+import { RegisteringAccountComponent } from "./user/registering-account/registering-account.component";
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { UserService } from './services/user.service';
+import { AuthenticationService } from './services/authentication.service';
 
 export interface RouterStateUrl {
   url: string;
@@ -56,23 +78,111 @@ export const showcaseRoutes: Routes = [
     path: 'doc',
     loadChildren: './doc/doc.module#DocModule'
   },
-  { path: '**', redirectTo: '' }
+  { path: "logout", component: LogoutComponent }, 
+
+  { path: "login", component: LoginComponent }, 
+  { path: "account/admin", component: AdminComponent, 
+    canActivate: [AdminGuards],
+    children: [
+          { path: "users",
+           component: ListUsersComponent, 
+          },
+          { path: "users/add", 
+            component: CreateUserComponent,
+          },
+          { path: "users/infos/:id", 
+            component: InfosUsersComponent, 
+          },
+          { path: "users/update/:id", 
+            component: UpdateUserComponent,     
+          }, 
+          {
+            path: "infos", 
+            component: InfosAccountComponent
+          }, 
+          {
+          path: "update",
+          component: UpdateAccountComponent
+        }, 
+        {
+          path: "stories",
+          component: StoryComponent
+        },
+        {
+          path: "stories/create",
+          component: AddStoryComponent
+        }
+      ]
+    }, 
+    {
+      path: "account/user", 
+      component: NormalComponent, 
+      canActivate: [UserGuards], 
+      children: [
+        {
+          path: "infos", 
+          component: InfosAccountComponent
+        }, 
+        {
+          path: "update",
+          component: UpdateAccountComponent
+        }, 
+        {
+          path: "stories",
+          component: StoryComponent
+        },
+        {
+          path: "stories/create",
+          component: AddStoryComponent
+        }
+      ]
+    },
+    {
+      path: "registering", 
+      component: RegisteringAccountComponent
+    }, 
+    {
+      path: "404", 
+      component: NotFoundComponent
+    }, 
+    {
+      path: "**", 
+      redirectTo: "404"
+    },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
     IndexComponent,
-    HomeIndexComponent
+    HomeIndexComponent, 
+    NotFoundComponent,  
+    CreateUserComponent,
+    InfosUsersComponent,
+    ListUsersComponent,
+    UpdateUserComponent,
+    StoryComponent,
+    AddStoryComponent,
+    LoginComponent,
+    LogoutComponent,
+    AdminComponent,
+    NormalComponent,
+    InfosAccountComponent,
+    UpdateAccountComponent,
+    RegisteringAccountComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
     DemoModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgxPaginationModule,
     StoreModule.forRoot({
       router: <any>routerReducer
     }),
-    RouterModule.forRoot(showcaseRoutes),
+    RouterModule.forRoot(showcaseRoutes, {enableTracing: true}),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot({
@@ -83,9 +193,12 @@ export const showcaseRoutes: Routes = [
     })
   ],
   providers: [
+    UserService, 
+    AuthenticationService,
     { provide: RouterStateSerializer, useClass: SimpleSerializer }
   ],
-  bootstrap: [IndexComponent]
+  bootstrap: [IndexComponent], 
+  schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class AppModule {
   constructor(

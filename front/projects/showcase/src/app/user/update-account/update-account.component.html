@@ -1,34 +1,36 @@
-<h2>Modifier le compte</h2>
-<form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="email" placeholder="Email">
-    </div>
+<div class="container">
+    <h2>Modifier le compte</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="email" placeholder="Email">
+        </div>
 
-    <div class="form-group">
-        <label for="city">Ville</label>
-        <input type="text" class="form-control" id="city" required [(ngModel)]="user.city" name="city" placeholder="Ville">
-    </div>
-    <div class="form-group">
-        <label for="oldPassword">Mot de passe actuel</label>
-        <input type="password" class="form-control" id="oldPassword" required [(ngModel)]="user.oldPassword" name="oldPassword" placeholder="Actuel">
-    </div>
-    <div class="form-group">
-        <label for="password">Nouveau mot de passe</label>
-        <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password" placeholder="Nouveau mot de passe">
-    </div>
-    <div class="form-group">
-        <label for="password">Nouveau mot de passe</label>
-        <input type="password" class="form-control" id="passwordConfirm" required [(ngModel)]="user.passwordConfirm" name="passwordConfirm" placeholder="Confirmer le mot de passe">
-    </div>
-    <div *ngIf="user.profile != profiles[0].id" class="form-group">
-            <label for="profile">Type de profil</label>
-            <select class="form-control"  id="profile"
-                    required
-                    [(ngModel)]="user.profile" name="profile">
-              <option *ngFor="let profile of profiles" [value]="profile.id">{{profile.name}}</option>
-            </select>
-    </div>
+        <div class="form-group">
+            <label for="city">Ville</label>
+            <input type="text" class="form-control" id="city" required [(ngModel)]="user.city" name="city" placeholder="Ville">
+        </div>
+        <div class="form-group">
+            <label for="oldPassword">Mot de passe actuel</label>
+            <input type="password" class="form-control" id="oldPassword" required [(ngModel)]="user.oldPassword" name="oldPassword" placeholder="Actuel">
+        </div>
+        <div class="form-group">
+            <label for="password">Nouveau mot de passe</label>
+            <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password" placeholder="Nouveau mot de passe">
+        </div>
+        <div class="form-group">
+            <label for="password">Nouveau mot de passe</label>
+            <input type="password" class="form-control" id="passwordConfirm" required [(ngModel)]="user.passwordConfirm" name="passwordConfirm" placeholder="Confirmer le mot de passe">
+        </div>
+        <div *ngIf="user.profile != profiles[0].id" class="form-group">
+                <label for="profile">Type de profil</label>
+                <select class="form-control"  id="profile"
+                        required
+                        [(ngModel)]="user.profile" name="profile">
+                <option *ngFor="let profile of profiles" [value]="profile.id">{{profile.name}}</option>
+                </select>
+        </div>
 
-    <button type="submit">Modifier</button>
-</form>
+        <button type="submit">Modifier</button>
+    </form>
+</div>

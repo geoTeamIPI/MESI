@@ -17,7 +17,7 @@ export class InfosAccountComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-    this.userService.getAccount(this.currentUser.email)
+    this.userService.getAccount(this.currentUser.id)
       .subscribe(user => {
         this.userInfos = user; 
       });

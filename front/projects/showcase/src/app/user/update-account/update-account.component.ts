@@ -25,7 +25,7 @@ export class UpdateAccountComponent implements OnInit {
   }
 
   onSubmit(){
-    this.userService.updateAccount(this.user.email, this.user)
+    this.userService.updateAccount(this.user.id, this.user)
       .subscribe(data => {
         console.log(data); 
       }, err => {
@@ -35,7 +35,7 @@ export class UpdateAccountComponent implements OnInit {
 
   getUser(){
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-    this.userService.getAccount(this.currentUser.email)
+    this.userService.getAccount(this.currentUser.id)
       .subscribe(data => {
         this.user = data;
         this.user.password = null; 

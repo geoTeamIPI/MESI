@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "../../models/user.model";
 import { UserService } from "../../services/user.service";
 import { Router } from "@angular/router";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: "create-user",
@@ -12,7 +13,12 @@ import { Router } from "@angular/router";
 export class CreateUserComponent implements OnInit {
   user: User = new User();
   submitted = false;
-  hideProfile = false;  
+  hideProfile = false; 
+  userForm : FormGroup;
+  email : FormControl; 
+  password: FormControl; 
+  city: FormControl;
+  passwordConfirm: FormControl; 
 
   constructor(private userService: UserService, private route: Router) {}
 
@@ -23,15 +29,13 @@ export class CreateUserComponent implements OnInit {
   ];
   selectedValue = this.profiles[0].id; 
 
+  
   ngOnInit() {
     if (this.route.url.includes("/registering")){
         this.hideProfile = true; 
     }
-  }
-
-  newUser(): void {
-    this.submitted = false;
-    this.user = new User();
+    this.controlFormUser();
+    this.createFormUser(); 
   }
 
   createUser() {
@@ -42,8 +46,37 @@ export class CreateUserComponent implements OnInit {
   }
 
   onSubmit() {
-    this.createUser();
+    if (this.userForm.valid){
+      this.createUser();
+      this.userForm.reset(); 
+    }
+
   }
+
+  controlFormUser(){
+    this.email =  new FormControl('', [
+      Validators.email,
+      Validators.minLength(7), 
+      Validators.required]);
+    this.password =  new FormControl('', [
+      Validators.required
+    ]);
+    this.city = new FormControl('', [
+      Validators.required
+    ]);
+    this.passwordConfirm = new FormControl('', [
+      Validators.required
+    ]);
+}
+
+createFormUser(){
+  this.userForm  = new FormGroup({
+    email: this.email, 
+    password: this.password, 
+    city: this.city, 
+    passwordConfirm: this.passwordConfirm
+  });
+}
 
 
 }

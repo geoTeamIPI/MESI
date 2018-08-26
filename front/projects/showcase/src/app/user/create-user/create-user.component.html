@@ -14,7 +14,9 @@
             }"
             id="email" required
             placeholder="Email"
-            required>
+            required
+            [(ngModel)]="user.email"
+            name="email">
             <div class="invalid-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
                 <p *ngIf="email.errors.required">Email obligatoire</p>
                 <p *ngIf="email.errors.minLength">L'email doit contenir au moins 7 caractères</p>
@@ -33,7 +35,9 @@
             }"
              id="password"
              placeholder="Mot de passe"
-             required>
+             required
+             [(ngModel)]="user.password" 
+             name= "password">
             <div class="invalid-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
                 <p *ngIf="password.errors.required">Mot de passe obligatoire</p>
             </div>
@@ -87,7 +91,7 @@
         </div>
     </div>
     </form>
-    <div *ngIf="submitted && userForm.valid">
-        <label>Ajout effectué avec succés</label>
+    <div *ngIf="submitted">
+        <div class="alert alert-success">Ajout effectué avec succés</div>
     </div>
 </div>

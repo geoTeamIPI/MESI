@@ -13,7 +13,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class CreateUserComponent implements OnInit {
   user: User = new User();
   submitted = false;
-  hideProfile = false; 
+  hideProfile = false;
+  userCreated: String;  
   userForm : FormGroup;
   email : FormControl; 
   password: FormControl; 
@@ -41,14 +42,15 @@ export class CreateUserComponent implements OnInit {
   createUser() {
     this.userService
       .createUser(this.user)
-      .subscribe(data => this.submitted = true, error => console.log(error));
+      .subscribe(data => console.log(data), error => console.log(error));
     this.user = new User();
   }
 
   onSubmit() {
     if (this.userForm.valid){
       this.createUser();
-      this.userForm.reset(); 
+      this.submitted = true; 
+      this.userForm.reset();
     }
 
   }

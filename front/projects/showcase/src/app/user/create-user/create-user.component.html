@@ -82,9 +82,18 @@
                 <label for="profile">Type de profil</label>
                 <select class="form-control"  id="profile"
                         required
-                        [(ngModel)]="user.profile" name="profile">
+                        [(ngModel)]="user.profile" 
+                        name="profile"
+                        formControlName="profile"
+                        [ngClass] = "{
+                            'is-invalid' : profile.invalid && (profile.dirty || profile.touched),
+                            'is-valid' : profile.valid && (profile.dirty || profile.touched)
+                        }">
                 <option *ngFor="let profile of profiles" [value]="profile.id" selected="selectedValue">{{profile.name}}</option>
                 </select>
+                <div class="invalid-feedback" *ngIf="profile.errors && (profile.dirty || profile.touched)">
+                    <p>Profil obligatoire</p>
+                </div>
         </div>
         <div class="col-5 col-sm-12">
             <button type="submit" class="btn btn-primary">Créer</button>

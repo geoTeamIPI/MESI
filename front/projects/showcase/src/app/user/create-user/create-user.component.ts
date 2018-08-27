@@ -19,7 +19,8 @@ export class CreateUserComponent implements OnInit {
   email : FormControl; 
   password: FormControl; 
   city: FormControl;
-  passwordConfirm: FormControl; 
+  passwordConfirm: FormControl;
+  profile: FormControl; 
 
   constructor(private userService: UserService, private route: Router) {}
 
@@ -69,6 +70,9 @@ export class CreateUserComponent implements OnInit {
     this.passwordConfirm = new FormControl('', [
       Validators.required
     ]);
+    this.profile = new FormControl('', [
+      Validators.required
+    ]);
 }
 
 createFormUser(){
@@ -76,7 +80,8 @@ createFormUser(){
     email: this.email, 
     password: this.password, 
     city: this.city, 
-    passwordConfirm: this.passwordConfirm
+    passwordConfirm: this.passwordConfirm, 
+    profile: this.profile
   });
 }
 

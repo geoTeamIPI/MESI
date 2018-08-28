@@ -10,6 +10,9 @@ import { User } from "../../models/user.model";
 })
 export class UpdateUserComponent implements OnInit {
   @Input() user: User;
+  userUpdated : boolean = false; 
+  submitted: boolean = false;  
+
   profiles = [
     { id: "user", name: "Utilisateur" },
     { id: "moderator", name: "Modérateur" },
@@ -29,13 +32,14 @@ export class UpdateUserComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get("id");
     this.userService
       .getUser(id)
-      .subscribe(user => this.user = user, err => console.log(err));
+      .subscribe(user => {this.user = user}, err => console.log(err));
   }
 
   onSubmit() {
     const id = +this.route.snapshot.paramMap.get("id");
     this.userService
       .updateUser(id, this.user)
-      .subscribe(data => console.log("User updated"), err => console.log(err));
+      .subscribe(data => {this.userUpdated = true, console.log("User updated")}, err => console.log(err));
+      this.submitted = true; 
   }
 }

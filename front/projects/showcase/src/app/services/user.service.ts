@@ -8,7 +8,7 @@ import { User } from "../models/user.model";
 @Injectable()
 export class UserService {
 
-  currentUser: User = JSON.parse(sessionStorage.getItem("currentUser"));
+  currentUser: User = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
 
   constructor(private http: HttpClient) {}
 
@@ -33,7 +33,7 @@ export class UserService {
   }
 
   public deleteUser(id: number) {
-    return this.http.delete(this.usersUrl + "/" + id);
+    return this.http.delete(this.usersUrl + "/delete/" + id);
   }
 
   public getAccount(id: number): Observable<any>{

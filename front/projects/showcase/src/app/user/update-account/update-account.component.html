@@ -33,4 +33,13 @@
 
         <button type="submit" class="btn btn-primary">Modifier</button>
     </form>
+
+    <div *ngIf = "submitted">
+        <div *ngIf="accountUpdated">
+            <div class="alert alert-success">Compte modifié avec succés</div>
+        </div>
+        <div *ngIf="!accountUpdated">
+            <div class="alert alert-danger">Erreur de modification</div>
+        </div>
+    </div>
 </div> 

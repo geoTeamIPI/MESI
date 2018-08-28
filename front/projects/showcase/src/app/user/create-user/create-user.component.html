@@ -19,7 +19,7 @@
             name="email">
             <div class="invalid-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
                 <p *ngIf="email.errors.required">Email obligatoire</p>
-                <p *ngIf="email.errors.minLength">L'email doit contenir au moins 7 caractères</p>
+                <p *ngIf="email.errors.minlength">L'email doit contenir au moins 7 caractères</p>
                 <p *ngIf="email.errors.email">L'email doit être au format @</p>
             </div>
         </div>
@@ -101,6 +101,11 @@
     </div>
     </form>
     <div *ngIf="submitted">
-        <div class="alert alert-success">Ajout effectué avec succés</div>
+        <div *ngIf="userForm.valid">
+            <div class="alert alert-success">Ajout effectué avec succés</div>
+        </div>
+        <div *ngIf="!userForm.valid">
+                <div class="alert alert-danger">Erreur d'ajout</div>
+        </div>
     </div>
 </div>

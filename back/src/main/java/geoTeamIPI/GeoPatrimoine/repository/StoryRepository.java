@@ -1,20 +1,28 @@
 package geoTeamIPI.GeoPatrimoine.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import geoTeamIPI.GeoPatrimoine.entity.Place;
 import geoTeamIPI.GeoPatrimoine.entity.Story;
-import geoTeamIPI.GeoPatrimoine.entity.User;
 
 @Repository
 public interface StoryRepository extends JpaRepository<Story, Long> {
 
-	List<Story> findByCreator(User user);
+	List<Story> findByCreatorId(Long idUser);
 
-	List<Story> findByCreator(Optional<User> user);
+	List<Story> findByPlaceIn(List<Place> places);
+
+	List<Story> findByCreatorIdAndPlaceIn(Long idUser, List<Place> places);
+
+	List<Story> findByPlaceLongitudeGreaterThanAndPlaceLatitudeGreaterThanAndPlaceLongitudeLessThanAndPlaceLatitudeLessThan(String longitudeSW,
+			String latitudeSW, String longitudeNE, String latitudeNE);
+
+	List<Story> findByCreatorIdAndPlaceLongitudeGreaterThanAndPlaceLatitudeGreaterThanAndPlaceLongitudeLessThanAndPlaceLatitudeLessThan(
+			Long idUser, String longitudeSW,
+			String latitudeSW, String longitudeNE, String latitudeNE);
 
 	// --------------------------------------------A VERIFIER TOUT CE QUI EST EN DESSOUS
 

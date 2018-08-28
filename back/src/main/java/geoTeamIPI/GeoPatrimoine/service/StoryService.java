@@ -2,7 +2,6 @@ package geoTeamIPI.GeoPatrimoine.service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,38 +9,98 @@ import org.springframework.stereotype.Service;
 import geoTeamIPI.GeoPatrimoine.entity.Story;
 import geoTeamIPI.GeoPatrimoine.entity.User;
 import geoTeamIPI.GeoPatrimoine.repository.StoryRepository;
-import geoTeamIPI.GeoPatrimoine.repository.UserRepository;
 
 @Service
 public class StoryService {
 	@Autowired
 	private StoryRepository storyRepository;
 
-	@Autowired
-	private UserRepository userRepository;
-
 	public Story findById(Long id) {
 		return storyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Failed to get a story with the id=" + id + "!!!"));
 	}
+
+	// ------------------------------------ COUNT METHODS ------------------------
 
 	public Long countAllStories() {
 		return storyRepository.count();
 	}
 
 	public int countAllStories(Long idUser) {
-		Optional<User> user = userRepository.findById(idUser);
-		List<Story> result = storyRepository.findByCreator(user);
+		List<Story> result = storyRepository.findByCreatorId(idUser);
 		return result.size();
 	}
+
+	public int countAllStories(String longitudeSW, String latitudeSW, String longitudeNE, String latitudeNE) {
+		List<Story> result = storyRepository
+				.findByPlaceLongitudeGreaterThanAndPlaceLatitudeGreaterThanAndPlaceLongitudeLessThanAndPlaceLatitudeLessThan(longitudeSW,
+						latitudeSW, longitudeNE, latitudeNE);
+		return result.size();
+	}
+
+	public int countAllStories(Long idUser, String longitudeSW, String latitudeSW, String longitudeNE, String latitudeNE) {
+		List<Story> result = storyRepository
+				.findByCreatorIdAndPlaceLongitudeGreaterThanAndPlaceLatitudeGreaterThanAndPlaceLongitudeLessThanAndPlaceLatitudeLessThan(idUser,
+						longitudeSW,
+						latitudeSW, longitudeNE, latitudeNE);
+		return result.size();
+	}
+
+	public int countAllStories(String longitudeSW, String latitudeSW, String longitudeNE, String latitudeNE, String longitudeUser,
+			String latitudeUser, int diameter) {
+		List<Story> result = findAllStoriesByDiameter(longitudeSW, latitudeSW, longitudeNE, latitudeNE, longitudeUser, latitudeUser, diameter);
+		return result.size();
+	}
+
+	public int countAllStories(Long idUser, String longitudeSW, String latitudeSW, String longitudeNE, String latitudeNE, String longitudeUser,
+			String latitudeUser, int diameter) {
+		List<Story> result = findAllStoriesByDiameter(idUser, longitudeSW, latitudeSW, longitudeNE, latitudeNE, longitudeUser, latitudeUser,
+				diameter);
+		return result.size();
+	}
+
+	// ------------------------------------ LIST METHODS ------------------------
 
 	public List<Story> findAllStories() {
 		return storyRepository.findAll();
 	}
 
 	public List<Story> findAllStories(Long idUser) {
-		Optional<User> user = userRepository.findById(idUser);
-		return storyRepository.findByCreator(user);
+		return storyRepository.findByCreatorId(idUser);
 	}
+
+	public List<Story> findAllStories(String longitudeSW, String latitudeSW, String longitudeNE, String latitudeNE) {
+		return storyRepository
+				.findByPlaceLongitudeGreaterThanAndPlaceLatitudeGreaterThanAndPlaceLongitudeLessThanAndPlaceLatitudeLessThan(longitudeSW,
+						latitudeSW, longitudeNE, latitudeNE);
+	}
+
+	public List<Story> findAllStories(Long idUser, String longitudeSW, String latitudeSW, String longitudeNE, String latitudeNE) {
+		return storyRepository
+				.findByCreatorIdAndPlaceLongitudeGreaterThanAndPlaceLatitudeGreaterThanAndPlaceLongitudeLessThanAndPlaceLatitudeLessThan(idUser,
+						longitudeSW,
+						latitudeSW, longitudeNE, latitudeNE);
+	}
+
+	public List<Story> findAllStoriesByDiameter(String longitudeSW, String latitudeSW, String longitudeNE, String latitudeNE,
+			String longitudeUser, String latitudeUser, int diameter) {
+		List<Story> stories = storyRepository
+				.findByPlaceLongitudeGreaterThanAndPlaceLatitudeGreaterThanAndPlaceLongitudeLessThanAndPlaceLatitudeLessThan(longitudeSW,
+						latitudeSW, longitudeNE, latitudeNE);
+		stories = filterStoriesByDiameter(stories, longitudeUser, latitudeUser, diameter);
+		return stories;
+	}
+
+	public List<Story> findAllStoriesByDiameter(Long idUser, String longitudeSW, String latitudeSW, String longitudeNE, String latitudeNE,
+			String longitudeUser, String latitudeUser, int diameter) {
+		List<Story> stories = storyRepository
+				.findByCreatorIdAndPlaceLongitudeGreaterThanAndPlaceLatitudeGreaterThanAndPlaceLongitudeLessThanAndPlaceLatitudeLessThan(idUser,
+						longitudeSW,
+						latitudeSW, longitudeNE, latitudeNE);
+		stories = filterStoriesByDiameter(stories, longitudeUser, latitudeUser, diameter);
+		return stories;
+	}
+
+	// ------------------------------------ CRUD METHODS ------------------------
 
 	public Story createStory(Story story, User user) {
 		LocalDate todaysDate = LocalDate.now();
@@ -73,6 +132,27 @@ public class StoryService {
 		} else {
 			// throw denied
 		}
+	}
+
+	// ------------------------------------ SUB METHODS ------------------------
+
+	public List<Story> filterStoriesByDiameter(List<Story> stories, String longitudeUser, String latitudeUser, int diameter) {
+		for (Story story : stories) {
+			double longitudePoint = Double.parseDouble(story.getPlace().getLongitude());
+			double latitudePoint = Double.parseDouble(story.getPlace().getLatitude());
+			double longitudeUserFloat = Double.parseDouble(longitudeUser);
+			double latitudeUserFloat = Double.parseDouble(latitudeUser);
+			double a = longitudePoint - longitudeUserFloat;
+			double aSquare = Math.pow(a, 2);
+			double b = latitudePoint - latitudeUserFloat;
+			double bSquare = Math.pow(b, 2);
+			double ab = Math.sqrt(bSquare + aSquare);
+			double diameterD = Double.valueOf(diameter);
+			if (ab > diameterD) {
+				stories.remove(story);
+			}
+		}
+		return stories;
 	}
 
 	// --------------------------------------------A VERIFIER TOUT CE QUI EST EN DESSOUS

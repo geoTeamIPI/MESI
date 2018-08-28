@@ -12,7 +12,7 @@ export class UserGuards implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      this.currentUser = JSON.parse(sessionStorage.getItem("currentUser")); 
+      this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}'); 
       if (this.currentUser != null && this.currentUser.profile == "user"){
         return true; 
       }

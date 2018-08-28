@@ -12,7 +12,7 @@ export class AdminGuards implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      this.currentUser = JSON.parse(sessionStorage.getItem("currentUser")); 
+      this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}'); 
       if (sessionStorage.getItem("currentUser") && this.currentUser.profile == "admin"){
         return true; 
       }

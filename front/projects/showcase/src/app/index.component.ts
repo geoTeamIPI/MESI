@@ -32,7 +32,7 @@ export class IndexComponent implements OnInit{
     console.log(sessionStorage); 
     if (sessionStorage.getItem("currentUser")){
       this.isAutenthicated = true;
-      this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));  
+      this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');  
     }
   }
 

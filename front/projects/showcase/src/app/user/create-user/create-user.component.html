@@ -19,7 +19,7 @@
             name="email">
             <div class="invalid-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
                 <p *ngIf="email.errors.required">Email obligatoire</p>
-                <p *ngIf="email.errors.minLength">L'email doit contenir au moins 7 caractères</p>
+                <p *ngIf="email.errors.minlength">L'email doit contenir au moins 7 caractères</p>
                 <p *ngIf="email.errors.email">L'email doit être au format @</p>
             </div>
         </div>

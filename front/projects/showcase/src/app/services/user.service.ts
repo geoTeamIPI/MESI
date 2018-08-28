@@ -8,7 +8,7 @@ import { User } from "../models/user.model";
 @Injectable()
 export class UserService {
 
-  currentUser: User = JSON.parse(sessionStorage.getItem("currentUser"));
+  currentUser: User = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
 
   constructor(private http: HttpClient) {}
 

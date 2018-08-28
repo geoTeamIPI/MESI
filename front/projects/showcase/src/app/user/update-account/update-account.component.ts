@@ -11,6 +11,8 @@ export class UpdateAccountComponent implements OnInit {
 
   user: User;
   currentUser: User; 
+  accountUpdated: boolean = false; 
+  submitted: boolean = false; 
 
   profiles = [
     { id: "user", name: "Utilisateur" },
@@ -27,14 +29,16 @@ export class UpdateAccountComponent implements OnInit {
   onSubmit(){
     this.userService.updateAccount(this.user.id, this.user)
       .subscribe(data => {
+        this.accountUpdated = true; 
         console.log(data); 
       }, err => {
         console.log(err); 
-      })
+      }); 
+      this.submitted = true; 
   }
 
   getUser(){
-    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
     this.userService.getAccount(this.currentUser.id)
       .subscribe(data => {
         this.user = data;

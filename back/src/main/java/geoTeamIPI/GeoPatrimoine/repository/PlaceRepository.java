@@ -10,7 +10,7 @@ import geoTeamIPI.GeoPatrimoine.entity.Place;
 @Repository
 public interface PlaceRepository extends JpaRepository<Place, Long> {
 
-	List<Place> findByLongitudeGreaterThanAndLatitudeGreaterThanAndLongitudeLessThanAndLatitudeLessThan(
-			String longitudeSW, String latitudeSW, String longitudeNE, String latitudeNE);
+	List<Place> findByLongitudeGreaterThanAndLatitudeGreaterThanAndLongitudeLessThanAndLatitudeLessThan(String longitudeSW, String latitudeSW,
+			String longitudeNE, String latitudeNE);
 
 }

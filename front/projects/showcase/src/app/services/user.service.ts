@@ -33,7 +33,7 @@ export class UserService {
   }
 
   public deleteUser(id: number) {
-    return this.http.delete(this.usersUrl + "/" + id);
+    return this.http.delete(this.usersUrl + "/delete/" + id);
   }
 
   public getAccount(id: number): Observable<any>{

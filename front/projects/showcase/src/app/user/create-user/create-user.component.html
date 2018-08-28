@@ -101,6 +101,11 @@
     </div>
     </form>
     <div *ngIf="submitted">
-        <div class="alert alert-success">Ajout effectué avec succés</div>
+        <div *ngIf="userForm.valid">
+            <div class="alert alert-success">Ajout effectué avec succés</div>
+        </div>
+        <div *ngIf="!userForm.valid">
+                <div class="alert alert-danger">Erreur d'ajout</div>
+        </div>
     </div>
 </div>

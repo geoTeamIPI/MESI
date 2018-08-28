@@ -33,8 +33,8 @@ export class UpdateAccountComponent implements OnInit {
         console.log(data); 
       }, err => {
         console.log(err); 
-      }); 
-      this.submitted = true; 
+      });
+      this.submitted = true;  
   }
 
   getUser(){

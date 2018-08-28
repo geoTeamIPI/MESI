@@ -12,7 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class CreateUserComponent implements OnInit {
   user: User = new User();
-  submitted = false;
+  submitted: boolean = false;
   hideProfile = false;
   userCreated: String;  
   userForm : FormGroup;
@@ -50,9 +50,9 @@ export class CreateUserComponent implements OnInit {
   onSubmit() {
     if (this.userForm.valid){
       this.createUser();
-      this.submitted = true; 
       this.userForm.reset();
     }
+    this.submitted = true; 
 
   }
 

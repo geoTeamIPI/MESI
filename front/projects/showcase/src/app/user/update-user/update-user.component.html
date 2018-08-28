@@ -31,7 +31,12 @@
 
         <button type="submit" class="btn btn-primary">Modifier</button>
     </form>
-    <div *ngIf="userUpdated">
-        <div class="alert alert-success">Utilisateur modifié avec succés</div>
+    <div *ngIf = "submitted">
+        <div *ngIf="userUpdated">
+            <div class="alert alert-success">Utilisateur modifié avec succés</div>
+        </div>
+        <div *ngIf="!userUpdated">
+            <div class="alert alert-danger">Erreur de modification de l'utilisateur</div>
+        </div>
     </div>
 </div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { UserService } from "../../services/user.service";
 import { User } from "../../models/user.model";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "list-users",
@@ -18,14 +18,14 @@ export class ListUsersComponent implements OnInit {
   pagination: any = {};
 
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {}
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.reloadData();
     this.route.queryParams.subscribe(values => {
       this.pagination = values; 
       console.log(this.pagination); 
-    })
+    });
   }
 
   deleteUser(id: number) {
@@ -33,14 +33,14 @@ export class ListUsersComponent implements OnInit {
       this.userService
         .deleteUser(id)
         .subscribe(data => console.log(), err => console.log(err));
-      this.reloadData();
     }
+    this.reloadData();
   }
 
   reloadData() {
         this.userService
-      //.findAllUsers(this.pagination.page, this.pagination.size, this.pagination.sortProperty, this.pagination.sortDirection)
       .findAllUsers()
       .subscribe(users => { this.users = users }, err => console.log(err));
+      this.router.navigate([this.router.url]);
   }
 }

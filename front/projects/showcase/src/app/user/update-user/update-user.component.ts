@@ -10,7 +10,7 @@ import { User } from "../../models/user.model";
 })
 export class UpdateUserComponent implements OnInit {
   @Input() user: User;
-  userUpdated : boolean = false;
+  userUpdated : boolean = false; 
   submitted: boolean = false;  
 
   profiles = [
@@ -40,5 +40,6 @@ export class UpdateUserComponent implements OnInit {
     this.userService
       .updateUser(id, this.user)
       .subscribe(data => {this.userUpdated = true, console.log("User updated")}, err => console.log(err));
+      this.submitted = true; 
   }
 }

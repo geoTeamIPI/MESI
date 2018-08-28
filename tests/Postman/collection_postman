@@ -699,6 +699,98 @@
 							"response": []
 						},
 						{
+							"name": "Stories Count all by Screen",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/count/screen?longitudeSW=45.78&latitudeSW=4.8&longitudeNE=45.8&latitudeNE=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"count",
+										"screen"
+									],
+									"query": [
+										{
+											"key": "longitudeSW",
+											"value": "45.78"
+										},
+										{
+											"key": "latitudeSW",
+											"value": "4.8"
+										},
+										{
+											"key": "longitudeNE",
+											"value": "45.8"
+										},
+										{
+											"key": "latitudeNE",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Stories Count all of User by Screen",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "idUser",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/count/user/screen?longitudeSW=45.78&latitudeSW=4.8&longitudeNE=45.8&latitudeNE=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"count",
+										"user",
+										"screen"
+									],
+									"query": [
+										{
+											"key": "longitudeSW",
+											"value": "45.78"
+										},
+										{
+											"key": "latitudeSW",
+											"value": "4.8"
+										},
+										{
+											"key": "longitudeNE",
+											"value": "45.8"
+										},
+										{
+											"key": "latitudeNE",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Stories List all",
 							"request": {
 								"method": "GET",
@@ -751,6 +843,96 @@
 							"response": []
 						},
 						{
+							"name": "Stories List all by Screen",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/screen?longitudeSW=45.78&latitudeSW=4.8&longitudeNE=45.8&latitudeNE=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"screen"
+									],
+									"query": [
+										{
+											"key": "longitudeSW",
+											"value": "45.78"
+										},
+										{
+											"key": "latitudeSW",
+											"value": "4.8"
+										},
+										{
+											"key": "longitudeNE",
+											"value": "45.8"
+										},
+										{
+											"key": "latitudeNE",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Stories List all of User by Screen Copy",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "idUser",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/stories/user/screen?longitudeSW=45.78&latitudeSW=4.8&longitudeNE=45.8&latitudeNE=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stories",
+										"user",
+										"screen"
+									],
+									"query": [
+										{
+											"key": "longitudeSW",
+											"value": "45.78"
+										},
+										{
+											"key": "latitudeSW",
+											"value": "4.8"
+										},
+										{
+											"key": "longitudeNE",
+											"value": "45.8"
+										},
+										{
+											"key": "latitudeNE",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Story Create",
 							"request": {
 								"method": "POST",
@@ -793,7 +975,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/stories/display/31",
+									"raw": "http://localhost:8080/stories/display/32",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -802,7 +984,7 @@
 									"path": [
 										"stories",
 										"display",
-										"31"
+										"32"
 									]
 								}
 							},
@@ -823,7 +1005,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/stories/delete/31",
+									"raw": "http://localhost:8080/stories/delete/32",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -832,7 +1014,7 @@
 									"path": [
 										"stories",
 										"delete",
-										"31"
+										"32"
 									]
 								}
 							},
@@ -857,7 +1039,7 @@
 									"raw": "{\n    \"title\": \"Testing postman numero a ete update\",\n    \"dateCreation\": \"2018-06-29\",\n    \"dateUpdate\": \"2018-07-02\",\n    \"place\": {\n        \"id\": 2\n    }, \n    \"type\":{\n    \t\"id\":1\n    }\n}"
 								},
 								"url": {
-									"raw": "http://localhost:8080/stories/update/31",
+									"raw": "http://localhost:8080/stories/update/32",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -866,7 +1048,7 @@
 									"path": [
 										"stories",
 										"update",
-										"31"
+										"32"
 									]
 								}
 							},
@@ -901,6 +1083,49 @@
 							"response": []
 						},
 						{
+							"name": "Places Count all by Screen",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/places/count/screen?longitudeSW=45.78&latitudeSW=4.8&longitudeNE=45.8&latitudeNE=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"places",
+										"count",
+										"screen"
+									],
+									"query": [
+										{
+											"key": "longitudeSW",
+											"value": "45.78"
+										},
+										{
+											"key": "latitudeSW",
+											"value": "4.8"
+										},
+										{
+											"key": "longitudeNE",
+											"value": "45.8"
+										},
+										{
+											"key": "latitudeNE",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Places List all",
 							"request": {
 								"method": "GET",
@@ -918,6 +1143,48 @@
 									"port": "8080",
 									"path": [
 										"places"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Places List all by Screen",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/places/screen?longitudeSW=45.78&latitudeSW=4.8&longitudeNE=45.8&latitudeNE=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"places",
+										"screen"
+									],
+									"query": [
+										{
+											"key": "longitudeSW",
+											"value": "45.78"
+										},
+										{
+											"key": "latitudeSW",
+											"value": "4.8"
+										},
+										{
+											"key": "longitudeNE",
+											"value": "45.8"
+										},
+										{
+											"key": "latitudeNE",
+											"value": "5"
+										}
 									]
 								}
 							},

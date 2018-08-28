@@ -3,7 +3,6 @@ package geoTeamIPI.GeoPatrimoine.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,18 +32,24 @@ public class PlaceController {
 		return placeService.countAllPlaces();
 	}
 
+	// COUNT ALL PLACES BY SCREEN - ADMIN AND USER MODES
+	@RequestMapping(value = "/count/screen", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public int countAllByScreen(@RequestParam("longitudeSW") String longitudeSW, @RequestParam("latitudeSW") String latitudeSW,
+			@RequestParam("longitudeNE") String longitudeNE, @RequestParam("latitudeNE") String latitudeNE) {
+		return placeService.findAllPlaces(longitudeSW, latitudeSW, longitudeNE, latitudeNE).size();
+	}
+
 	// LIST ALL PLACES - ADMIN AND USER MODES
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
 	public List<Place> listAll() {
 		return placeService.findAllPlaces();
 	}
 
-	// LIST ALL PLACES WITH PAGINATION - ADMIN AND USER MODES
-	@RequestMapping(value = "/pagin", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	public Page<Place> listAllPagination(@RequestParam("page") Integer page, @RequestParam("size") Integer size,
-			@RequestParam("sortProperty") String sortProperty, @RequestParam("sortDirection") String sortDirection) {
-		Page<Place> pagin = placeService.findAllPlaces(page, size, sortProperty, sortDirection);
-		return pagin;
+	// LIST ALL PLACES BY SCREEN - ADMIN AND USER MODES
+	@RequestMapping(value = "/screen", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Place> listAllByScreen(@RequestParam("longitudeSW") String longitudeSW, @RequestParam("latitudeSW") String latitudeSW,
+			@RequestParam("longitudeNE") String longitudeNE, @RequestParam("latitudeNE") String latitudeNE) {
+		return placeService.findAllPlaces(longitudeSW, latitudeSW, longitudeNE, latitudeNE);
 	}
 
 	// CREATE A PLACE - ADMIN AND USER MODES
@@ -67,7 +72,7 @@ public class PlaceController {
 		this.placeService.deletePlace(result);
 	}
 
-	// UPDATE A PLACEs - ADMIN AND USER MODES
+	// UPDATE A PLACE - ADMIN AND USER MODES
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
 	public Place update(@PathVariable("id") Long id, @RequestBody Place place) {
 		return this.placeService.updatePlace(id, place);

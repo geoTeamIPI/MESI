@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import geoTeamIPI.GeoPatrimoine.entity.Story;
@@ -43,6 +44,56 @@ public class StoryController {
 		return storyService.countAllStories(idUser);
 	}
 
+	// COUNT ALL STORIES BY SCREEN - ADMIN AND USER MODES
+	@RequestMapping(value = "/count/screen", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public int countAllByScreen(
+			@RequestParam("longitudeSW") String longitudeSW,
+			@RequestParam("latitudeSW") String latitudeSW,
+			@RequestParam("longitudeNE") String longitudeNE,
+			@RequestParam("latitudeNE") String latitudeNE) {
+		return storyService.countAllStories(longitudeSW, latitudeSW, longitudeNE, latitudeNE);
+	}
+
+	// COUNT ALL STORIES BY SCREEN OF A USER - ADMIN AND USER MODES
+	@RequestMapping(value = "/count/user/screen", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public int countAllByScreenOfUser(
+			@RequestHeader(value = "idUser") Long idUser,
+			@RequestParam("longitudeSW") String longitudeSW,
+			@RequestParam("latitudeSW") String latitudeSW,
+			@RequestParam("longitudeNE") String longitudeNE,
+			@RequestParam("latitudeNE") String latitudeNE) {
+		return storyService.countAllStories(idUser, longitudeSW, latitudeSW, longitudeNE, latitudeNE);
+	}
+
+	// COUNT ALL STORIES BY DIAMETER - ADMIN AND USER MODES
+	@RequestMapping(value = "/count/diameter", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public int countAllByDiameter(
+			@RequestParam("longitudeSW") String longitudeSW,
+			@RequestParam("latitudeSW") String latitudeSW,
+			@RequestParam("longitudeNE") String longitudeNE,
+			@RequestParam("latitudeNE") String latitudeNE,
+			@RequestParam("longitudeUser") String longitudeUser,
+			@RequestParam("latitudeUser") String latitudeUser,
+			@RequestParam("diameter") int diameter) {
+		return storyService.countAllStories(longitudeSW, latitudeSW, longitudeNE, latitudeNE, longitudeUser,
+				latitudeUser, diameter);
+	}
+
+	// COUNT ALL STORIES BY DIAMETER OF A USER - ADMIN AND USER MODES
+	@RequestMapping(value = "/count/user/diameter", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public int countAllByDiameterOfUser(
+			@RequestHeader(value = "idUser") Long idUser,
+			@RequestParam("longitudeSW") String longitudeSW,
+			@RequestParam("latitudeSW") String latitudeSW,
+			@RequestParam("longitudeNE") String longitudeNE,
+			@RequestParam("latitudeNE") String latitudeNE,
+			@RequestParam("longitudeUser") String longitudeUser,
+			@RequestParam("latitudeUser") String latitudeUser,
+			@RequestParam("diameter") int diameter) {
+		return storyService.countAllStories(idUser, longitudeSW, latitudeSW, longitudeNE, latitudeNE, longitudeUser,
+				latitudeUser, diameter);
+	}
+
 	// LIST ALL STORIES - ADMIN AND USER MODES
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
 	public List<Story> listAll() {
@@ -51,27 +102,82 @@ public class StoryController {
 
 	// LIST ALL STORIES OF A USER - ADMIN AND USER MODES
 	@RequestMapping(value = "/user", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	public List<Story> listAllOfUser(@RequestHeader(value = "idUser") Long idUser) {
+	public List<Story> listAllOfUser(
+			@RequestHeader(value = "idUser") Long idUser) {
 		return storyService.findAllStories(idUser);
+	}
+
+	// LIST ALL STORIES BY SCREEN - ADMIN AND USER MODES
+	@RequestMapping(value = "/screen", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Story> listAllByScreen(
+			@RequestParam("longitudeSW") String longitudeSW,
+			@RequestParam("latitudeSW") String latitudeSW,
+			@RequestParam("longitudeNE") String longitudeNE,
+			@RequestParam("latitudeNE") String latitudeNE) {
+		return storyService.findAllStories(longitudeSW, latitudeSW, longitudeNE, latitudeNE);
+	}
+
+	// LIST ALL STORIES BY SCREEN OF A USER - ADMIN AND USER MODES
+	@RequestMapping(value = "/user/screen", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Story> listAllByScreenOfUser(
+			@RequestHeader(value = "idUser") Long idUser,
+			@RequestParam("longitudeSW") String longitudeSW,
+			@RequestParam("latitudeSW") String latitudeSW,
+			@RequestParam("longitudeNE") String longitudeNE,
+			@RequestParam("latitudeNE") String latitudeNE) {
+		return storyService.findAllStories(idUser, longitudeSW, latitudeSW, longitudeNE, latitudeNE);
+	}
+
+	// LIST ALL STORIES BY DIAMETER - ADMIN AND USER MODES
+	@RequestMapping(value = "/diameter", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Story> listAllByDiameter(
+			@RequestParam("longitudeSW") String longitudeSW,
+			@RequestParam("latitudeSW") String latitudeSW,
+			@RequestParam("longitudeNE") String longitudeNE,
+			@RequestParam("latitudeNE") String latitudeNE,
+			@RequestParam("longitudeUser") String longitudeUser,
+			@RequestParam("latitudeUser") String latitudeUser,
+			@RequestParam("diameter") int diameter) {
+		return storyService.findAllStoriesByDiameter(longitudeSW, latitudeSW, longitudeNE, latitudeNE, longitudeUser, latitudeUser, diameter);
+	}
+
+	// LIST ALL STORIES BY DIAMETER OF A USER - ADMIN AND USER MODES
+	@RequestMapping(value = "/user/diameter", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Story> listAllByDiameterOfUser(
+			@RequestHeader(value = "idUser") Long idUser,
+			@RequestParam("longitudeSW") String longitudeSW,
+			@RequestParam("latitudeSW") String latitudeSW,
+			@RequestParam("longitudeNE") String longitudeNE,
+			@RequestParam("latitudeNE") String latitudeNE,
+			@RequestParam("longitudeUser") String longitudeUser,
+			@RequestParam("latitudeUser") String latitudeUser,
+			@RequestParam("diameter") int diameter) {
+		return storyService.findAllStoriesByDiameter(idUser, longitudeSW, latitudeSW, longitudeNE, latitudeNE, longitudeUser, latitudeUser,
+				diameter);
 	}
 
 	// CREATE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	public Story createOfMyself(@RequestBody Story story, BindingResult result, @RequestHeader(value = "idUser") Long idUser) {
+	public Story createOfMyself(
+			@RequestBody Story story, BindingResult result,
+			@RequestHeader(value = "idUser") Long idUser) {
 		User user = userService.findById(idUser);
 		return this.storyService.createStory(story, user);
 	}
 
 	// DISPLAY A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/display/{id}", produces = APPLICATION_JSON_CHARSET_UTF_8, method = RequestMethod.GET)
-	public Story display(@PathVariable(value = "id") Long id) {
+	public Story display(
+			@PathVariable(value = "id") Long id) {
 		Story result = storyService.findById(id);
 		return result;
 	}
 
 	// DELETE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	public void deleteOfMyself(@PathVariable("id") Long id, @RequestHeader(value = "idUser") Long idUser) {
+	public void deleteOfMyself(
+			@PathVariable("id") Long id,
+			@RequestHeader(value = "idUser") Long idUser) {
 		Story result = storyService.findById(id);
 		User user = userService.findById(idUser);
 		this.storyService.deleteStory(result, user);
@@ -79,7 +185,10 @@ public class StoryController {
 
 	// UPDATE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-	public void updateOfMyself(@PathVariable("id") Long id, @RequestBody Story story, @RequestHeader(value = "idUser") Long idUser) {
+	public void updateOfMyself(
+			@PathVariable("id") Long id,
+			@RequestBody Story story,
+			@RequestHeader(value = "idUser") Long idUser) {
 		User user = userService.findById(idUser);
 		this.storyService.updateStory(id, story, user);
 	}

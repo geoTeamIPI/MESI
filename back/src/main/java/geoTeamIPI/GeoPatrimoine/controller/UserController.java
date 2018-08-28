@@ -69,6 +69,9 @@ public class UserController {
 		}
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		if (user.getProfile() == null) {
+			user.setProfile(UserHelper.USER_NORMAL);
+		}
 		return userService.createUser(user);
 	}
 
@@ -108,13 +111,13 @@ public class UserController {
 
 	// UPDATE PERSONAL INFOS - NORMAL AND ADMIN MODE
 	@RequestMapping(value = "/user/update", method = RequestMethod.POST)
-	public User updateUser(@Validated @RequestBody User user,
-			@RequestHeader(value = "semail") String sEmail,
+	public User updateAccount(@Validated @RequestBody User user,
+			@RequestHeader(value = "sid") Long sId,
 			BindingResult result)
 			throws Exception {
 
-		user.setEmail(sEmail);
-		User userSearch = userService.findByEmail(user.getEmail());
+		user.setId(sId);
+		User userSearch = userService.findById(user.getId());
 		if (userSearch == null) {
 			UserExceptionHandler.userNotFound();
 		}
@@ -171,8 +174,8 @@ public class UserController {
 
 	// INFOS USER - NORMAL MODE
 	@GetMapping("/user/infos")
-	public User infosUser(@RequestHeader("semail") String sEmail) {
-		User userInfos = userService.findByEmail(sEmail);
+	public User infosAccount(@RequestHeader("sid") Long sId) {
+		User userInfos = userService.findById(sId);
 		if (userInfos == null) {
 			UserExceptionHandler.userNotFound();
 		}
@@ -181,7 +184,8 @@ public class UserController {
 
 	// LOGIN
 	@RequestMapping(value = "/user/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public User login(@RequestBody @Validated({ RequiredPassword.class }) User user, BindingResult result, HttpSession session) {
+	public User login(@RequestBody @Validated({ RequiredPassword.class }) User user,
+			BindingResult result) {
 		User userSearch = userService.findByEmail(user.getEmail());
 		if (userSearch == null) {
 			UserExceptionHandler.userNotFound();
@@ -195,8 +199,6 @@ public class UserController {
 		}
 		user.setProfile(userSearch.getProfile());
 		user.setCity(userSearch.getCity());
-		session.setAttribute("sEmail", user.getEmail());
-		session.setAttribute("sProfile", user.getProfile());
 
 		return userSearch;
 	}

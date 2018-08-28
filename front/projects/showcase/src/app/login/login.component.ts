@@ -32,8 +32,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.user.email, this.user.password)
       .subscribe(user => {
         this.invalidLogin = false;
-        sessionStorage.setItem('currentUser', JSON.stringify(user));
-        this.router.navigate(['/']);
+        this.router.navigate(["/"]);
         location.reload();
         }, err => { 
           console.log(err);

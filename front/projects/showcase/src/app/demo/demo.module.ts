@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+
+
 import { MglResizeEventEmitter } from 'ngx-mapbox-gl';
 import { SharedModule } from '../shared.module';
 import { DemoFileLoaderService } from './demo-file-loader.service';
@@ -43,23 +45,6 @@ import { ToggleLayersComponent } from './examples/toggle-layers.component';
 import { ZoomtoLinestringComponent } from './examples/zoomto-linestring.component';
 import { StackblitzEditGuard } from './stackblitz-edit/stackblitz-edit-guard.service';
 import { StackblitzEditComponent } from './stackblitz-edit/stackblitz-edit.component';
-
-import { StoryComponent } from "../story/story.component";
-import { AddStoryComponent } from "../story/add-story/add-story.component";
-import { ListUsersComponent } from "../user/list-users/list-users.component";
-import { CreateUserComponent } from "../user/create-user/create-user.component";
-import { InfosUsersComponent } from "../user/infos-users/infos-users.component";
-import { UpdateUserComponent } from "../user/update-user/update-user.component";
-import { LoginComponent } from "../login/login.component";
-import { LogoutComponent } from "../logout/logout.component";
-import { AdminGuards } from "../admin.guards";
-import { AdminComponent } from "../user/account/admin/admin.component";
-import { NormalComponent } from "../user/account/normal/normal.component";
-import { UserGuards } from "../user.guards";
-import { InfosAccountComponent } from "../user/infos-account/infos-account.component";
-import { UpdateAccountComponent } from "../user/update-account/update-account.component";
-import { NotFoundComponent } from "../not-found/not-found.component";
-import { RegisteringAccountComponent } from "../user/registering-account/registering-account.component";
 
 
 export enum Category {
@@ -109,77 +94,6 @@ export const DEMO_ROUTES: Routes = [
       // { path: 'ngx-marker-cluster', component: NgxMarkerClusterComponent, data: { label: '[NGX] Create a clusters of html markers', cat: Category.CONTROLS_AND_OVERLAYS } },
       // { path: 'mapbox-gl-geocoder', component: MapboxGlGeocoderComponent, data: { label: 'Add a geocoder', cat: Category.CONTROLS_AND_OVERLAYS } },
       // { path: '**', redirectTo: 'display-map' }, 
-      { path: "logout", component: LogoutComponent }, 
-
-      { path: "login", component: LoginComponent }, 
-      { path: "account/admin", component: AdminComponent, 
-        canActivate: [AdminGuards],
-        children: [
-              { path: "users",
-               component: ListUsersComponent, 
-              },
-              { path: "users/add", 
-                component: CreateUserComponent,
-              },
-              { path: "users/infos/:id", 
-                component: InfosUsersComponent, 
-              },
-              { path: "users/update/:id", 
-                component: UpdateUserComponent,     
-              }, 
-              {
-                path: "infos", 
-                component: InfosAccountComponent
-              }, 
-              {
-              path: "update",
-              component: UpdateAccountComponent
-            }, 
-            {
-              path: "stories",
-              component: StoryComponent
-            },
-            {
-              path: "stories/create",
-              component: AddStoryComponent
-            }
-          ]
-        }, 
-        {
-          path: "account/user", 
-          component: NormalComponent, 
-          canActivate: [UserGuards], 
-          children: [
-            {
-              path: "infos", 
-              component: InfosAccountComponent
-            }, 
-            {
-              path: "update",
-              component: UpdateAccountComponent
-            }, 
-            {
-              path: "stories",
-              component: StoryComponent
-            },
-            {
-              path: "stories/create",
-              component: AddStoryComponent
-            }
-          ]
-        },
-        {
-          path: "registering", 
-          component: RegisteringAccountComponent
-        }, 
-        {
-          path: "404", 
-          component: NotFoundComponent
-        }, 
-        {
-          path: "**", 
-          redirectTo: "404"
-        }
     ]
   }
 ];
@@ -194,7 +108,7 @@ export const DEMO_ROUTES: Routes = [
   providers: [
     StackblitzEditGuard,
     DemoFileLoaderService,
-    { provide: MglResizeEventEmitter, useExisting: DemoEffects } // Please don't mind me (╭ರ_⊙)
+    { provide: MglResizeEventEmitter, useExisting: DemoEffects }, // Please don't mind me (╭ರ_⊙)
   ],
   declarations: [
     DemoIndexComponent,

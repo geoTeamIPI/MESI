@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 
 import { User } from "../../models/user.model";
 import { UserService } from "../../services/user.service";
-import { HttpClient } from "@angular/common/http";
-import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: "create-user",
@@ -13,7 +13,16 @@ import { NgForm } from "@angular/forms";
 export class CreateUserComponent implements OnInit {
   user: User = new User();
   submitted = false;
-  constructor(private userService: UserService) {}
+  hideProfile = false;
+  userCreated: String;  
+  userForm : FormGroup;
+  email : FormControl; 
+  password: FormControl; 
+  city: FormControl;
+  passwordConfirm: FormControl;
+  profile: FormControl; 
+
+  constructor(private userService: UserService, private route: Router) {}
 
   profiles = [
     { id: "user", name: "Utilisateur" },
@@ -22,11 +31,13 @@ export class CreateUserComponent implements OnInit {
   ];
   selectedValue = this.profiles[0].id; 
 
-  ngOnInit() {}
-
-  newUser(): void {
-    this.submitted = false;
-    this.user = new User();
+  
+  ngOnInit() {
+    if (this.route.url.includes("/registering")){
+        this.hideProfile = true; 
+    }
+    this.controlFormUser();
+    this.createFormUser(); 
   }
 
   createUser() {
@@ -37,7 +48,42 @@ export class CreateUserComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
-    this.createUser();
+    if (this.userForm.valid){
+      this.createUser();
+      this.submitted = true; 
+      this.userForm.reset();
+    }
+
   }
+
+  controlFormUser(){
+    this.email =  new FormControl('', [
+      Validators.email,
+      Validators.minLength(7), 
+      Validators.required]);
+    this.password =  new FormControl('', [
+      Validators.required
+    ]);
+    this.city = new FormControl('', [
+      Validators.required
+    ]);
+    this.passwordConfirm = new FormControl('', [
+      Validators.required
+    ]);
+    this.profile = new FormControl('', [
+      Validators.required
+    ]);
+}
+
+createFormUser(){
+  this.userForm  = new FormGroup({
+    email: this.email, 
+    password: this.password, 
+    city: this.city, 
+    passwordConfirm: this.passwordConfirm, 
+    profile: this.profile
+  });
+}
+
+
 }

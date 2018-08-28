@@ -5,8 +5,6 @@ import { first, withLatestFrom } from 'rxjs/operators';
 import { State } from './app.module';
 import * as fromApp from './app.selectors';
 import * as demo from './map/demo.actions';
-import { LoginComponent } from "./login/login.component"; 
-import { AuthenticationService } from "./services/authentication.service";
 import { User } from './models/user.model';
 
 
@@ -31,6 +29,7 @@ export class IndexComponent implements OnInit{
   ) { }
 
   ngOnInit(){
+    console.log(sessionStorage); 
     if (sessionStorage.getItem("currentUser")){
       this.isAutenthicated = true;
       this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));  

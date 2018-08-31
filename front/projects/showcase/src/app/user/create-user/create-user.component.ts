@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "../../models/user.model";
 import { UserService } from "../../services/user.service";
 import { Router } from "@angular/router";
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: "create-user",
@@ -14,6 +14,7 @@ export class CreateUserComponent implements OnInit {
   user: User = new User();
   submitted: boolean = false;
   hideProfile = false;
+  pwdMatched: boolean; 
   userCreated: String;  
   userForm : FormGroup;
   email : FormControl; 
@@ -37,7 +38,7 @@ export class CreateUserComponent implements OnInit {
         this.hideProfile = true; 
     }
     this.controlFormUser();
-    this.createFormUser(); 
+    this.createFormUser();
   }
 
   createUser() {
@@ -52,8 +53,10 @@ export class CreateUserComponent implements OnInit {
       this.createUser();
       this.userForm.reset();
     }
+    console.log(this.pwdMatched);
+    console.log(this.passwordConfirm.value); 
+    console.log(this.password.value)
     this.submitted = true; 
-
   }
 
   controlFormUser(){
@@ -84,6 +87,4 @@ createFormUser(){
     profile: this.profile
   });
 }
-
-
 }

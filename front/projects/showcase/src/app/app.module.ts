@@ -37,6 +37,7 @@ import { RegisteringAccountComponent } from "./user/registering-account/register
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
+import { MatchPasswordValidatorDirective } from './user/match-password-validator.directive';
 
 export interface RouterStateUrl {
   url: string;
@@ -169,7 +170,8 @@ export const showcaseRoutes: Routes = [
     NormalComponent,
     InfosAccountComponent,
     UpdateAccountComponent,
-    RegisteringAccountComponent
+    RegisteringAccountComponent, 
+    MatchPasswordValidatorDirective
   ],
   imports: [
     BrowserModule,

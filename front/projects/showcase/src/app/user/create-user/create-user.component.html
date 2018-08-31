@@ -46,6 +46,7 @@
             <label for="passwordConfirm">Confirmer le mot de passe</label>
             <input type="password"
             formControlName="passwordConfirm"
+            showcaseMatchPasswordValidator="password"
             class="form-control"
             [ngClass] = "{
                 'is-invalid' : passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched),
@@ -57,7 +58,7 @@
             name="passwordConfirm"
             placeholder="Mot de passe (confirmation)">
             <div class="invalid-feedback" *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)">
-                <p *ngIf="passwordConfirm != password">Les deux mots de passe ne correspondent pas</p>
+                <p *ngIf="passwordConfirm.errors.notMatched">Les deux mots de passe ne correspondent pas</p>
             </div>
         </div>
         <div class="form-group col-5 col-sm-12">

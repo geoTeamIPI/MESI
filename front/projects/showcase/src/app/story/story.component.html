@@ -13,7 +13,7 @@
       <th>Place</th>
       <th>Type</th>
       <tr *ngFor="let story of stories | paginate: { itemsPerPage: 10, currentPage: p }">
-        <td class="hidden">{{story.Id}}</td>
+        <td class="hidden">{{story.id}}</td>
         <td>{{story.Titre}}</td>
         <td>{{story.Description}}</td>
         <td>{{story.Contenu}}</td>

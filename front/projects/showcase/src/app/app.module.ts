@@ -20,6 +20,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { StoryComponent } from "./story/story.component";
 import { AddStoryComponent } from "./story/add-story/add-story.component";
+import { ListStoriesComponent } from "./story/list-stories/list-stories.component";
 import { ListUsersComponent } from "./user/list-users/list-users.component";
 import { CreateUserComponent } from "./user/create-user/create-user.component";
 import { InfosUsersComponent } from "./user/infos-users/infos-users.component";
@@ -108,7 +109,7 @@ export const showcaseRoutes: Routes = [
           }, 
         {
           path: "stories",
-          component: StoryComponent
+          component: ListStoriesComponent
         },
         {
           path: "stories/create",
@@ -131,7 +132,7 @@ export const showcaseRoutes: Routes = [
         }, 
         {
           path: "stories",
-          component: StoryComponent
+          component: ListStoriesComponent
         },
         {
           path: "stories/create",
@@ -164,6 +165,7 @@ export const showcaseRoutes: Routes = [
     ListUsersComponent,
     UpdateUserComponent,
     StoryComponent,
+    ListStoriesComponent, 
     AddStoryComponent,
     LoginComponent,
     LogoutComponent,

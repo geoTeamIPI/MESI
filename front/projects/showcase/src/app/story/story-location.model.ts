@@ -1,10 +1,10 @@
-import { Story } from "./story.model";
+import { Story } from "../models/story.model";
 
 export class StoryLocation {
 
-    id: string;
-    lat: string;
-    lng: string;
-    address: string;
-    stories: Story[];
+     id: string;
+     lat: string;
+     lng: string;
+     address: string;
+     stories: Story[];
 }

@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromDemo from './map/demo.reducer';
+import * as fromDemo from './demo/demo.reducer';
 import { RouterReducerState } from '@ngrx/router-store';
 import { RouterStateUrl } from './app.module';
 

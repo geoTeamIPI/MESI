@@ -11,7 +11,7 @@ import { Cluster, Supercluster } from 'supercluster';
         <mat-list-item
           *ngFor="let leaf of leaves"
         >
-          {{ leaf.properties['Primary ID'] }}
+          {{ leaf.properties['Secondary ID'] }}
         </mat-list-item>
       </mat-list>
       <mat-paginator
@@ -53,11 +53,11 @@ export class ClusterPopupComponent implements OnChanges {
   <mgl-map
     [style]="'mapbox://styles/mapbox/streets-v9'"
     [zoom]="[3]"
-    [center]="[-103.59179687498357, 40.66995747013945]"
+    [center]="[4.827420, 45.779557]"
   >
     <mgl-control
       mglGeocoder
-      [searchInput]="'Paris'"
+      [searchInput]="'Lyon'"
     ></mgl-control>
     <mgl-marker-cluster
       *ngIf="earthquakes"

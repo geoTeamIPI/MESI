@@ -7,11 +7,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { routerReducer, RouterReducerState, RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import 'hammerjs';
+import 'hammerjs'; 
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { environment } from '../environments/environment';
-import { DEMO_ROUTES, DemoModule } from './map/demo.module';
-import * as fromDemo from './map/demo.reducer';
+import { DEMO_ROUTES, DemoModule } from './demo/demo.module';
+import * as fromDemo from './demo/demo.reducer';
 import { HomeIndexComponent } from './home/home-index.component';
 import { IndexComponent } from './index.component';
 import { SharedModule } from './shared.module';
@@ -20,6 +20,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { StoryComponent } from "./story/story.component";
 import { AddStoryComponent } from "./story/add-story/add-story.component";
+import { ListStoriesComponent } from "./story/list-stories/list-stories.component";
 import { ListUsersComponent } from "./user/list-users/list-users.component";
 import { CreateUserComponent } from "./user/create-user/create-user.component";
 import { InfosUsersComponent } from "./user/infos-users/infos-users.component";
@@ -36,6 +37,7 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { RegisteringAccountComponent } from "./user/registering-account/registering-account.component";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
+import { StoryService } from './services/story.service';
 import { AuthenticationService } from './services/authentication.service';
 import { MatchPasswordValidatorDirective } from './user/match-password-validator.directive';
 
@@ -64,7 +66,7 @@ export class SimpleSerializer implements RouterStateSerializer<RouterStateUrl> {
 
 export const showcaseRoutes: Routes = [
   {
-    path: 'demo',
+    path: 'demo',  
     children: DEMO_ROUTES
   },
   {
@@ -104,10 +106,10 @@ export const showcaseRoutes: Routes = [
           {
           path: "update",
           component: UpdateAccountComponent
-        }, 
+          }, 
         {
           path: "stories",
-          component: StoryComponent
+          component: ListStoriesComponent
         },
         {
           path: "stories/create",
@@ -130,7 +132,7 @@ export const showcaseRoutes: Routes = [
         }, 
         {
           path: "stories",
-          component: StoryComponent
+          component: ListStoriesComponent
         },
         {
           path: "stories/create",
@@ -163,6 +165,7 @@ export const showcaseRoutes: Routes = [
     ListUsersComponent,
     UpdateUserComponent,
     StoryComponent,
+    ListStoriesComponent, 
     AddStoryComponent,
     LoginComponent,
     LogoutComponent,
@@ -170,10 +173,10 @@ export const showcaseRoutes: Routes = [
     NormalComponent,
     InfosAccountComponent,
     UpdateAccountComponent,
-    RegisteringAccountComponent, 
+    RegisteringAccountComponent,
     MatchPasswordValidatorDirective
   ],
-  imports: [
+  imports: [ 
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
@@ -195,7 +198,8 @@ export const showcaseRoutes: Routes = [
     })
   ],
   providers: [
-    UserService, 
+    UserService,
+    StoryService, 
     AuthenticationService,
     { provide: RouterStateSerializer, useClass: SimpleSerializer }
   ],

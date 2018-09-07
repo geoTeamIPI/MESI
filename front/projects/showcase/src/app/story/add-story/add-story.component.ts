@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import {  ActivatedRoute } from '@angular/router';
+ import { Component } from '@angular/core';
+ import {  ActivatedRoute } from '@angular/router';
 
-import { Story } from '../story.model';
-import { StoryLocation } from '../story-location.model';
-import { StoryService } from '../story.service';
+ import { Story } from '../story.model';
+ import { StoryLocation } from '../story-location.model';
+ import { StoryService } from '../../services/story.service';
 
 @Component({
   templateUrl: './add-story.component.html'
@@ -27,8 +27,10 @@ export class AddStoryComponent {
         .subscribe( data => {
           console.log("Création de l'histoire");
         }, error => {
+          console.log("error"); 
         });
 
-  };
 
-}
+   };
+
+ }

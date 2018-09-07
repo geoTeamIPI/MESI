@@ -1,33 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
 
-import { Story } from './story.model';
-import { StoryService } from './story.service';
+ import { Story } from '../models/story.model';
+ import { StoryService } from '../services/story.service';
 
-@Component({
-  selector: 'app-story',
-  templateUrl: './story.component.html',
-  styleUrls: ["./story.component.css"]
-})
-export class StoryComponent implements OnInit {
+ @Component({
+   selector: 'app-story',
+   templateUrl: './story.component.html',
+   styleUrls: ["./story.component.css"]
+ })
+ export class StoryComponent implements OnInit {
 
-  stories: Story[];
+   stories: Story[];
 
-  constructor( private storyService: StoryService) {
+   constructor( private storyService: StoryService) {
 
-  }
+   }
 
-  ngOnInit() {
-    this.storyService.getStories()
-      .subscribe( data => {
-        this.stories = data;
-      });
-  };
+   ngOnInit() {
+     this.storyService.findAllStories()
+       .subscribe( data => {
+         this.stories = data;
+       });
+   };
 
-  deletestory(story: Story): void {
-    this.storyService.deleteStory(story)
-      .subscribe( data => {
-        this.stories = this.stories.filter(u => u !== story);
-      })
-  };
+   deletestory(story: Story): void {
+     this.storyService.deleteStory(story
+       .subscribe( data => {
+         this.stories = this.stories.filter(u => u !== story);
+       })
+   };
 
-}
+ } 

@@ -942,11 +942,7 @@
 										"value": "application/json"
 									},
 									{
-<<<<<<< HEAD
-										"key": "idConnectedUser",
-=======
 										"key": "idUser",
->>>>>>> ludovic
 										"value": "3"
 									}
 								],
@@ -955,7 +951,7 @@
 									"raw": "{\n        \"title\": \"Testing postman numero 4\",\n        \"place\": {\n            \"id\": 1\n        },\n        \"type\": {\n            \"id\": 1\n        }\n    }"
 								},
 								"url": {
-									"raw": "http://localhost:8080/stories/add/myself",
+									"raw": "http://localhost:8080/stories/add",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -963,8 +959,7 @@
 									"port": "8080",
 									"path": [
 										"stories",
-										"add",
-										"myself"
+										"add"
 									]
 								}
 							},
@@ -980,15 +975,7 @@
 									"raw": ""
 								},
 								"url": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-									"raw": "http://localhost:8080/stories/display/28",
-=======
-									"raw": "http://localhost:8080/stories/display/31",
->>>>>>> ludovic
-=======
 									"raw": "http://localhost:8080/stories/display/32",
->>>>>>> ludovic
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -997,15 +984,7 @@
 									"path": [
 										"stories",
 										"display",
-<<<<<<< HEAD
-<<<<<<< HEAD
-										"28"
-=======
-										"31"
->>>>>>> ludovic
-=======
 										"32"
->>>>>>> ludovic
 									]
 								}
 							},
@@ -1026,45 +1005,7 @@
 									"raw": ""
 								},
 								"url": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-									"raw": "http://localhost:8080/stories/delete/21",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"stories",
-										"delete",
-										"21"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Story Delete of Myself",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "idConnectedUser",
-										"value": "3"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/stories/delete/28/myself",
-=======
-									"raw": "http://localhost:8080/stories/delete/31",
->>>>>>> ludovic
-=======
 									"raw": "http://localhost:8080/stories/delete/32",
->>>>>>> ludovic
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1073,16 +1014,7 @@
 									"path": [
 										"stories",
 										"delete",
-<<<<<<< HEAD
-<<<<<<< HEAD
-										"28",
-										"myself"
-=======
-										"31"
->>>>>>> ludovic
-=======
 										"32"
->>>>>>> ludovic
 									]
 								}
 							},
@@ -1104,56 +1036,10 @@
 								],
 								"body": {
 									"mode": "raw",
-<<<<<<< HEAD
-									"raw": "{\n    \"title\": \"Testing postman numero update\",\n    \"dateCreation\": \"2018-06-29\",\n    \"dateUpdate\": \"2018-07-02\",\n    \"creator\": {\n        \"id\": 1\n    },\n    \"place\": {\n        \"id\": 2\n    }, \n    \"type\":{\n    \t\"id\":1\n    }\n}"
-								},
-								"url": {
-									"raw": "http://localhost:8080/stories/update/20",
-=======
 									"raw": "{\n    \"title\": \"Testing postman numero a ete update\",\n    \"dateCreation\": \"2018-06-29\",\n    \"dateUpdate\": \"2018-07-02\",\n    \"place\": {\n        \"id\": 2\n    }, \n    \"type\":{\n    \t\"id\":1\n    }\n}"
 								},
 								"url": {
-<<<<<<< HEAD
-									"raw": "http://localhost:8080/stories/update/31",
->>>>>>> ludovic
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"stories",
-										"update",
-<<<<<<< HEAD
-										"20"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Story Update of Myself",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "idConnectedUser",
-										"value": "3"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"title\": \"Testing postman numero update special myself\",\n    \"dateCreation\": \"2018-06-29\",\n    \"dateUpdate\": \"2018-07-02\",\n    \"place\": {\n        \"id\": 2\n    }, \n    \"type\":{\n    \t\"id\":1\n    }\n}"
-								},
-								"url": {
-									"raw": "http://localhost:8080/stories/update/28/myself",
-=======
 									"raw": "http://localhost:8080/stories/update/32",
->>>>>>> ludovic
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1162,15 +1048,7 @@
 									"path": [
 										"stories",
 										"update",
-<<<<<<< HEAD
-										"28",
-										"myself"
-=======
-										"31"
->>>>>>> ludovic
-=======
 										"32"
->>>>>>> ludovic
 									]
 								}
 							},

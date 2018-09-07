@@ -10,8 +10,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import 'hammerjs';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { environment } from '../environments/environment';
-import { DEMO_ROUTES, DemoModule } from './map/demo.module';
-import * as fromDemo from './map/demo.reducer';
+import { DEMO_ROUTES, DemoModule } from './demo/demo.module';
+import * as fromDemo from './demo/demo.reducer';
 import { HomeIndexComponent } from './home/home-index.component';
 import { IndexComponent } from './index.component';
 import { SharedModule } from './shared.module';
@@ -37,6 +37,7 @@ import { RegisteringAccountComponent } from "./user/registering-account/register
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
+import { MatchPasswordValidatorDirective } from './user/match-password-validator.directive';
 
 export interface RouterStateUrl {
   url: string;
@@ -63,7 +64,7 @@ export class SimpleSerializer implements RouterStateSerializer<RouterStateUrl> {
 
 export const showcaseRoutes: Routes = [
   {
-    path: 'demo',
+    path: 'demo',  
     children: DEMO_ROUTES
   },
   {
@@ -103,7 +104,7 @@ export const showcaseRoutes: Routes = [
           {
           path: "update",
           component: UpdateAccountComponent
-        }, 
+          }, 
         {
           path: "stories",
           component: StoryComponent
@@ -169,9 +170,10 @@ export const showcaseRoutes: Routes = [
     NormalComponent,
     InfosAccountComponent,
     UpdateAccountComponent,
-    RegisteringAccountComponent
+    RegisteringAccountComponent,
+    MatchPasswordValidatorDirective
   ],
-  imports: [
+  imports: [ 
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,

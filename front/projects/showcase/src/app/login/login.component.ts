@@ -11,15 +11,15 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  user: any = {}; 
+  user: any = {};  
   currentUser: User; 
   submitted: boolean = false; 
   invalidLogin: boolean; 
 
   constructor(private authenticationService: AuthenticationService, private router: Router) {
-  }
+  } 
 
-  ngOnInit() {
+  ngOnInit() { 
     this.submitted = false; 
   }
 

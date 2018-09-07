@@ -19,7 +19,7 @@ import { ClusterComponent } from './examples/cluster.component';
 import { CustomMarkerIconsComponent } from './examples/custom-marker-icons.component';
 import { CustomStyleIdComponent } from './examples/custom-style-id.component';
 import { DisplayMapComponent } from './examples/display-map.component';
-import { FullscreenComponent } from './examples/fullscreen.component';
+import { FullscreenComponent } from './examples/fullscreen.component'; 
 import { GeoJSONLineComponent } from './examples/geojson-line.component';
 import { HeatMapComponent } from './examples/heatmap.component';
 import { HoverStylesComponent } from './examples/hover-styles.component';

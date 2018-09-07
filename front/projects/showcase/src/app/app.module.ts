@@ -112,7 +112,7 @@ export const showcaseRoutes: Routes = [
           component: ListStoriesComponent
         },
         {
-          path: "stories/create",
+          path: "stories/add",
           component: AddStoryComponent
         }
       ]
@@ -135,7 +135,7 @@ export const showcaseRoutes: Routes = [
           component: ListStoriesComponent
         },
         {
-          path: "stories/create",
+          path: "stories/add",
           component: AddStoryComponent
         }
       ]

@@ -23,11 +23,11 @@
        });
    };
 
-   deletestory(story: Story): void {
+   /*deletestory(story: Story): void {
      this.storyService.deleteStory(story
        .subscribe( data => {
          this.stories = this.stories.filter(u => u !== story);
        })
-   };
+   };*/
 
  } 

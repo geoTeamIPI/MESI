@@ -192,4 +192,4 @@ export class StoryService {
   public deleteStory(id: number) {
     return this.http.delete(this.storiesUrl + "/delete/" + id);
   }
-}
+} 

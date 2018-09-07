@@ -36,6 +36,7 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { RegisteringAccountComponent } from "./user/registering-account/registering-account.component";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
+import { StoryService } from './services/story.service';
 import { AuthenticationService } from './services/authentication.service';
 import { MatchPasswordValidatorDirective } from './user/match-password-validator.directive';
 
@@ -195,7 +196,8 @@ export const showcaseRoutes: Routes = [
     })
   ],
   providers: [
-    UserService, 
+    UserService,
+    StoryService, 
     AuthenticationService,
     { provide: RouterStateSerializer, useClass: SimpleSerializer }
   ],

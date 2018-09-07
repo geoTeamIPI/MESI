@@ -53,7 +53,7 @@ export class ClusterPopupComponent implements OnChanges {
   <mgl-map
     style="mapbox://styles/mapbox/dark-v9"
     [zoom]="[3]"
-    [center]="[-103.59179687498357, 40.66995747013945]"
+    [center]="[46.852375, 2.641409]"
   >
     <mgl-marker-cluster
       *ngIf="earthquakes"

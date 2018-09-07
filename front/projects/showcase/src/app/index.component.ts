@@ -4,12 +4,12 @@ import { select, Store } from '@ngrx/store';
 import { first, withLatestFrom } from 'rxjs/operators';
 import { State } from './app.module';
 import * as fromApp from './app.selectors';
-import * as demo from './map/demo.actions';
+import * as demo from './demo/demo.actions';
 import { User } from './models/user.model';
 
 
 @Component({
-  selector: 'showcase-root',
+  selector: 'showcase-root', 
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })

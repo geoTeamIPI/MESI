@@ -1,24 +1,29 @@
-<div class="col-md-6">
-  <h2> User Details</h2>
+  <div class="container">
+    <h2>Liste des stories</h2>
   
-  <table class="table table-striped">
-    <thead>
-    <tr>
+    <table mat-table>
+      <!--<tr>
+        <td><a routerLink="users/add">Ajouter nouvel utilisateur</a></td>
+      </tr>-->
       <th class="hidden">Id</th>
-      <th>FirstName</th>
-      <th>LastName</th>
-      <th>Email</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-    <tbody>
-    <tr *ngFor="let user of users">
-      <td class="hidden"></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete User</button></td>
-    </tr>
-    </tbody>
-  </table>
+      <th>Titre</th>
+      <th>Description</th>
+      <th>Contenu</th>
+      <th>Créateur</th>
+      <th>Place</th>
+      <th>Type</th>
+      <tr *ngFor="let story of stories | paginate: { itemsPerPage: 10, currentPage: p }">
+        <td class="hidden">{{story.id}}</td>
+        <td>{{story.Titre}}</td>
+        <td>{{story.Description}}</td>
+        <td>{{story.Contenu}}</td>
+        <td>{{story.Createur}}</td>
+        <td>{{story.Place}}</td>
+        <td>{{story.Type}}</td>
+        <td><a mat-button color="primary" routerLink="infos/{{story.id}}"><mat-icon>face</mat-icon></a></td>
+        <td><a mat-button routerLink="update/{{story.id}}"><mat-icon>update</mat-icon></a></td>
+        <td><button mat-button color="warn" (click)="deleteUser(story.id)"><mat-icon>delete_outline</mat-icon></button></td>
+      </tr>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>

@@ -24,7 +24,7 @@ public class Place {
 	private String latitude;
 
 	@Column
-	private String number_street;
+	private String numberstreet;
 
 	@Column
 	private String street;
@@ -72,12 +72,12 @@ public class Place {
 		this.latitude = latitude;
 	}
 
-	public String getNumber_street() {
-		return number_street;
+	public String getNumberstreet() {
+		return numberstreet;
 	}
 
-	public void setNumber_street(String number_street) {
-		this.number_street = number_street;
+	public void setNumberstreet(String numberstreet) {
+		this.numberstreet = numberstreet;
 	}
 
 	public String getStreet() {

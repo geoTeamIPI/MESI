@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+ import { Component } from '@angular/core';
  import {  ActivatedRoute } from '@angular/router';
 
- import { Story } from '../../models/story.model';
- import { StoryLocation } from '../../models/story-location.model';
+ import { Story } from '../story.model';
+ import { StoryLocation } from '../story-location.model';
  import { StoryService } from '../../services/story.service';
 
 @Component({
@@ -34,4 +34,4 @@ export class AddStoryComponent {
         });
    };
 
-}
+ }

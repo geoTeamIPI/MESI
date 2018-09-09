@@ -48,6 +48,7 @@ import { StackblitzEditComponent } from './stackblitz-edit/stackblitz-edit.compo
 import { DisplayPlaceComponent } from './examples/display-place.component';
 
 
+
 export enum Category {
   PROFILE = 'User',
   STORIES = 'Stories'

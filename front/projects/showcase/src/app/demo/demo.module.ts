@@ -45,6 +45,7 @@ import { ToggleLayersComponent } from './examples/toggle-layers.component';
 import { ZoomtoLinestringComponent } from './examples/zoomto-linestring.component';
 import { StackblitzEditGuard } from './stackblitz-edit/stackblitz-edit-guard.service';
 import { StackblitzEditComponent } from './stackblitz-edit/stackblitz-edit.component';
+import { DisplayPlaceComponent } from './examples/display-place.component';
 
 
 export enum Category {
@@ -60,7 +61,9 @@ export const DEMO_ROUTES: Routes = [
     children: [
       { path: 'edit/:demoUrl', component: StackblitzEditComponent, canActivate: [StackblitzEditGuard] },
       { path: 'display-map', component: DisplayMapComponent, data: { label: 'Show Stories MAP', cat: Category.STORIES } },
-      { path: 'ngx-drag-a-marker', component: NgxDragAMarkerComponent, data: { label: 'Create a story', cat: Category.STORIES } },
+      { path: 'create-new-place', component: NgxDragAMarkerComponent, data: { label: 'Create a new place', cat: Category.STORIES } },
+      //{ path: 'create-story', component: DisplayPlaceComponent, data: { label: 'Show places MAP', cat: Category.STORIES } }
+      //{ path: 'update-story', component: UpdateStoryComponent}
       
       // { path: 'set-style', component: SetStyleComponent, data: { label: 'Change a map\'s style', cat: Category.STYLES } },
       // { path: 'satellite-map', component: SatelliteMapComponent, data: { label: 'Display a satellite map', cat: Category.STYLES } },

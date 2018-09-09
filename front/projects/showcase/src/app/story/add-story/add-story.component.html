@@ -1,65 +1,59 @@
 <div class="container">
-  <h2>Nouvel utilisateur</h2>
-  <form (ngSubmit)="onSubmit()">
-  <div [formGroup]="s">
-      <!-- Email -->
-      <div class="form-group col-5 col-sm-12">
-          <label for="titre" class="control-label">Titre</label>
-          <input type="text" 
-          formControlName="email" 
-          class="form-control"
-          id="titre" required
-          placeholder="titre"
-          required
-          [(ngModel)]="story.title"
-          name="title">
-      </div>
-      <!-- Password -->
-      <div class="form-group col-5 col-sm-12">
-          <label for="picture">Photo</label>
-          <input type="picture"
-          formControlName="picture"
-          class="form-control"
-           id="password"
-           required
-           [(ngModel)]="story.picture" 
-           name= "picture">
-      </div>
-      <div class="form-group col-5 col-sm-12">
-          <label for="description">Description</label>
-          <Textarea
-          formControlName="Description"
-          class="form-control"
-          id="description" 
-          required 
-          [(ngModel)]="story.description" 
-          name="description"
-          placeholder="Description">
-      </div>
-      <div class="form-group col-5 col-sm-12">
-          <label for="content">Contenu</label>
-          <textarea
-          formControlName="content"
-          class="form-control"
-          id="city" required 
-          [(ngModel)]="story.content" 
-          name="city" 
-          placeholder="Contenu">
-      </div>
-      <div class="col-5 col-sm-12">
-
-      </div>    
-      <div class="col-5 col-sm-12">
-          <button type="submit" class="btn btn-primary">Créer</button>
-      </div>
+    <h2>Nouvelle histoire</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group col-5 col-sm-12">
+            <label for="titre" class="control-label">Titre</label>
+            <input type="text" 
+            formControlName="title" 
+            class="form-control"
+            id="title" required
+            placeholder="titre"
+            required
+            [(ngModel)]="story.title"
+            name="title">
+        </div>
+        <div class="form-group col-5 col-sm-12">
+            <label for="description">Description</label>
+            <textarea
+            formControlName="Description"
+            class="form-control"
+            id="description" 
+            required 
+            [(ngModel)]="story.description" 
+            name="description"
+            placeholder="Description"></textarea>
+        </div>
+        <div class="form-group col-5 col-sm-12">
+            <label for="content">Contenu</label>
+            <textarea
+            formControlName="content"
+            class="form-control"
+            id="city" required 
+            [(ngModel)]="story.content" 
+            name="city" 
+            placeholder="Contenu"></textarea>
+        </div>
+  
+        <div class="form-group col-5 col-sm-12">
+            <label for="picture">Photo</label>
+            <input type="file"
+            formControlName="picture"
+            class="form-control"
+             id="picture"
+             required
+             [(ngModel)]="story.picture" 
+             name= "picture">
+        </div> 
+        <div class="col-5 col-sm-12">
+            <button type="submit" class="btn btn-primary">Créer</button>
+        </div>
+    </form>
+    </div>
+    <div *ngIf="submitted">
+        <div *ngIf="storyCreated">
+            <div class="alert alert-success">Ajout effectué avec succés</div>
+        </div>
+        <div *ngIf="!storyCreated">
+            <div class="alert alert-danger">Erreur d'ajout</div>
+        </div>
   </div>
-  </form>
-  <div *ngIf="submitted">
-      <div *ngIf="storyForm.valid">
-          <div class="alert alert-success">Ajout effectué avec succés</div>
-      </div>
-      <div *ngIf="!storyForm.valid">
-              <div class="alert alert-danger">Erreur d'ajout</div>
-      </div>
-  </div>
-</div>

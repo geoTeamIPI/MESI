@@ -1,7 +1,7 @@
 {
 "type": "FeatureCollection",
 "features": [
-{ "type": "Feature", "properties": { 
+{"type":"Feature","properties": { 
         "Primary ID": "1", 
         "Secondary ID": "Belle statue!!!", 
         "description": "Wow elle est trop belle cette statue",

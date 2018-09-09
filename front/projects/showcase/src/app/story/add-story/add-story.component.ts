@@ -1,8 +1,8 @@
- import { Component } from '@angular/core';
+import { Component } from '@angular/core';
  import {  ActivatedRoute } from '@angular/router';
 
- import { Story } from '../story.model';
- import { StoryLocation } from '../story-location.model';
+ import { Story } from '../../models/story.model';
+ import { StoryLocation } from '../../models/story-location.model';
  import { StoryService } from '../../services/story.service';
 
 @Component({
@@ -10,7 +10,8 @@
 })
 export class AddStoryComponent {
 
-  submitted : boolean; 
+  submitted : boolean;
+  storyCreated: boolean; 
   story: Story = new Story();
   storyLocation: StoryLocation = new StoryLocation(); 
 
@@ -25,12 +26,12 @@ export class AddStoryComponent {
     console.log(this.story);
     this.storyService.createStory(this.story)
         .subscribe( data => {
+          this.storyCreated = true; 
           console.log("Création de l'histoire");
         }, error => {
+          this.storyCreated = false; 
           console.log("error"); 
         });
-
-
    };
 
- }
+}

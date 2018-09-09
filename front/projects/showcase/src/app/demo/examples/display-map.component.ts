@@ -3,6 +3,10 @@ import { MatPaginator, PageEvent } from '@angular/material';
 import { LngLatLike } from 'mapbox-gl';
 import { Cluster, Supercluster } from 'supercluster';
 
+//import { StoryService } from "../../services/story.service";
+//import { Story } from "../../models/story.model";
+//import { ActivatedRoute, Router } from "@angular/router";
+
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'demo-cluster-popup',
@@ -115,6 +119,7 @@ export class ClusterPopupComponent implements OnChanges {
 })
 //export class DisplayMapComponent implements OnInit{}
 export class DisplayMapComponent implements OnInit {
+  stories: any =[];
   earthquakes: object;
   supercluster: Supercluster;
   selectedCluster: {
@@ -123,8 +128,17 @@ export class DisplayMapComponent implements OnInit {
     id: number;
   };
 
+  //constructor(private storyService: StoryService, private route: ActivatedRoute, private router: Router) {}
+
+
   async ngOnInit() {
     this.earthquakes = await import('./earthquakes.geo.json');
+    console.log("this earthquakes = " + this.earthquakes);
+    //https://codepen.io/parry-drew/pen/wWYXmR
+    //this.storyService
+    //.findAllStories()
+    //.subscribe(stories => { this.stories = stories }, err => console.log(err));
+    //console.log("this earthquakes = " + this.earthquakes);
   }
 
   selectCluster(event: MouseEvent, feature: Cluster) {
@@ -136,4 +150,4 @@ export class DisplayMapComponent implements OnInit {
       id: feature.properties.cluster_id!
     };
   }
-}
+} 

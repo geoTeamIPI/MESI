@@ -1,8 +1,15 @@
 package geoTeamIPI.GeoPatrimoine.service;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +18,9 @@ import geoTeamIPI.GeoPatrimoine.entity.User;
 import geoTeamIPI.GeoPatrimoine.repository.StoryRepository;
 
 @Service
+@Transactional
 public class StoryService {
+
 	@Autowired
 	private StoryRepository storyRepository;
 
@@ -106,7 +115,10 @@ public class StoryService {
 		LocalDate todaysDate = LocalDate.now();
 		story.setCreator(user);
 		story.setDateCreation(todaysDate);
-		return storyRepository.save(story);
+		storyRepository.save(story);
+		List<Story> stories = storyRepository.findAll();
+		createGeoJson(stories);
+		return story;
 	}
 
 	public void deleteStory(Story story, User user) {
@@ -114,6 +126,8 @@ public class StoryService {
 		Long idConnectedUser = user.getId();
 		if (idCreator == idConnectedUser) {
 			storyRepository.delete(story);
+			List<Story> stories = storyRepository.findAll();
+			// createGeoJson(stories);
 		} else {
 			// throw denied
 		}
@@ -129,6 +143,8 @@ public class StoryService {
 		if (idCreator == idConnectedUser) {
 			story.setCreator(user);
 			storyRepository.save(story);
+			List<Story> stories = storyRepository.findAll();
+			// createGeoJson(stories);
 		} else {
 			// throw denied
 		}
@@ -153,6 +169,75 @@ public class StoryService {
 			}
 		}
 		return stories;
+	}
+
+	public void createGeoJson(List<Story> stories) {
+		JSONObject featureCollection = new JSONObject();
+
+		try {
+			featureCollection.put("type", "featureCollection");
+			JSONArray featureList = new JSONArray();
+			// iterate through your list
+			for (Story story : stories) {
+				// {"geometry": {"type": "Point", "coordinates": [-94.149, 36.33]}
+				/*
+				 * JSONObject point = new JSONObject(); point.put("type", "Point"); JSONObject subpoint = new JSONObject(); JSONObject getId =
+				 * new JSONObject("" + story.getId()); getId.put("Primary ID", subpoint); point.put("properties", subpoint); JSONObject feature =
+				 * new JSONObject(); feature.put("geometry", point); featureList.put(feature);
+				 */
+				/*
+				 * JSONObject pointa = new JSONObject(); pointa.put("type", "Feature"); JSONArray coorda = new JSONArray("[" +
+				 * story.getPlace().getLatitude() + "," + story.getPlace().getLongitude() + "]"); pointa.put("properties", coorda); // construct
+				 * a JSONArray from a string; can also use an array or list JSONObject point = new JSONObject(); point.put("type", "Point");
+				 * JSONArray coord = new JSONArray("[" + story.getPlace().getLatitude() + "," + story.getPlace().getLongitude() + "]");
+				 * point.put("coordinates", coord); JSONObject feature = new JSONObject(); feature.put("geometry", point); featureList.put(pointa
+				 * + "," + feature); featureList.put(feature); featureCollection.put("features", featureList);
+				 */
+
+				featureCollection.put("type", "FeatureCollection");
+				JSONObject properties = new JSONObject();
+				properties.put("name",
+						"ESPG:4326");
+				JSONObject crs = new JSONObject();
+				crs.put("type", "name");
+				crs.put("properties", properties);
+				featureCollection.put("crs", crs);
+
+				JSONArray features = new JSONArray();
+				JSONObject feature = new JSONObject();
+				feature.put("type", "Feature");
+				JSONObject geometry = new JSONObject();
+
+				JSONArray coord = new JSONArray("[" + story.getPlace().getLatitude() + "," + story.getPlace().getLongitude() + "]");
+
+				geometry.put("type", "Point");
+				geometry.put("coordinates", coord);
+				feature.put("properties", geometry);
+
+				features.put(feature);
+				featureCollection.put("features", features);
+				featureList.put(featureCollection);
+
+			}
+		} catch (JSONException e) {
+			System.out.println("Probleme de génération de GeoJson");
+		}
+
+		// try-with-resources statement based on post comment below :)
+		String path = System.getProperty("user.dir");
+		path = path.replace("\\back", "\\front\\projects\\showcase\\src\\app\\demo\\examples\\");
+		System.out.println(path);
+		try (
+				FileWriter file = new FileWriter(path + "data.geo.json")) {
+			file.write(featureCollection.toString());
+			System.out.println("Successfully Copied JSON Object to File...");
+			System.out.println("\nJSON Object: " + featureCollection);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block e.printStackTrace(); }
+		}
+
+		// output the result
+		System.out.println("featureCollection=" + featureCollection.toString());
 	}
 
 	// --------------------------------------------A VERIFIER TOUT CE QUI EST EN DESSOUS

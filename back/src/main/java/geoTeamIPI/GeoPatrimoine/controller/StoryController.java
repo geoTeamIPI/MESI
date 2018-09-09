@@ -168,6 +168,13 @@ public class StoryController {
 		return storyService.findAllStoriesByPlace(longitude, latitude);
 	}
 
+	// LIST ALL STORIES OF A PLACE - ADMIN AND USER MODES
+	@RequestMapping(value = "/placeId", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Story> listAllOfPlaceById(
+			@RequestParam("idPlace") Long idPlace) {
+		return storyService.findAllStoriesByPlace(idPlace);
+	}
+
 	// ------------------------------------ CRUD METHODS ------------------------
 
 	// CREATE A STORY - ADMIN AND USER MODES

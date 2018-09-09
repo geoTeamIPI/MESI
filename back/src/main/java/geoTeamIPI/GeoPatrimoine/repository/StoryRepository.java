@@ -15,6 +15,8 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 
 	List<Story> findByPlaceIn(List<Place> places);
 
+	List<Story> findByPlaceId(Long idPlace);
+
 	List<Story> findByCreatorIdAndPlaceIn(Long idUser, List<Place> places);
 
 	List<Story> findByPlaceLongitudeGreaterThanAndPlaceLatitudeGreaterThanAndPlaceLongitudeLessThanAndPlaceLatitudeLessThan(String longitudeSW,

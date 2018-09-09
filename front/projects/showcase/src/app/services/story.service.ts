@@ -105,6 +105,14 @@ export class StoryService {
     );
   }
 
+  public findAllStoriesByPlaceById(
+    idPlace: number
+    ): Observable<any>{
+    return this.http.get<Story[]>(this.storiesUrl + "/placeId" 
+    + "?" + "idPlace=" + idPlace
+    );
+  }
+
 // ----------------------------------------------- COUNT STORIES METHODS ---------------
 
   public countAllStories(){

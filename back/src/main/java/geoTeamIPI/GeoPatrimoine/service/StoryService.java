@@ -114,6 +114,11 @@ public class StoryService {
 				.findByPlaceLongitudeAndPlaceLatitude(longitude, latitude);
 	}
 
+	public List<Story> findAllStoriesByPlace(Long idPlace) {
+		return storyRepository
+				.findByPlaceId(idPlace);
+	}
+
 	// ------------------------------------ CRUD METHODS ------------------------
 
 	public Story createStory(Story story, User user) {

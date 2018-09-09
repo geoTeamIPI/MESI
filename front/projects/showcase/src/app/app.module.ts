@@ -22,6 +22,7 @@ import { AddStoryComponent } from "./story/add-story/add-story.component";
 import { ListStoriesComponent } from "./story/list-stories/list-stories.component";
 //import { AddPlaceComponent } from "./place/add-place/add-place.component";
 import { ListPlacesComponent } from "./place/list-places/list-places.component";
+import { InfosPlaceComponent } from "./place/infos-place/infos-place.component";
 //import { UpdatePlaceComponent } from "./place/update-place/update-place.component";
 import { ListUsersComponent } from "./user/list-users/list-users.component";
 import { CreateUserComponent } from "./user/create-user/create-user.component";
@@ -121,6 +122,9 @@ export const showcaseRoutes: Routes = [
         {
           path: "places",
           component: ListPlacesComponent
+        },
+        { path: "places/infos/:id", 
+          component: InfosPlaceComponent, 
         }
       ]
     }, 
@@ -144,6 +148,9 @@ export const showcaseRoutes: Routes = [
         {
           path: "stories/add",
           component: AddStoryComponent
+        },
+        { path: "places/infos/:id", 
+          component: InfosPlaceComponent, 
         }
       ]
     },
@@ -174,6 +181,7 @@ export const showcaseRoutes: Routes = [
     ListStoriesComponent, 
     AddStoryComponent,
     ListPlacesComponent, 
+    InfosPlaceComponent,
     //AddPlaceComponent,
     //UpdatePlaceComponent,
     LoginComponent,

@@ -50,7 +50,10 @@ CREATE TABLE `places` (
   `number_street` varchar(10) DEFAULT NULL,
   `street` varchar(255) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
-  `zipcode` varchar(10) DEFAULT NULL
+  `zipcode` varchar(10) DEFAULT NULL, 
+  `creator` bigint(20) NOT NULL,
+  `dateCreation` date NOT NULL,
+  `dateUpdate` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 

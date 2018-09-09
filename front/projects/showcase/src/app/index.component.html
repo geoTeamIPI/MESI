@@ -9,20 +9,23 @@
      <!-- Create a Story -->
     <!--</button> -->
     <a mat-button routerLink="/">
-      Home
+      Accueil
     </a>
     <a mat-button routerLink="/demo/display-map">
-      Map
+      Carte
     </a>
     
   </div>
   <div>
-    <a mat-button *ngIf="!isAutenthicated" routerLink = "login" >Login</a>
+    <a mat-button *ngIf="!isAutenthicated" routerLink = "login" >Se connecter</a>
     <div *ngIf="isAutenthicated">
-        Bienvenue {{currentUser.email}} - <a mat-button routerLink ="logout"> Logout</a>
+        <a mat-button *ngIf = "currentUser.profile == 'user'" routerLink="account/user/infos">Bienvenue {{currentUser.email}} </a>
+        <a mat-button *ngIf = "currentUser.profile != 'user'" routerLink="account/admin/infos">Bienvenue {{currentUser.email}} </a>
+        <a mat-button routerLink ="logout"> Se déconnecter </a>
         <a mat-button *ngIf = "currentUser.profile == 'user'" routerLink="account/user"><mat-icon>account_box</mat-icon></a>
         <a mat-button *ngIf = "currentUser.profile != 'user'" routerLink="account/admin"><mat-icon>account_box</mat-icon></a>
     </div>  
   </div>
 </mat-toolbar>
 <router-outlet></router-outlet>
+

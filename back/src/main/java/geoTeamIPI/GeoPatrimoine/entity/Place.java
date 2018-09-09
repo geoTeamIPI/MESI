@@ -1,5 +1,7 @@
 package geoTeamIPI.GeoPatrimoine.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +34,15 @@ public class Place {
 
 	@Column
 	private String zipcode;
+
+	@Column
+	private Long creator;
+
+	@Column(nullable = false)
+	private LocalDate dateCreation;
+
+	@Column
+	private LocalDate dateUpdate;
 
 	/**
 	 * ------------------------------------ GETTERS AND SETTERS---------------------------
@@ -91,6 +102,30 @@ public class Place {
 
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
+	}
+
+	public Long getCreator() {
+		return creator;
+	}
+
+	public void setCreator(Long creator) {
+		this.creator = creator;
+	}
+
+	public LocalDate getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(LocalDate dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public LocalDate getDateUpdate() {
+		return dateUpdate;
+	}
+
+	public void setDateUpdate(LocalDate dateUpdate) {
+		this.dateUpdate = dateUpdate;
 	}
 
 	/**

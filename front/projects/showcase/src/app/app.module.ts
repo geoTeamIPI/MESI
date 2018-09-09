@@ -20,6 +20,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AddStoryComponent } from "./story/add-story/add-story.component";
 import { ListStoriesComponent } from "./story/list-stories/list-stories.component";
+//import { AddPlaceComponent } from "./place/add-place/add-place.component";
+import { ListPlacesComponent } from "./place/list-places/list-places.component";
+//import { UpdatePlaceComponent } from "./place/update-place/update-place.component";
 import { ListUsersComponent } from "./user/list-users/list-users.component";
 import { CreateUserComponent } from "./user/create-user/create-user.component";
 import { InfosUsersComponent } from "./user/infos-users/infos-users.component";
@@ -37,6 +40,7 @@ import { RegisteringAccountComponent } from "./user/registering-account/register
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { StoryService } from './services/story.service';
+import { PlaceService } from './services/place.service';
 import { AuthenticationService } from './services/authentication.service';
 import { MatchPasswordValidatorDirective } from './user/match-password-validator.directive';
 
@@ -113,6 +117,10 @@ export const showcaseRoutes: Routes = [
         {
           path: "stories/add",
           component: AddStoryComponent
+        },
+        {
+          path: "places",
+          component: ListPlacesComponent
         }
       ]
     }, 
@@ -165,6 +173,9 @@ export const showcaseRoutes: Routes = [
     UpdateUserComponent,
     ListStoriesComponent, 
     AddStoryComponent,
+    ListPlacesComponent, 
+    //AddPlaceComponent,
+    //UpdatePlaceComponent,
     LoginComponent,
     LogoutComponent,
     AdminComponent,
@@ -198,6 +209,7 @@ export const showcaseRoutes: Routes = [
   providers: [
     UserService,
     StoryService, 
+    PlaceService, 
     AuthenticationService,
     { provide: RouterStateSerializer, useClass: SimpleSerializer }
   ],

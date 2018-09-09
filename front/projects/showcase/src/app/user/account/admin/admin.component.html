@@ -1,8 +1,77 @@
 <div class="container">
-    <h2>Que souhaitez-vous faire ? </h2>
+    <h2 class="text-center">Que souhaitez-vous faire ? </h2>
     <!-- [queryParams] = "{page: 0,size: 10,sortProperty: 'email',sortDirection:'ASC'}"-->
-    <mat-card>
-        <a mat-raised-button routerLink="users">Liste des utilisateurs</a>
+    <mat-card class="text-center">
+        <button mat-raised-button id="stories" (click)="stories=true; places=false; users=false; timelapses=false; types=false; media=false; myaccount=false">
+            <mat-icon>chat_bubble_outline</mat-icon> Histoires</button>
+        <button mat-raised-button id="places" (click)="stories=false; places=true; users=false; timelapses=false; types=false; media=false; myaccount=false">
+            <mat-icon>place</mat-icon> Adresses</button>
+        <button mat-raised-button id="users" (click)="stories=false; places=false; users=true; timelapses=false; types=false; media=false; myaccount=false">
+            <mat-icon>supervised_user_circle</mat-icon> Utilisateurs</button>
+        <button mat-raised-button id="timelapses" (click)="stories=false; places=false; users=false; timelapses=true; types=false; media=false; myaccount=false">
+            <mat-icon>timelapse</mat-icon> Périodes</button>
+        <button mat-raised-button id="types" (click)="stories=false; places=false; users=false; timelapses=false; types=true; media=false; myaccount=false">
+            <mat-icon>account_balance</mat-icon> Types</button>
+        <button mat-raised-button id="media" (click)="stories=false; places=false; users=false; timelapses=false; types=false; media=true; myaccount=false">
+            <mat-icon>perm_media</mat-icon> Documents</button>
+        <button mat-raised-button id="myaccount" (click)="stories=false; places=false; users=false; timelapses=false; types=false; media=false; myaccount=true">
+            <mat-icon>settings</mat-icon> Mon compte</button>
+    </mat-card>
+    <br/>
+    <mat-card class="text-center matcardbottom" *ngIf="stories == true"> 
+        <a mat-raised-button routerLink="users"><mat-icon>list</mat-icon>Liste</a>
+        <a mat-raised-button routerLink="users/add">Ajouter un utilisateur</a>
+        <a mat-raised-button routerLink="stories/add">Créer une histoire</a>
+        <a mat-raised-button routerLink="stories">Listes des histoires</a>
+        <a mat-raised-button routerLink="infos">Mes infos</a>
+        <a mat-raised-button routerLink="update">Modifier mon compte</a>
+    </mat-card>
+
+    <mat-card class="text-center matcardbottom" *ngIf="places == true">
+        <a mat-raised-button routerLink="places"><mat-icon>list</mat-icon>Liste des adresses</a>
+        <a mat-raised-button routerLink="places/user"><mat-icon>view_list</mat-icon>Liste de mes adresses</a>
+        <a mat-raised-button routerLink="places/add"><mat-icon>add_location</mat-icon>Créer une adresse</a>
+        <a mat-raised-button routerLink="places/alone"><mat-icon>not_listed_location</mat-icon>Adresse sans histoire</a>
+    </mat-card>
+
+    <mat-card class="text-center matcardbottom" *ngIf="users == true">
+        <a mat-raised-button routerLink="users">Liste des users</a>
+        <a mat-raised-button routerLink="users/add">Ajouter un utilisateur</a>
+        <a mat-raised-button routerLink="stories/add">Créer une histoire</a>
+        <a mat-raised-button routerLink="stories">Listes des histoires</a>
+        <a mat-raised-button routerLink="infos">Mes infos</a>
+        <a mat-raised-button routerLink="update">Modifier mon compte</a>
+    </mat-card>
+
+    <mat-card class="text-center matcardbottom" *ngIf="timelapses == true">
+        <a mat-raised-button routerLink="users">Liste des temps</a>
+        <a mat-raised-button routerLink="users/add">Ajouter un utilisateur</a>
+        <a mat-raised-button routerLink="stories/add">Créer une histoire</a>
+        <a mat-raised-button routerLink="stories">Listes des histoires</a>
+        <a mat-raised-button routerLink="infos">Mes infos</a>
+        <a mat-raised-button routerLink="update">Modifier mon compte</a>
+    </mat-card>
+
+    <mat-card class="text-center matcardbottom" *ngIf="types == true">
+        <a mat-raised-button routerLink="users">Liste des types</a>
+        <a mat-raised-button routerLink="users/add">Ajouter un utilisateur</a>
+        <a mat-raised-button routerLink="stories/add">Créer une histoire</a>
+        <a mat-raised-button routerLink="stories">Listes des histoires</a>
+        <a mat-raised-button routerLink="infos">Mes infos</a>
+        <a mat-raised-button routerLink="update">Modifier mon compte</a>
+    </mat-card>
+
+    <mat-card class="text-center matcardbottom" *ngIf="media == true">
+        <a mat-raised-button routerLink="users">Liste des media</a>
+        <a mat-raised-button routerLink="users/add">Ajouter un utilisateur</a>
+        <a mat-raised-button routerLink="stories/add">Créer une histoire</a>
+        <a mat-raised-button routerLink="stories">Listes des histoires</a>
+        <a mat-raised-button routerLink="infos">Mes infos</a>
+        <a mat-raised-button routerLink="update">Modifier mon compte</a>
+    </mat-card>
+
+    <mat-card class="text-center matcardbottom" *ngIf="myaccount == true">
+        <a mat-raised-button routerLink="users">Liste des compte</a>
         <a mat-raised-button routerLink="users/add">Ajouter un utilisateur</a>
         <a mat-raised-button routerLink="stories/add">Créer une histoire</a>
         <a mat-raised-button routerLink="stories">Listes des histoires</a>

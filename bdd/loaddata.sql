@@ -2,11 +2,11 @@
 -- Contenu de la table `places`
 --
 
-INSERT INTO `places` (`id`, `longitude`, `latitude`, `number_street`, `street`, `city`, `zipcode`) VALUES
-(1, '45.779557', '4.827420', NULL, 'Rue Hénon', 'Lyon', '69004'),
-(2, '45.788307', '4.813071', '49-43', 'rue des Docks', 'Lyon', '69009'),
-(3, '45.780279', '4.805270', '10', 'rue du 24 mars 1852', 'Lyon', '69009'),
-(4, '45.766118', '4.805506', '57-55', 'rue du Sergent Michel Berthet', 'Lyon', '69009');
+INSERT INTO `places` (`id`, `longitude`, `latitude`, `number_street`, `street`, `city`, `zipcode`, `creator`, `dateCreation`, `dateUpdate`) VALUES
+(1, '45.779557', '4.827420', NULL, 'Rue Hénon', 'Lyon', '69004', 1 , '2013-05-15', NULL ),
+(2, '45.788307', '4.813071', '49-43', 'rue des Docks', 'Lyon', '69009', 1 , '2013-05-15', NULL),
+(3, '45.780279', '4.805270', '10', 'rue du 24 mars 1852', 'Lyon', '69009', 1 , '2013-05-15', NULL),
+(4, '45.766118', '4.805506', '57-55', 'rue du Sergent Michel Berthet', 'Lyon', '69009', 1 , '2013-05-15', NULL);
 
 
 --
@@ -36,7 +36,11 @@ INSERT INTO `users` (`id`, `email`, `password`, `city`, `profile`) VALUES
 (57, 'valentin@gmail.com', '$2a$10$DIxziAYWebfa6RIbp4FNb.GTIqP8VT4GW4Jvijs2.dUs7r18MHftG', 'Valence', 'user'),
 (47, 'jules@yahoo.fr', 'alain', 'Lyon', 'user'),
 (55, 'papi@gmail.com', 'papilyon', 'Lyon', 'user'),
-(56, 'albert@gmail.com', '$2a$10$BnSyscLZVNcm6drPM92V6uO82STW8WYJdnMSH.z8fXQYz0tRIwVkG', 'Lyon', 'user');
+(56, 'albert@gmail.com', '$2a$10$BnSyscLZVNcm6drPM92V6uO82STW8WYJdnMSH.z8fXQYz0tRIwVkG', 'Lyon', 'user'),
+(58, 'testing2.postman@yahoo.fr', '$2a$10$x6qGcXTWJT8O.CsoGQwUWuJuQEpivLsF5lL3XDN1o4C6JSYJE3LnG', 'Lyon', 'user'),
+(59, 'momo@gg.fr', '$2a$10$KahwCTo5vxnvS2CJSv4oK.l0/g.5ZrTRDGFsVGkEb78iXRCZwBnXO', 'Lyon', 'admin'),
+(60, 'admin@admin.fr', '$2a$10$U/Eca8Iqa.RrxcntkqY60etOrifWFPdMAvvaUG.YSglatp4A0wK6C', 'Lyon', 'admin'),
+(61, 'user@user.fr', '$2a$10$LiMMGi3/uJuVuKBalHhuGeZNYJdZn59H4IX1ZLE/AxaHClr5Ifcp6', 'Lyon', 'user');
 
 
 

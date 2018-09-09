@@ -14,11 +14,12 @@
   justify-content: center;
   flex-direction: column;
   pointer-events: none;
+  font-size: 12px;
 }
 
-.logo {
-  width: 150px;
-  height: 150px;
+#logo {
+  width: 60px;
+  padding-bottom: 20px;
 }
 
 mgl-map {

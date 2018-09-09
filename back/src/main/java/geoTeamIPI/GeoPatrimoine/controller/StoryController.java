@@ -32,6 +32,8 @@ public class StoryController {
 
 	public static final String APPLICATION_JSON_CHARSET_UTF_8 = "application/json;charset=UTF-8";
 
+	// ------------------------------------ COUNT METHODS ------------------------
+
 	// COUNT ALL STORIES - ADMIN AND USER MODES
 	@GetMapping("/count")
 	public Long countAll() {
@@ -94,6 +96,8 @@ public class StoryController {
 				latitudeUser, diameter);
 	}
 
+	// ------------------------------------ LIST METHODS ------------------------
+
 	// LIST ALL STORIES - ADMIN AND USER MODES
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
 	public List<Story> listAll() {
@@ -155,6 +159,16 @@ public class StoryController {
 		return storyService.findAllStoriesByDiameter(idUser, longitudeSW, latitudeSW, longitudeNE, latitudeNE, longitudeUser, latitudeUser,
 				diameter);
 	}
+
+	// LIST ALL STORIES OF A PLACE - ADMIN AND USER MODES
+	@RequestMapping(value = "/place", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Story> listAllOfPlace(
+			@RequestParam("longitude") String longitude,
+			@RequestParam("latitude") String latitude) {
+		return storyService.findAllStoriesByPlace(longitude, latitude);
+	}
+
+	// ------------------------------------ CRUD METHODS ------------------------
 
 	// CREATE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces = APPLICATION_JSON_CHARSET_UTF_8)

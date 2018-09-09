@@ -24,6 +24,8 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 			Long idUser, String longitudeSW,
 			String latitudeSW, String longitudeNE, String latitudeNE);
 
+	List<Story> findByPlaceLongitudeAndPlaceLatitude(String longitude, String latitude);
+
 	// --------------------------------------------A VERIFIER TOUT CE QUI EST EN DESSOUS
 
 	/**

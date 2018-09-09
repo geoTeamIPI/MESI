@@ -95,6 +95,16 @@ export class StoryService {
     });
   }
 
+  public findAllStoriesByPlace(
+    longitude: String, 
+    latitude: String
+    ): Observable<any>{
+    return this.http.get<Story[]>(this.storiesUrl + "/place" 
+    + "?" + "longitude=" + longitude
+    + "&" + "latitude=" + latitude 
+    );
+  }
+
 // ----------------------------------------------- COUNT STORIES METHODS ---------------
 
   public countAllStories(){

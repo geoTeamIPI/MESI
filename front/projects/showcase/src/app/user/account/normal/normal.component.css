@@ -11,3 +11,23 @@
 .row .col:not(.col:last-child){
     margin-right: 10px; 
 }
+
+h2{
+    padding-top:20px;
+}
+
+button{
+    margin-left:5px;
+}
+
+button:hover{
+    background-color:rgb(98, 98, 216);
+} 
+
+.matcardbottom a{
+    margin-left:5px;
+}
+
+.matcardbottom a:hover{
+    background-color:rgb(98, 98, 216);
+}

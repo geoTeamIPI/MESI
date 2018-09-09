@@ -119,7 +119,7 @@ export class ClusterPopupComponent implements OnChanges {
 })
 //export class DisplayMapComponent implements OnInit{}
 export class DisplayMapComponent implements OnInit {
-  stories: any =[];
+  //stories: any =[];
   earthquakes: object;
   supercluster: Supercluster;
   selectedCluster: {
@@ -150,4 +150,4 @@ export class DisplayMapComponent implements OnInit {
       id: feature.properties.cluster_id!
     };
   }
-} 
+}

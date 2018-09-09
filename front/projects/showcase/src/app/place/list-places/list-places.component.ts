@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { PlaceService } from "../../services/place.service";
 import { Place } from "../../models/place.model";
 import { ActivatedRoute, Router } from "@angular/router";
+import { User } from "../../models/user.model";
 
 @Component({
   selector: "list-places",
@@ -16,6 +17,7 @@ export class ListPlacesComponent implements OnInit {
   sortProperty: string; 
   sortDirection: string;
   pagination: any = {};
+  currentUser: User; 
 
 
   constructor(private placeService: PlaceService, private route: ActivatedRoute, private router: Router) {}
@@ -29,10 +31,10 @@ export class ListPlacesComponent implements OnInit {
   }
 
   deletePlace(id: number) {
-    const idUser = +this.route.snapshot.paramMap.get("id");
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
     if (confirm("Etes-vous sûr de vouloir supprimer cette adresse") == true) {
       this.placeService
-        .deletePlace(id, idUser)
+        .deletePlace(id, this.currentUser.id)
         .subscribe(data => console.log(), err => console.log(err));
     }
     this.reloadData();

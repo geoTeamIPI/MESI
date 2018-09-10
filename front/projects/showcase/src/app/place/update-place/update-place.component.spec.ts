@@ -1,19 +1,19 @@
-/*import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { UpdateUserComponent } from "./update-user.component";
+import { UpdatePlaceComponent } from "./update-place.component";
 
-describe("UpdateUserComponent", () => {
-  let component: UpdateUserComponent;
-  let fixture: ComponentFixture<UpdateUserComponent>;
+describe("UpdatePlaceComponent", () => {
+  let component: UpdatePlaceComponent;
+  let fixture: ComponentFixture<UpdatePlaceComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UpdateUserComponent]
+      declarations: [UpdatePlaceComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UpdateUserComponent);
+    fixture = TestBed.createComponent(UpdatePlaceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -21,4 +21,4 @@ describe("UpdateUserComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
-});*/
+});

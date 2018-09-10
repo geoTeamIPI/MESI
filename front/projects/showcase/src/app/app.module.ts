@@ -20,11 +20,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AddStoryComponent } from "./story/add-story/add-story.component";
 import { ListStoriesComponent } from "./story/list-stories/list-stories.component";
-//import { AddPlaceComponent } from "./place/add-place/add-place.component";
+import { CreatePlaceComponent } from "./place/create-place/create-place.component";
 import { ListPlacesComponent } from "./place/list-places/list-places.component";
 import { ListMyPlacesComponent } from "./place/list-myplaces/list-myplaces.component";
 import { InfosPlaceComponent } from "./place/infos-place/infos-place.component";
-//import { UpdatePlaceComponent } from "./place/update-place/update-place.component";
+import { UpdatePlaceComponent } from "./place/update-place/update-place.component";
 import { ListUsersComponent } from "./user/list-users/list-users.component";
 import { CreateUserComponent } from "./user/create-user/create-user.component";
 import { InfosUsersComponent } from "./user/infos-users/infos-users.component";
@@ -130,7 +130,16 @@ export const showcaseRoutes: Routes = [
         {
           path: "places/user",
           component: ListMyPlacesComponent
+        },
+        {
+          path: "places/add",
+          component: CreatePlaceComponent
+        },
+        {
+          path: "places/update/:id",
+          component: UpdatePlaceComponent
         }
+
       ]
     }, 
     {
@@ -160,6 +169,14 @@ export const showcaseRoutes: Routes = [
         {
           path: "places/user",
           component: ListMyPlacesComponent
+        },
+        {
+          path: "places/add",
+          component: CreatePlaceComponent
+        },
+        {
+          path: "places/update/:id",
+          component: UpdatePlaceComponent
         }
       ]
     },
@@ -192,8 +209,8 @@ export const showcaseRoutes: Routes = [
     ListPlacesComponent, 
     ListMyPlacesComponent, 
     InfosPlaceComponent,
-    //AddPlaceComponent,
-    //UpdatePlaceComponent,
+    CreatePlaceComponent,
+    UpdatePlaceComponent,
     LoginComponent,
     LogoutComponent,
     AdminComponent,

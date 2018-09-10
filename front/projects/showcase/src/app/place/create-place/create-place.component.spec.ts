@@ -1,4 +1,4 @@
-/*import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { CreatePlaceComponent } from "./create-place.component";
 
@@ -21,4 +21,4 @@ describe("CreatePlaceComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
-});*/
+});

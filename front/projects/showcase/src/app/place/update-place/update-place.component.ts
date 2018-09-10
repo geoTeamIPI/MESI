@@ -1,17 +1,19 @@
-/*import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { UserService } from "../../services/user.service";
+import { PlaceService } from "../../services/place.service";
+import { Place } from "../../models/place.model";
 import { User } from "../../models/user.model";
 
 @Component({
-  selector: "app-update-user",
-  templateUrl: "./update-user.component.html",
-  styleUrls: ["./update-user.component.css"]
+  selector: "update-place",
+  templateUrl: "./update-place.component.html",
+  styleUrls: ["./update-place.component.css"]
 })
-export class UpdateUserComponent implements OnInit {
-  @Input() user: User;
-  userUpdated : boolean = false; 
+export class UpdatePlaceComponent implements OnInit {
+  @Input() place: Place;
+  placeUpdated : boolean = false; 
   submitted: boolean = false;  
+  currentUser: User; 
 
   profiles = [
     { id: "user", name: "Utilisateur" },
@@ -21,25 +23,26 @@ export class UpdateUserComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private placeService: PlaceService
   ) {}
 
   ngOnInit() {
-    this.getUser();
+    this.getPlace();
   }
 
-  getUser() {
+  getPlace() {
     const id = +this.route.snapshot.paramMap.get("id");
-    this.userService
-      .getUser(id)
-      .subscribe(user => {this.user = user}, err => console.log(err));
+    this.placeService
+      .getPlace(id)
+      .subscribe(place => {this.place = place}, err => console.log(err));
   }
 
   onSubmit() {
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
     const id = +this.route.snapshot.paramMap.get("id");
-    this.userService
-      .updateUser(id, this.user)
-      .subscribe(data => {this.userUpdated = true, console.log("User updated")}, err => console.log(err));
+    this.placeService
+      .updatePlace(id, this.place, this.currentUser.id )
+      .subscribe(data => {this.placeUpdated = true, console.log("Adresse mise à jour")}, err => console.log(err));
       this.submitted = true; 
   }
-}*/
+}

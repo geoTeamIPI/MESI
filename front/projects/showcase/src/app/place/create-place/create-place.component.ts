@@ -1,35 +1,69 @@
-/*import { Component } from '@angular/core';
-import {  ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
 
-import { Place } from '../../models/place.model';
-import { PlaceService } from '../../services/place.service';
+import { Place } from "../../models/place.model";
+import { User } from "../../models/user.model";
+import { PlaceService } from "../../services/place.service";
+import { Router } from "@angular/router";
+import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 
 @Component({
- templateUrl: './add-place.component.html'
+  selector: "create-place",
+  templateUrl: "./create-place.component.html",
+  styleUrls: ["./create-place.component.css"]
 })
-export class AddPlaceComponent {
+export class CreatePlaceComponent implements OnInit {
+  place: Place = new Place();
+  submitted: boolean = false;
+  placeCreated: String;  
+  placeForm : FormGroup;
+  longitude : FormControl; 
+  latitude: FormControl; 
+  numberstreet: FormControl;
+  street: FormControl;
+  zipcode: FormControl; 
+  city: FormControl;
+  currentUser: User; 
 
- submitted : boolean;
- placeCreated: boolean; 
- place: Place = new Place();
+  constructor(private placeService: PlaceService, private route: Router) {}
 
- constructor( private placeService: PlaceService, route: ActivatedRoute) {}
+  ngOnInit() {
+    this.controlFormPlace();
+    this.createFormPlace();
+  }
 
- onSubmit(){
-   this.createPlace(); 
-   this.submitted = true;
- }
+  createPlace() {
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
+    this.placeService
+      .createPlace(this.place, this.currentUser.id)
+      .subscribe(data => console.log(data), error => console.log(error));
+    this.place = new Place();
+  }
 
- createPlace(): void {
-   console.log(this.place);
-   this.placeService.createPlace(this.place)
-       .subscribe( data => {
-         this.placeCreated = true; 
-         console.log("Création de l'adresse");
-       }, error => {
-         this.placeCreated = false; 
-         console.log("Erreur de création de l'adresse"); 
-       });
-  };
+  onSubmit() {
+    if (this.placeForm.valid){
+      this.createPlace();
+      this.placeForm.reset();
+    }
+    this.submitted = true; 
+  }
 
-}*/
+  controlFormPlace(){
+    this.longitude = new FormControl('', [
+      Validators.required
+    ]);
+    this.latitude = new FormControl('', [
+      Validators.required
+    ]);
+}
+
+createFormPlace(){
+  this.placeForm  = new FormGroup({
+    longitude : this.longitude,
+    latitude: this.latitude,
+    numberstreet: this.numberstreet,
+    street: this.street,
+    zipcode: this.zipcode,
+    city: this.city
+  });
+}
+}

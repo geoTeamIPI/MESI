@@ -2,21 +2,23 @@
   <h2>Liste des périodes</h2>
   <div class="text-center">
     <table table mat-table class="text-center">
-      <tr>
-        <th>Nom</th>
-        <th>Date de début</th>
-        <th>Date de fin</th>
+      <tr> 
+        <th *ngIf="isAdmin == true ">Id</th>
+        <th>Périodes historiques</th>
+        <th>Dates de début</th>
+        <th>Dates de fin</th>
         <th>Commentaires</th>
-        <th>Logo</th>
+        <th>Couleurs</th>
         <th *ngIf="isAdmin == true " colspan="3">Actions</th>
         <th *ngIf="isAdmin == false ">Afficher</th>
       </tr>
       <tr *ngFor="let timelapse of timelapses | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+        <td *ngIf="isAdmin == true ">{{timelapse.id}}</td>
         <td>{{timelapse.period}}</td>
         <td>{{timelapse.startingYear}}</td>
         <td>{{timelapse.endingYear}}</td>
         <td>{{timelapse.comments}}</td>
-        <td>{{timelapse.logo}}</td>
+        <td>{{timelapse.color}}</td>
         <td>
           <a mat-button color="primary" routerLink="infos/{{timelapse.id}}">
             <mat-icon>timelapse</mat-icon>

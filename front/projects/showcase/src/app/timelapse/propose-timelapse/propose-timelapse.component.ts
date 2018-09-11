@@ -7,14 +7,14 @@ import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 
 @Component({
-  selector: "create-timelapse",
-  templateUrl: "./create-timelapse.component.html",
-  styleUrls: ["./create-timelapse.component.css"]
+  selector: "propose-timelapse",
+  templateUrl: "./propose-timelapse.component.html",
+  styleUrls: ["./propose-timelapse.component.css"]
 })
-export class CreateTimelapseComponent implements OnInit {
+export class ProposeTimelapseComponent implements OnInit {
   timelapse: Timelapse = new Timelapse();
   submitted: boolean = false;
-  timelapseCreated: String;  
+  timelapseProposed: String;  
   timelapseForm : FormGroup;
   period : FormControl; 
   startingYear: FormControl; 
@@ -31,10 +31,10 @@ export class CreateTimelapseComponent implements OnInit {
 
   ngOnInit() {
     this.controlFormTimelapse();
-    this.createFormTimelapse();
+    this.proposeFormTimelapse();
   }
 
-  createTimelapse() {
+  proposeTimelapse() {
     this.timelapseService
       .createTimelapse(this.timelapse, this.currentUser.id)
       .subscribe(data => console.log(data), error => console.log(error));
@@ -43,7 +43,7 @@ export class CreateTimelapseComponent implements OnInit {
 
   onSubmit() {
     if (this.timelapseForm.valid){
-      this.createTimelapse();
+      this.proposeTimelapse();
       this.timelapseForm.reset();
     }
     this.submitted = true; 
@@ -64,7 +64,7 @@ export class CreateTimelapseComponent implements OnInit {
     ]);
 }
 
-createFormTimelapse(){
+proposeFormTimelapse(){
   this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
   if (this.currentUser.profile == "admin"){
     this.isAdmin = true;

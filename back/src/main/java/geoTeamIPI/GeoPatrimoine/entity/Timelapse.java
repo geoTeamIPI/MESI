@@ -30,6 +30,9 @@ public class Timelapse {
 	@Column
 	private String comments;
 
+	@Column(nullable = false)
+	private String color;
+
 	@Column
 	private Boolean isapproved;
 
@@ -91,6 +94,14 @@ public class Timelapse {
 
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 }

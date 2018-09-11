@@ -35,7 +35,7 @@ export class InfosTimelapseComponent implements OnInit {
       this.isAdmin = true;
     } else{
       this.isAdmin = false;
-    }
+    } 
     this.getTimelapse();
     this.reloadData();
     this.route.queryParams.subscribe(values => {
@@ -57,7 +57,7 @@ export class InfosTimelapseComponent implements OnInit {
 
   reloadData() {
     const id = +this.route.snapshot.paramMap.get("id");
-    this.storyService
+    this.storyService 
       .findAllStoriesByTimelapseById(id)
       .subscribe(stories => { this.stories = stories }, err => console.log(err));
     this.router.navigate([this.router.url]);

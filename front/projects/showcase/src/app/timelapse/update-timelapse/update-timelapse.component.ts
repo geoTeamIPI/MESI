@@ -35,6 +35,7 @@ export class UpdateTimelapseComponent implements OnInit {
     this.timelapseService
       .getTimelapse(id)
       .subscribe(timelapse => {this.timelapse = timelapse}, err => console.log(err));
+    console.log("ma timelapse vaut = " + this.timelapse);
   }
 
   onSubmit() {

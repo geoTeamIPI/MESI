@@ -113,6 +113,14 @@ export class StoryService {
     );
   }
 
+  public findAllStoriesByTimelapseById(
+    idTimelapse: number
+    ): Observable<any>{
+    return this.http.get<Story[]>(this.storiesUrl + "/timelapseId" 
+    + "?" + "idTimelapse=" + idTimelapse
+    );
+  }
+
 // ----------------------------------------------- COUNT STORIES METHODS ---------------
 
   public countAllStories(){

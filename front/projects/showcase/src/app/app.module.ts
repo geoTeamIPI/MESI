@@ -29,6 +29,7 @@ import { InfosPlaceComponent } from "./place/infos-place/infos-place.component";
 import { UpdatePlaceComponent } from "./place/update-place/update-place.component";
 
 import { CreateTimelapseComponent } from "./timelapse/create-timelapse/create-timelapse.component";
+import { ProposeTimelapseComponent } from "./timelapse/propose-timelapse/propose-timelapse.component";
 import { ListTimelapsesComponent } from "./timelapse/list-timelapses/list-timelapses.component";
 import { ListTimelapsesApproveComponent } from "./timelapse/list-timelapsesapprove/list-timelapsesapprove.component";
 import { InfosTimelapseComponent } from "./timelapse/infos-timelapse/infos-timelapse.component";
@@ -86,7 +87,7 @@ export class SimpleSerializer implements RouterStateSerializer<RouterStateUrl> {
 }
 
 export const showcaseRoutes: Routes = [
-  {
+  { 
     path: 'demo',  
     children: DEMO_ROUTES
   },
@@ -205,7 +206,7 @@ export const showcaseRoutes: Routes = [
           component: ListPlacesComponent
         },
         { path: "places/infos/:id", 
-          component: InfosPlaceComponent, 
+          component: InfosPlaceComponent 
         },
         {
           path: "places/user",
@@ -224,13 +225,13 @@ export const showcaseRoutes: Routes = [
           component: ListEmptyPlacesComponent
         },
         { path: "users/infos/public/:id", 
-          component: InfosUserPublicComponent, 
+          component: InfosUserPublicComponent 
         },
         { path: "timelapses",
            component: ListTimelapsesComponent 
         },
         { path: "timelapses/add", 
-          component: CreateTimelapseComponent
+          component: ProposeTimelapseComponent
         },
         { path: "timelapses/update/:id", 
           component: UpdateTimelapseComponent
@@ -282,6 +283,7 @@ export const showcaseRoutes: Routes = [
     RegisteringAccountComponent,
     MatchPasswordValidatorDirective,
     CreateTimelapseComponent,
+    ProposeTimelapseComponent,
     ListTimelapsesComponent,
     ListTimelapsesApproveComponent,
     InfosTimelapseComponent,
@@ -329,4 +331,4 @@ export class AppModule {
     iconRegistry.addSvgIcon('ngx-mapbox-gl-red', sanitizer.bypassSecurityTrustResourceUrl('assets/ngx-mapbox-gl-red.svg'));
     iconRegistry.addSvgIcon('github', sanitizer.bypassSecurityTrustResourceUrl('assets/github.svg'));
   }
-}
+} 

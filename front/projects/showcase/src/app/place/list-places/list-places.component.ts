@@ -17,12 +17,18 @@ export class ListPlacesComponent implements OnInit {
   sortProperty: string; 
   sortDirection: string;
   pagination: any = {};
-  currentUser: User; 
-
+  isAdmin: boolean; 
+  currentUser : User; 
 
   constructor(private placeService: PlaceService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
+    if (this.currentUser.profile == "admin"){
+      this.isAdmin = true;
+    } else{
+      this.isAdmin = false;
+    }
     this.reloadData();
     this.route.queryParams.subscribe(values => {
       this.pagination = values; 

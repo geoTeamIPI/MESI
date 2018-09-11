@@ -30,6 +30,12 @@ export class InfosPlaceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
+    if (this.currentUser.profile == "admin"){
+      this.isAdmin = true;
+    } else{
+      this.isAdmin = false;
+    }
     this.getPlace();
     this.reloadData();
     this.route.queryParams.subscribe(values => {
@@ -39,13 +45,6 @@ export class InfosPlaceComponent implements OnInit {
   }
 
   getPlace() {
-    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
-    if (this.currentUser.profile == "admin"{
-      this.isAdmin = true;
-    } else{
-      this.isAdmin = false;
-    }
-    
     const id = +this.route.snapshot.paramMap.get("id");
     this.placeService.getPlace(id)
       .subscribe(

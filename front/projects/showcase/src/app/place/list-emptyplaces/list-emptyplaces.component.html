@@ -13,7 +13,8 @@
         <th>Créateur id</th>
         <th>Date création</th>
         <th>Date modification</th>
-        <th colspan="3">Actions</th>
+        <th *ngIf="isAdmin == true " colspan="3">Actions</th>
+        <th *ngIf="isAdmin == false ">Afficher</th>
       </tr>
       <tr *ngFor="let place of places | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
         <td>{{place.id}}</td>
@@ -31,13 +32,13 @@
             <mat-icon>place</mat-icon>
           </a>
         </td>
-        <td>
-          <a mat-button routerLink="../update/{{place.id}}">
+        <td *ngIf="isAdmin == true ">
+          <a  mat-button routerLink="../update/{{place.id}}">
             <mat-icon>edit_location</mat-icon>
           </a>
         </td>
-        <td>
-          <button mat-button color="warn" (click)="deletePlace(place.id,i)">
+        <td *ngIf="isAdmin == true ">
+          <button  mat-button color="warn" (click)="deletePlace(place.id,i)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

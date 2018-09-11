@@ -172,6 +172,10 @@ export const showcaseRoutes: Routes = [
           path: "stories/add",
           component: AddStoryComponent
         },
+        {
+          path: "places",
+          component: ListPlacesComponent
+        },
         { path: "places/infos/:id", 
           component: InfosPlaceComponent, 
         },
@@ -186,7 +190,11 @@ export const showcaseRoutes: Routes = [
         {
           path: "places/update/:id",
           component: UpdatePlaceComponent
-        } ,
+        },
+        {
+          path: "places/compare",
+          component: ListEmptyPlacesComponent
+        },
         { path: "users/infos/public/:id", 
           component: InfosUserPublicComponent, 
         }

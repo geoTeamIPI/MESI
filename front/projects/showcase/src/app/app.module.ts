@@ -29,6 +29,7 @@ import { UpdatePlaceComponent } from "./place/update-place/update-place.componen
 import { ListUsersComponent } from "./user/list-users/list-users.component";
 import { CreateUserComponent } from "./user/create-user/create-user.component";
 import { InfosUsersComponent } from "./user/infos-users/infos-users.component";
+import { InfosUserPublicComponent } from "./user/infos-userpublic/infos-userpublic.component";
 import { UpdateUserComponent } from "./user/update-user/update-user.component";
 import { LoginComponent } from "./login/login.component";
 import { LogoutComponent } from "./logout/logout.component";
@@ -102,6 +103,9 @@ export const showcaseRoutes: Routes = [
           { path: "users/infos/:id", 
             component: InfosUsersComponent, 
           },
+          { path: "users/infos/public/:id", 
+            component: InfosUserPublicComponent, 
+          },
           { path: "users/update/:id", 
             component: UpdateUserComponent,     
           }, 
@@ -156,7 +160,7 @@ export const showcaseRoutes: Routes = [
           path: "infos", 
           component: InfosAccountComponent
         }, 
-        {
+        { 
           path: "update",
           component: UpdateAccountComponent
         }, 
@@ -182,7 +186,10 @@ export const showcaseRoutes: Routes = [
         {
           path: "places/update/:id",
           component: UpdatePlaceComponent
-        } 
+        } ,
+        { path: "users/infos/public/:id", 
+          component: InfosUserPublicComponent, 
+        }
       ]
     },
     {
@@ -207,6 +214,7 @@ export const showcaseRoutes: Routes = [
     NotFoundComponent,  
     CreateUserComponent,
     InfosUsersComponent,
+    InfosUserPublicComponent,
     ListUsersComponent,
     UpdateUserComponent,
     ListStoriesComponent, 

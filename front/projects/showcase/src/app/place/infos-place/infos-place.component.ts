@@ -4,6 +4,7 @@ import { Place } from "../../models/place.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { StoryService } from "../../services/story.service";
 import { Story } from "../../models/story.model";
+import { User } from "../../models/user.model";
 
 
 @Component({
@@ -13,13 +14,13 @@ import { Story } from "../../models/story.model";
 })
 export class InfosPlaceComponent implements OnInit {
   place = new Place();
-  placeIsEmpty = 0;
-  storiesIsEmpty = 0;
   stories: Story[];
   size: number;
   sortProperty: string;
   sortDirection: string;
   pagination: any = {};
+  isAdmin: boolean; 
+  currentUser : User; 
 
   constructor(
     private placeService: PlaceService,
@@ -35,11 +36,16 @@ export class InfosPlaceComponent implements OnInit {
       this.pagination = values;
       console.log(this.pagination);
     });
-    console.log("stories is empty = " + this.storiesIsEmpty);
-    console.log("places is empty = " + this.IsEmpty);
   }
 
   getPlace() {
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
+    if (this.currentUser.profile == "admin"{
+      this.isAdmin = true;
+    } else{
+      this.isAdmin = false;
+    }
+    
     const id = +this.route.snapshot.paramMap.get("id");
     this.placeService.getPlace(id)
       .subscribe(

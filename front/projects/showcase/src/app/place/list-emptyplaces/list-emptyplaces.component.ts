@@ -10,7 +10,7 @@ import { User } from "../../models/user.model";
   templateUrl: "./list-emptyplaces.component.html",
   styleUrls: ["./list-emptyplaces.component.css"]
 })
-
+ 
 export class ListEmptyPlacesComponent implements OnInit {
   places: Place[];
   size: number;

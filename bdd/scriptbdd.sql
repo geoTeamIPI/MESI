@@ -47,7 +47,7 @@ CREATE TABLE `places` (
   `id` bigint(10) NOT NULL,
   `longitude` varchar(90) NOT NULL,
   `latitude` varchar(90) NOT NULL,
-  `number_street` varchar(10) DEFAULT NULL,
+  `numberstreet` varchar(10) DEFAULT NULL,
   `street` varchar(255) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
   `zipcode` varchar(10) DEFAULT NULL, 
@@ -71,6 +71,7 @@ CREATE TABLE `stories` (
   `creator_id` bigint(20) NOT NULL,
   `place_id` bigint(20) NOT NULL,
   `type_id` bigint(20) NOT NULL,
+  `timelapse_id` bigint(20) NOT NULL,
   `startingYear` int(10) DEFAULT NULL,
   `startingMonth` int(2) DEFAULT NULL,
   `startingDay` int(2) DEFAULT NULL,
@@ -94,8 +95,9 @@ CREATE TABLE `timelapses` (
   `startingYear` int(10) NOT NULL,
   `endingYear` int(10) DEFAULT NULL,
   `comments` varchar(255) DEFAULT NULL,
-  `isapproved` varchar(255) DEFAULT false,
-  `logo` boolean DEFAULT null
+  `logo` varchar(255) DEFAULT NULL,
+  `isapproved` boolean DEFAULT false,
+  `color` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
@@ -123,7 +125,8 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL,
   `password` varchar(60) NOT NULL,
   `city` varchar(50) NOT NULL,
-  `profile` varchar(20) NOT NULL DEFAULT 'user'
+  `profile` varchar(20) NOT NULL DEFAULT 'user',
+  `nickname` varchar(80) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 

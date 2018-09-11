@@ -43,14 +43,11 @@
         <a mat-raised-button routerLink="update">Modifier mon compte</a>
     </mat-card> -->
 
-    <!--<mat-card class="text-center matcardbottom" *ngIf="timelapses == true">
-        <a mat-raised-button routerLink="users">Liste des temps</a>
-        <a mat-raised-button routerLink="users/add">Ajouter un utilisateur</a>
-        <a mat-raised-button routerLink="stories/add">Créer une histoire</a>
-        <a mat-raised-button routerLink="stories">Listes des histoires</a>
-        <a mat-raised-button routerLink="infos">Mes infos</a>
-        <a mat-raised-button routerLink="update">Modifier mon compte</a>
-    </mat-card> -->
+    <mat-card class="text-center matcardbottom" *ngIf="timelapses == true">
+        <a mat-raised-button routerLink="timelapses">Liste des périodes</a>
+        <a mat-raised-button routerLink="timelapses/add">Créer une période</a>
+        <a mat-raised-button routerLink="timelapses/approve">Liste des périodes à approuver</a>
+    </mat-card>
 
     <!--<mat-card class="text-center matcardbottom" *ngIf="types == true">
         <a mat-raised-button routerLink="users">Liste des types</a>

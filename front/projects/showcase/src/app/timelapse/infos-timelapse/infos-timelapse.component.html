@@ -1,0 +1,75 @@
+<div class="container text-center">
+  <h2>Détails de l'adresse</h2>
+  <div class="text-center">
+    <table table mat-table class="text-left">
+      <tr> 
+        <th>Id :</th>
+        <td>{{place.id}}</td>
+        <td *ngIf="isAdmin == true " rowspan=10><a mat-button color="primary" routerLink="../../update/{{place.id}}"><mat-icon>edit_location</mat-icon></a></td>
+        <td rowspan=10 class="text-center"><img src="./../../../assets/point.jpg" width="500px"> <br/><br/>Actuellement non fonctionnel : idée à long terme étant de réussir à afficher les coordonnées de ce point sur une carte </td>
+      </tr>
+      <tr>
+        <th>Longitude :</th>
+        <td>{{place.longitude}}</td>
+      </tr>
+      <tr>
+        <th>Latitude :</th>
+        <td>{{place.latitude}}</td>
+      </tr>
+      <tr>
+        <th>Numéro de rue :</th>
+        <td>{{place.numberstreet}}</td>
+      </tr>
+      <tr>
+        <th>Adresse :</th>
+        <td>{{place.street}}</td>
+      </tr>
+      <tr>
+        <th>Code postal :</th>
+        <td>{{place.zipcode}}</td>
+      </tr>
+      <tr>
+        <th>Ville :</th>
+        <td>{{place.city}} </td>
+      </tr>
+      <tr>
+        <th>Créateur :</th>
+        <td>{{place.creator}} <br/>
+          <a *ngIf="isAdmin == true " mat-button color="primary" routerLink="../../../users/infos/{{place.creator}}"><mat-icon>account_circle</mat-icon></a>
+          <a *ngIf="isAdmin == false " mat-button color="primary" routerLink="../../../users/infos/public/{{place.creator}}"><mat-icon>account_circle</mat-icon></a>
+        </td>
+      </tr>
+      <tr>
+        <th>Date de création :</th>
+        <td>{{place.dateCreation}}</td>
+      </tr>
+      <tr>
+        <th>Date de modification :</th>
+        <td>{{place.dateUpdate}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="text-center">
+      <h2>Liste des stories liées à cette adresse</h2>
+      <table mat-table>
+        <th>Id</th>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Contenu</th>
+        <th>Créateur</th>
+        <th>Type</th>
+        <th>Afficher</th>
+        <tr *ngFor="let story of stories | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>{{story.id}}</td>
+          <td>{{story.title}}</td>
+          <td>{{story.description}}</td>
+          <td>{{story.content}}</td>
+          <td>{{story.creator.email}}</td>
+          <td>{{story.Type}}</td>
+          <td><a mat-button color="primary" routerLink="../../../stories/infos/{{story.id}}"><mat-icon>chat_bubble_outline</mat-icon></a></td>
+        </tr>
+      </table>
+      <br/>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

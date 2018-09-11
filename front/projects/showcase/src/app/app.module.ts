@@ -20,33 +20,47 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AddStoryComponent } from "./story/add-story/add-story.component";
 import { ListStoriesComponent } from "./story/list-stories/list-stories.component";
+
 import { CreatePlaceComponent } from "./place/create-place/create-place.component";
 import { ListPlacesComponent } from "./place/list-places/list-places.component";
 import { ListEmptyPlacesComponent } from "./place/list-emptyplaces/list-emptyplaces.component";
 import { ListMyPlacesComponent } from "./place/list-myplaces/list-myplaces.component";
 import { InfosPlaceComponent } from "./place/infos-place/infos-place.component";
 import { UpdatePlaceComponent } from "./place/update-place/update-place.component";
+
+import { CreateTimelapseComponent } from "./timelapse/create-timelapse/create-timelapse.component";
+import { ListTimelapsesComponent } from "./timelapse/list-timelapses/list-timelapses.component";
+import { ListTimelapsesApproveComponent } from "./timelapse/list-timelapsesapprove/list-timelapsesapprove.component";
+import { InfosTimelapseComponent } from "./timelapse/infos-timelapse/infos-timelapse.component";
+import { UpdateTimelapseComponent } from "./timelapse/update-timelapse/update-timelapse.component";
+
 import { ListUsersComponent } from "./user/list-users/list-users.component";
 import { CreateUserComponent } from "./user/create-user/create-user.component";
 import { InfosUsersComponent } from "./user/infos-users/infos-users.component";
 import { InfosUserPublicComponent } from "./user/infos-userpublic/infos-userpublic.component";
 import { UpdateUserComponent } from "./user/update-user/update-user.component";
+
 import { LoginComponent } from "./login/login.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { AdminGuards } from "./admin.guards";
 import { AdminComponent } from "./user/account/admin/admin.component";
 import { NormalComponent } from "./user/account/normal/normal.component";
 import { UserGuards } from "./user.guards";
+import { RegisteringAccountComponent } from "./user/registering-account/registering-account.component";
+import { MatchPasswordValidatorDirective } from './user/match-password-validator.directive';
+
 import { InfosAccountComponent } from "./user/infos-account/infos-account.component";
 import { UpdateAccountComponent } from "./user/update-account/update-account.component";
+
 import { NotFoundComponent } from "./not-found/not-found.component";
-import { RegisteringAccountComponent } from "./user/registering-account/registering-account.component";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 import { UserService } from './services/user.service';
 import { StoryService } from './services/story.service';
 import { PlaceService } from './services/place.service';
+import { TimelapseService } from './services/timelapse.service';
 import { AuthenticationService } from './services/authentication.service';
-import { MatchPasswordValidatorDirective } from './user/match-password-validator.directive';
+
 
 export interface RouterStateUrl {
   url: string;
@@ -147,8 +161,16 @@ export const showcaseRoutes: Routes = [
         {
           path: "places/compare",
           component: ListEmptyPlacesComponent
+        },
+        { path: "timelapses",
+           component: ListTimelapsesComponent 
+        },
+        { path: "timelapses/add", 
+          component: CreateTimelapseComponent
+        },
+        { path: "timelapses/approve", 
+          component: ListTimelapsesApproveComponent
         }
-
       ]
     }, 
     {
@@ -197,6 +219,12 @@ export const showcaseRoutes: Routes = [
         },
         { path: "users/infos/public/:id", 
           component: InfosUserPublicComponent, 
+        },
+        { path: "timelapses",
+           component: ListTimelapsesComponent 
+        },
+        { path: "timelapses/add", 
+          component: CreateTimelapseComponent
         }
       ]
     },
@@ -240,7 +268,12 @@ export const showcaseRoutes: Routes = [
     InfosAccountComponent,
     UpdateAccountComponent,
     RegisteringAccountComponent,
-    MatchPasswordValidatorDirective
+    MatchPasswordValidatorDirective,
+    CreateTimelapseComponent,
+    ListTimelapsesComponent,
+    ListTimelapsesApproveComponent,
+    InfosTimelapseComponent,
+    UpdateTimelapseComponent
   ],
   imports: [ 
     BrowserModule,
@@ -267,6 +300,7 @@ export const showcaseRoutes: Routes = [
     UserService,
     StoryService, 
     PlaceService, 
+    TimelapseService,
     AuthenticationService,
     { provide: RouterStateSerializer, useClass: SimpleSerializer }
   ],

@@ -1,24 +1,41 @@
 package geoTeamIPI.GeoPatrimoine.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="TIMELAPSES")
+@Table(name = "TIMELAPSES")
 public class Timelapse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Lob
-    @Column(nullable=false)
-    private String period; 
-    
-    @Column(nullable=false)
-    private Integer starting_year; 
-    
-    @Column
-    private Integer ending_year;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Lob
+	@Column(nullable = false)
+	private String period;
+
+	@Column(nullable = false)
+	private Integer startingYear;
+
+	@Column
+	private Integer endingYear;
+
+	@Lob
+	@Column
+	private String comments;
+
+	@Column
+	private Boolean isapproved;
+
+	@Lob
+	@Column
+	private String logo;
 
 	public Long getId() {
 		return id;
@@ -36,21 +53,44 @@ public class Timelapse {
 		this.period = period;
 	}
 
-	public Integer getStarting_year() {
-		return starting_year;
+	public Integer getStartingYear() {
+		return startingYear;
 	}
 
-	public void setStarting_year(Integer starting_year) {
-		this.starting_year = starting_year;
+	public void setStartingYear(Integer startingYear) {
+		this.startingYear = startingYear;
 	}
 
-	public Integer getEnding_year() {
-		return ending_year;
+	public Integer getEndingYear() {
+		return endingYear;
 	}
 
-	public void setEnding_year(Integer ending_year) {
-		this.ending_year = ending_year;
-	}   
-    
-    
+	public void setEndingYear(Integer endingYear) {
+		this.endingYear = endingYear;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public Boolean getIsapproved() {
+		return isapproved;
+	}
+
+	public void setIsapproved(Boolean isapproved) {
+		this.isapproved = isapproved;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
 }

@@ -41,22 +41,16 @@
         <td>{{place.city}} </td>
       </tr>
       <tr>
-        <th rowspan="2">Créateur :</th>
-        <td>
-          <tr>
-            <td class="text-center">{{place.creator}}
-          </tr>
-          <tr>
-            <td>
-              <a *ngIf="isAdmin == true " mat-button color="primary" routerLink="../../../users/infos/{{place.creator}}">
-                <mat-icon>account_circle</mat-icon>
-              </a>
-              <a *ngIf="isAdmin == false " mat-button color="primary" routerLink="../../../users/infos/public/{{place.creator}}">
-                <mat-icon>account_circle</mat-icon>
-              </a>
-            </td>
-          </tr>
-          </td>
+        <th>Créateur :</th>
+        <td>{{place.creator}}
+          <br/>
+          <a *ngIf="isAdmin == true " mat-button color="primary" routerLink="../../../users/infos/{{place.creator}}">
+            <mat-icon>account_circle</mat-icon>
+          </a>
+          <a *ngIf="isAdmin == false " mat-button color="primary" routerLink="../../../users/infos/public/{{place.creator}}">
+            <mat-icon>account_circle</mat-icon>
+          </a>
+        </td>
       </tr>
       <tr>
         <th>Date de création :</th>

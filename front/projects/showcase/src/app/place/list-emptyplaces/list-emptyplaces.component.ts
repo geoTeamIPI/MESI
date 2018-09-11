@@ -18,7 +18,7 @@ export class ListEmptyPlacesComponent implements OnInit {
   sortDirection: string;
   pagination: any = {};
   currentUser: User; 
-  isAdmin: boolean; 
+  isAdmin: boolean = false; 
 
   constructor(private placeService: PlaceService, private route: ActivatedRoute, private router: Router) {}
 

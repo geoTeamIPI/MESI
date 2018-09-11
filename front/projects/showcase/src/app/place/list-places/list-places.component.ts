@@ -17,7 +17,7 @@ export class ListPlacesComponent implements OnInit {
   sortProperty: string; 
   sortDirection: string;
   pagination: any = {};
-  isAdmin: boolean; 
+  isAdmin: boolean = false; 
   currentUser : User; 
 
   constructor(private placeService: PlaceService, private route: ActivatedRoute, private router: Router) {}

@@ -1,7 +1,7 @@
 <div class="container">
     <h2 class="text-center">Création d'une nouvelle adresse</h2>
     <form (ngSubmit)="onSubmit()">
-        <div [formGroup]="userForm">
+        <div [formGroup]="placeForm">
             <div class="form-group col-5 col-sm-12">
                 <label for="longitude" class="control-label">Longitude</label>
                 <input type="text" formControlName="longitude" class="form-control" id="longitude" required placeholder="Exemple : 45.779557"

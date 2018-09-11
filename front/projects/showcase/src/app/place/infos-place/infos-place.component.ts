@@ -19,7 +19,7 @@ export class InfosPlaceComponent implements OnInit {
   sortProperty: string;
   sortDirection: string;
   pagination: any = {};
-  isAdmin: boolean; 
+  isAdmin: boolean = false; 
   currentUser : User; 
 
   constructor(

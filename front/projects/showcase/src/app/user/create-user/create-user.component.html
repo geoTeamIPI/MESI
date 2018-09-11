@@ -2,6 +2,25 @@
     <h2>Nouvel utilisateur</h2>
     <form (ngSubmit)="onSubmit()">
     <div [formGroup]="userForm">
+        <!-- Nickname -->
+        <div class="form-group col-5 col-sm-12">
+            <label for="nickname" class="control-label">Pseudo</label>
+            <input type="text" 
+            formControlName="nickname" 
+            class="form-control"
+            [ngClass] = "{
+                'is-invalid' : nickname.invalid && (nickname.dirty || nickname.touched),
+                'is-valid' : nickname.valid && (nickname.dirty || nickname.touched)
+            }"
+            id="nickname" required
+            placeholder="Pseudo"
+            required
+            [(ngModel)]="user.pseudo"
+            name="nickname">
+            <div class="invalid-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+                <p *ngIf="email.errors.required">Pseudo obligatoire</p>
+            </div>
+        </div>
         <!-- Email -->
         <div class="form-group col-5 col-sm-12">
             <label for="email" class="control-label">Email</label>

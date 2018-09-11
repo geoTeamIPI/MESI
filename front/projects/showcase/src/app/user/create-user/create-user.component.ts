@@ -17,6 +17,7 @@ export class CreateUserComponent implements OnInit {
   pwdMatched: boolean; 
   userCreated: String;  
   userForm : FormGroup;
+  nickname: FormControl; 
   email : FormControl; 
   password: FormControl; 
   city: FormControl;
@@ -53,13 +54,13 @@ export class CreateUserComponent implements OnInit {
       this.createUser();
       this.userForm.reset();
     }
-    console.log(this.pwdMatched);
-    console.log(this.passwordConfirm.value); 
-    console.log(this.password.value)
     this.submitted = true; 
   }
 
   controlFormUser(){
+    this.nickname = new FormControl('', [
+      Validators.required
+    ]);
     this.email =  new FormControl('', [
       Validators.email,
       Validators.minLength(7), 
@@ -80,6 +81,7 @@ export class CreateUserComponent implements OnInit {
 
 createFormUser(){
   this.userForm  = new FormGroup({
+    nickname: this.nickname, 
     email: this.email, 
     password: this.password, 
     city: this.city, 

@@ -35,6 +35,10 @@ public class User {
 
 	@Column(nullable = false)
 	@NotBlank
+	private String nickname;
+
+	@Column(nullable = false)
+	@NotBlank
 	@Size(min = 3)
 	@Email
 	private String email;
@@ -61,7 +65,7 @@ public class User {
 	@Column(nullable = false)
 	private String city;
 
-  @NotBlank
+	@NotBlank
 	@Column(nullable = false)
 	private String profile;
 
@@ -83,6 +87,14 @@ public class User {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getEmail() {

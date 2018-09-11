@@ -5,10 +5,10 @@
     <!--<tr>
       <td><a routerLink="users/add">Ajouter nouvel utilisateur</a></td>
     </tr>-->
-    <th>Email</th>
+    <th>Pseudo</th>
     <th colspan="3">Actions</th>
     <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }">
-      <td>{{user.email}}</td>
+      <td>{{user.nickname}}</td>
       <td><a mat-button color="primary" routerLink="infos/{{user.id}}"><mat-icon>face</mat-icon></a></td>
       <td><a mat-button routerLink="update/{{user.id}}"><mat-icon>update</mat-icon></a></td>
       <td><button mat-button color="warn" (click)="deleteUser(user.id)"><mat-icon>delete_outline</mat-icon></button></td>

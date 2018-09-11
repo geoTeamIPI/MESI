@@ -2,6 +2,10 @@
     <h2>Modifier le compte</h2>
     <form (ngSubmit)="onSubmit()">
         <div class="form-group">
+            <label for="pseudo">Pseudo</label>
+            <input type="text" class="form-control" id="nickname" required [(ngModel)]="user.nickname" name="nickname" placeholder="Pseudo">
+        </div>
+        <div class="form-group">
             <label for="email">Email</label>
             <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="email" placeholder="Email">
         </div>

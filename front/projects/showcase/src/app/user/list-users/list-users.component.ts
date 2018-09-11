@@ -40,7 +40,7 @@ export class ListUsersComponent implements OnInit {
   reloadData() {
         this.userService
       .findAllUsers()
-      .subscribe(users => { this.users = users }, err => console.log(err));
+      .subscribe(users => { this.users = users, console.log(this.users)}, err => console.log(err));
       this.router.navigate([this.router.url]);
   }
 }

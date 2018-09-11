@@ -18,12 +18,12 @@
           <td>{{timelapse.comments}}</td>
           <td>{{timelapse.logo}}</td>
           <td>
-            <a mat-button color="primary" routerLink="infos/{{timelapse.id}}">
+            <a mat-button color="primary" routerLink="../infos/{{timelapse.id}}">
               <mat-icon>timelapse</mat-icon>
             </a>
           </td>
           <td *ngIf="isAdmin == true ">
-            <a mat-button routerLink="update/{{timelapse.id}}">
+            <a mat-button routerLink="../update/{{timelapse.id}}">
               <mat-icon>edit</mat-icon>
             </a>
           </td>

@@ -28,17 +28,17 @@ export class CreateTimelapseComponent implements OnInit {
   constructor(private timelapseService: TimelapseService, private route: Router) {}
 
   ngOnInit() {
-    this.controlFormTimelapse();
-    this.createFormTimelapse();
-  }
-
-  createTimelapse() {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
     if (this.currentUser.profile == "admin"){
       this.isAdmin = true;
     } else{
       this.isAdmin = false;
     }
+    this.controlFormTimelapse();
+    this.createFormTimelapse();
+  }
+
+  createTimelapse() {
     this.timelapseService
       .createTimelapse(this.timelapse, this.currentUser.id)
       .subscribe(data => console.log(data), error => console.log(error));

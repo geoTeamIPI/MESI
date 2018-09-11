@@ -18,7 +18,7 @@ export class ListTimelapsesApproveComponent implements OnInit {
   sortDirection: string;
   pagination: any = {};
   currentUser: User; 
-  isAdmin: boolean = false; 
+  isAdmin: boolean = false;  
 
   constructor(private timelapseService: TimelapseService, private route: ActivatedRoute, private router: Router) {}
 

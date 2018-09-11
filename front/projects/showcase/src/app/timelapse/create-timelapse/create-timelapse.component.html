@@ -1,6 +1,6 @@
 <div class="container">
-    <h2 *ngIf="isAdmin == true " class="text-center">Création d'une nouvelle période</h2>
-    <h2 *ngIf="isAdmin == false " class="text-center">Proposition d'une nouvelle période</h2>
+    <h2 *ngIf="isAdmin == true" class="text-center">Création d'une nouvelle période</h2>
+    <h2 *ngIf="isAdmin == false" class="text-center">Proposition d'une nouvelle période</h2>
     <form (ngSubmit)="onSubmit()">
         <div [formGroup]="timelapseForm">
             <div class="form-group col-5 col-sm-12">

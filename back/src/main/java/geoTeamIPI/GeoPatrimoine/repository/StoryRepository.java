@@ -3,6 +3,7 @@ package geoTeamIPI.GeoPatrimoine.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import geoTeamIPI.GeoPatrimoine.entity.Place;
@@ -12,6 +13,9 @@ import geoTeamIPI.GeoPatrimoine.entity.Story;
 public interface StoryRepository extends JpaRepository<Story, Long> {
 
 	List<Story> findByCreatorId(Long idUser);
+
+	@Query("select DISTINCT p.place.id from Story p")
+	List<Long> getAllIds();
 
 	List<Story> findByPlaceIn(List<Place> places);
 

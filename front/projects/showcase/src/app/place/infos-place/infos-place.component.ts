@@ -13,6 +13,8 @@ import { Story } from "../../models/story.model";
 })
 export class InfosPlaceComponent implements OnInit {
   place = new Place();
+  placeIsEmpty = 0;
+  storiesIsEmpty = 0;
   stories: Story[];
   size: number;
   sortProperty: string;
@@ -33,6 +35,8 @@ export class InfosPlaceComponent implements OnInit {
       this.pagination = values;
       console.log(this.pagination);
     });
+    console.log("stories is empty = " + this.storiesIsEmpty);
+    console.log("places is empty = " + this.IsEmpty);
   }
 
   getPlace() {

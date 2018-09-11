@@ -102,6 +102,12 @@ public class PlaceController {
 		return placeService.findAllPlaces(idUser, longitudeSW, latitudeSW, longitudeNE, latitudeNE);
 	}
 
+	// LIST ALL PLACES - ADMIN AND USER MODES
+	@RequestMapping(value = "/compare", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Place> listAllEmptyPlaces() {
+		return placeService.findAllEmptyPlaces();
+	}
+
 	// ------------------------------------ CRUD METHODS ------------------------
 
 	// CREATE A PLACE - ADMIN AND USER MODES

@@ -22,6 +22,7 @@ import { AddStoryComponent } from "./story/add-story/add-story.component";
 import { ListStoriesComponent } from "./story/list-stories/list-stories.component";
 import { CreatePlaceComponent } from "./place/create-place/create-place.component";
 import { ListPlacesComponent } from "./place/list-places/list-places.component";
+import { ListEmptyPlacesComponent } from "./place/list-emptyplaces/list-emptyplaces.component";
 import { ListMyPlacesComponent } from "./place/list-myplaces/list-myplaces.component";
 import { InfosPlaceComponent } from "./place/infos-place/infos-place.component";
 import { UpdatePlaceComponent } from "./place/update-place/update-place.component";
@@ -138,6 +139,10 @@ export const showcaseRoutes: Routes = [
         {
           path: "places/update/:id",
           component: UpdatePlaceComponent
+        },
+        {
+          path: "places/compare",
+          component: ListEmptyPlacesComponent
         }
 
       ]
@@ -177,7 +182,7 @@ export const showcaseRoutes: Routes = [
         {
           path: "places/update/:id",
           component: UpdatePlaceComponent
-        }
+        } 
       ]
     },
     {
@@ -207,6 +212,7 @@ export const showcaseRoutes: Routes = [
     ListStoriesComponent, 
     AddStoryComponent,
     ListPlacesComponent, 
+    ListEmptyPlacesComponent, 
     ListMyPlacesComponent, 
     InfosPlaceComponent,
     CreatePlaceComponent,

@@ -1,5 +1,5 @@
 <div class="container text-center">
-  <h2>Liste des adresses</h2>
+  <h2>Liste des adresses sans adresse</h2>
   <div class="text-center">
     <table table mat-table class="text-center">
       <tr>
@@ -27,17 +27,17 @@
         <td>{{place.dateCreation}}</td>
         <td>{{place.dateUpdate}}</td>
         <td>
-          <a mat-button color="primary" routerLink="infos/{{place.id}}">
+          <a mat-button color="primary" routerLink="../infos/{{place.id}}">
             <mat-icon>place</mat-icon>
           </a>
         </td>
         <td>
-          <a mat-button routerLink="update/{{place.id}}">
+          <a mat-button routerLink="../update/{{place.id}}">
             <mat-icon>edit_location</mat-icon>
           </a>
         </td>
         <td>
-          <button mat-button color="warn" (click)="deletePlace(place.id, i)">
+          <button mat-button color="warn" (click)="deletePlace(place.id,i)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

@@ -6,12 +6,12 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { User } from "../../models/user.model";
 
 @Component({
-  selector: "list-myplaces",
-  templateUrl: "./list-myplaces.component.html",
-  styleUrls: ["./list-myplaces.component.css"]
+  selector: "list-emptyplaces",
+  templateUrl: "./list-emptyplaces.component.html",
+  styleUrls: ["./list-emptyplaces.component.css"]
 })
 
-export class ListMyPlacesComponent implements OnInit {
+export class ListEmptyPlacesComponent implements OnInit {
   places: Place[];
   size: number;
   sortProperty: string; 
@@ -41,10 +41,10 @@ export class ListMyPlacesComponent implements OnInit {
   }
 
   reloadData() {
-    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
         this.placeService
-      .findAllPlacesOfUser(this.currentUser.id)
+      .findAllEmptyPlaces()
       .subscribe(places => { this.places = places }, err => console.log(err));
       this.router.navigate([this.router.url]);
   }
+
 }

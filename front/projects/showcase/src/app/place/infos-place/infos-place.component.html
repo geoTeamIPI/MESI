@@ -2,11 +2,11 @@
   <h2>Détails de l'adresse</h2>
   <div class="text-center">
     <table table mat-table class="text-left">
-      <tr>
+      <tr> 
         <th>Id :</th>
         <td>{{place.id}}</td>
         <td rowspan=10><a mat-button color="primary" routerLink="../../update/{{place.id}}"><mat-icon>edit_location</mat-icon></a></td>
-        <td rowspan=10><mat-icon>location_on</mat-icon> Idée étant de réussir à afficher les coordonnées de ce point sur une carte </td>
+        <td rowspan=10 class="text-center"><img src="./../../../assets/point.jpg" width="500px"> <br/><br/>Actuellement non fonctionnel : idée à long terme étant de réussir à afficher les coordonnées de ce point sur une carte </td>
       </tr>
       <tr>
         <th>Longitude :</th>
@@ -34,7 +34,7 @@
       </tr>
       <tr>
         <th>Créateur :</th>
-        <td>{{place.creator}} <!--<button mat-button color="warn" (click)="getUser(place.creator)"><mat-icon>account_circle</mat-icon></button>-->
+        <td>{{place.creator}} <br/>
           <a mat-button color="primary" routerLink="../../../users/infos/{{place.creator}}"><mat-icon>account_circle</mat-icon></a>
         </td>
       </tr>

@@ -55,6 +55,10 @@ export class PlaceService {
     });
   }
 
+  public findAllEmptyPlaces(){
+    return this.http.get<Place[]>(this.placesUrl + "/compare"); 
+  }
+
 // ----------------------------------------------- COUNT PLACES METHODS ---------------
 
   public countAllPlaces(){

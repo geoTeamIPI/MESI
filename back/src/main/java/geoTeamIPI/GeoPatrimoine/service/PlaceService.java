@@ -1,6 +1,7 @@
 package geoTeamIPI.GeoPatrimoine.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import geoTeamIPI.GeoPatrimoine.entity.Place;
 import geoTeamIPI.GeoPatrimoine.repository.PlaceRepository;
+import geoTeamIPI.GeoPatrimoine.repository.StoryRepository;
 import geoTeamIPI.GeoPatrimoine.repository.UserRepository;
 
 @Service
@@ -17,6 +19,9 @@ public class PlaceService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private StoryRepository storyRepository;
 
 	public Place findById(Long id) {
 		return placeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Failed to get a place with the id=" + id + "!!!"));
@@ -53,6 +58,24 @@ public class PlaceService {
 				.findByCreatorAndLongitudeGreaterThanAndLatitudeGreaterThanAndLongitudeLessThanAndLatitudeLessThan(idUser,
 						longitudeSW,
 						latitudeSW, longitudeNE, latitudeNE);
+	}
+
+	public List<Place> findAllEmptyPlaces() {
+		List<Long> storiesIds = storyRepository.getAllIds();
+		List<Long> placesIds = placeRepository.getAllIds();
+		List<Long> missingsIds = new ArrayList<>();
+		for (Long place : placesIds) {
+			boolean found = false;
+			for (Long story : storiesIds) {
+				if (place.equals(story)) {
+					found = true;
+				}
+			}
+			if (found == false) {
+				missingsIds.add(place);
+			}
+		}
+		return placeRepository.findByIdIn(missingsIds);
 	}
 
 	// ------------------------------------ CRUD METHODS ------------------------

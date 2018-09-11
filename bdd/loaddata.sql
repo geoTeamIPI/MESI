@@ -66,16 +66,21 @@ INSERT INTO `types` (`id`, `name`, `typeParent_id`) VALUES
 -- Contenu de la table `timelapses`
 --
 
-INSERT INTO `timelapses` (`id`, `period`, `starting_year`, `ending_year`) VALUES
-(1, 'Antiquité', -3500, 476),
-(2, 'Renaissance', 1300, 1600),
-(3, 'Révolution industrielle', 1769, 1939),
-(4, 'Première guerre mondiale', 1914, 1918),
-(5, 'Deuxième guerre mondiale', 1939, 1945),
-(6, 'Troisième guerre mondiale', 2025, 2075),
-(7, 'Préhistoire', -2800000, -3500),
-(8, 'Moyen-Age', 476, 1492),
-(9, 'Temps modernes', 1945, NULL);
+INSERT INTO `timelapses` (`id`, `period`, `startingYear`, `endingYear`, `comments`, `isapproved`, `logo`) VALUES
+(1, 'Antiquité', -3500, 476, null, true, null),
+(2, 'Renaissance', 1300, 1600, null, true, null),
+(3, 'Révolution industrielle', 1769, 1939, null, true, null),
+(4, 'Première guerre mondiale', 1914, 1918, null, true, null),
+(5, 'Deuxième guerre mondiale', 1939, 1945, null, true, null),
+(6, 'Troisième guerre mondiale', 2025, 2075, null, true, null),
+(7, 'Préhistoire', -2800000, -3500, null, true, null),
+(8, 'Moyen-Age', 476, 1492, null, true, null),
+(9, 'Temps modernes', 1945, NULL, null, true, null),
+(10, 'Test 1', 0, NULL, null, true, null),
+(11, 'Test 2', 0, NULL, null, true, null),
+(12, 'Test 1', 0, NULL, null, false, null),
+(13, 'Test 2', 0, NULL, null, false, null);
+
 
 
 

@@ -91,8 +91,11 @@ CREATE TABLE `stories` (
 CREATE TABLE `timelapses` (
   `id` bigint(10) NOT NULL,
   `period` varchar(255) NOT NULL,
-  `starting_year` int(10) NOT NULL,
-  `ending_year` int(10) DEFAULT NULL
+  `startingYear` int(10) NOT NULL,
+  `endingYear` int(10) DEFAULT NULL,
+  `comments` varchar(255) DEFAULT NULL,
+  `isapproved` varchar(255) DEFAULT false,
+  `logo` boolean DEFAULT null
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 

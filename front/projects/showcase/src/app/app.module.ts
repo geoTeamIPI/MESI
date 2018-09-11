@@ -170,6 +170,12 @@ export const showcaseRoutes: Routes = [
         },
         { path: "timelapses/approve", 
           component: ListTimelapsesApproveComponent
+        },
+        { path: "timelapses/update/:id", 
+          component: UpdateTimelapseComponent
+        },
+        { path: "timelapses/infos/:id", 
+          component: InfosTimelapseComponent
         }
       ]
     }, 
@@ -225,6 +231,12 @@ export const showcaseRoutes: Routes = [
         },
         { path: "timelapses/add", 
           component: CreateTimelapseComponent
+        },
+        { path: "timelapses/update/:id", 
+          component: UpdateTimelapseComponent
+        },
+        { path: "timelapses/infos/:id", 
+          component: InfosTimelapseComponent
         }
       ]
     },
@@ -273,7 +285,8 @@ export const showcaseRoutes: Routes = [
     ListTimelapsesComponent,
     ListTimelapsesApproveComponent,
     InfosTimelapseComponent,
-    UpdateTimelapseComponent
+    UpdateTimelapseComponent,
+    
   ],
   imports: [ 
     BrowserModule,

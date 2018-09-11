@@ -61,7 +61,7 @@ export const DEMO_ROUTES: Routes = [
     component: DemoIndexComponent,
     children: [
       { path: 'edit/:demoUrl', component: StackblitzEditComponent, canActivate: [StackblitzEditGuard] },
-      { path: 'display-map', component: DisplayMapComponent, data: { label: 'Show Stories MAP', cat: Category.STORIES } },
+      { path: 'display-map-old', component: DisplayMapComponent, data: { label: 'Show Stories MAP', cat: Category.STORIES } },
       { path: 'create-new-place', component: NgxDragAMarkerComponent, data: { label: 'Create a new place', cat: Category.STORIES } },
       //{ path: 'create-story', component: DisplayPlaceComponent, data: { label: 'Show places MAP', cat: Category.STORIES } }
       //{ path: 'update-story', component: UpdateStoryComponent}
@@ -85,7 +85,7 @@ export const DEMO_ROUTES: Routes = [
       // { path: 'navigation', component: NavigationComponent, data: { label: 'Display map navigation controls', cat: Category.CONTROLS_AND_OVERLAYS } },
       // { path: 'locate-user', component: LocateUserComponent, data: { label: 'Locate the user', cat: Category.CONTROLS_AND_OVERLAYS } },
       // { path: 'attribution-position', component: AttributionPositionComponent, data: { label: 'Change the default position for attribution', cat: Category.CONTROLS_AND_OVERLAYS } },
-      // { path: 'ngx-scale-control', component: NgxScaleControlComponent, data: { label: '[NGX] Show scale information', cat: Category.CONTROLS_AND_OVERLAYS } },
+       { path: 'ngx-scale-control', component: NgxScaleControlComponent, data: { label: '[NGX] Show scale information', cat: Category.STORIES  } },
       // { path: 'ngx-custom-control', component: NgxCustomControlComponent, data: { label: '[NGX] Add a custom control', cat: Category.CONTROLS_AND_OVERLAYS } },
       // { path: 'interactive-false', component: InteractiveFalseComponent, data: { label: 'Display a non-interactive map', cat: Category.USER_INTERACTION } },
       // { path: 'language-switch', component: LanguageSwitchComponent, data: { label: 'Change a map\'s language', cat: Category.USER_INTERACTION } },
@@ -93,7 +93,7 @@ export const DEMO_ROUTES: Routes = [
       // { path: 'ngx-drag-a-point', component: NgxDragAPointComponent, data: { label: '[NGX] Create a draggable point', cat: Category.USER_INTERACTION } },
       // { path: 'ngx-drag-a-marker', component: NgxDragAMarkerComponent, data: { label: '[NGX] Create a draggable marker', cat: Category.USER_INTERACTION } },
       // { path: 'hover-styles', component: HoverStylesComponent, data: { label: 'Create a hover effect', cat: Category.USER_INTERACTION } },
-      // { path: 'popup-on-click', component: PopupOnClickComponent, data: { label: 'Display a popup on click', cat: Category.CONTROLS_AND_OVERLAYS } },
+       { path: 'display-map', component: PopupOnClickComponent, data: { label: 'Display a popup on click', cat: Category.STORIES } },
       // { path: 'zoomto-linestring', component: ZoomtoLinestringComponent, data: { label: 'Fit to the bounds of a LineString', cat: Category.USER_INTERACTION } },
       // { path: 'ngx-marker-cluster', component: NgxMarkerClusterComponent, data: { label: '[NGX] Create a clusters of html markers', cat: Category.CONTROLS_AND_OVERLAYS } },
       // { path: 'mapbox-gl-geocoder', component: MapboxGlGeocoderComponent, data: { label: 'Add a geocoder', cat: Category.CONTROLS_AND_OVERLAYS } },

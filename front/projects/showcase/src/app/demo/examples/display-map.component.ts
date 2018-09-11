@@ -150,4 +150,5 @@ export class DisplayMapComponent implements OnInit {
       id: feature.properties.cluster_id!
     };
   }
+
 }

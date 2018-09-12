@@ -10,3 +10,8 @@ body {
   min-height: 100vh;
   flex-direction: column;
 }
+
+mapboxgl-popup-content{
+  height: 10px ;
+  width: 10px ;
+}

@@ -9,8 +9,8 @@
             <th>Créateur</th>
             <th>Type</th>
             <th>Période</th>
-          <th *ngIf="isAdmin" colspan="3">Actions</th>
-          <th *ngIf="!isAdmin">Afficher</th>
+          <th *ngIf="isAdmin == 'admin'" colspan="3">Actions</th>
+          <th *ngIf="isAdmin != 'admin'">Afficher</th>
         </tr>
         <tr *ngFor="let story of stories | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
             <td>{{story.id}}</td>
@@ -24,12 +24,12 @@
               <mat-icon>chat_bubble_outline</mat-icon>
             </a>
           </td>
-          <td *ngIf="isAdmin">
-            <a mat-button routerLink="update/{{story.id}}">
+          <td *ngIf="isAdmin == 'admin'">
+            <a mat-button routerLink="/account/admin/stories/update/{{story.id}}">
               <mat-icon>chat</mat-icon>
             </a>
           </td>
-          <td *ngIf="isAdmin">
+          <td *ngIf="isAdmin == 'admin'">
             <button mat-button color="warn" (click)="deleteStory(story.id, i)">
               <mat-icon>delete</mat-icon>
             </button>

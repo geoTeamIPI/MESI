@@ -123,6 +123,10 @@ export const showcaseRoutes: Routes = [
     component: ListStoriesComponent
   },
   {
+    path: "noaccount/display/stories/infos/:id",
+    component: InfosStoryComponent
+  },
+  {
     path: "account/admin", component: AdminComponent,
     canActivate: [AdminGuards],
     children: [

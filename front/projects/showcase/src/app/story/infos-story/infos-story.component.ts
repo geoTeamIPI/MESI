@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { StoryService } from "../../services/story.service";
 import { Story } from "../../models/story.model";
-import { ActivatedRoute, Router } from "@angular/router";
-import { UserService } from "../../services/user.service";
+import { ActivatedRoute } from "@angular/router";
 import { User } from "../../models/user.model";
 
 
@@ -19,23 +18,23 @@ export class InfosStoryComponent implements OnInit {
   sortProperty: string;
   sortDirection: string;
   pagination: any = {};
-  isAdmin: boolean = false; 
+  isAdmin: string = "notConnected"; 
   currentUser : User; 
 
   constructor(
     private storyService: StoryService,
-    private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
   ) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
     if (this.currentUser.profile == "admin"){
-      this.isAdmin = true;
+      this.isAdmin = "admin";
+    } else if (this.currentUser.profile == "user") {
+      this.isAdmin = "user";
     } else{
-      this.isAdmin = false;
-    } 
+      this.isAdmin = "notConnected";
+    }
     this.getStory();
     this.route.queryParams.subscribe(values => {
       this.pagination = values;

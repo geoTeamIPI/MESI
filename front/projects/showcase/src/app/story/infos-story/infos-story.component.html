@@ -5,8 +5,8 @@
       <tr>
         <th>Id :</th>
         <td>{{story.id}}</td>
-        <td *ngIf="isAdmin" rowspan=12>
-          <a mat-button color="primary" routerLink="../../update/{{story.id}}">
+        <td *ngIf="isAdmin == 'admin'" rowspan=12>
+          <a mat-button color="primary" routerLink="/account/admin/stories/update/{{story.id}}">
             <mat-icon>edit_location</mat-icon>
           </a>
         </td>
@@ -26,10 +26,10 @@
       <tr>
         <th>Créateur :</th>
         <td>{{story.creator.nickname}}
-          <a *ngIf="isAdmin" mat-button color="primary" routerLink="../../../users/infos/{{story.creator.id}}">
+          <a *ngIf="isAdmin == 'admin'" mat-button color="primary" routerLink="/account/admin/users/infos/{{story.creator.id}}">
             <mat-icon>account_circle</mat-icon>
           </a>
-          <a *ngIf="!isAdmin" mat-button color="primary" routerLink="../../../users/infos/public/{{story.creator.id}}">
+          <a *ngIf="isAdmin == 'user'" mat-button color="primary" routerLink="/account/user/users/infos/public/{{story.creator.id}}">
             <mat-icon>account_circle</mat-icon>
           </a>
         </td>
@@ -38,7 +38,10 @@
         <th>Adresse:</th>
         <td>Longitude {{story.place.longitude}}
           <br/> Latitude {{story.place.latitude}}
-          <a mat-button color="primary" routerLink="../../../places/infos/{{story.place.id}}">
+          <a *ngIf="isAdmin == 'admin'" mat-button color="primary" routerLink="/account/admin/places/infos/{{story.place.id}}">
+            <mat-icon>place</mat-icon>
+          </a>
+          <a *ngIf="isAdmin == 'user'" mat-button color="primary" routerLink="/account/user/places/infos/{{story.place.id}}">
             <mat-icon>place</mat-icon>
           </a>
         </td>
@@ -46,7 +49,10 @@
       <tr>
         <th>Type de patrimoine :</th>
         <td>{{story.type.name}}
-          <a mat-button color="primary" routerLink="../../../types/infos/{{story.type.id}}">
+          <a *ngIf="isAdmin == 'admin'" mat-button color="primary" routerLink="/account/admin/types/infos/{{story.type.id}}">
+            <mat-icon>account_balance</mat-icon>
+          </a>
+          <a *ngIf="isAdmin == 'user'" mat-button color="primary" routerLink="/account/user/types/infos/{{story.type.id}}">
             <mat-icon>account_balance</mat-icon>
           </a>
         </td>
@@ -54,7 +60,10 @@
       <tr>
         <th>Période historique :</th>
         <td>{{story.timelapse.period}}
-          <a mat-button color="primary" routerLink="../../../timelapses/infos/{{story.timelapse.id}}">
+          <a *ngIf="isAdmin == 'admin'" mat-button color="primary" routerLink="/account/admin/timelapses/infos/{{story.timelapse.id}}">
+            <mat-icon>timelapse</mat-icon>
+          </a>
+          <a *ngIf="isAdmin == 'user'" mat-button color="primary" routerLink="/account/user/timelapses/infos/{{story.timelapse.id}}">
             <mat-icon>timelapse</mat-icon>
           </a>
         </td>

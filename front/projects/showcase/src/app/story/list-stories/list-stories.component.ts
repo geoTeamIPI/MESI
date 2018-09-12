@@ -17,7 +17,7 @@ export class ListStoriesComponent implements OnInit {
   sortProperty: string; 
   sortDirection: string;
   pagination: any = {};
-  isAdmin: boolean = false; 
+  isAdmin: string = "notConnected"; 
   currentUser : User; 
 
   constructor(private storyService: StoryService, private route: ActivatedRoute, private router: Router) {}
@@ -25,9 +25,11 @@ export class ListStoriesComponent implements OnInit {
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
     if (this.currentUser.profile == "admin"){
-      this.isAdmin = true;
+      this.isAdmin = "admin";
+    } else if (this.currentUser.profile == "user") {
+      this.isAdmin = "user";
     } else{
-      this.isAdmin = false;
+      this.isAdmin = "notConnected";
     }
     this.reloadData();
     this.route.queryParams.subscribe(values => {

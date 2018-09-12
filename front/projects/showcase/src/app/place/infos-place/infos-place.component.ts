@@ -3,6 +3,7 @@ import { PlaceService } from "../../services/place.service";
 import { Place } from "../../models/place.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { StoryService } from "../../services/story.service";
+import { UserService } from "../../services/user.service";
 import { Story } from "../../models/story.model";
 import { User } from "../../models/user.model";
 
@@ -14,6 +15,7 @@ import { User } from "../../models/user.model";
 })
 export class InfosPlaceComponent implements OnInit {
   place = new Place();
+  user = new User();
   stories: Story[];
   size: number;
   sortProperty: string;
@@ -25,6 +27,7 @@ export class InfosPlaceComponent implements OnInit {
   constructor(
     private placeService: PlaceService,
     private storyService: StoryService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -36,6 +39,7 @@ export class InfosPlaceComponent implements OnInit {
     } else{
       this.isAdmin = false;
     }
+    this.getUser()
     this.getPlace();
     this.reloadData();
     this.route.queryParams.subscribe(values => {
@@ -61,5 +65,16 @@ export class InfosPlaceComponent implements OnInit {
       .findAllStoriesByPlaceById(id)
       .subscribe(stories => { this.stories = stories }, err => console.log(err));
     this.router.navigate([this.router.url]);
+  }
+
+  getUser() {
+    const id = +this.route.snapshot.paramMap.get("id");
+    this.userService.getUser(id)
+      .subscribe(
+        user => {
+          this.user = user;
+        },
+        err => console.log(err)
+      );
   }
 }

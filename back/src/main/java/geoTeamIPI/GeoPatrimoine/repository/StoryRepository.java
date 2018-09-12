@@ -12,8 +12,6 @@ import geoTeamIPI.GeoPatrimoine.entity.Story;
 @Repository
 public interface StoryRepository extends JpaRepository<Story, Long> {
 
-	List<Story> findByCreatorId(Long idUser);
-
 	@Query("select DISTINCT p.place.id from Story p")
 	List<Long> getAllIds();
 
@@ -24,6 +22,8 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 	List<Story> findByTimelapseId(Long idTimelapse);
 
 	List<Story> findByTypeId(Long idType);
+
+	List<Story> findByCreatorId(Long idCreator);
 
 	List<Story> findByCreatorIdAndPlaceIn(Long idUser, List<Place> places);
 

@@ -16,11 +16,19 @@ export class ListUsersComponent implements OnInit {
   sortProperty: string; 
   sortDirection: string;
   pagination: any = {};
+  isAdmin: boolean = false; 
+  currentUser : User;
 
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
+    if (this.currentUser.profile == "admin"){
+      this.isAdmin = true;
+    } else{
+      this.isAdmin = false;
+    }
     this.reloadData();
     this.route.queryParams.subscribe(values => {
       this.pagination = values; 
@@ -28,13 +36,13 @@ export class ListUsersComponent implements OnInit {
     });
   }
 
-  deleteUser(id: number) {
+  deleteUser(id: number, index : number) {
     if (confirm("Etes-vous sûr de vouloir supprimer cet utilisateur") == true) {
       this.userService
         .deleteUser(id)
         .subscribe(data => console.log(), err => console.log(err));
+        this.users.splice(index, 1);
     }
-    this.reloadData();
   }
 
   reloadData() {

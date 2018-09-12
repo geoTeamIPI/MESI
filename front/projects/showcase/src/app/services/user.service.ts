@@ -50,6 +50,6 @@ export class UserService {
   }
 
   public registeringAccount(user: User){
-      return this.http.post<User>(this.usersUrl + "/registering", user);
+      return this.http.post<User>(this.userUrl + "/registering", user);
   }
 }

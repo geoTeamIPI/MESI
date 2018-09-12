@@ -7,7 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { routerReducer, RouterReducerState, RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import 'hammerjs'; 
+import 'hammerjs';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { environment } from '../environments/environment';
 import { DEMO_ROUTES, DemoModule } from './demo/demo.module';
@@ -38,15 +38,15 @@ import { UpdateTimelapseComponent } from "./timelapse/update-timelapse/update-ti
 import { CreateTypeComponent } from "./type/create-type/create-type.component";
 import { ProposeTypeComponent } from "./type/propose-type/propose-type.component";
 import { ListTypesComponent } from "./type/list-types/list-types.component";
-import { ListTypesApproveComponent } from "./type/list-typesapprove/list-typesapprove.component"; 
+import { ListTypesApproveComponent } from "./type/list-typesapprove/list-typesapprove.component";
 import { InfosTypeComponent } from "./type/infos-type/infos-type.component";
 import { UpdateTypeComponent } from "./type/update-type/update-type.component";
 
 import { ListUsersComponent } from "./user/list-users/list-users.component";
 import { CreateUserComponent } from "./user/create-user/create-user.component";
-import { InfosUsersComponent } from "./user/infos-users/infos-users.component";
+import { InfosUserComponent } from "./user/infos-user/infos-user.component";
 import { InfosUserPublicComponent } from "./user/infos-userpublic/infos-userpublic.component";
-import { UpdateUserComponent } from "./user/update-user/update-user.component";
+import { UpdateUserComponent } from "./user/update-user/update-user.component"; 
 
 import { LoginComponent } from "./login/login.component";
 import { LogoutComponent } from "./logout/logout.component";
@@ -58,6 +58,7 @@ import { RegisteringAccountComponent } from "./user/registering-account/register
 import { MatchPasswordValidatorDirective } from './user/match-password-validator.directive';
 
 import { InfosAccountComponent } from "./user/infos-account/infos-account.component";
+import { InfosPublicAccountComponent } from "./user/infos-publicaccount/infos-publicaccount.component";
 import { UpdateAccountComponent } from "./user/update-account/update-account.component";
 
 import { NotFoundComponent } from "./not-found/not-found.component";
@@ -95,8 +96,8 @@ export class SimpleSerializer implements RouterStateSerializer<RouterStateUrl> {
 }
 
 export const showcaseRoutes: Routes = [
-  { 
-    path: 'demo',  
+  {
+    path: 'demo',
     children: DEMO_ROUTES
   },
   {
@@ -111,201 +112,244 @@ export const showcaseRoutes: Routes = [
     path: 'doc',
     loadChildren: './doc/doc.module#DocModule'
   },
-  { path: "logout", component: LogoutComponent }, 
+  { path: "logout", component: LogoutComponent },
 
-  { path: "login", component: LoginComponent }, 
-  { path: "account/admin", component: AdminComponent, 
+  { path: "login", component: LoginComponent },
+  {
+    path: "noaccount/display/stories",
+    component: ListStoriesComponent
+  },
+  {
+    path: "account/admin", component: AdminComponent,
     canActivate: [AdminGuards],
     children: [
-          { path: "users",
-           component: ListUsersComponent, 
-          },
-          { path: "users/add", 
-            component: CreateUserComponent,
-          },
-          { path: "users/infos/:id", 
-            component: InfosUsersComponent, 
-          },
-          { path: "users/infos/public/:id", 
-            component: InfosUserPublicComponent, 
-          },
-          { path: "users/update/:id", 
-            component: UpdateUserComponent,     
-          }, 
-          {
-            path: "infos", 
-            component: InfosAccountComponent
-          }, 
-          {
-          path: "update",
-          component: UpdateAccountComponent
-          }, 
-        {
-          path: "stories",
-          component: ListStoriesComponent
-        },
-        {
-          path: "stories/add",
-          component: AddStoryComponent
-        },
-        {
-          path: "places",
-          component: ListPlacesComponent
-        },
-        { path: "places/infos/:id", 
-          component: InfosPlaceComponent, 
-        },
-        {
-          path: "places/user",
-          component: ListMyPlacesComponent
-        },
-        {
-          path: "places/add",
-          component: CreatePlaceComponent
-        },
-        {
-          path: "places/update/:id",
-          component: UpdatePlaceComponent
-        },
-        {
-          path: "places/compare",
-          component: ListEmptyPlacesComponent
-        },
-        { path: "timelapses",
-           component: ListTimelapsesComponent 
-        },
-        { path: "timelapses/add", 
-          component: CreateTimelapseComponent
-        },
-        { path: "timelapses/approve", 
-          component: ListTimelapsesApproveComponent
-        },
-        { path: "timelapses/update/:id", 
-          component: UpdateTimelapseComponent
-        },
-        { path: "timelapses/infos/:id", 
-          component: InfosTimelapseComponent
-        },
-        { path: "types",
-           component: ListTypesComponent 
-        },
-        { path: "types/add", 
-          component: CreateTypeComponent
-        },
-        { path: "types/approve", 
-          component: ListTypesApproveComponent
-        },
-        { path: "types/update/:id", 
-          component: UpdateTypeComponent
-        },
-        { path: "types/infos/:id", 
-          component: InfosTypeComponent
-        }
-      ]
-    }, 
-    {
-      path: "account/user", 
-      component: NormalComponent, 
-      canActivate: [UserGuards], 
-      children: [
-        {
-          path: "infos", 
-          component: InfosAccountComponent
-        }, 
-        { 
-          path: "update",
-          component: UpdateAccountComponent
-        }, 
-        {
-          path: "stories",
-          component: ListStoriesComponent
-        },
-        {
-          path: "stories/add",
-          component: AddStoryComponent
-        },
-        {
-          path: "places",
-          component: ListPlacesComponent
-        },
-        { path: "places/infos/:id", 
-          component: InfosPlaceComponent 
-        },
-        {
-          path: "places/user",
-          component: ListMyPlacesComponent
-        },
-        {
-          path: "places/add",
-          component: CreatePlaceComponent
-        },
-        {
-          path: "places/update/:id",
-          component: UpdatePlaceComponent
-        },
-        {
-          path: "places/compare",
-          component: ListEmptyPlacesComponent
-        },
-        { path: "users/infos/public/:id", 
-          component: InfosUserPublicComponent 
-        },
-        { path: "timelapses",
-           component: ListTimelapsesComponent 
-        },
-        { path: "timelapses/add", 
-          component: ProposeTimelapseComponent
-        },
-        { path: "timelapses/update/:id", 
-          component: UpdateTimelapseComponent
-        },
-        { path: "timelapses/infos/:id", 
-          component: InfosTimelapseComponent
-        },
-        { path: "types",
-           component: ListTypesComponent 
-        },
-        { path: "types/add", 
-          component: ProposeTypeComponent
-        },
-        { path: "types/update/:id", 
-          component: UpdateTypeComponent
-        },
-        { path: "types/infos/:id", 
-          component: InfosTypeComponent
-        }
-      ] 
-    },
-    {
-      path: "registering", 
-      component: RegisteringAccountComponent
-    }, 
-    {
-      path: "404", 
-      component: NotFoundComponent
-    }, 
-    {
-      path: "**", 
-      redirectTo: "404"
-    },
+      {
+        path: "users",
+        component: ListUsersComponent,
+      },
+      {
+        path: "users/add",
+        component: CreateUserComponent,
+      },
+      {
+        path: "users/infos/:id",
+        component: InfosUserComponent,
+      },
+      {
+        path: "users/infos/public/:id",
+        component: InfosUserPublicComponent,
+      },
+      {
+        path: "users/update/:id",
+        component: UpdateUserComponent,
+      },
+      {
+        path: "infos",
+        component: InfosAccountComponent
+      },
+      {
+        path: "infos/public",
+        component: InfosPublicAccountComponent
+      },
+      {
+        path: "update",
+        component: UpdateAccountComponent
+      },
+      {
+        path: "stories",
+        component: ListStoriesComponent
+      },
+      {
+        path: "stories/add",
+        component: AddStoryComponent
+      },
+      {
+        path: "places",
+        component: ListPlacesComponent
+      },
+      {
+        path: "places/infos/:id",
+        component: InfosPlaceComponent,
+      },
+      {
+        path: "places/user",
+        component: ListMyPlacesComponent
+      },
+      {
+        path: "places/add",
+        component: CreatePlaceComponent
+      },
+      {
+        path: "places/update/:id",
+        component: UpdatePlaceComponent
+      },
+      {
+        path: "places/compare",
+        component: ListEmptyPlacesComponent
+      },
+      {
+        path: "timelapses",
+        component: ListTimelapsesComponent
+      },
+      {
+        path: "timelapses/add",
+        component: CreateTimelapseComponent
+      },
+      {
+        path: "timelapses/approve",
+        component: ListTimelapsesApproveComponent
+      },
+      {
+        path: "timelapses/update/:id",
+        component: UpdateTimelapseComponent
+      },
+      {
+        path: "timelapses/infos/:id",
+        component: InfosTimelapseComponent
+      },
+      {
+        path: "types",
+        component: ListTypesComponent
+      },
+      {
+        path: "types/add",
+        component: CreateTypeComponent
+      },
+      {
+        path: "types/approve",
+        component: ListTypesApproveComponent
+      },
+      {
+        path: "types/update/:id",
+        component: UpdateTypeComponent
+      },
+      {
+        path: "types/infos/:id",
+        component: InfosTypeComponent
+      }
+    ]
+  },
+  {
+    path: "account/user",
+    component: NormalComponent,
+    canActivate: [UserGuards],
+    children: [
+      {
+        path: "infos",
+        component: InfosAccountComponent
+      },
+      {
+        path: "infos/public",
+        component: InfosPublicAccountComponent
+      },
+      {
+        path: "update",
+        component: UpdateAccountComponent
+      },
+      {
+        path: "stories",
+        component: ListStoriesComponent
+      },
+      {
+        path: "stories/add",
+        component: AddStoryComponent
+      },
+      {
+        path: "places",
+        component: ListPlacesComponent
+      },
+      {
+        path: "places/infos/:id",
+        component: InfosPlaceComponent
+      },
+      {
+        path: "places/user",
+        component: ListMyPlacesComponent
+      },
+      {
+        path: "places/add",
+        component: CreatePlaceComponent
+      },
+      {
+        path: "places/update/:id",
+        component: UpdatePlaceComponent
+      },
+      {
+        path: "places/compare",
+        component: ListEmptyPlacesComponent
+      },
+      {
+        path: "users",
+        component: ListUsersComponent,
+      },
+      {
+        path: "users/infos/public/:id",
+        component: InfosUserPublicComponent,
+      },
+      {
+        path: "timelapses",
+        component: ListTimelapsesComponent
+      },
+      {
+        path: "timelapses/add",
+        component: ProposeTimelapseComponent
+      },
+      {
+        path: "timelapses/update/:id",
+        component: UpdateTimelapseComponent
+      },
+      {
+        path: "timelapses/infos/:id",
+        component: InfosTimelapseComponent
+      },
+      {
+        path: "types",
+        component: ListTypesComponent
+      },
+      {
+        path: "types/add",
+        component: ProposeTypeComponent
+      },
+      {
+        path: "types/update/:id",
+        component: UpdateTypeComponent
+      },
+      {
+        path: "types/infos/:id",
+        component: InfosTypeComponent
+      }
+    ]
+  },
+  {
+    path: "registering",
+    component: RegisteringAccountComponent
+  },
+  {
+    path: "404",
+    component: NotFoundComponent
+  },
+  {
+    path: "**",
+    redirectTo: "404"
+  },
   { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
     IndexComponent,
-    HomeIndexComponent, 
-    NotFoundComponent,  
+    HomeIndexComponent,
+    NotFoundComponent,
     CreateUserComponent,
-    InfosUsersComponent,
+    InfosUserComponent,
     InfosUserPublicComponent,
     ListUsersComponent,
     UpdateUserComponent,
-    ListStoriesComponent, 
+    ListStoriesComponent,
     AddStoryComponent,
-    ListPlacesComponent, 
-    ListEmptyPlacesComponent, 
-    ListMyPlacesComponent, 
+    ListPlacesComponent,
+    ListEmptyPlacesComponent,
+    ListMyPlacesComponent,
     InfosPlaceComponent,
     CreatePlaceComponent,
     UpdatePlaceComponent,
@@ -314,6 +358,7 @@ export const showcaseRoutes: Routes = [
     AdminComponent,
     NormalComponent,
     InfosAccountComponent,
+    InfosPublicAccountComponent,
     UpdateAccountComponent,
     RegisteringAccountComponent,
     MatchPasswordValidatorDirective,
@@ -330,7 +375,7 @@ export const showcaseRoutes: Routes = [
     InfosTypeComponent,
     UpdateTypeComponent,
   ],
-  imports: [ 
+  imports: [
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
@@ -341,7 +386,7 @@ export const showcaseRoutes: Routes = [
     StoreModule.forRoot({
       router: <any>routerReducer
     }),
-    RouterModule.forRoot(showcaseRoutes, {enableTracing: true}),
+    RouterModule.forRoot(showcaseRoutes, { enableTracing: true }),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot({
@@ -353,15 +398,15 @@ export const showcaseRoutes: Routes = [
   ],
   providers: [
     UserService,
-    StoryService, 
-    PlaceService, 
+    StoryService,
+    PlaceService,
     TimelapseService,
     TypeService,
     AuthenticationService,
     { provide: RouterStateSerializer, useClass: SimpleSerializer }
   ],
-  bootstrap: [IndexComponent], 
-  schemas: [ NO_ERRORS_SCHEMA ]
+  bootstrap: [IndexComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule {
   constructor(

@@ -129,6 +129,14 @@ export class StoryService {
     );
   }
 
+  public findAllStoriesByCreatorById(
+    idCreator: number 
+    ): Observable<any>{
+    return this.http.get<Story[]>(this.storiesUrl + "/creatorId" 
+    + "?" + "idCreator=" + idCreator
+    );
+  }
+
 // ----------------------------------------------- COUNT STORIES METHODS ---------------
 
   public countAllStories(){

@@ -3,17 +3,17 @@
   <div class="text-center">
     <table table mat-table class="text-center">
       <tr> 
-        <th *ngIf="isAdmin == true ">Id</th>
+        <th *ngIf="isAdmin">Id</th>
         <th>Périodes historiques</th>
         <th>Dates de début</th>
         <th>Dates de fin</th>
         <th>Commentaires</th>
         <th>Couleurs</th>
-        <th *ngIf="isAdmin == true " colspan="3">Actions</th>
-        <th *ngIf="isAdmin == false ">Afficher</th>
+        <th *ngIf="isAdmin" colspan="3">Actions</th>
+        <th *ngIf="!isAdmin">Afficher</th>
       </tr>
       <tr *ngFor="let timelapse of timelapses | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
-        <td *ngIf="isAdmin == true ">{{timelapse.id}}</td>
+        <td *ngIf="isAdmin">{{timelapse.id}}</td>
         <td>{{timelapse.period}}</td>
         <td>{{timelapse.startingYear}}</td>
         <td>{{timelapse.endingYear}}</td>
@@ -24,12 +24,12 @@
             <mat-icon>timelapse</mat-icon>
           </a>
         </td>
-        <td *ngIf="isAdmin == true ">
+        <td *ngIf="isAdmin">
           <a mat-button routerLink="update/{{timelapse.id}}">
             <mat-icon>edit</mat-icon>
           </a>
         </td>
-        <td *ngIf="isAdmin == true ">
+        <td *ngIf="isAdmin">
           <button mat-button color="warn" (click)="deleteTimelapse(timelapse.id, i)">
             <mat-icon>delete</mat-icon>
           </button>

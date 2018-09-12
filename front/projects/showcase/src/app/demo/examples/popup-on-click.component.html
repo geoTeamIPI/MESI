@@ -1,0 +1,58 @@
+
+  <mgl-map
+    [style]="'mapbox://styles/mapbox/streets-v9'"
+    [zoom]="[3]"
+    [center]="[4.827420, 45.779557]"
+    [cursorStyle]="cursorStyle"
+  >
+  <mgl-control
+  mglGeocoder
+  [searchInput]="'Lyon'"
+></mgl-control>
+<mgl-geojson-source
+      id="earthquakes"
+      [data]="earthquakes"
+    ></mgl-geojson-source>
+    <mgl-control
+      mglGeolocate
+      [positionOptions]="{
+        enableHighAccuracy: true
+      }"
+      [trackUserLocation]="true"
+    ></mgl-control>
+    <mgl-layer
+      id="earthquakes"
+      source="earthquakes"
+      type="symbol"
+      [layout]="{
+        'icon-image': '{icon}-15',
+        'icon-allow-overlap': true
+      }"
+      (click)="onClick($event)"
+      (mouseEnter)="cursorStyle = 'pointer'"
+      (mouseLeave)="cursorStyle = ''"
+    ></mgl-layer>
+    <mgl-popup
+      *ngIf="selectedPoint"
+      [lngLat]="selectedPoint.geometry?.coordinates"
+    >
+      <div style="text-align: center; border-bottom: 2px solid red; text-transform: uppercase"><span [innerHTML]="selectedPoint.properties.Title" style="font-size: larger;"></span><br></div>
+      
+      <br><span style="font-size: larger ;">Type : </span>
+      <span [innerHTML]="selectedPoint.properties.type.name"></span><br><br>
+      <span style="font-size: larger ;">Description : </span><br>
+      <span [innerHTML]="selectedPoint.properties.description"></span><br><br>
+      <span style="font-size: larger ;">Période : </span>
+      <span [innerHTML]="selectedPoint.properties.description"></span><br>
+      <a routerLink="/noaccount/display/stories">[En savoir +]</a>
+    </mgl-popup>
+    <mgl-control 
+      mglNavigation
+    ></mgl-control>
+    <mgl-control
+      mglScale
+      unit="metric"
+      position="top-right"
+    ></mgl-control>
+  </mgl-map>
+  

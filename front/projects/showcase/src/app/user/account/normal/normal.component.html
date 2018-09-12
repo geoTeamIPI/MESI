@@ -18,15 +18,6 @@
             <mat-icon>settings</mat-icon> Mon compte</button>
     </mat-card>
     <br/>
-    <!--<mat-card class="text-center matcardbottom" *ngIf="stories == true"> 
-        <a mat-raised-button routerLink="users"><mat-icon>list</mat-icon>Liste</a>
-        <a mat-raised-button routerLink="users/add">Ajouter un utilisateur</a>
-        <a mat-raised-button routerLink="stories/add">Créer une histoire</a>
-        <a mat-raised-button routerLink="stories">Listes des histoires</a>
-        <a mat-raised-button routerLink="infos">Mes infos</a>
-        <a mat-raised-button routerLink="update">Modifier mon compte</a>
-    </mat-card>-->
-
     <mat-card class="text-center matcardbottom" *ngIf="places == true">
         <a mat-raised-button routerLink="places">
             <mat-icon>list</mat-icon>Liste des adresses</a>
@@ -54,14 +45,11 @@
         <a mat-raised-button routerLink="types/add">Proposer un types</a>
     </mat-card>
 
-    <!--<mat-card class="text-center matcardbottom" *ngIf="media == true">
-        <a mat-raised-button routerLink="users">Liste des media</a>
-        <a mat-raised-button routerLink="users/add">Ajouter un utilisateur</a>
-        <a mat-raised-button routerLink="stories/add">Créer une histoire</a>
-        <a mat-raised-button routerLink="stories">Listes des histoires</a>
-        <a mat-raised-button routerLink="infos">Mes infos</a>
-        <a mat-raised-button routerLink="update">Modifier mon compte</a>
-    </mat-card>-->
+    <mat-card class="text-center matcardbottom" *ngIf="media == true">
+        <a mat-raised-button routerLink="media">Liste des media</a>
+        <a mat-raised-button routerLink="media/user"><mat-icon>view_list</mat-icon>Liste de mes medias</a>
+        <a mat-raised-button routerLink="media/add">Créer un média</a>
+    </mat-card>
 
     <mat-card class="text-center matcardbottom" *ngIf="myaccount == true">
         <a mat-raised-button routerLink="update">Modifier mon compte</a>

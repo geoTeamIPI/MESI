@@ -259,6 +259,35 @@
             "name": "Monument"
         },
         "media": []
+}, "geometry": { "type": "Point", "coordinates": [4.827880, 45.774517] } },
+{"type": "Feature", "properties": { 
+    "Primary ID": 18,
+    "Title": "testsurplus",
+    "description": "testsurplus",
+    "content": "testsurplus",
+    "startingYear": null,
+    "startingMonth": null,
+    "startingDay": null,
+    "icon": "bar",
+    "endingYear": null,
+    "endingMonth": null,
+    "endingDay": null,
+    "dateCreation": "2018-09-24",
+    "dateUpdate": null,
+    "creator": {
+        "id": 1,
+        "email": "toto@yahoo.fr",
+        "password": "pwd",
+        "passwordConfirm": null,
+        "oldPassword": null,
+        "city": "Valence",
+        "profile": "user"
+    },
+    "type": {
+        "id": 1,
+        "name": "Monument"
+    },
+    "media": []
 }, "geometry": { "type": "Point", "coordinates": [4.827820, 45.774557] } }
 
 ]

@@ -110,7 +110,10 @@ CREATE TABLE `timelapses` (
 CREATE TABLE `types` (
   `id` bigint(10) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `typeParent_id` bigint(10) DEFAULT NULL
+  `comments` varchar(255) DEFAULT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `pathpicture` varchar(255) DEFAULT NULL,
+  `isapproved` boolean DEFAULT false
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
@@ -185,8 +188,7 @@ ALTER TABLE `timelapses`
 --
 ALTER TABLE `types`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD KEY `types_fk0` (`typeParent_id`);
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Index pour la table `users`

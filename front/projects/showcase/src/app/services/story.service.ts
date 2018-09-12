@@ -137,6 +137,7 @@ export class StoryService {
     );
   }
 
+
 // ----------------------------------------------- COUNT STORIES METHODS ---------------
 
   public countAllStories(){
@@ -219,8 +220,10 @@ export class StoryService {
 
   // ----------------------------------------------- CRUD METHODS ---------------
 
-  public createStory(story: Story) {
-    return this.http.post<Story>(this.storiesUrl + "/add", story);
+  public createStory(story: Story, idUser: number) {
+    return this.http.post<Story>(this.storiesUrl + "/add", story, { 
+      headers: {"idUser": idUser.toString()}
+    });
   }
 
   public getStory(id: number): Observable<any>{
@@ -231,7 +234,9 @@ export class StoryService {
     return this.http.post<Story>(this.storiesUrl + "/update/" + id, value);
   }
 
-  public deleteStory(id: number) {
-    return this.http.delete(this.storiesUrl + "/delete/" + id);
+  public deleteStory(id: number, idUser: number) {
+    return this.http.delete(this.storiesUrl + "/delete/" + id, { 
+      headers: {"idUser": idUser.toString()}
+    });
   }
 } 

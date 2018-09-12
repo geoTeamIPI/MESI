@@ -6,12 +6,12 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { User } from "../../models/user.model";
 
 @Component({
-  selector: "list-stories",
-  templateUrl: "./list-stories.component.html",
-  styleUrls: ["./list-stories.component.css"]
+  selector: "list-mystories",
+  templateUrl: "./list-mystories.component.html",
+  styleUrls: ["./list-mystories.component.css"]
 })
 
-export class ListStoriesComponent implements OnInit {
+export class ListMyStoriesComponent implements OnInit {
   stories: Story[];
   size: number;
   sortProperty: string; 
@@ -44,10 +44,11 @@ export class ListStoriesComponent implements OnInit {
         this.stories.splice(index, 1);
     }
   }
-
+ 
   reloadData() {
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
         this.storyService
-      .findAllStories()
+      .findAllStoriesOfUser(this.currentUser.id)
       .subscribe(stories => { this.stories = stories }, err => console.log(err));
       this.router.navigate([this.router.url]);
   }

@@ -1,4 +1,6 @@
 import { User } from "./user.model";
+import { Type } from "./type.model";
+import { Place } from "./place.model";
 import { Timelapse } from "./timelapse.model";
 
 export class Story {
@@ -7,7 +9,8 @@ export class Story {
   description: string;
   content: string;
   creator: User;
-  //type: Type;
+  place: Place;
+  type: Type;
   timelapse: Timelapse;
   startingYear: number;
   startingMonth: number;

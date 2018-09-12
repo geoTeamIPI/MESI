@@ -18,8 +18,11 @@ import { SharedModule } from './shared.module';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
-import { AddStoryComponent } from "./story/add-story/add-story.component";
+import { CreateStoryComponent } from "./story/create-story/create-story.component";
+import { UpdateStoryComponent } from "./story/update-story/update-story.component";
 import { ListStoriesComponent } from "./story/list-stories/list-stories.component";
+import { ListMyStoriesComponent } from "./story/list-mystories/list-mystories.component";
+import { InfosStoryComponent } from "./story/infos-story/infos-story.component";
 
 import { CreatePlaceComponent } from "./place/create-place/create-place.component";
 import { ListPlacesComponent } from "./place/list-places/list-places.component";
@@ -160,8 +163,20 @@ export const showcaseRoutes: Routes = [
         component: ListStoriesComponent
       },
       {
+        path: "stories/user",
+        component: ListMyStoriesComponent
+      },
+      {
         path: "stories/add",
-        component: AddStoryComponent
+        component: CreateStoryComponent
+      },
+      {
+        path: "stories/update/:id",
+        component: UpdateStoryComponent
+      },
+      {
+        path: "stories/infos/:id",
+        component: InfosStoryComponent,
       },
       {
         path: "places",
@@ -251,8 +266,20 @@ export const showcaseRoutes: Routes = [
         component: ListStoriesComponent
       },
       {
+        path: "stories/user",
+        component: ListMyStoriesComponent
+      },
+      {
+        path: "stories/update/:id",
+        component: UpdateStoryComponent
+      },
+      {
         path: "stories/add",
-        component: AddStoryComponent
+        component: CreateStoryComponent
+      },
+      {
+        path: "stories/infos/:id",
+        component: InfosStoryComponent,
       },
       {
         path: "places",
@@ -346,7 +373,10 @@ export const showcaseRoutes: Routes = [
     ListUsersComponent,
     UpdateUserComponent,
     ListStoriesComponent,
-    AddStoryComponent,
+    ListMyStoriesComponent,
+    CreateStoryComponent,
+    UpdateStoryComponent,
+    InfosStoryComponent,
     ListPlacesComponent,
     ListEmptyPlacesComponent,
     ListMyPlacesComponent,

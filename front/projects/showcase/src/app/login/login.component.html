@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Identifiez-vous</h2>
+    <h2 class="text-center">Identifiez-vous</h2>
     <form (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="email">Email</label>
@@ -13,6 +13,7 @@
 
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
+    <br/>
     Pas encore de compte, s'inscrire <a routerLink = "/registering">ici</a>
     <div *ngIf="invalidLogin && submitted" class="error">
         <div class="alert alert-danger">Mot de passe et/ou email incorrect</div>

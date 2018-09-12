@@ -1,0 +1,36 @@
+<div class="container text-center">
+  <h2>Liste des types de patrimoine</h2>
+  <div class="text-center">
+    <table table mat-table class="text-center">
+      <tr> 
+        <th *ngIf="isAdmin == true ">Id</th>
+        <th>Types de patrimoine</th>
+        <th>Commentaires</th>
+        <th *ngIf="isAdmin == true " colspan="3">Actions</th>
+        <th *ngIf="isAdmin == false ">Afficher</th>
+      </tr>
+      <tr *ngFor="let type of types | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+        <td *ngIf="isAdmin == true ">{{type.id}}</td>
+        <td>{{type.name}}</td>
+        <td>{{type.comments}}</td>
+        <td>
+          <a mat-button color="primary" routerLink="infos/{{type.id}}">
+            <img src="./../../../assets/{{type.logo}}.svg">
+          </a>
+        </td>
+        <td *ngIf="isAdmin == true ">
+          <a mat-button routerLink="update/{{type.id}}">
+            <mat-icon>edit</mat-icon>
+          </a>
+        </td>
+        <td *ngIf="isAdmin == true ">
+          <button mat-button color="warn" (click)="deleteType(type.id, i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </table>
+    <br/>
+    <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div> 

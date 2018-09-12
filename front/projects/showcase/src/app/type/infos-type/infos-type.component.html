@@ -1,0 +1,48 @@
+<div class="container text-center">
+  <h2>Détails du type de patrimoine</h2>
+  <div class="text-center">
+    <table table mat-table class="text-left">
+      <tr> 
+        <th *ngIf="isAdmin">Id :</th>
+        <td *ngIf="isAdmin">{{type.id}}</td>
+        <td *ngIf="isAdmin" rowspan=4 class="text-center"><a mat-button color="primary" routerLink="../../update/{{type.id}}"><mat-icon>edit</mat-icon></a></td>
+        <td *ngIf="isAdmin" rowspan=4 class="text-center"><img src="./../../../assets/{{type.pathpicture}}"> </td>
+      </tr>
+      <tr>
+        <th>Type :</th>
+        <td>{{type.name}}</td>
+        <td *ngIf="!isAdmin" rowspan=3 class="text-center"><img src="./../../../assets/{{type.pathpicture}}"></td> 
+      </tr>
+      <tr>
+        <th>Commentaires :</th>
+        <td>{{type.comments}}</td>
+      </tr>
+      <tr>
+        <th>Icône :</th>
+        <td class="icone text-center"><img src="./../../../assets/{{type.logo}}.svg"></td>
+      </tr>
+    </table>
+  </div>
+  <div class="text-center">
+      <h2>Liste des stories liées à ce type de patrimoine</h2>
+      <table mat-table>
+        <th>Id</th>
+        <th>Titre</th>
+        <th>Description</th>
+        <th colspan="2">Créateur</th>
+        <th>Timelapse</th>
+        <th>Afficher</th>
+        <tr *ngFor="let story of stories | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>{{story.id}}</td>
+          <td>{{story.title}}</td>
+          <td>{{story.description}}</td>
+          <td>{{story.creator.nickname}}</td>
+          <td><a mat-button color="primary" routerLink="../../../users/infos/public/{{story.id}}"><mat-icon>account_circle</mat-icon></a></td>
+          <td>{{story.timelapse.period}}</td>
+          <td><a mat-button color="primary" routerLink="../../../stories/infos/{{story.id}}"><mat-icon>chat_bubble_outline</mat-icon></a></td>
+        </tr>
+      </table>
+      <br/>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

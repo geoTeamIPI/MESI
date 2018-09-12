@@ -1,0 +1,37 @@
+<div class="container">
+    <h2 class="text-center">Proposition d'une nouvelle période</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group col-5 col-sm-12">
+            <label for="period" class="control-label">Nom de la période</label>
+            <input type="text" formControlName="period" class="form-control" id="period" required placeholder="Exemple : Antiquité" required
+                [(ngModel)]="timelapse.period" name="period">
+        </div>
+        <div class="form-group col-5 col-sm-12">
+            <label for="startingYear" class="control-label">Date de début</label>
+            <input type="text" formControlName="startingYear" class="form-control" id="startingYear" required placeholder="Exemple : 1742"
+                required [(ngModel)]="timelapse.startingYear" name="startingYear">
+        </div>
+        <div class="form-group col-5 col-sm-12">
+            <label for="endingYear" class="control-label">Date de fin</label>
+            <input type="text" formControlName="endingYear" class="form-control" id="endingYear" required placeholder="Exemple : 2024"
+                required [(ngModel)]="timelapse.endingYear" name="endingYear">
+        </div>
+        <div class="form-group col-5 col-sm-12">
+            <label for="comments" class="control-label">Commentaires</label>
+            <input type="text" formControlName="comments" class="form-control" id="comments" required placeholder="Exemple : Qualifie la période de xx à xx"
+                required [(ngModel)]="timelapse.comments" name="comments">
+        </div>
+
+        <div class="col-5 col-sm-12">
+            <button type="submit" class="btn btn-primary">Proposer</button>
+        </div>
+    </form>
+    <div *ngIf="submitted">
+        <div *ngIf="timelapseForm.valid">
+            <div class="alert alert-success">Ajout effectué avec succès</div>
+        </div>
+        <div *ngIf="!timelapseForm.valid">
+            <div class="alert alert-danger">Erreur d'ajout</div>
+        </div>
+    </div>
+</div>

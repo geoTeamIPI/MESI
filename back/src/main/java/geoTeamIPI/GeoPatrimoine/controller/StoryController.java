@@ -175,6 +175,20 @@ public class StoryController {
 		return storyService.findAllStoriesByPlace(idPlace);
 	}
 
+	// LIST ALL STORIES OF A TIMELAPSE - ADMIN AND USER MODES
+	@RequestMapping(value = "/timelapseId", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Story> listAllOfTimelapseById(
+			@RequestParam("idTimelapse") Long idTimelapse) {
+		return storyService.findAllStoriesByTimelapse(idTimelapse);
+	}
+
+	// LIST ALL STORIES OF A TYPE - ADMIN AND USER MODES
+	@RequestMapping(value = "/typeId", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Story> listAllOfTypeById(
+			@RequestParam("idType") Long idType) {
+		return storyService.findAllStoriesByType(idType);
+	}
+
 	// ------------------------------------ CRUD METHODS ------------------------
 
 	// CREATE A STORY - ADMIN AND USER MODES

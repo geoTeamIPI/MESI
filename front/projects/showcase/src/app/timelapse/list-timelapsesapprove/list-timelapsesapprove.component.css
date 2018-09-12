@@ -17,3 +17,6 @@ h2{
 table{
     width:100%;
 }
+
+td.orange { background-color: orange; }
+td.yellow { background-color: lightyellow; }

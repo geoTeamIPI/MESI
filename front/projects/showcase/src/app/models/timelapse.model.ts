@@ -6,5 +6,6 @@ export class Timelapse {
     comments: string;
     isapproved: boolean;
     logo: string; 
+    color: string;
 } 
   

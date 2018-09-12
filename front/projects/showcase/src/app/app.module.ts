@@ -29,10 +29,18 @@ import { InfosPlaceComponent } from "./place/infos-place/infos-place.component";
 import { UpdatePlaceComponent } from "./place/update-place/update-place.component";
 
 import { CreateTimelapseComponent } from "./timelapse/create-timelapse/create-timelapse.component";
+import { ProposeTimelapseComponent } from "./timelapse/propose-timelapse/propose-timelapse.component";
 import { ListTimelapsesComponent } from "./timelapse/list-timelapses/list-timelapses.component";
 import { ListTimelapsesApproveComponent } from "./timelapse/list-timelapsesapprove/list-timelapsesapprove.component";
 import { InfosTimelapseComponent } from "./timelapse/infos-timelapse/infos-timelapse.component";
 import { UpdateTimelapseComponent } from "./timelapse/update-timelapse/update-timelapse.component";
+
+import { CreateTypeComponent } from "./type/create-type/create-type.component";
+import { ProposeTypeComponent } from "./type/propose-type/propose-type.component";
+import { ListTypesComponent } from "./type/list-types/list-types.component";
+import { ListTypesApproveComponent } from "./type/list-typesapprove/list-typesapprove.component"; 
+import { InfosTypeComponent } from "./type/infos-type/infos-type.component";
+import { UpdateTypeComponent } from "./type/update-type/update-type.component";
 
 import { ListUsersComponent } from "./user/list-users/list-users.component";
 import { CreateUserComponent } from "./user/create-user/create-user.component";
@@ -59,6 +67,7 @@ import { UserService } from './services/user.service';
 import { StoryService } from './services/story.service';
 import { PlaceService } from './services/place.service';
 import { TimelapseService } from './services/timelapse.service';
+import { TypeService } from './services/type.service';
 import { AuthenticationService } from './services/authentication.service';
 
 
@@ -86,7 +95,7 @@ export class SimpleSerializer implements RouterStateSerializer<RouterStateUrl> {
 }
 
 export const showcaseRoutes: Routes = [
-  {
+  { 
     path: 'demo',  
     children: DEMO_ROUTES
   },
@@ -176,6 +185,21 @@ export const showcaseRoutes: Routes = [
         },
         { path: "timelapses/infos/:id", 
           component: InfosTimelapseComponent
+        },
+        { path: "types",
+           component: ListTypesComponent 
+        },
+        { path: "types/add", 
+          component: CreateTypeComponent
+        },
+        { path: "types/approve", 
+          component: ListTypesApproveComponent
+        },
+        { path: "types/update/:id", 
+          component: UpdateTypeComponent
+        },
+        { path: "types/infos/:id", 
+          component: InfosTypeComponent
         }
       ]
     }, 
@@ -205,7 +229,7 @@ export const showcaseRoutes: Routes = [
           component: ListPlacesComponent
         },
         { path: "places/infos/:id", 
-          component: InfosPlaceComponent, 
+          component: InfosPlaceComponent 
         },
         {
           path: "places/user",
@@ -224,21 +248,33 @@ export const showcaseRoutes: Routes = [
           component: ListEmptyPlacesComponent
         },
         { path: "users/infos/public/:id", 
-          component: InfosUserPublicComponent, 
+          component: InfosUserPublicComponent 
         },
         { path: "timelapses",
            component: ListTimelapsesComponent 
         },
         { path: "timelapses/add", 
-          component: CreateTimelapseComponent
+          component: ProposeTimelapseComponent
         },
         { path: "timelapses/update/:id", 
           component: UpdateTimelapseComponent
         },
         { path: "timelapses/infos/:id", 
           component: InfosTimelapseComponent
+        },
+        { path: "types",
+           component: ListTypesComponent 
+        },
+        { path: "types/add", 
+          component: ProposeTypeComponent
+        },
+        { path: "types/update/:id", 
+          component: UpdateTypeComponent
+        },
+        { path: "types/infos/:id", 
+          component: InfosTypeComponent
         }
-      ]
+      ] 
     },
     {
       path: "registering", 
@@ -282,11 +318,17 @@ export const showcaseRoutes: Routes = [
     RegisteringAccountComponent,
     MatchPasswordValidatorDirective,
     CreateTimelapseComponent,
+    ProposeTimelapseComponent,
     ListTimelapsesComponent,
     ListTimelapsesApproveComponent,
     InfosTimelapseComponent,
     UpdateTimelapseComponent,
-    
+    CreateTypeComponent,
+    ProposeTypeComponent,
+    ListTypesComponent,
+    ListTypesApproveComponent,
+    InfosTypeComponent,
+    UpdateTypeComponent,
   ],
   imports: [ 
     BrowserModule,
@@ -314,6 +356,7 @@ export const showcaseRoutes: Routes = [
     StoryService, 
     PlaceService, 
     TimelapseService,
+    TypeService,
     AuthenticationService,
     { provide: RouterStateSerializer, useClass: SimpleSerializer }
   ],
@@ -329,4 +372,4 @@ export class AppModule {
     iconRegistry.addSvgIcon('ngx-mapbox-gl-red', sanitizer.bypassSecurityTrustResourceUrl('assets/ngx-mapbox-gl-red.svg'));
     iconRegistry.addSvgIcon('github', sanitizer.bypassSecurityTrustResourceUrl('assets/github.svg'));
   }
-}
+} 

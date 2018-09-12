@@ -109,6 +109,8 @@ public class StoryService {
 		return stories;
 	}
 
+	// ------------------------------------ LIST METHODS LINKED TO OTHER ENTITIES ------------------------
+
 	public List<Story> findAllStoriesByPlace(String longitude, String latitude) {
 		return storyRepository
 				.findByPlaceLongitudeAndPlaceLatitude(longitude, latitude);
@@ -117,6 +119,14 @@ public class StoryService {
 	public List<Story> findAllStoriesByPlace(Long idPlace) {
 		return storyRepository
 				.findByPlaceId(idPlace);
+	}
+
+	public List<Story> findAllStoriesByTimelapse(Long idTimelapse) {
+		return storyRepository.findByTimelapseId(idTimelapse);
+	}
+
+	public List<Story> findAllStoriesByType(Long idType) {
+		return storyRepository.findByTypeId(idType);
 	}
 
 	// ------------------------------------ CRUD METHODS ------------------------

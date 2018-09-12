@@ -22,18 +22,14 @@ export class CreateTimelapseComponent implements OnInit {
   comments: FormControl;
   isapproved: FormControl; 
   logo: FormControl;
+  color: FormControl;
   currentUser: User; 
   isAdmin: boolean = false; 
+  
 
   constructor(private timelapseService: TimelapseService, private route: Router) {}
 
   ngOnInit() {
-    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
-    if (this.currentUser.profile == "admin"){
-      this.isAdmin = true;
-    } else{
-      this.isAdmin = false;
-    }
     this.controlFormTimelapse();
     this.createFormTimelapse();
   }
@@ -54,6 +50,12 @@ export class CreateTimelapseComponent implements OnInit {
   }
 
   controlFormTimelapse(){
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
+    if (this.currentUser.profile == "admin"){
+      this.isAdmin = true;
+    } else{
+      this.isAdmin = false;
+    }
     this.period = new FormControl('', [
       Validators.required
     ]);
@@ -63,6 +65,12 @@ export class CreateTimelapseComponent implements OnInit {
 }
 
 createFormTimelapse(){
+  this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
+  if (this.currentUser.profile == "admin"){
+    this.isAdmin = true;
+  } else{
+    this.isAdmin = false;
+  }
   this.timelapseForm  = new FormGroup({
     period : this.period,
     startingYear: this.startingYear,

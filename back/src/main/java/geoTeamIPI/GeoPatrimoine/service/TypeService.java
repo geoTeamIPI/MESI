@@ -3,13 +3,10 @@ package geoTeamIPI.GeoPatrimoine.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import geoTeamIPI.GeoPatrimoine.entity.Type;
+import geoTeamIPI.GeoPatrimoine.entity.User;
 import geoTeamIPI.GeoPatrimoine.repository.TypeRepository;
 
 @Service
@@ -17,23 +14,30 @@ public class TypeService {
 	@Autowired
 	private TypeRepository typeRepository;
 
+	// ------------------------------------ COUNT METHODS ------------------------
+
 	public Long countAllTypes() {
 		return typeRepository.count();
 	}
 
+	// ------------------------------------ LIST METHODS ------------------------
+
 	public List<Type> findAllTypes() {
-		return typeRepository.findAll();
+		return typeRepository.findByIsapproved(true);
 	}
 
-	public Page<Type> findAllTypes(Integer page, Integer size, String sortProperty, String sortDirection) {
-		@SuppressWarnings("deprecation")
-		Sort sort = new Sort(new Sort.Order(Sort.Direction.fromString(sortDirection), sortProperty));
-		@SuppressWarnings("deprecation")
-		Pageable pageable = new PageRequest(page, size, sort);
-		return typeRepository.findAll(pageable);
+	public List<Type> findAllTypesApprove() {
+		return typeRepository.findByIsapproved(false);
 	}
 
-	public Type createType(Type type) {
+	// ------------------------------------ CRUD METHODS ------------------------
+
+	public Type createType(Type type, User user) {
+		if (user.getProfile().equals("admin")) {
+			type.setIsapproved(true);
+		} else {
+			type.setIsapproved(false);
+		}
 		return typeRepository.save(type);
 	}
 

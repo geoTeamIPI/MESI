@@ -67,6 +67,9 @@ public class Story {
 	@ManyToOne
 	private Place place;
 
+	@ManyToOne
+	private Timelapse timelapse;
+
 	@OneToOne
 	private Type type;
 
@@ -219,6 +222,14 @@ public class Story {
 
 	public void setCreatorOpt(Optional<User> user) {
 		// TODO Auto-generated method stub
+	}
+
+	public Timelapse getTimelapse() {
+		return timelapse;
+	}
+
+	public void setTimelapse(Timelapse timelapse) {
+		this.timelapse = timelapse;
 	}
 
 	/**

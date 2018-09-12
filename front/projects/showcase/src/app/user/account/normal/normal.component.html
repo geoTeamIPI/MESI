@@ -30,29 +30,48 @@
     </mat-card>
 
     <mat-card class="text-center matcardbottom" *ngIf="users == true">
-        <a mat-raised-button routerLink="users">Liste des utilisateurs</a>
-        <a mat-raised-button routerLink="infos">Mes infos personnelles</a>
-        <a mat-raised-button routerLink="infos/public">Mes infos publiques</a>
+        <a mat-raised-button routerLink="users">
+            <mat-icon>list</mat-icon>Liste des utilisateurs</a>
+        <a mat-raised-button routerLink="infos">
+            <mat-icon>account_box</mat-icon>Mes infos personnelles</a>
+        <a mat-raised-button routerLink="infos/public">
+            <mat-icon>account_circle</mat-icon>Mes infos publiques</a>
     </mat-card>
 
     <mat-card class="text-center matcardbottom" *ngIf="timelapses == true">
-        <a mat-raised-button routerLink="timelapses">Liste des périodes</a>
-        <a mat-raised-button routerLink="timelapses/add">Proposer une période</a>
+        <a mat-raised-button routerLink="timelapses">
+            <mat-icon>list</mat-icon>Liste des périodes</a>
+        <a mat-raised-button routerLink="timelapses/add">
+            <mat-icon>playlist_add</mat-icon>Proposer une période</a>
     </mat-card>
 
     <mat-card class="text-center matcardbottom" *ngIf="types == true">
-        <a mat-raised-button routerLink="types">Liste des types</a>
-        <a mat-raised-button routerLink="types/add">Proposer un types</a>
+        <a mat-raised-button routerLink="types">
+            <mat-icon>list</mat-icon>Liste des types</a>
+        <a mat-raised-button routerLink="types/add">
+            <mat-icon>playlist_add</mat-icon>Proposer un type</a>
+    </mat-card>
+
+    <mat-card class="text-center matcardbottom" *ngIf="stories == true">
+        <a mat-raised-button routerLink="stories">
+            <mat-icon>list</mat-icon>Listes des histoires</a>
+        <a mat-raised-button routerLink="stories/user">
+            <mat-icon>view_list</mat-icon>Liste de mes histoires</a>
+        <a mat-raised-button routerLink="stories/add">
+            <mat-icon>playlist_add</mat-icon>Créer une histoire</a>
     </mat-card>
 
     <mat-card class="text-center matcardbottom" *ngIf="media == true">
-        <a mat-raised-button routerLink="media">Liste des media</a>
-        <a mat-raised-button routerLink="media/user"><mat-icon>view_list</mat-icon>Liste de mes medias</a>
+        <a mat-raised-button routerLink="media">
+            <mat-icon>list</mat-icon>Liste des media</a>
+        <a mat-raised-button routerLink="media/user">
+            <mat-icon>view_list</mat-icon>Liste de mes medias</a>
         <a mat-raised-button routerLink="media/add">Créer un média</a>
     </mat-card>
 
     <mat-card class="text-center matcardbottom" *ngIf="myaccount == true">
-        <a mat-raised-button routerLink="update">Modifier mon compte</a>
+        <a mat-raised-button routerLink="update">
+            <mat-icon>settings</mat-icon>Modifier mon compte</a>
     </mat-card>
 </div>
 <router-outlet></router-outlet>

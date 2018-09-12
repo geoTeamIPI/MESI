@@ -31,7 +31,7 @@ export class RegisteringAccountComponent implements OnInit {
   registeringAccount() {
     this.userService
       .registeringAccount(this.user)
-      .subscribe(data => this.userCreated = true, error => this.userCreated = false));  }
+      .subscribe(data => this.userCreated = true, error => this.userCreated = false);  }
 
   onSubmit() {
     this.submitted = true;

@@ -47,8 +47,7 @@
       </tr>
       <tr>
         <th>Créateur :</th>
-        <td>{{place.creator}}
-          <br/>
+        <td>{{user.nickname}}
           <a *ngIf="isAdmin == true " mat-button color="primary" routerLink="../../../users/infos/{{place.creator}}">
             <mat-icon>account_circle</mat-icon>
           </a>

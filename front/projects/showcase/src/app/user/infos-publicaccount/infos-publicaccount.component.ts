@@ -6,58 +6,51 @@ import { StoryService } from "../../services/story.service";
 import { Story } from "../../models/story.model";
 
 @Component({
-  selector: "infos-userpublic",
-  templateUrl: "./infos-userpublic.component.html",
-  styleUrls: ["./infos-userpublic.component.css"]
+  selector: 'infos-publicaccount',
+  templateUrl: './infos-publicaccount.component.html',
+  styleUrls: ['./infos-publicaccount.component.css']
 })
-export class InfosUserPublicComponent implements OnInit {
-  user = new User(); 
+export class InfosPublicAccountComponent implements OnInit {
+  userInfos: User;
   stories: Story[];
   size: number;
   sortProperty: string;
   sortDirection: string;
   pagination: any = {};
-  isAdmin: boolean = false; 
-  currentUser : User; 
-
+  isAdmin: boolean = false;
+  currentUser: User;
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
     private storyService: StoryService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.getUser();
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
-    if (this.currentUser.profile == "admin"){
+    if (this.currentUser.profile == "admin") {
       this.isAdmin = true;
-    } else{
+    } else {
       this.isAdmin = false;
-    } 
+    }
+    this.userService.getAccount(this.currentUser.id)
+      .subscribe(user => {
+        this.userInfos = user;
+      });
     this.reloadData();
     this.route.queryParams.subscribe(values => {
       this.pagination = values;
       console.log(this.pagination);
     });
   }
-  getUser() {
-    const id = +this.route.snapshot.paramMap.get("id");
-    this.userService.getUser(id)
-    .subscribe(
-      user => {
-        this.user = user;
-      },
-      err => console.log(err)
-    );
-  }
+  
 
   reloadData() {
-    const id = +this.route.snapshot.paramMap.get("id");
-    this.storyService 
-      .findAllStoriesByCreatorById(id)
+    this.storyService
+      .findAllStoriesByCreatorById(this.currentUser.id)
       .subscribe(stories => { this.stories = stories }, err => console.log(err));
     this.router.navigate([this.router.url]);
   }
+
 }

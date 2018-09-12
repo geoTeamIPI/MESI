@@ -1,19 +1,19 @@
 <div class="container text-center">
-  <h2>Détails de l'utilisateur</h2>
+  <h2>Profil public de {{userInfos.nickname}}</h2>
   <div class="text-center">
     <table table mat-table class="text-left">
       <tr>
         <th>Pseudo :</th>
-        <td>{{user.nickname}}</td>
-        <td rowspan=4 class="text-center"><img src="./../../../assets/users/user{{user.id}}.jpg"> </td>
+        <td>{{userInfos.nickname}}</td>
+        <td rowspan=4 class="text-center"><img src="./../../../assets/users/user{{userInfos.id}}.jpg"> </td>
       </tr>
       <tr>
         <th>Ville :</th>
-        <td>{{user.city}}</td>
+        <td>{{userInfos.city}}</td>
       </tr>
       <tr>
         <th>Profil :</th>
-        <td>{{user.profile}}</td>
+        <td>{{userInfos.profile}}</td>
       </tr>
       <tr>
         <th>Date d'inscription :</th>
@@ -22,7 +22,7 @@
     </table>
   </div>
   <div class="text-center">
-      <h2>Liste des histoires liées à cet utilisateur</h2>
+      <h2>Liste des histoires liées à {{userInfos.nickname}}</h2>
       <table mat-table>
         <th>Id</th> 
         <th>Titre</th>

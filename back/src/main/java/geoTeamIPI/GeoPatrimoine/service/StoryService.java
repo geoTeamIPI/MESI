@@ -129,6 +129,10 @@ public class StoryService {
 		return storyRepository.findByTypeId(idType);
 	}
 
+	public List<Story> findAllStoriesByCreator(Long idCreator) {
+		return storyRepository.findByCreatorId(idCreator);
+	}
+
 	// ------------------------------------ CRUD METHODS ------------------------
 
 	public Story createStory(Story story, User user) {

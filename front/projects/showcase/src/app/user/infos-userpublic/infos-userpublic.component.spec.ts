@@ -16,7 +16,7 @@ describe("InfosUserPublicComponent", () => {
     fixture = TestBed.createComponent(InfosUserPublicComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }); 
 
   it("should create", () => {
     expect(component).toBeTruthy();

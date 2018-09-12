@@ -1,10 +1,54 @@
-<div class="container">
-  <h2>Mes infos</h2>
-  <p>
-    Email : {{userInfos.nickname}}
-  </p>
-  <p>
-    Ville : {{userInfos.city}}
-  </p>
+<div class="container text-center">
+  <h2>Mon profil personnel</h2>
+  <div class="text-center">
+    <table table mat-table class="text-left">
+      <tr> 
+        <th>Id :</th>
+        <td>{{userInfos.id}}</td>
+        <td rowspan=6 class="text-center"><a mat-button color="primary" routerLink="../update"><mat-icon>edit</mat-icon></a></td>
+        <td rowspan=6 class="text-center"><img src="./../../../assets/users/user{{userInfos.id}}.jpg"> </td>
+      </tr>
+      <tr>
+        <th>Email :</th>
+        <td>{{userInfos.email}}</td>
+      </tr>
+      <tr>
+        <th>Pseudo :</th>
+        <td>{{userInfos.nickname}}</td>
+      </tr>
+      <tr>
+        <th>Ville :</th>
+        <td>{{userInfos.city}}</td>
+      </tr>
+      <tr>
+        <th>Profil :</th>
+        <td>{{userInfos.profile}}</td>
+      </tr>
+      <tr>
+        <th>Date d'inscription :</th>
+        <td>10/09/2018</td>
+      </tr>
+    </table>
+  </div>
+  <div class="text-center">
+      <h2>Liste de mes histoires</h2>
+      <table mat-table>
+        <th>Id</th> 
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Période</th>
+        <th>Type</th>
+        <th>Afficher</th>
+        <tr *ngFor="let story of stories | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>{{story.id}}</td>
+          <td>{{story.title}}</td>
+          <td>{{story.description}}</td>
+          <td>{{story.timelapse.period}}</td>
+          <td>{{story.type.name}}</td>
+          <td><a mat-button color="primary" routerLink="../../../stories/infos/{{story.id}}"><mat-icon>chat_bubble_outline</mat-icon></a></td>
+        </tr>
+      </table>
+      <br/>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
 </div>
-

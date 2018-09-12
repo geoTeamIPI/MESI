@@ -1,18 +1,41 @@
-<div class="container">
+<div class="container text-center">
   <h2>Liste des utilisateurs</h2>
-
-  <table mat-table>
-    <!--<tr>
-      <td><a routerLink="users/add">Ajouter nouvel utilisateur</a></td>
-    </tr>-->
-    <th>Pseudo</th>
-    <th colspan="3">Actions</th>
-    <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }">
-      <td>{{user.nickname}}</td>
-      <td><a mat-button color="primary" routerLink="infos/{{user.id}}"><mat-icon>face</mat-icon></a></td>
-      <td><a mat-button routerLink="update/{{user.id}}"><mat-icon>update</mat-icon></a></td>
-      <td><button mat-button color="warn" (click)="deleteUser(user.id)"><mat-icon>delete_outline</mat-icon></button></td>
-    </tr>
-  </table>
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <div class="text-center">
+    <table table mat-table class="text-center">
+      <th *ngIf="isAdmin">Id</th>
+      <th>Pseudos</th>
+      <th *ngIf="isAdmin">Emails</th>
+      <th *ngIf="isAdmin">Villes</th>
+      <th *ngIf="isAdmin">Profils</th>
+      <th *ngIf="isAdmin" colspan="3">Actions</th>
+      <th *ngIf="!isAdmin">Afficher</th>
+      <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }; let i=index">
+        <td *ngIf="isAdmin">{{user.id}}</td>
+        <td>{{user.nickname}}</td>
+        <td *ngIf="isAdmin">{{user.email}}</td>
+        <td *ngIf="isAdmin">{{user.city}}</td>
+        <td *ngIf="isAdmin">{{user.profile}}</td>
+        <td>
+          <a *ngIf="isAdmin" mat-button color="primary" routerLink="infos/{{user.id}}">
+            <mat-icon>supervised_user_circle</mat-icon>
+          </a>
+          <a *ngIf="!isAdmin" mat-button color="primary" routerLink="infos/public/{{user.id}}">
+            <mat-icon>supervised_user_circle</mat-icon>
+          </a>
+        </td>
+        <td *ngIf="isAdmin">
+          <a mat-button routerLink="update/{{user.id}}">
+            <mat-icon>edit</mat-icon>
+          </a>
+        </td>
+        <td *ngIf="isAdmin">
+          <button mat-button color="warn" (click)="deleteUser(user.id, i)">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </table>
+    <br/>
+    <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+  </div>
 </div>

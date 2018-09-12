@@ -2,10 +2,19 @@
   <h2>Détails de l'utilisateur</h2>
   <div class="text-center">
     <table table mat-table class="text-left">
+      <tr> 
+        <th>Id :</th>
+        <td>{{user.id}}</td>
+        <td rowspan=6 class="text-center"><a mat-button color="primary" routerLink="../../update/{{user.id}}"><mat-icon>edit</mat-icon></a></td>
+        <td rowspan=6 class="text-center"><img src="./../../../assets/users/user{{user.id}}.jpg"> </td>
+      </tr>
+      <tr>
+        <th>Email :</th>
+        <td>{{user.email}}</td>
+      </tr>
       <tr>
         <th>Pseudo :</th>
         <td>{{user.nickname}}</td>
-        <td rowspan=4 class="text-center"><img src="./../../../assets/users/user{{user.id}}.jpg"> </td>
       </tr>
       <tr>
         <th>Ville :</th>

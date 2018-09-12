@@ -189,6 +189,12 @@ public class StoryController {
 		return storyService.findAllStoriesByType(idType);
 	}
 
+	// LIST ALL STORIES OF A CREATOR - ADMIN AND USER MODES
+	@RequestMapping(value = "/creatorId", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public List<Story> listAllOfCreatorById(
+			@RequestParam("idCreator") Long idCreator) {
+		return storyService.findAllStoriesByType(idCreator);
+	}
 	// ------------------------------------ CRUD METHODS ------------------------
 
 	// CREATE A STORY - ADMIN AND USER MODES

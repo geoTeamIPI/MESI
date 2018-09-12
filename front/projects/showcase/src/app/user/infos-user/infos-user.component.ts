@@ -6,36 +6,35 @@ import { StoryService } from "../../services/story.service";
 import { Story } from "../../models/story.model";
 
 @Component({
-  selector: "infos-userpublic",
-  templateUrl: "./infos-userpublic.component.html",
-  styleUrls: ["./infos-userpublic.component.css"]
+  selector: "infos-user",
+  templateUrl: "./infos-user.component.html",
+  styleUrls: ["./infos-user.component.css"]
 })
-export class InfosUserPublicComponent implements OnInit {
-  user = new User(); 
+export class InfosUserComponent implements OnInit {
+  user = new User();
   stories: Story[];
   size: number;
   sortProperty: string;
   sortDirection: string;
   pagination: any = {};
-  isAdmin: boolean = false; 
-  currentUser : User; 
-
+  isAdmin: boolean = false;
+  currentUser: User;
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
     private storyService: StoryService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getUser();
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
-    if (this.currentUser.profile == "admin"){
+    if (this.currentUser.profile == "admin") {
       this.isAdmin = true;
-    } else{
+    } else {
       this.isAdmin = false;
-    } 
+    }
     this.reloadData();
     this.route.queryParams.subscribe(values => {
       this.pagination = values;
@@ -45,17 +44,17 @@ export class InfosUserPublicComponent implements OnInit {
   getUser() {
     const id = +this.route.snapshot.paramMap.get("id");
     this.userService.getUser(id)
-    .subscribe(
-      user => {
-        this.user = user;
-      },
-      err => console.log(err)
-    );
+      .subscribe(
+        user => {
+          this.user = user;
+        },
+        err => console.log(err)
+      );
   }
 
   reloadData() {
     const id = +this.route.snapshot.paramMap.get("id");
-    this.storyService 
+    this.storyService
       .findAllStoriesByCreatorById(id)
       .subscribe(stories => { this.stories = stories }, err => console.log(err));
     this.router.navigate([this.router.url]);

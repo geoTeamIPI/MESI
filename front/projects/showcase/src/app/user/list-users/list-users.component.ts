@@ -37,7 +37,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   deleteUser(id: number, index : number) {
-    if (confirm("Etes-vous sûr de vouloir supprimer cet utilisateur") == true) {
+    if (confirm("Etes-vous sûr de vouloir supprimer cet utilisateur ?") == true) {
       this.userService
         .deleteUser(id)
         .subscribe(data => console.log(), err => console.log(err));

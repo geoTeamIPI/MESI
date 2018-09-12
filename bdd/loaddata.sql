@@ -110,7 +110,7 @@ INSERT INTO `stories` (`id`, `title`, `description`, `content`, `creator_id`, `p
 (5, 'Petite histoire salace', 'Celle des employés CGI qui font gollum gollum dans les toilettes du 3ème étage ', '', 4, 5, 4, 5, 2018, 10, 2, NULL, NULL, NULL, '2018-03-14', NULL),
 (6, 'Plaque d égout ', 'du 32ème siècle aprés Jesus Christ', 'Et oui c\'est une plaque d\'égout du futur!!', 6, 6, 7, 6, 2257, NULL, NULL, NULL, NULL, NULL, '2017-08-05', NULL),
 (7, 'Entrée du métro George de Loup ', 'Oui il s agit d\'une nouvelle station de métro  en mémoire à George le Conquérant qui montait un loup pour attaquer ses ennemis ', 'Vous remarquerez ces magnifiques statues de CN News et 20 minutes à l\'entrée!', 3, 7, 4, 7, 1789, 11, 25, NULL, NULL, NULL, '2014-10-18', NULL),
-(8, 'A écrire', 'A écrire', 'A écrire', 13, 8, 19, 7, 1789, 11, 25, NULL, NULL, NULL, '2014-10-18', NULL),
+(8, 'A écrire', 'A écrire', 'A écrire', 13, 8, 9, 7, 1789, 11, 25, NULL, NULL, NULL, '2014-10-18', NULL),
 (9, 'A écrire', 'A écrire', 'A écrire', 3, 9, 7, 7, 1789, 11, 25, NULL, NULL, NULL, '2014-10-18', NULL),
 (10, 'A écrire', 'A écrire', 'A écrire', 14, 10, 1, 7, 1789, 11, 25, NULL, NULL, NULL, '2014-10-18', NULL),
 (11, 'A écrire', 'A écrire', 'A écrire', 5, 11, 9, 8, 1789, 11, 25, NULL, NULL, NULL, '2014-10-18', NULL),

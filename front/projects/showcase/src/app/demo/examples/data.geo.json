@@ -1,1 +1,1 @@
-{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"ESPG:4326"}},"features":[{"type":"Feature","properties":{"type":"Point","coordinates":[4.82742,45.779557]}}]}
+{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"ESPG:4326"}},"features":[{"type":"Feature","properties":{"type":"Point","coordinates":["a noter","a noter"]}}]}

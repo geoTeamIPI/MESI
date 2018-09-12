@@ -38,7 +38,7 @@ export class ListTimelapsesComponent implements OnInit {
 
   deleteTimelapse(id: number, index : number) {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
-    if (confirm("Etes-vous sûr de vouloir supprimer cette adresse") == true) {
+    if (confirm("Etes-vous sûr de vouloir supprimer cette période ? ") == true) {
       this.timelapseService
         .deleteTimelapse(id, this.currentUser.id)
         .subscribe(data => console.log(), err => console.log(err));

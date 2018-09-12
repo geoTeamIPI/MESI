@@ -38,7 +38,7 @@ export class ListTypesApproveComponent implements OnInit {
 
   deleteType(id: number, index : number) {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
-    if (confirm("Etes-vous sûr de vouloir supprimer cette adresse") == true) {
+    if (confirm("Etes-vous sûr de vouloir supprimer ce type de patrimoine ?") == true) {
       this.typeService
         .deleteType(id, this.currentUser.id)
         .subscribe(data => console.log(), err => console.log(err));

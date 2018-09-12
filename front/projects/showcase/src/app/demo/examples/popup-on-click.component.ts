@@ -8,22 +8,9 @@ import { User } from "../../models/user.model";
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'demo-cluster-popup',
-  template: `
-      <mat-list>
-        <mat-list-item
-          *ngFor="let leaf of leaves"
-        >
-          {{ leaf.properties['Secondary ID'] }}
-        </mat-list-item>
-      </mat-list>
-      <mat-paginator
-        [length]="count"
-        [pageSize]="5"
-        (page)="changePage($event)"
-      ></mat-paginator>
-    `
+  template: "popup-on-click.component.html"
 })
-export class ClusterPopupComponent implements OnChanges {
+export class ClusterPopupComponent implements OnChanges, OnInit {
   @Input() clusterId: GeoJSON.Feature<GeoJSON.Point>;
   @Input() supercluster: Supercluster;
   @Input() count: number;
@@ -40,10 +27,10 @@ export class ClusterPopupComponent implements OnChanges {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
       if (this.currentUser.profile == "admin"){
         this.isAdmin = true;
-        this.address = "account/admin/timelapses"
+        this.address = "account/admin/timelapses";
       } else{
         this.isAdmin = false;
-        this.address = "account/user/timelapses"
+        this.address = "account/user/timelapses";
       }
     if (changes.count && !changes.count.isFirstChange()) {
       this.paginator.firstPage();
@@ -65,7 +52,7 @@ export class ClusterPopupComponent implements OnChanges {
 @Component({
   selector: 'showcase-demo',
   templateUrl: "popup-on-click.component.html",
-  styleUrls: ['./examples.css']
+  styleUrls: ['./examples.css', './set-style.component.css']
 })
 export class PopupOnClickComponent implements OnInit {
     //stories: any =[];

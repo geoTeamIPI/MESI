@@ -3,14 +3,14 @@
   <div class="text-center">
     <table table mat-table class="text-left">
       <tr>
-        <th *ngIf="isAdmin == true ">Id :</th>
-        <td *ngIf="isAdmin == true ">{{place.id}}</td>
-        <td *ngIf="isAdmin == true " rowspan=10>
+        <th *ngIf="isAdmin">Id :</th>
+        <td *ngIf="isAdmin">{{place.id}}</td>
+        <td *ngIf="isAdmin" rowspan=10>
           <a mat-button color="primary" routerLink="../../update/{{place.id}}">
             <mat-icon>edit_location</mat-icon>
           </a>
         </td>
-        <td rowspan=10 class="text-center">
+        <td *ngIf="isAdmin" rowspan=10 class="text-center">
           <img src="./../../../assets/point.jpg" width="500px">
           <br/>
           <br/>Actuellement non fonctionnel : idée à long terme étant de réussir à afficher les coordonnées de ce point sur une
@@ -19,6 +19,11 @@
       <tr>
         <th>Longitude :</th>
         <td>{{place.longitude}}</td>
+        <td *ngIf="!isAdmin" rowspan=9 class="text-center">
+          <img src="./../../../assets/point.jpg" width="500px">
+          <br/>
+          <br/>Actuellement non fonctionnel : idée à long terme étant de réussir à afficher les coordonnées de ce point sur une
+          carte </td>
       </tr>
       <tr>
         <th>Latitude :</th>

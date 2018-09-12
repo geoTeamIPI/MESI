@@ -39,12 +39,9 @@
     </mat-card>
 
     <mat-card class="text-center matcardbottom" *ngIf="users == true">
-        <a mat-raised-button routerLink="users">Liste des users</a>
-        <a mat-raised-button routerLink="users/add">Ajouter un utilisateur</a>
-        <a mat-raised-button routerLink="stories/add">Créer une histoire</a>
-        <a mat-raised-button routerLink="stories">Listes des histoires</a>
-        <a mat-raised-button routerLink="infos">Mes infos</a>
-        <a mat-raised-button routerLink="update">Modifier mon compte</a>
+        <a mat-raised-button routerLink="users">Liste des utilisateurs</a>
+        <a mat-raised-button routerLink="infos">Mes infos personnelles</a>
+        <a mat-raised-button routerLink="infos/public">Mes infos publiques</a>
     </mat-card>
 
     <mat-card class="text-center matcardbottom" *ngIf="timelapses == true">
@@ -66,13 +63,8 @@
         <a mat-raised-button routerLink="update">Modifier mon compte</a>
     </mat-card>-->
 
-    <!--<mat-card class="text-center matcardbottom" *ngIf="myaccount == true">
-        <a mat-raised-button routerLink="users">Liste des compte</a>
-        <a mat-raised-button routerLink="users/add">Ajouter un utilisateur</a>
-        <a mat-raised-button routerLink="stories/add">Créer une histoire</a>
-        <a mat-raised-button routerLink="stories">Listes des histoires</a>
-        <a mat-raised-button routerLink="infos">Mes infos</a>
+    <mat-card class="text-center matcardbottom" *ngIf="myaccount == true">
         <a mat-raised-button routerLink="update">Modifier mon compte</a>
-    </mat-card>-->
+    </mat-card>
 </div>
 <router-outlet></router-outlet>

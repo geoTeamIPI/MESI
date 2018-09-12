@@ -1,7 +1,45 @@
-<div class="container">
-  <h2>Détails de {{user.id}}</h2> <!-- A remplacer par nickname après-->
-  <div *ngIf="user">
-      <p>Ville : {{user.city}}<p>
-      <p>Profil : {{user.profile}}</p>
+<div class="container text-center">
+  <h2>Détails de l'utilisateur</h2>
+  <div class="text-center">
+    <table table mat-table class="text-left">
+      <tr>
+        <th>Pseudo :</th>
+        <td>{{user.nickname}}</td>
+        <td rowspan=4 class="text-center"><img src="./../../../assets/users/user{{user.id}}.jpg"> </td>
+      </tr>
+      <tr>
+        <th>Ville :</th>
+        <td>{{user.city}}</td>
+      </tr>
+      <tr>
+        <th>Profil :</th>
+        <td>{{user.profile}}</td>
+      </tr>
+      <tr>
+        <th>Date d'inscription :</th>
+        <td>10/09/2018</td>
+      </tr>
+    </table>
   </div>
+  <div class="text-center">
+      <h2>Liste des histoires liées à cet utilisateur</h2>
+      <table mat-table>
+        <th>Id</th> 
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Période</th>
+        <th>Type</th>
+        <th>Afficher</th>
+        <tr *ngFor="let story of stories | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>{{story.id}}</td>
+          <td>{{story.title}}</td>
+          <td>{{story.description}}</td>
+          <td>{{story.timelapse.period}}</td>
+          <td>{{story.type.name}}</td>
+          <td><a mat-button color="primary" routerLink="../../../stories/infos/{{story.id}}"><mat-icon>chat_bubble_outline</mat-icon></a></td>
+        </tr>
+      </table>
+      <br/>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
 </div>

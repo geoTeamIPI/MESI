@@ -3,7 +3,7 @@
 "features": [
 {"type":"Feature","properties": { 
         "Primary ID": "1", 
-        "Secondary ID": "Belle statue!!!", 
+        "Title": "Belle statue!!!", 
         "description": "Wow elle est trop belle cette statue",
         "content": "Y a plein de crottes de pigeons dessus",
         "startingYear": 1800,
@@ -40,8 +40,8 @@
         ]
 }, "geometry": { "type": "Point", "coordinates": [4.827420, 45.779557 ] } },
 {"type": "Feature", "properties": { 
-        "Primary ID": 2,
-        "Secondary ID": "Statue de la vierge",
+        "Primary_ID": 2,
+        "Title": "Statue de la vierge",
         "description": "Magnifique statue de la vierge du 15eme siècle érigée par Charles de La Frite suite à une commande du cardinal de Lasagne ",
         "content": "cette statue de la vierge est en hommage à la mère de Skywalker (Shmi Skywalker) qui mourra dans un camps des homme des sables",
         "startingYear": 1400,
@@ -69,8 +69,8 @@
         "media": []
 }, "geometry": { "type": "Point", "coordinates": [4.837420, 45.778557 ] } },
 {"type": "Feature", "properties": { 
-        "Primary ID": 3,
-        "Secondary ID": "CGI c'est de la bombe ",
+        "Primary_ID": 3,
+        "Title": "CGI c'est de la bombe ",
         "description": "CGI, monument historique des UDEV",
         "content": "",
         "startingYear": 1990,
@@ -108,7 +108,7 @@
 }, "geometry": { "type": "Point", "coordinates": [4.813071, 45.788307 ] } },
     {"type": "Feature", "properties": { 
         "Primary ID": 4,
-        "Secondary ID": "Batiment de CGI",
+        "Title": "Batiment de CGI",
         "description": "Tellement de bons souvenirs pour moi là-bas!!!!!!!!!!!!",
         "content": "",
         "startingYear": 1987,
@@ -137,7 +137,7 @@
 }, "geometry": { "type": "Point", "coordinates": [4.812071,  45.789307 ] } },
     {"type": "Feature", "properties": { 
         "Primary ID": 5,
-        "Secondary ID": "Petite histoire salace",
+        "Title": "Petite histoire salace",
         "description": "Celle des employés CGI qui font gollum gollum dans les toilettes du 3ème étage ",
         "content": "",
         "startingYear": 2018,
@@ -166,7 +166,7 @@
 }, "geometry": { "type": "Point", "coordinates": [4.913071,  45.778307 ] } },
     {"type": "Feature", "properties": { 
         "Primary ID": 6,
-        "Secondary ID": "Plaque d égout ",
+        "Title": "Plaque d égout ",
         "description": "du 32ème siècle aprés Jesus Christ",
         "content": "Et oui c'est une plaque d'égout du futur!!",
         "startingYear": 2257,
@@ -204,7 +204,7 @@
 }, "geometry": { "type": "Point", "coordinates": [4.805270,  45.780279 ] } },
     {"type": "Feature", "properties": { 
         "Primary ID": 7,
-        "Secondary ID": "Entrée du métro George de Loup ",
+        "Title": "Entrée du métro George de Loup ",
         "description": "Oui il s agit d'une nouvelle station de métro  en mémoire à George le Conquérant qui montait un loup pour attaquer ses ennemis ",
         "content": "Vous remarquerez ces magnifiques statues de CN News et 20 minutes à l'entrée!",
         "startingYear": 1789,
@@ -233,7 +233,7 @@
 }, "geometry": { "type": "Point", "coordinates": [4.785506, 45.766718 ] } },
     {"type": "Feature", "properties": { 
         "Primary ID": 15,
-        "Secondary ID": "test",
+        "Title": "test",
         "description": "test",
         "content": "test",
         "startingYear": null,

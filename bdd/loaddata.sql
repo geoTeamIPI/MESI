@@ -33,7 +33,7 @@ INSERT INTO `places` (`id`, `longitude`, `latitude`, `numberstreet`, `street`, `
 INSERT INTO `users` (`id`, `email`, `password`, `city`, `profile`, `nickname`) VALUES
 (1, 'admin@admin.fr', '$2a$10$U/Eca8Iqa.RrxcntkqY60etOrifWFPdMAvvaUG.YSglatp4A0wK6C', 'Lyon', 'admin', 'admin'),
 (2, 'user@user.fr', '$2a$10$LiMMGi3/uJuVuKBalHhuGeZNYJdZn59H4IX1ZLE/AxaHClr5Ifcp6', 'Lyon', 'user', 'user'),
-(3, 'tr@tr.fr', '$2a$10$GR1nWEkiCwJKC.yltbv8yOY362Vk5wi/IQaB6f9vLKdrgTyDBjPPW', '', 'user', 'touché rectal'),
+(3, 'tr@tr.fr', '$2a$10$GR1nWEkiCwJKC.yltbv8yOY362Vk5wi/IQaB6f9vLKdrgTyDBjPPW', 'Marseille', 'user', 'touché rectal'),
 (4, 'julien.juuf@free.fr', '$2a$10$J/5ftjVMxRNnfIpe8l3IK.09SqMdZYZxC/gGF3RBOalAekR2Yu4by', 'Valence', 'user', 'julien'),
 (5, 'luc.dahan@gmail.com', '$2a$10$qxQobscbKr4o8.RNvrEfpedsnLnzN2FwjawMjZvWo/QdFSOvHYGsm', 'Valence', 'user', 'luc'),
 (6, 'papa@gmail.com', '$2a$10$jnPlQ4U/YkqxMmB2NX26COUOGsFH2i4fWvO0/dPK0YD.IY1b.axPW', 'Lyon', 'user', 'papa'),

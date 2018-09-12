@@ -1,0 +1,19 @@
+td, th{
+    padding-left:8px;
+    padding-right:8px;
+}
+td, th{
+    border: solid 1px black;
+}
+th{
+    background-color:rgb(98, 98, 216);
+    color:white;
+}
+
+h2{
+    margin-top:10px;
+}
+
+table{
+    width:100%;
+}

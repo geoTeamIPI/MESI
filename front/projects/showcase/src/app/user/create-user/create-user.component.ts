@@ -2,8 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { User } from "../../models/user.model";
 import { UserService } from "../../services/user.service";
-import { Router } from "@angular/router";
-import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: "create-user",
@@ -15,7 +14,7 @@ export class CreateUserComponent implements OnInit {
   submitted: boolean = false;
   hideProfile = false;
   pwdMatched: boolean; 
-  userCreated: String;  
+  userCreated: boolean;  
   userForm : FormGroup;
   nickname: FormControl; 
   email : FormControl; 
@@ -24,7 +23,7 @@ export class CreateUserComponent implements OnInit {
   passwordConfirm: FormControl;
   profile: FormControl; 
 
-  constructor(private userService: UserService, private route: Router) {}
+  constructor(private userService: UserService) {}
 
   profiles = [
     { id: "user", name: "Utilisateur" },
@@ -35,9 +34,6 @@ export class CreateUserComponent implements OnInit {
 
   
   ngOnInit() {
-    if (this.route.url.includes("/registering")){
-        this.hideProfile = true; 
-    }
     this.controlFormUser();
     this.createFormUser();
   }
@@ -45,16 +41,15 @@ export class CreateUserComponent implements OnInit {
   createUser() {
     this.userService
       .createUser(this.user)
-      .subscribe(data => console.log(data), error => console.log(error));
-    this.user = new User();
+      .subscribe(data => this.userCreated = true, error => this.userCreated = false);
   }
 
   onSubmit() {
+    this.submitted = true;
     if (this.userForm.valid){
       this.createUser();
       this.userForm.reset();
     }
-    this.submitted = true; 
   }
 
   controlFormUser(){

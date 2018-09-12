@@ -1,1 +1,113 @@
-<create-user></create-user>
+<div class="container">
+    <h2 class="text-center">Nouvel utilisateur</h2>
+    <form (ngSubmit)="onSubmit()">
+    <div [formGroup]="userForm">
+        <!-- Nickname -->
+        <div class="form-group col-5 col-sm-12">
+            <label for="nickname" class="control-label">Pseudo</label>
+            <input type="text" 
+            formControlName="nickname" 
+            class="form-control"
+            [ngClass] = "{
+                'is-invalid' : nickname.invalid && (nickname.dirty || nickname.touched),
+                'is-valid' : nickname.valid && (nickname.dirty || nickname.touched)
+            }"
+            id="nickname" required
+            placeholder="Pseudo"
+            required
+            [(ngModel)]="user.nickname"
+            name="nickname">
+            <div class="invalid-feedback" *ngIf="nickname.errors && (nickname.dirty || nickname.touched)">
+                <p *ngIf="nickname.errors.required">Pseudo obligatoire</p>
+            </div>
+        </div>
+        <!-- Email -->
+        <div class="form-group col-5 col-sm-12">
+            <label for="email" class="control-label">Email</label>
+            <input type="text" 
+            formControlName="email" 
+            class="form-control"
+            [ngClass] = "{
+                'is-invalid' : email.invalid && (email.dirty || email.touched),
+                'is-valid' : email.valid && (email.dirty || email.touched)
+            }"
+            id="email" required
+            placeholder="Email"
+            required
+            [(ngModel)]="user.email"
+            name="email">
+            <div class="invalid-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+                <p *ngIf="email.errors.required">Email obligatoire</p>
+                <p *ngIf="email.errors.minlength">L'email doit contenir au moins 7 caractères</p>
+                <p *ngIf="email.errors.email">L'email doit être au format @</p>
+            </div>
+        </div>
+        <!-- Password -->
+        <div class="form-group col-5 col-sm-12">
+            <label for="password">Mot de passe</label>
+            <input type="password"
+            formControlName="password"
+            class="form-control"
+            [ngClass] = "{
+                'is-invalid' : password.invalid && (password.dirty || password.touched),
+                'is-valid' : password.valid && (password.dirty || password.touched)
+            }"
+             id="password"
+             placeholder="Mot de passe"
+             required
+             [(ngModel)]="user.password" 
+             name= "password">
+            <div class="invalid-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+                <p *ngIf="password.errors.required">Mot de passe obligatoire</p>
+            </div>
+        </div>
+        <div class="form-group col-5 col-sm-12">
+            <label for="passwordConfirm">Confirmer le mot de passe</label>
+            <input type="password"
+            formControlName="passwordConfirm"
+            showcaseMatchPasswordValidator="password"
+            class="form-control"
+            [ngClass] = "{
+                'is-invalid' : passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched),
+                'is-valid' : passwordConfirm.valid && (passwordConfirm.dirty || passwordConfirm.touched)
+            }"
+            id="passwordConfirm" 
+            required 
+            [(ngModel)]="user.passwordConfirm" 
+            name="passwordConfirm"
+            placeholder="Mot de passe (confirmation)">
+            <div class="invalid-feedback" *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)">
+                <p *ngIf="passwordConfirm.errors.notMatched">Les deux mots de passe ne correspondent pas</p>
+            </div>
+        </div>
+        <div class="form-group col-5 col-sm-12">
+            <label for="city">Ville</label>
+            <input type="text" 
+            formControlName="city"
+            class="form-control"
+            [ngClass] = "{
+                'is-invalid' : city.invalid && (city.dirty || city.touched),
+                'is-valid' : city.valid && (city.dirty || city.touched)
+            }"
+            id="city" required 
+            [(ngModel)]="user.city" 
+            name="city" 
+            placeholder="Ville">
+            <div class="invalid-feedback" *ngIf="city.errors && (city.dirty || city.touched)">
+                <p>Ville obligatoire</p>
+            </div>
+        </div>
+        <div class="col-5 col-sm-12">
+            <button type="submit" class="btn btn-primary">Créer</button>
+        </div>
+    </div>
+    </form>
+    <div *ngIf="submitted">
+        <div *ngIf="userCreated">
+            <div class="alert alert-success">Ajout effectué avec succés</div>
+        </div>
+        <div *ngIf="!userCreated">
+                <div class="alert alert-danger">Erreur d'ajout</div>
+        </div>
+    </div>
+</div>

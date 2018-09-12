@@ -36,12 +36,12 @@
       *ngIf="selectedPoint"
       [lngLat]="selectedPoint.geometry?.coordinates"
     >
+      <div style="text-align: center; border-bottom: 2px solid red; text-transform: uppercase"><span [innerHTML]="selectedPoint.properties.Title" style="font-size: larger;"></span><br></div>
       
-      <span [innerHTML]="selectedPoint.properties.Title" style="font-size: larger; border-style: solid; text-align:center;"></span><br>
-      <span style="font-size: larger ;">Type : </span>
-      <span [innerHTML]="selectedPoint.properties.type.name"></span><br>
+      <br><span style="font-size: larger ;">Type : </span>
+      <span [innerHTML]="selectedPoint.properties.type.name"></span><br><br>
       <span style="font-size: larger ;">Description : </span><br>
-      <span [innerHTML]="selectedPoint.properties.description"></span><br>
+      <span [innerHTML]="selectedPoint.properties.description"></span><br><br>
       <span style="font-size: larger ;">Période : </span>
       <span [innerHTML]="selectedPoint.properties.description"></span><br>
       <a routerLink="/noaccount/display/stories">[En savoir +]</a>

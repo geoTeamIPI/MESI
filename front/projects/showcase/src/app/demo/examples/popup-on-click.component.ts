@@ -89,10 +89,19 @@ export class ClusterPopupComponent implements OnChanges {
     <mgl-popup
       *ngIf="selectedPoint"
       [lngLat]="selectedPoint.geometry?.coordinates"
+      Feature="selectedPoint.properties"
+      Title="selectedPoint.properties?.Secondary ID"
     >
-      <span [innerHTML]="selectedPoint.properties?.description"></span>
+      <span style="font-size: larger ;">Titre : </span>
+      <span [innerHTML]="selectedPoint.properties.Title"></span><br>
+      <span style="font-size: larger ;">Type : </span>
+      <span [innerHTML]="selectedPoint.properties.type.name"></span><br>
+      <span style="font-size: larger ;">Description : </span>
+      <span [innerHTML]="selectedPoint.properties.description"></span><br>
+      <span style="font-size: larger ;">Période : </span>
+      <span [innerHTML]="selectedPoint.properties.description"></span><br>
     </mgl-popup>
-    <mgl-control
+    <mgl-control 
       mglNavigation
     ></mgl-control>
     <mgl-control

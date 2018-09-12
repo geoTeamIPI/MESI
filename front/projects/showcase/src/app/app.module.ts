@@ -35,6 +35,13 @@ import { ListTimelapsesApproveComponent } from "./timelapse/list-timelapsesappro
 import { InfosTimelapseComponent } from "./timelapse/infos-timelapse/infos-timelapse.component";
 import { UpdateTimelapseComponent } from "./timelapse/update-timelapse/update-timelapse.component";
 
+import { CreateTypeComponent } from "./type/create-type/create-type.component";
+import { ProposeTypeComponent } from "./type/propose-type/propose-type.component";
+import { ListTypesComponent } from "./type/list-types/list-types.component";
+import { ListTypesApproveComponent } from "./type/list-typesapprove/list-typesapprove.component"; 
+import { InfosTypeComponent } from "./type/infos-type/infos-type.component";
+import { UpdateTypeComponent } from "./type/update-type/update-type.component";
+
 import { ListUsersComponent } from "./user/list-users/list-users.component";
 import { CreateUserComponent } from "./user/create-user/create-user.component";
 import { InfosUsersComponent } from "./user/infos-users/infos-users.component";
@@ -60,6 +67,7 @@ import { UserService } from './services/user.service';
 import { StoryService } from './services/story.service';
 import { PlaceService } from './services/place.service';
 import { TimelapseService } from './services/timelapse.service';
+import { TypeService } from './services/type.service';
 import { AuthenticationService } from './services/authentication.service';
 
 
@@ -177,6 +185,21 @@ export const showcaseRoutes: Routes = [
         },
         { path: "timelapses/infos/:id", 
           component: InfosTimelapseComponent
+        },
+        { path: "types",
+           component: ListTypesComponent 
+        },
+        { path: "types/add", 
+          component: CreateTypeComponent
+        },
+        { path: "types/approve", 
+          component: ListTypesApproveComponent
+        },
+        { path: "types/update/:id", 
+          component: UpdateTypeComponent
+        },
+        { path: "types/infos/:id", 
+          component: InfosTypeComponent
         }
       ]
     }, 
@@ -238,8 +261,20 @@ export const showcaseRoutes: Routes = [
         },
         { path: "timelapses/infos/:id", 
           component: InfosTimelapseComponent
+        },
+        { path: "types",
+           component: ListTypesComponent 
+        },
+        { path: "types/add", 
+          component: ProposeTypeComponent
+        },
+        { path: "types/update/:id", 
+          component: UpdateTypeComponent
+        },
+        { path: "types/infos/:id", 
+          component: InfosTypeComponent
         }
-      ]
+      ] 
     },
     {
       path: "registering", 
@@ -288,7 +323,12 @@ export const showcaseRoutes: Routes = [
     ListTimelapsesApproveComponent,
     InfosTimelapseComponent,
     UpdateTimelapseComponent,
-    
+    CreateTypeComponent,
+    ProposeTypeComponent,
+    ListTypesComponent,
+    ListTypesApproveComponent,
+    InfosTypeComponent,
+    UpdateTypeComponent,
   ],
   imports: [ 
     BrowserModule,
@@ -316,6 +356,7 @@ export const showcaseRoutes: Routes = [
     StoryService, 
     PlaceService, 
     TimelapseService,
+    TypeService,
     AuthenticationService,
     { provide: RouterStateSerializer, useClass: SimpleSerializer }
   ],

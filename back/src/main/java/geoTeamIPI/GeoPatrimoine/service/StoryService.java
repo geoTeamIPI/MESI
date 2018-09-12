@@ -125,6 +125,10 @@ public class StoryService {
 		return storyRepository.findByTimelapseId(idTimelapse);
 	}
 
+	public List<Story> findAllStoriesByType(Long idType) {
+		return storyRepository.findByTypeId(idType);
+	}
+
 	// ------------------------------------ CRUD METHODS ------------------------
 
 	public Story createStory(Story story, User user) {

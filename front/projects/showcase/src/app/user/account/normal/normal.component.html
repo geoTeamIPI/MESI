@@ -28,10 +28,14 @@
     </mat-card>-->
 
     <mat-card class="text-center matcardbottom" *ngIf="places == true">
-        <a mat-raised-button routerLink="places"><mat-icon>list</mat-icon>Liste des adresses</a>
-        <a mat-raised-button routerLink="places/user"><mat-icon>view_list</mat-icon>Liste de mes adresses</a>
-        <a mat-raised-button routerLink="places/add"><mat-icon>add_location</mat-icon>Créer une adresse</a>
-        <a mat-raised-button routerLink="places/compare"><mat-icon>not_listed_location</mat-icon>Adresses sans histoire</a>
+        <a mat-raised-button routerLink="places">
+            <mat-icon>list</mat-icon>Liste des adresses</a>
+        <a mat-raised-button routerLink="places/user">
+            <mat-icon>view_list</mat-icon>Liste de mes adresses</a>
+        <a mat-raised-button routerLink="places/add">
+            <mat-icon>add_location</mat-icon>Créer une adresse</a>
+        <a mat-raised-button routerLink="places/compare">
+            <mat-icon>not_listed_location</mat-icon>Adresses sans histoire</a>
     </mat-card>
 
     <!--<mat-card class="text-center matcardbottom" *ngIf="users == true">
@@ -48,14 +52,10 @@
         <a mat-raised-button routerLink="timelapses/add">Proposer une période</a>
     </mat-card>
 
-    <!--<mat-card class="text-center matcardbottom" *ngIf="types == true">
-        <a mat-raised-button routerLink="users">Liste des types</a>
-        <a mat-raised-button routerLink="users/add">Ajouter un utilisateur</a>
-        <a mat-raised-button routerLink="stories/add">Créer une histoire</a>
-        <a mat-raised-button routerLink="stories">Listes des histoires</a>
-        <a mat-raised-button routerLink="infos">Mes infos</a>
-        <a mat-raised-button routerLink="update">Modifier mon compte</a>
-    </mat-card>-->
+    <mat-card class="text-center matcardbottom" *ngIf="types == true">
+        <a mat-raised-button routerLink="types">Liste des types</a>
+        <a mat-raised-button routerLink="types/add">Proposer un types</a>
+    </mat-card>
 
     <!--<mat-card class="text-center matcardbottom" *ngIf="media == true">
         <a mat-raised-button routerLink="users">Liste des media</a>

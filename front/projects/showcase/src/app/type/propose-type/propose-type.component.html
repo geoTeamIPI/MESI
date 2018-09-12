@@ -1,0 +1,27 @@
+<div class="container">
+    <h2 class="text-center">Proposition d'un nouveau type de patrimoine</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group col-5 col-sm-12">
+            <label for="name" class="control-label">Type</label>
+            <input type="text" formControlName="name" class="form-control" id="name" required placeholder="Exemple : Monument" required
+                [(ngModel)]="type.name" name="name">
+        </div>
+        <div class="form-group col-5 col-sm-12">
+            <label for="comments" class="control-label">Commentaires</label>
+            <input type="text" formControlName="comments" class="form-control" id="comments" required placeholder="Exemple : Pour les monuments historiques"
+                required [(ngModel)]="type.comments" name="comments">
+        </div>
+
+        <div class="col-5 col-sm-12">
+            <button type="submit" class="btn btn-primary">Proposer</button>
+        </div>
+    </form>
+    <div *ngIf="submitted">
+        <div *ngIf="typeForm.valid">
+            <div class="alert alert-success">Ajout effectué avec succès</div>
+        </div>
+        <div *ngIf="!typeForm.valid">
+            <div class="alert alert-danger">Erreur d'ajout</div>
+        </div>
+    </div>
+</div>

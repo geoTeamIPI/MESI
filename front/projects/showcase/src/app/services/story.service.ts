@@ -121,6 +121,14 @@ export class StoryService {
     );
   }
 
+  public findAllStoriesByTypeById(
+    idType: number 
+    ): Observable<any>{
+    return this.http.get<Story[]>(this.storiesUrl + "/typeId" 
+    + "?" + "idType=" + idType
+    );
+  }
+
 // ----------------------------------------------- COUNT STORIES METHODS ---------------
 
   public countAllStories(){
@@ -131,7 +139,7 @@ export class StoryService {
     return this.http.get<Story[]>(this.storiesUrl + "/count/user", { 
       headers: {"idUser": idUser.toString()}
     });
-  }
+  } 
 
   public countAllStoriesByScreen(    
     longitudeSW: String, 

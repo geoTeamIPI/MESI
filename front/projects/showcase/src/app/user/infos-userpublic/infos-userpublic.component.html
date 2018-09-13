@@ -36,7 +36,8 @@
           <td>{{story.description}}</td>
           <td>{{story.timelapse.period}}</td>
           <td>{{story.type.name}}</td>
-          <td><a mat-button color="primary" routerLink="../../../stories/infos/{{story.id}}"><mat-icon>chat_bubble_outline</mat-icon></a></td>
+          <td *ngIf="isAdmin"><a mat-button color="primary" routerLink="/account/admin/stories/infos/{{story.id}}"><mat-icon>chat_bubble_outline</mat-icon></a></td>
+          <td *ngIf="!isAdmin"><a mat-button color="primary" routerLink="/account/user/stories/infos/{{story.id}}"><mat-icon>chat_bubble_outline</mat-icon></a></td>
         </tr>
       </table>
       <br/>

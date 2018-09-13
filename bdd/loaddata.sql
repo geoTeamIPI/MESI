@@ -77,23 +77,23 @@ INSERT INTO `types` (`id`, `name`, `comments`, `isapproved`, `logo`, `pathpictur
 --
 
 INSERT INTO `timelapses` (`id`, `period`, `startingYear`, `endingYear`, `comments`, `isapproved`, `logo`, `color`) VALUES
-(1, 'Préhistoire', -2800000, -3500, null, true, 'prehistoire.jpg', 'darkbrown'),
-(2, 'Antiquité', -3500, 476, null, true, 'antiquite.jpg', 'black'),
-(3, 'Moyen-Age', 476, 1492, null, true, 'moyenage.jpg', 'darkgray'),
-(4, 'Temps modernes', 1492, 1789, null, true, 'tempsmodernes.jpg', 'darkpink'),
-(5, 'Temps révolutionnaires', 1789, 1815, null, true, 'tempsrevolutionnaires.jpg', 'darkpurple'),
-(6, 'Restauration monarchie et monarchie de juillet ', 1815, 1848, null, true, 'monarchie.jpg', 'darkblue'),
-(7, 'Deuxième République', 1848, 1852, null, true, 'republique2.jpg', 'darkgreen'),
-(8, 'Second Empire', 1852, 1870, null, true, 'empire2.jpg', 'darkyellow'),
-(9, 'Troisième République', 1870, 1914, null, true, 'republique3.jpg', 'darkorange'),
-(10, 'Première guerre mondiale', 1914, 1918, null, true, 'ww1.jpg', 'darkred'),
-(11, 'Entre deux guerres', 1918, 1939, null, true, 'entre2.jpg', 'lightbrown'),
-(12, 'Deuxième guerre mondiale', 1939, 1945, null, true, 'ww2.jpg', 'lightgray'),
-(13, 'Quatrième République', 1946, 1958, null, true, 'republique4.jpg', 'lightpink'),
-(14, 'Cinquième République', 1958, 2037, null, true, 'republique5.jpg', 'lightpurple'),
-(15, 'Troisième guerre mondiale', 2037, 2058, null, true, 'ww3.jpg', 'lightblue'),
-(18, 'Test 1 non atribué', 0, NULL, null, false, 'test.jpg', 'lightyellow'),
-(19, 'Test 2 non atribué', 0, NULL, null, false, 'test.jpg', 'lightorange');
+(1, 'Préhistoire', -2800000, -3500, null, true, 'prehistoire.jpg', 'prehistoire2.jpg'),
+(2, 'Antiquité', -3500, 476, null, true, 'antiquite.jpg', 'antiquite2.jpg'),
+(3, 'Moyen-Age', 476, 1492, null, true, 'moyenage.jpg', 'moyenage2.jpg'),
+(4, 'Temps modernes', 1492, 1789, null, true, 'tempsmodernes.jpg', 'tempsmodernes2.jpg'),
+(5, 'Temps révolutionnaires', 1789, 1815, null, true, 'tempsrevolutionnaires.jpg', 'tempsrevolutionnaires2.jpg'),
+(6, 'Restauration monarchie et monarchie de juillet ', 1815, 1848, null, true, 'monarchie.jpg', 'monarchie2.jpg'),
+(7, 'Deuxième République', 1848, 1852, null, true, 'republique2.jpg', 'republique22.jpg'),
+(8, 'Second Empire', 1852, 1870, null, true, 'empire2.jpg', 'empire22.jpg'),
+(9, 'Troisième République', 1870, 1914, null, true, 'republique3.jpg', 'republique32.jpg'),
+(10, 'Première guerre mondiale', 1914, 1918, null, true, 'ww1.jpg', 'ww12.jpg'),
+(11, 'Entre deux guerres', 1918, 1939, null, true, 'entre2.jpg', 'entre22.jpg'),
+(12, 'Deuxième guerre mondiale', 1939, 1945, null, true, 'ww2.jpg', 'ww22.jpg'),
+(13, 'Quatrième République', 1946, 1958, null, true, 'republique4.jpg', 'republique42.jpg'),
+(14, 'Cinquième République', 1958, 2037, null, true, 'republique5.jpg', 'republique52.jpg'),
+(15, 'Troisième guerre mondiale', 2037, 2058, null, true, 'ww3.jpg', 'ww32.jpg'),
+(18, 'Test 1 non atribué', 0, NULL, null, false, 'test.jpg', 'test2.jpg'),
+(19, 'Test 2 non atribué', 0, NULL, null, false, 'test.jpg', 'test2.jpg');
 
 
 

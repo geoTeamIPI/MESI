@@ -2,7 +2,7 @@
 "type": "FeatureCollection",
 "features": [
 {"type":"Feature","properties": { 
-        "Primary ID": "1", 
+        "id": "1", 
         "Title": "Belle statue!!!", 
         "description": "Wow elle est trop belle cette statue",
         "content": "Y a plein de crottes de pigeons dessus",
@@ -26,7 +26,8 @@
         },
         "type": {
             "id": 4,
-            "name": "Sculpture"
+            "name": "Sculpture",
+            "pathpicture": "monument.jpg"
         },
         "media": [
             {
@@ -64,7 +65,8 @@
         },
         "type": {
             "id": 7,
-            "name": "Musée"
+            "name": "Musée",
+            "pathpicture": "musee.jpg"
         },
         "media": []
 }, "geometry": { "type": "Point", "coordinates": [4.837420, 45.778557 ] } },
@@ -93,7 +95,8 @@
         },
         "type": {
             "id": 6,
-            "name": "Art moderne"
+            "name": "Art moderne",
+            "pathpicture": "art.jpg"
         },
         "media": [
             {
@@ -107,7 +110,7 @@
         ]
 }, "geometry": { "type": "Point", "coordinates": [4.813071, 45.788307 ] } },
     {"type": "Feature", "properties": { 
-        "Primary ID": 4,
+        "id": 4,
         "Title": "Batiment de CGI",
         "description": "Tellement de bons souvenirs pour moi là-bas!!!!!!!!!!!!",
         "content": "",
@@ -131,12 +134,13 @@
         },
         "type": {
             "id": 2,
-            "name": "Décoration"
+            "name": "Décoration",
+            "pathpicture": "cimetiere.jpg"
         },
         "media": []
 }, "geometry": { "type": "Point", "coordinates": [4.812071,  45.789307 ] } },
     {"type": "Feature", "properties": { 
-        "Primary ID": 5,
+        "id": 5,
         "Title": "Petite histoire salace",
         "description": "Celle des employés CGI qui font gollum gollum dans les toilettes du 3ème étage ",
         "content": "",
@@ -160,12 +164,13 @@
         },
         "type": {
             "id": 4,
-            "name": "Sculpture"
+            "name": "Sculpture",
+            "pathpicture": "urbain.jpg"
         },
         "media": []
 }, "geometry": { "type": "Point", "coordinates": [4.913071,  45.778307 ] } },
     {"type": "Feature", "properties": { 
-        "Primary ID": 6,
+        "id": 6,
         "Title": "Plaque d égout ",
         "description": "du 32ème siècle aprés Jesus Christ",
         "content": "Et oui c'est une plaque d'égout du futur!!",
@@ -189,7 +194,8 @@
         },
         "type": {
             "id": 7,
-            "name": "Musée"
+            "name": "Musée",
+            "pathpicture": "musee.jpg"
         },
         "media": [
             {
@@ -203,7 +209,7 @@
         ]
 }, "geometry": { "type": "Point", "coordinates": [4.805270,  45.780279 ] } },
     {"type": "Feature", "properties": { 
-        "Primary ID": 7,
+        "id": 7,
         "Title": "Entrée du métro George de Loup ",
         "description": "Oui il s agit d'une nouvelle station de métro  en mémoire à George le Conquérant qui montait un loup pour attaquer ses ennemis ",
         "content": "Vous remarquerez ces magnifiques statues de CN News et 20 minutes à l'entrée!",
@@ -227,12 +233,14 @@
         },
         "type": {
             "id": 4,
-            "name": "Sculpture"
+            "name": "Sculpture",
+            "pathpicture": "cimetiere.jpg"
+
         },
         "media": []
 }, "geometry": { "type": "Point", "coordinates": [4.785506, 45.766718 ] } },
     {"type": "Feature", "properties": { 
-        "Primary ID": 15,
+        "id": 15,
         "Title": "test",
         "description": "test",
         "content": "test",
@@ -256,12 +264,13 @@
         },
         "type": {
             "id": 1,
-            "name": "Monument"
+            "name": "Monument",
+            "pathpicture": "monument.jpg"
         },
         "media": []
 }, "geometry": { "type": "Point", "coordinates": [4.827880, 45.774517] } },
 {"type": "Feature", "properties": { 
-    "Primary ID": 18,
+    "id": 18,
     "Title": "testsurplus",
     "description": "testsurplus",
     "content": "testsurplus",
@@ -285,7 +294,8 @@
     },
     "type": {
         "id": 1,
-        "name": "Monument"
+        "name": "Monument",
+        "pathpicture": "monument.jpg"
     },
     "media": []
 }, "geometry": { "type": "Point", "coordinates": [4.827820, 45.774557] } }

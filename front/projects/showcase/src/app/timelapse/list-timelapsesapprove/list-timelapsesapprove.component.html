@@ -8,7 +8,6 @@
           <th>Dates de début</th>
           <th>Dates de fin</th>
           <th>Commentaires</th>
-          <th>Couleurs</th>
           <th *ngIf="isAdmin" colspan="3">Actions</th>
           <th *ngIf="!isAdmin">Afficher</th>
         </tr>
@@ -18,10 +17,9 @@
           <td>{{timelapse.startingYear}}</td>
           <td>{{timelapse.endingYear}}</td>
           <td>{{timelapse.comments}}</td>
-          <td >{{timelapse.color}}</td>
           <td>
             <a mat-button color="primary" routerLink="../infos/{{timelapse.id}}">
-              <mat-icon>timelapse</mat-icon>
+              <img width="50px" src="./../../../assets/{{timelapse.color}}">
             </a>
           </td>
           <td *ngIf="isAdmin">

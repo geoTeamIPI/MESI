@@ -6,12 +6,12 @@
         <th *ngIf="isAdmin">Id :</th>
         <td *ngIf="isAdmin">{{timelapse.id}}</td>
         <td *ngIf="isAdmin" rowspan=6 class="text-center"><a mat-button color="primary" routerLink="../../update/{{timelapse.id}}"><mat-icon>edit</mat-icon></a></td>
-        <td *ngIf="isAdmin" rowspan=6 class="text-center"><img src="./../../../assets/{{timelapse.logo}}"> </td>
+        <td *ngIf="isAdmin" rowspan=6 class="text-center"><img width="300px" src="./../../../assets/{{timelapse.logo}}"> </td>
       </tr>
       <tr>
         <th>Période historique :</th>
         <td>{{timelapse.period}}</td>
-        <td *ngIf="!isAdmin" rowspan=5 class="text-center"><img src="./../../../assets/{{timelapse.logo}}"></td> 
+        <td *ngIf="!isAdmin" rowspan=5 class="text-center"><img width="300px" src="./../../../assets/{{timelapse.logo}}"></td> 
       </tr>
       <tr>
         <th>Date de début :</th>
@@ -26,8 +26,10 @@
         <td>{{timelapse.comments}}</td>
       </tr>
       <tr>
-        <th>Couleur :</th>
-        <td>{{timelapse.color}}</td>
+        <th>Icône :</th>
+        <td>
+            <img width="50px" src="./../../../../assets/{{timelapse.color}}">
+        </td>
       </tr>
     </table>
   </div>

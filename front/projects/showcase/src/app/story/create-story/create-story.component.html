@@ -1,7 +1,7 @@
 <div class="container">
     <h2 class="text-center">Créer nouvelle histoire</h2>
-    <form [formGroup]="storyForm">
-        <div class="col-5 col-sm-12">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group col-5 col-sm-12">
             <label for="title" class="control-label">Titre</label>
             <input type="text" formControlName="title" id="title" required placeholder="Exemple : La belle au bois dormant" required
                 [(ngModel)]="story.title" name="title">
@@ -16,22 +16,22 @@
 
         <div class="form-group col-5 col-sm-12">
             <label for="name" class="control-label">Place</label>
-            <select formControlName="place">
-                <option [ngValue]="story.place" *ngFor="let place of places"> [Longitude : {{place.longitude}} - Latitude : {{place.latitude}}]</option>
+            <select formControlName="place" ([ngModel])="story.place" name="place">
+                <option *ngFor="let place of places" [ngValue]="place.id"> [Longitude : {{place.longitude}} - Latitude : {{place.latitude}}]</option>
             </select>
         </div>
 
         <div class="form-group col-5 col-sm-12">
             <label for="name" class="control-label">Période historique</label>
-            <select formControlName="timelapse">
-                <option [ngValue]="story.timelapse" *ngFor="let timelapse of timelapses"> {{timelapse.period}}</option>
+            <select formControlName="timelapse" ([ngModel])="story.timelapse" name="timelapse">
+                <option *ngFor="let timelapse of timelapses" [ngValue]="timelapse.id"> {{timelapse.period}}</option>
             </select>
         </div>
 
         <div class="form-group col-5 col-sm-12">
             <label for="name" class="control-label">Type de patrimoine</label>
-            <select formControlName="type">
-                <option  [ngValue]="story.type" *ngFor="let type of types"> {{type.name}}</option>
+            <select formControlName="type" ([ngModel])="story.type" name="type">
+                <option *ngFor="let type of types" [ngValue]="type.id"> {{type.name}}</option>
             </select>
         </div>
 

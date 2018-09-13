@@ -1,12 +1,13 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
-import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Params, RouterModule, RouterStateSnapshot, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { routerReducer, RouterReducerState, RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AppComponent } from './app.component';
 import 'hammerjs';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { environment } from '../environments/environment';
@@ -408,6 +409,7 @@ export const showcaseRoutes: Routes = [
     ListTypesApproveComponent,
     InfosTypeComponent,
     UpdateTypeComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -436,10 +438,11 @@ export const showcaseRoutes: Routes = [
     PlaceService,
     TimelapseService,
     TypeService,
+    Title,
     AuthenticationService,
     { provide: RouterStateSerializer, useClass: SimpleSerializer }
   ],
-  bootstrap: [IndexComponent],
+  bootstrap: [IndexComponent, AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule {

@@ -14,7 +14,7 @@ import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, Valid
 export class CreatePlaceComponent implements OnInit {
   place: Place = new Place();
   submitted: boolean = false;
-  placeCreated: String;  
+  placeCreated: boolean;  
   placeForm : FormGroup;
   longitude : FormControl; 
   latitude: FormControl; 
@@ -24,46 +24,21 @@ export class CreatePlaceComponent implements OnInit {
   city: FormControl;
   currentUser: User; 
 
-  constructor(private placeService: PlaceService, private route: Router) {}
+  constructor(private placeService: PlaceService) {}
 
   ngOnInit() {
-    this.controlFormPlace();
-    this.createFormPlace();
   }
 
   createPlace() {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
     this.placeService
       .createPlace(this.place, this.currentUser.id)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => this.placeCreated = true, error => this.placeCreated = false);
     this.place = new Place();
   }
 
   onSubmit() {
-    if (this.placeForm.valid){
-      this.createPlace();
-      this.placeForm.reset();
-    }
+    this.createPlace();
     this.submitted = true; 
   }
-
-  controlFormPlace(){
-    this.longitude = new FormControl('', [
-      Validators.required
-    ]);
-    this.latitude = new FormControl('', [
-      Validators.required
-    ]);
-}
-
-createFormPlace(){
-  this.placeForm  = new FormGroup({
-    longitude : this.longitude,
-    latitude: this.latitude,
-    numberstreet: this.numberstreet,
-    street: this.street,
-    zipcode: this.zipcode,
-    city: this.city
-  });
-}
 }

@@ -73,13 +73,9 @@ export class CreateStoryComponent implements OnInit {
   }
 
   createStory() {
-    console.log("Mon créateur vaut" + this.creator);
-    console.log("Ma période vaut" + this.timelapse);
-    console.log("Mon type vaut" + this.type);
-    console.log("Ma place vaut" + this.place);
     this.storyService
       .createStory(this.story,  this.currentUser.id)
-      .subscribe(data => this.storyCreated = true, error => this.storyCreated = false);
+      .subscribe(data => {console.log(data), this.storyCreated = true}, error => this.storyCreated = false);
   }
 
   onSubmit() {

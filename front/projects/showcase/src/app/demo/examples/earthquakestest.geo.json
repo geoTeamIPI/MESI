@@ -1,0 +1,22 @@
+{
+"type": "FeatureCollection",
+"features": [
+{"type":"Feature","properties": { 
+        "id": "1", 
+        "Title": "Belle statue!!!", 
+        "description": "Wow elle est trop belle cette statue",
+        "name": "Sculpture",
+        "period": "Antiquité",
+        "icon": "theatre",
+        "color": "antiquite2.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.827420, 45.779557 ] } }
+]
+}
+
+
+
+
+        
+
+    
+  

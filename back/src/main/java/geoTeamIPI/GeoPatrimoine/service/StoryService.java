@@ -148,7 +148,7 @@ public class StoryService {
 		if (idCreator == idConnectedUser) {
 			storyRepository.delete(story);
 			List<Story> stories = storyRepository.findAll();
-			// createGeoJson(stories);
+			createGeoJson(stories);
 		} else {
 			// throw denied
 		}
@@ -165,7 +165,7 @@ public class StoryService {
 			story.setCreator(user);
 			storyRepository.save(story);
 			List<Story> stories = storyRepository.findAll();
-			// createGeoJson(stories);
+			createGeoJson(stories);
 		} else {
 			// throw denied
 		}
@@ -201,7 +201,7 @@ public class StoryService {
 					+ story.getId() + "\",\n \"Title\":\""
 					+ story.getTitle() + "\",\n \"description\": \""
 					+ story.getDescription() + "\",\n \"name\": \""
-					+ story.getType().getName() + "\",\n\"period \": \""
+					+ story.getType().getName() + "\",\n\"period\": \""
 					+ story.getTimelapse().getPeriod() + "\",\n \"icon\":\""
 					+ story.getType().getLogo() + "\",\n \"color\": \""
 					+ story.getTimelapse().getColor() + "\"\n}"

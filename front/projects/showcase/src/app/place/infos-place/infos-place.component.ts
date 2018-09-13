@@ -68,8 +68,7 @@ export class InfosPlaceComponent implements OnInit {
   }
 
   getUser() {
-    const id = +this.route.snapshot.paramMap.get("id");
-    this.userService.getUser(id)
+    this.userService.getUser(this.place.creator)
       .subscribe(
         user => {
           this.user = user;

@@ -3,471 +3,84 @@
 "features": [ 
 {"type":"Feature","properties": {
  "id": "1",
- "Title":"Belle statue!!!",
- "description": "Wow elle est trop belle cette statue",
- "name": "Cimetière",
-"period ": "Préhistoire",
- "icon":"cemetery-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "2",
- "Title":"Statue de la vierge",
- "description": "Magnifique statue de la vierge du 15eme siècle érigée par Charles de La Frite suite à une commande du cardinal de Lasagne ",
- "name": "Religieux musulman",
-"period ": "Antiquité",
- "icon":"religious-muslim-15",
- "color": "antiquite2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.788307, 4.813071] } },
-{"type":"Feature","properties": {
- "id": "3",
- "Title":"CGI c'est de la bombe ",
+ "Title":"CGI, La force de l'engagement",
  "description": "CGI, monument historique des UDEV",
  "name": "Religieux juif",
-"period ": "Moyen-Age",
+"period": "Cinquième République",
  "icon":"religious-jewish-15",
- "color": "moyenage2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.780279, 4.805270] } },
+ "color": "republique52.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.813071, 45.788307] } },
 {"type":"Feature","properties": {
- "id": "4",
- "Title":"Batiment de CGI",
- "description": "Tellement de bons souvenirs pour moi là-bas!!!!!!!!!!!!",
- "name": "Art",
-"period ": "Temps modernes",
- "icon":"theatre-15",
- "color": "tempsmodernes2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.766118, 4.805506] } },
-{"type":"Feature","properties": {
- "id": "5",
- "Title":"Petite histoire salace",
- "description": "Celle des employés CGI qui font gollum gollum dans les toilettes du 3ème étage ",
- "name": "Cimetière",
-"period ": "Temps révolutionnaires",
- "icon":"cemetery-15",
- "color": "tempsrevolutionnaires2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.766888, 4.897420] } },
-{"type":"Feature","properties": {
- "id": "6",
- "Title":"Plaque d égout ",
- "description": "du 32ème siècle aprés Jesus Christ",
- "name": "Religieux musulman",
-"period ": "Restauration monarchie et monarchie de juillet ",
- "icon":"religious-muslim-15",
- "color": "monarchie2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.746997, 4.887420] } },
-{"type":"Feature","properties": {
- "id": "7",
+ "id": "2",
  "Title":"Entrée du métro George de Loup ",
  "description": "Oui il s agit d'une nouvelle station de métro  en mémoire à George le Conquérant qui montait un loup pour attaquer ses ennemis ",
  "name": "Cimetière",
-"period ": "Deuxième République",
+"period": "Temps révolutionnaires",
  "icon":"cemetery-15",
- "color": "republique22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.76118, 4.877420] } },
+ "color": "tempsrevolutionnaires2.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.805506, 45.766118] } },
+{"type":"Feature","properties": {
+ "id": "3",
+ "Title":"Ancienne demeure des U’Dev",
+ "description": "Voici, l’ancien temple des U’dev ",
+ "name": "Cimetière",
+"period": "Cinquième République",
+ "icon":"cemetery-15",
+ "color": "republique52.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.8059379, 45.7683916] } },
+{"type":"Feature","properties": {
+ "id": "4",
+ "Title":"Nouveau Temple des U’Dev",
+ "description": "Oui, Voici le nouveau Temple des U’Dev, leurs nouvelles installations est à la pointe de la technologie. ",
+ "name": "Cimetière",
+"period": "Cinquième République",
+ "icon":"cemetery-15",
+ "color": "republique52.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.8056605, 45.7703256] } },
+{"type":"Feature","properties": {
+ "id": "5",
+ "Title":"Parc de la Tête d’or ",
+ "description": "Vaste parc du XIXe siècle avec statues, fontaines, grands arbres, roseraie, jardin botanique et lac. ",
+ "name": "Cimetière",
+"period": "Première guerre mondiale",
+ "icon":"cemetery-15",
+ "color": "ww12.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.8530257, 45.7774069] } },
+{"type":"Feature","properties": {
+ "id": "6",
+ "Title":"Zoo Tête d’or ",
+ "description": "Vaste jardin zoologique verdoyant abritant des animaux exotiques d Asie, d Afrique et des Amériques.",
+ "name": "Cimetière",
+"period": "Cinquième République",
+ "icon":"cemetery-15",
+ "color": "republique52.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.8545258, 45.7784452] } },
+{"type":"Feature","properties": {
+ "id": "7",
+ "Title":"Jardin des Curiosités ",
+ "description": "Il s’agit d’un parc de 6000 m² ",
+ "name": "Cimetière",
+"period": "Temps révolutionnaires",
+ "icon":"cemetery-15",
+ "color": "tempsrevolutionnaires2.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.820878, 45.7550934] } },
 {"type":"Feature","properties": {
  "id": "8",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Musée",
-"period ": "Deuxième République",
- "icon":"museum-15",
- "color": "republique22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.716118, 4.867420] } },
+ "Title":"Bonchon Les Lyonnais ",
+ "description": "Des spécialités lyonnaises servies dans un cadre chaleureux aux murs oranges ornés de photos en noir et blanc. ",
+ "name": "Cimetière",
+"period": "Cinquième République",
+ "icon":"cemetery-15",
+ "color": "republique52.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.8218358, 45.7618622] } },
 {"type":"Feature","properties": {
  "id": "9",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Religieux musulman",
-"period ": "Deuxième République",
- "icon":"religious-muslim-15",
- "color": "republique22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.769118, 4.857420] } },
-{"type":"Feature","properties": {
- "id": "10",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Monument",
-"period ": "Deuxième République",
- "icon":"town-hall-15",
- "color": "republique22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.766518, 4.847420] } },
-{"type":"Feature","properties": {
- "id": "11",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Musée",
-"period ": "Second Empire",
- "icon":"museum-15",
- "color": "empire22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.766158, 4.837420] } },
-{"type":"Feature","properties": {
- "id": "12",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Animalier",
-"period ": "Deuxième République",
- "icon":"zoo-15",
- "color": "republique22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.866118, 4.817420] } },
-{"type":"Feature","properties": {
- "id": "13",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Informatif",
-"period ": "Temps révolutionnaires",
- "icon":"information-15",
- "color": "tempsrevolutionnaires2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.966118, 4.127420] } },
-{"type":"Feature","properties": {
- "id": "14",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Informatif",
-"period ": "Deuxième République",
- "icon":"information-15",
- "color": "republique22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.666118, 4.227420] } },
-{"type":"Feature","properties": {
- "id": "15",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Religieux musulman",
-"period ": "Deuxième République",
- "icon":"religious-muslim-15",
- "color": "republique22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.566118, 4.327420] } },
-{"type":"Feature","properties": {
- "id": "16",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Mobilier urbain",
-"period ": "Préhistoire",
- "icon":"garden-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.466118, 4.427420] } },
-{"type":"Feature","properties": {
- "id": "17",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Musée",
-"period ": "Moyen-Age",
- "icon":"museum-15",
- "color": "moyenage2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.76118, 4.877420] } },
-{"type":"Feature","properties": {
- "id": "18",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Cinématographique",
-"period ": "Antiquité",
- "icon":"cinema-15",
- "color": "antiquite2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.716118, 4.867420] } },
-{"type":"Feature","properties": {
- "id": "19",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Test approve 1",
-"period ": "Deuxième République",
- "icon":"star-15",
- "color": "republique22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "20",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Monument",
-"period ": "Deuxième guerre mondiale",
- "icon":"town-hall-15",
- "color": "ww22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.788307, 4.813071] } },
-{"type":"Feature","properties": {
- "id": "21",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Monument",
-"period ": "Entre deux guerres",
- "icon":"town-hall-15",
- "color": "entre22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.716118, 4.867420] } },
-{"type":"Feature","properties": {
- "id": "22",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Monument",
-"period ": "Troisième République",
- "icon":"town-hall-15",
- "color": "republique32.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.769118, 4.857420] } },
-{"type":"Feature","properties": {
- "id": "23",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Musical",
-"period ": "Deuxième République",
- "icon":"music-15",
- "color": "republique22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.366118, 4.527420] } },
-{"type":"Feature","properties": {
- "id": "24",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Musée",
-"period ": "Première guerre mondiale",
- "icon":"museum-15",
- "color": "ww12.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.666118, 4.227420] } },
-{"type":"Feature","properties": {
- "id": "25",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Cinématographique",
-"period ": "Troisième République",
- "icon":"cinema-15",
- "color": "republique32.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.766158, 4.837420] } },
-{"type":"Feature","properties": {
- "id": "26",
- "Title":"A écrire",
- "description": "A écrire",
- "name": "Cinématographique",
-"period ": "Deuxième République",
- "icon":"cinema-15",
- "color": "republique22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.866118, 4.817420] } },
-{"type":"Feature","properties": {
- "id": "27",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "28",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "29",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "30",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "31",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "32",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "33",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "34",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "35",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "36",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "37",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "38",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "39",
- "Title":"Testing postman numero 4",
- "description": "null",
- "name": "Monument",
-"period ": "Préhistoire",
- "icon":"town-hall-15",
- "color": "prehistoire2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "40",
- "Title":"[object Object]",
- "description": "null",
+ "Title":"Ninkazi ",
+ "description": "Des spécialités lyonnaises servies dans un cadre chaleureux aux murs oranges ornés de photos en noir et blanc. ",
  "name": "Cimetière",
-"period ": "Restauration monarchie et monarchie de juillet ",
+"period": "Cinquième République",
  "icon":"cemetery-15",
- "color": "monarchie2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.76118, 4.877420] } },
-{"type":"Feature","properties": {
- "id": "41",
- "Title":"test de 22h52",
- "description": "null",
- "name": "Musée",
-"period ": "Deuxième République",
- "icon":"museum-15",
- "color": "republique22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [17.659451250024176, 50.07526578508407] } },
-{"type":"Feature","properties": {
- "id": "42",
- "Title":"ghfgf",
- "description": "fgfgfgfgggggggggggggggggggggggggggggg",
- "name": "Musée",
-"period ": "Moyen-Age",
- "icon":"museum-15",
- "color": "moyenage2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.726118, 4.827420] } },
-{"type":"Feature","properties": {
- "id": "43",
- "Title":"g",
- "description": "gg",
- "name": "Religieux christianisme",
-"period ": "Restauration monarchie et monarchie de juillet ",
- "icon":"religious-christian-15",
- "color": "monarchie2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.796118, 4.927420] } },
-{"type":"Feature","properties": {
- "id": "44",
- "Title":"test de 23h33",
- "description": "test 1",
- "name": "Monument",
-"period ": "Deuxième guerre mondiale",
- "icon":"town-hall-15",
- "color": "ww22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.76118, 4.877420] } },
-{"type":"Feature","properties": {
- "id": "45",
- "Title":"23h41",
- "description": "undefined",
- "name": "Musical",
-"period ": "Second Empire",
- "icon":"music-15",
- "color": "empire22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.716118, 4.867420] } },
-{"type":"Feature","properties": {
- "id": "46",
- "Title":"test 23h44",
- "description": "hhh",
- "name": "Cimetière",
-"period ": "Temps révolutionnaires",
- "icon":"cemetery-15",
- "color": "tempsrevolutionnaires2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [31.106716874994902, 48.78928097061083] } },
-{"type":"Feature","properties": {
- "id": "47",
- "Title":"23h50 duo",
- "description": "undefined",
- "name": "Cimetière",
-"period ": "Temps modernes",
- "icon":"cemetery-15",
- "color": "tempsmodernes2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [12.386013749991662, 48.29467273396122] } },
-{"type":"Feature","properties": {
- "id": "48",
- "Title":"Reflex Sony Alpha 77 A77 SLT-A77   lot 2 objectifs Minolta monture A ",
- "description": "ghghf",
- "name": "Religieux musulman",
-"period ": "Restauration monarchie et monarchie de juillet ",
- "icon":"religious-muslim-15",
- "color": "monarchie2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [-16.090548749978637, 43.52919880524482] } },
-{"type":"Feature","properties": {
- "id": "49",
- "Title":"hhh",
- "description": "zzzzzzzz",
- "name": "Animalier",
-"period ": "Deuxième République",
- "icon":"zoo-15",
- "color": "republique22.jpg"
-}, "geometry": { "type": "Point", "coordinates": [45.796118, 4.927420] } },
-{"type":"Feature","properties": {
- "id": "50",
- "Title":"usa test",
- "description": "usa test",
- "name": "Musical",
-"period ": "Temps révolutionnaires",
- "icon":"music-15",
- "color": "tempsrevolutionnaires2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [-102.26113335542313, 38.958560722633706] } },
-{"type":"Feature","properties": {
- "id": "51",
- "Title":"brest",
- "description": "undefined",
- "name": "Musical",
-"period ": "Temps révolutionnaires",
- "icon":"music-15",
- "color": "tempsrevolutionnaires2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [-4.64431510111973, 48.396148503985074] } },
-{"type":"Feature","properties": {
- "id": "52",
- "Title":"casablanca duo",
- "description": "null",
- "name": "Musical",
-"period ": "Restauration monarchie et monarchie de juillet ",
- "icon":"music-15",
- "color": "monarchie2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [-7.627222815679829, 33.610620653257385] } }
+ "color": "republique52.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.7974164, 45.7929315] } }
  ]
  }

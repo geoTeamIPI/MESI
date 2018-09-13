@@ -11,4 +11,9 @@ body {
   flex-direction: column;
 }
 
+th{
+  background-color:rgb(126, 126, 218);
+  color:white;
+}
+
 

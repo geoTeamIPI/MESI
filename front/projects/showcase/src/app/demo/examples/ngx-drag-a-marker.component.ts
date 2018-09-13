@@ -6,11 +6,11 @@ import { MapMouseEvent } from 'mapbox-gl';
   template: `
   <mgl-map
     [style]="'mapbox://styles/mapbox/streets-v9'"
-    [zoom]="[2]"
-    [center]="[0, 0]"
+    [zoom]="[3]" 
+    [center]="[4.827420, 45.779557]"
   >
     <mgl-marker
-      [lngLat]="[0, 0]"
+      [lngLat]="[ 4.860940309104137, 45.761718444484416]"
       mglDraggable
       (dragStart)="onDragStart($event)"
       (dragEnd)="onDragEnd($event)"

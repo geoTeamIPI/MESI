@@ -20,6 +20,7 @@ import { SharedModule } from './shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { CreateStoryComponent } from "./story/create-story/create-story.component";
+import { CreateStoryNewComponent } from "./story/create-storynew/create-storynew.component";
 import { UpdateStoryComponent } from "./story/update-story/update-story.component";
 import { ListStoriesComponent } from "./story/list-stories/list-stories.component";
 import { ListMyStoriesComponent } from "./story/list-mystories/list-mystories.component";
@@ -124,6 +125,10 @@ export const showcaseRoutes: Routes = [
     component: ListStoriesComponent
   },
   {
+    path: "noaccount/noprofile/places/add",
+    component: CreatePlaceComponent
+  },
+  {
     path: "noaccount/display/stories/infos/:id",
     component: InfosStoryComponent
   },
@@ -174,6 +179,10 @@ export const showcaseRoutes: Routes = [
       {
         path: "stories/add",
         component: CreateStoryComponent
+      },
+      {
+        path: "stories/addnew",
+        component: CreateStoryNewComponent
       },
       {
         path: "stories/update/:id",
@@ -409,6 +418,7 @@ export const showcaseRoutes: Routes = [
     ListTypesApproveComponent,
     InfosTypeComponent,
     UpdateTypeComponent,
+    CreateStoryNewComponent,
     AppComponent
   ],
   imports: [

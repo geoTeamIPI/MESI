@@ -3,7 +3,6 @@ package geoTeamIPI.GeoPatrimoine.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +13,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import geoTeamIPI.GeoPatrimoine.entity.Place;
 import geoTeamIPI.GeoPatrimoine.entity.Story;
+import geoTeamIPI.GeoPatrimoine.entity.Timelapse;
+import geoTeamIPI.GeoPatrimoine.entity.Type;
 import geoTeamIPI.GeoPatrimoine.entity.User;
+import geoTeamIPI.GeoPatrimoine.service.PlaceService;
 import geoTeamIPI.GeoPatrimoine.service.StoryService;
+import geoTeamIPI.GeoPatrimoine.service.TimelapseService;
+import geoTeamIPI.GeoPatrimoine.service.TypeService;
 import geoTeamIPI.GeoPatrimoine.service.UserService;
 
 @RestController
@@ -29,6 +34,15 @@ public class StoryController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private PlaceService placeService;
+
+	@Autowired
+	private TypeService typeService;
+
+	@Autowired
+	private TimelapseService timelapseService;
 
 	public static final String APPLICATION_JSON_CHARSET_UTF_8 = "application/json;charset=UTF-8";
 
@@ -195,13 +209,43 @@ public class StoryController {
 			@RequestParam("idCreator") Long idCreator) {
 		return storyService.findAllStoriesByType(idCreator);
 	}
+
 	// ------------------------------------ CRUD METHODS ------------------------
+	/**
+	 * // CREATE A STORY - ADMIN AND USER MODES
+	 * 
+	 * @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces =
+	 *                       APPLICATION_JSON_CHARSET_UTF_8) public Story createOfMyself(
+	 * @RequestBody Story story, BindingResult result,
+	 * @RequestHeader(value = "idUser") Long idUser) { User user = userService.findById(idUser); return this.storyService.createStory(story,
+	 *                      user); }
+	 */
 
 	// CREATE A STORY - ADMIN AND USER MODES
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces = APPLICATION_JSON_CHARSET_UTF_8)
-	public Story createOfMyself(
-			@RequestBody Story story, BindingResult result,
-			@RequestHeader(value = "idUser") Long idUser) {
+	public Story getAttributesAdd(
+			@RequestParam("idPlace") Long idPlace,
+			@RequestParam("idTimelapse") Long idTimelapse,
+			@RequestParam("idType") Long idType,
+			@RequestParam("idUser") Long idUser,
+			@RequestParam("title") String title,
+			@RequestParam("description") String description,
+			@RequestParam("content") String content) {
+
+		Place place = placeService.findById(idPlace);
+		Type type = typeService.findById(idType);
+		Timelapse timelapse = timelapseService.findById(idTimelapse);
+		Story story = new Story();
+		story.setPlace(place);
+		story.setType(type);
+		story.setTimelapse(timelapse);
+		story.setTitle(title);
+		if (!description.equals("undefined")) {
+			story.setDescription(description);
+		}
+		if (!content.equals("undefined")) {
+			story.setContent(content);
+		}
 		User user = userService.findById(idUser);
 		return this.storyService.createStory(story, user);
 	}

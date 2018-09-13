@@ -1,16 +1,26 @@
 <div class="container">
     <h2 class="text-center">Création d'une nouvelle adresse</h2>
     <form (ngSubmit)="onSubmit()">
-            <div class="col-5 col-sm-12">
+            <div *ngIf="passageparmap" class="col-5 col-sm-12">
                 <label for="longitude" class="control-label">Longitude</label>
-                <input type="text"  class="form-control" id="longitude" required placeholder="Exemple : 45.779557"
+                <input type="text" readonly="readonly" class="form-control" id="longitude" required placeholder="Exemple : 45.779557"
                     required [(ngModel)]="place.longitude" name="longitude">
             </div>
-            <div class="form-group col-5 col-sm-12">
+            <div *ngIf="!passageparmap" class="col-5 col-sm-12">
+                    <label for="longitude" class="control-label">Longitude</label>
+                    <input type="text" class="form-control" id="longitude" required placeholder="Exemple : 45.779557"
+                        required [(ngModel)]="place.longitude" name="longitude">
+                </div>
+            <div *ngIf="passageparmap" class="form-group col-5 col-sm-12">
                 <label for="latitude" class="control-label">Latitude</label>
-                <input type="text" class="form-control" id="latitude" required placeholder="Exemple : 4.813071"
+                <input type="text" readonly="readonly" class="form-control" id="latitude" required placeholder="Exemple : 4.813071"
                     required [(ngModel)]="place.latitude" name="latitude">
             </div>
+            <div *ngIf="!passageparmap" class="form-group col-5 col-sm-12">
+                    <label for="latitude" class="control-label">Latitude</label>
+                    <input type="text" class="form-control" id="latitude" required placeholder="Exemple : 4.813071"
+                        required [(ngModel)]="place.latitude" name="latitude">
+                </div>
             <div class="form-group col-5 col-sm-12">
                 <label for="numberstreet" class="control-label">Numéro de rue</label>
                 <input type="text" class="form-control" id="numberstreet" required placeholder="Exemple : 42-47"

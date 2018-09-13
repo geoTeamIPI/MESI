@@ -1,232 +1,245 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from 'rxjs';
 
-import {Story} from "../models/story.model";
+import { Story } from "../models/story.model";
 
 
 @Injectable()
 export class StoryService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  private baseUrl = "http://localhost:8080"; 
+  private baseUrl = "http://localhost:8080";
   private storiesUrl = this.baseUrl + "/stories";
 
   // ----------------------------------------------- GET STORIES METHODS ---------------
 
-  public findAllStories(){
-    return this.http.get<Story[]>(this.storiesUrl); 
+  public findAllStories() {
+    return this.http.get<Story[]>(this.storiesUrl);
   }
 
-  public findAllStoriesOfUser(idUser: number): Observable<any>{
-    return this.http.get<Story[]>(this.storiesUrl + "/user", { 
-      headers: {"idUser": idUser.toString()}
+  public findAllStoriesOfUser(idUser: number): Observable<any> {
+    return this.http.get<Story[]>(this.storiesUrl + "/user", {
+      headers: { "idUser": idUser.toString() }
     });
   }
 
   public findAllStoriesByScreen(
-    longitudeSW: String, 
-    latitudeSW: String, 
-    longitudeNE: String, 
-    latitudeNE: String): Observable<any>{
-    return this.http.get<Story[]>(this.storiesUrl + "/screen" 
-    + "?" + "longitudeSW=" + longitudeSW 
-    + "&" + "latitudeSW=" + latitudeSW 
-    + "&" + "longitudeNE=" + longitudeNE 
-    + "&" + "latitudeNE=" + latitudeNE
+    longitudeSW: String,
+    latitudeSW: String,
+    longitudeNE: String,
+    latitudeNE: String): Observable<any> {
+    return this.http.get<Story[]>(this.storiesUrl + "/screen"
+      + "?" + "longitudeSW=" + longitudeSW
+      + "&" + "latitudeSW=" + latitudeSW
+      + "&" + "longitudeNE=" + longitudeNE
+      + "&" + "latitudeNE=" + latitudeNE
     );
   }
 
   public findAllStoriesByScreenOfUser(
-    longitudeSW: String, 
-    latitudeSW: String, 
-    longitudeNE: String, 
-    latitudeNE: String, 
-    idUser: number): Observable<any>{
-    return this.http.get<Story[]>(this.storiesUrl + "/user/screen"     
-    + "?" + "longitudeSW=" + longitudeSW 
-    + "&" + "latitudeSW=" + latitudeSW 
-    + "&" + "longitudeNE=" + longitudeNE 
-    + "&" + "latitudeNE=" + latitudeNE
-    , { 
-      headers: {"idUser": idUser.toString()}
-    });
+    longitudeSW: String,
+    latitudeSW: String,
+    longitudeNE: String,
+    latitudeNE: String,
+    idUser: number): Observable<any> {
+    return this.http.get<Story[]>(this.storiesUrl + "/user/screen"
+      + "?" + "longitudeSW=" + longitudeSW
+      + "&" + "latitudeSW=" + latitudeSW
+      + "&" + "longitudeNE=" + longitudeNE
+      + "&" + "latitudeNE=" + latitudeNE
+      , {
+        headers: { "idUser": idUser.toString() }
+      });
   }
 
   public findAllStoriesByDiameter(
-    longitudeSW: String, 
-    latitudeSW: String, 
-    longitudeNE: String, 
-    latitudeNE: String, 
-    longitudeUser: String, 
+    longitudeSW: String,
+    latitudeSW: String,
+    longitudeNE: String,
+    latitudeNE: String,
+    longitudeUser: String,
     latitudeUser: String,
-    diameter: number): Observable<any>{
-    return this.http.get<Story[]>(this.storiesUrl + "/diameter" 
-    + "?" + "longitudeSW=" + longitudeSW 
-    + "&" + "latitudeSW=" + latitudeSW 
-    + "&" + "longitudeNE=" + longitudeNE 
-    + "&" + "latitudeNE=" + latitudeNE
-    + "&" + "longitudeUser=" + longitudeUser
-    + "&" + "latitudeUser=" + latitudeUser
-    + "&" + "diameter=" + diameter
+    diameter: number): Observable<any> {
+    return this.http.get<Story[]>(this.storiesUrl + "/diameter"
+      + "?" + "longitudeSW=" + longitudeSW
+      + "&" + "latitudeSW=" + latitudeSW
+      + "&" + "longitudeNE=" + longitudeNE
+      + "&" + "latitudeNE=" + latitudeNE
+      + "&" + "longitudeUser=" + longitudeUser
+      + "&" + "latitudeUser=" + latitudeUser
+      + "&" + "diameter=" + diameter
     );
   }
 
   public findAllStoriesByDiameterOfUser(
-    longitudeSW: String, 
-    latitudeSW: String, 
-    longitudeNE: String, 
-    latitudeNE: String, 
-    longitudeUser: String, 
+    longitudeSW: String,
+    latitudeSW: String,
+    longitudeNE: String,
+    latitudeNE: String,
+    longitudeUser: String,
     latitudeUser: String,
-    diameter: number, 
-    idUser: number): Observable<any>{
-    return this.http.get<Story[]>(this.storiesUrl + "/user/diameter" 
-    + "?" + "longitudeSW=" + longitudeSW 
-    + "&" + "latitudeSW=" + latitudeSW 
-    + "&" + "longitudeNE=" + longitudeNE 
-    + "&" + "latitudeNE=" + latitudeNE
-    + "&" + "longitudeUser=" + longitudeUser
-    + "&" + "latitudeUser=" + latitudeUser
-    + "&" + "diameter=" + diameter
-    , { 
-      headers: {"idUser": idUser.toString()}
-    });
+    diameter: number,
+    idUser: number): Observable<any> {
+    return this.http.get<Story[]>(this.storiesUrl + "/user/diameter"
+      + "?" + "longitudeSW=" + longitudeSW
+      + "&" + "latitudeSW=" + latitudeSW
+      + "&" + "longitudeNE=" + longitudeNE
+      + "&" + "latitudeNE=" + latitudeNE
+      + "&" + "longitudeUser=" + longitudeUser
+      + "&" + "latitudeUser=" + latitudeUser
+      + "&" + "diameter=" + diameter
+      , {
+        headers: { "idUser": idUser.toString() }
+      });
   }
 
   public findAllStoriesByPlace(
-    longitude: String, 
+    longitude: String,
     latitude: String
-    ): Observable<any>{
-    return this.http.get<Story[]>(this.storiesUrl + "/place" 
-    + "?" + "longitude=" + longitude
-    + "&" + "latitude=" + latitude 
+  ): Observable<any> {
+    return this.http.get<Story[]>(this.storiesUrl + "/place"
+      + "?" + "longitude=" + longitude
+      + "&" + "latitude=" + latitude
     );
   }
 
   public findAllStoriesByPlaceById(
     idPlace: number
-    ): Observable<any>{
-    return this.http.get<Story[]>(this.storiesUrl + "/placeId" 
-    + "?" + "idPlace=" + idPlace
+  ): Observable<any> {
+    return this.http.get<Story[]>(this.storiesUrl + "/placeId"
+      + "?" + "idPlace=" + idPlace
     );
   }
 
   public findAllStoriesByTimelapseById(
     idTimelapse: number
-    ): Observable<any>{
-    return this.http.get<Story[]>(this.storiesUrl + "/timelapseId" 
-    + "?" + "idTimelapse=" + idTimelapse
+  ): Observable<any> {
+    return this.http.get<Story[]>(this.storiesUrl + "/timelapseId"
+      + "?" + "idTimelapse=" + idTimelapse
     );
   }
 
   public findAllStoriesByTypeById(
-    idType: number 
-    ): Observable<any>{
-    return this.http.get<Story[]>(this.storiesUrl + "/typeId" 
-    + "?" + "idType=" + idType
+    idType: number
+  ): Observable<any> {
+    return this.http.get<Story[]>(this.storiesUrl + "/typeId"
+      + "?" + "idType=" + idType
     );
   }
 
   public findAllStoriesByCreatorById(
-    idCreator: number 
-    ): Observable<any>{
-    return this.http.get<Story[]>(this.storiesUrl + "/creatorId" 
-    + "?" + "idCreator=" + idCreator
+    idCreator: number
+  ): Observable<any> {
+    return this.http.get<Story[]>(this.storiesUrl + "/creatorId"
+      + "?" + "idCreator=" + idCreator
     );
   }
 
 
-// ----------------------------------------------- COUNT STORIES METHODS ---------------
+  // ----------------------------------------------- COUNT STORIES METHODS ---------------
 
-  public countAllStories(){
-    return this.http.get<Story[]>(this.storiesUrl + "/count"); 
+  public countAllStories() {
+    return this.http.get<Story[]>(this.storiesUrl + "/count");
   }
 
-  public countAllStoriesOfUser(idUser: number): Observable<any>{
-    return this.http.get<Story[]>(this.storiesUrl + "/count/user", { 
-      headers: {"idUser": idUser.toString()}
+  public countAllStoriesOfUser(idUser: number): Observable<any> {
+    return this.http.get<Story[]>(this.storiesUrl + "/count/user", {
+      headers: { "idUser": idUser.toString() }
     });
-  } 
+  }
 
-  public countAllStoriesByScreen(    
-    longitudeSW: String, 
-    latitudeSW: String, 
-    longitudeNE: String, 
-    latitudeNE: String): Observable<any>{
+  public countAllStoriesByScreen(
+    longitudeSW: String,
+    latitudeSW: String,
+    longitudeNE: String,
+    latitudeNE: String): Observable<any> {
     return this.http.get<Story[]>(this.storiesUrl + "/count/screen"
-    + "?" + "longitudeSW=" + longitudeSW 
-    + "&" + "latitudeSW=" + latitudeSW 
-    + "&" + "longitudeNE=" + longitudeNE 
-    + "&" + "latitudeNE=" + latitudeNE
-    ); 
+      + "?" + "longitudeSW=" + longitudeSW
+      + "&" + "latitudeSW=" + latitudeSW
+      + "&" + "longitudeNE=" + longitudeNE
+      + "&" + "latitudeNE=" + latitudeNE
+    );
   }
 
-  public countAllStoriesByScreenOfUser(    
-    longitudeSW: String, 
-    latitudeSW: String, 
-    longitudeNE: String, 
-    latitudeNE: String, 
-    idUser: number): Observable<any>{
+  public countAllStoriesByScreenOfUser(
+    longitudeSW: String,
+    latitudeSW: String,
+    longitudeNE: String,
+    latitudeNE: String,
+    idUser: number): Observable<any> {
     return this.http.get<Story[]>(this.storiesUrl + "/count/user/screen"
-    + "?" + "longitudeSW=" + longitudeSW 
-    + "&" + "latitudeSW=" + latitudeSW 
-    + "&" + "longitudeNE=" + longitudeNE 
-    + "&" + "latitudeNE=" + latitudeNE, { 
-      headers: {"idUser": idUser.toString()}
-    });
+      + "?" + "longitudeSW=" + longitudeSW
+      + "&" + "latitudeSW=" + latitudeSW
+      + "&" + "longitudeNE=" + longitudeNE
+      + "&" + "latitudeNE=" + latitudeNE, {
+        headers: { "idUser": idUser.toString() }
+      });
   }
 
-  public countAllStoriesByDiameter(    
-    longitudeSW: String, 
-    latitudeSW: String, 
-    longitudeNE: String, 
-    latitudeNE: String, 
-    longitudeUser: String, 
+  public countAllStoriesByDiameter(
+    longitudeSW: String,
+    latitudeSW: String,
+    longitudeNE: String,
+    latitudeNE: String,
+    longitudeUser: String,
     latitudeUser: String,
-    diameter: number): Observable<any>{
+    diameter: number): Observable<any> {
     return this.http.get<Story[]>(this.storiesUrl + "/count/diameter"
-    + "?" + "longitudeSW=" + longitudeSW 
-    + "&" + "latitudeSW=" + latitudeSW 
-    + "&" + "longitudeNE=" + longitudeNE 
-    + "&" + "latitudeNE=" + latitudeNE
-    + "&" + "longitudeUser=" + longitudeUser
-    + "&" + "latitudeUser=" + latitudeUser
-    + "&" + "diameter=" + diameter
-    ); 
+      + "?" + "longitudeSW=" + longitudeSW
+      + "&" + "latitudeSW=" + latitudeSW
+      + "&" + "longitudeNE=" + longitudeNE
+      + "&" + "latitudeNE=" + latitudeNE
+      + "&" + "longitudeUser=" + longitudeUser
+      + "&" + "latitudeUser=" + latitudeUser
+      + "&" + "diameter=" + diameter
+    );
   }
 
-  public countAllStoriesByDiameterOfUser(    
-    longitudeSW: String, 
-    latitudeSW: String, 
-    longitudeNE: String, 
-    latitudeNE: String, 
-    longitudeUser: String, 
+  public countAllStoriesByDiameterOfUser(
+    longitudeSW: String,
+    latitudeSW: String,
+    longitudeNE: String,
+    latitudeNE: String,
+    longitudeUser: String,
     latitudeUser: String,
-    diameter: number, 
-    idUser: number): Observable<any>{
+    diameter: number,
+    idUser: number): Observable<any> {
     return this.http.get<Story[]>(this.storiesUrl + "/count/diameter"
-    + "?" + "longitudeSW=" + longitudeSW 
-    + "&" + "latitudeSW=" + latitudeSW 
-    + "&" + "longitudeNE=" + longitudeNE 
-    + "&" + "latitudeNE=" + latitudeNE
-    + "&" + "longitudeUser=" + longitudeUser
-    + "&" + "latitudeUser=" + latitudeUser
-    + "&" + "diameter=" + diameter, { 
-      headers: {"idUser": idUser.toString()}
-    });
+      + "?" + "longitudeSW=" + longitudeSW
+      + "&" + "latitudeSW=" + latitudeSW
+      + "&" + "longitudeNE=" + longitudeNE
+      + "&" + "latitudeNE=" + latitudeNE
+      + "&" + "longitudeUser=" + longitudeUser
+      + "&" + "latitudeUser=" + latitudeUser
+      + "&" + "diameter=" + diameter, {
+        headers: { "idUser": idUser.toString() }
+      });
   }
 
   // ----------------------------------------------- CRUD METHODS ---------------
 
-  public createStory(story: Story, idUser: number) {
+  /*public createStory(story: Story, idUser: number) {
     return this.http.post<Story>(this.storiesUrl + "/add", story, { 
       headers: {"idUser": idUser.toString()}
     });
+  }*/
+
+  public createStory(idPlace: number, idType: number, idTimelapse: number, idUser: number, title: string, description: string, content: string) {
+    return this.http.post<Story>(this.storiesUrl + "/add"
+    + "?" + "idPlace=" + idPlace.toString()
+    + "&" + "idTimelapse=" + idTimelapse.toString() 
+    + "&" + "idType=" + idType.toString()
+    + "&" + "idUser=" + idUser.toString()
+    + "&" + "title=" + title
+    + "&" + "description=" + description
+    + "&" + "content=" + content, { 
+      headers: {}
+    });
   }
 
-  public getStory(id: number): Observable<any>{
+  public getStory(id: number): Observable<any> {
     return this.http.get(this.storiesUrl + "/display/" + id);
   }
 
@@ -235,8 +248,8 @@ export class StoryService {
   }
 
   public deleteStory(id: number, idUser: number) {
-    return this.http.delete(this.storiesUrl + "/delete/" + id, { 
-      headers: {"idUser": idUser.toString()}
+    return this.http.delete(this.storiesUrl + "/delete/" + id, {
+      headers: { "idUser": idUser.toString() }
     });
   }
 } 

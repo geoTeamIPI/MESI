@@ -18,6 +18,8 @@ public interface PlaceRepository extends JpaRepository<Place, Long> {
 
 	List<Place> findByIdIn(List<Long> idPlace);
 
+	List<Place> findByLongitudeAndLatitude(String longitude, String latitude);
+
 	List<Place> findByLongitudeGreaterThanAndLatitudeGreaterThanAndLongitudeLessThanAndLatitudeLessThan(String longitudeSW, String latitudeSW,
 			String longitudeNE, String latitudeNE);
 

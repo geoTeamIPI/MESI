@@ -59,6 +59,16 @@ export class PlaceService {
     return this.http.get<Place[]>(this.placesUrl + "/compare"); 
   }
 
+  public findByCoordinates(
+    longitude: String, 
+    latitude: String
+  ): Observable<any>{
+    return this.http.get<number[]>(this.placesUrl + "/coordinates"     
+    + "?" + "longitude=" + longitude 
+    + "&" + "latitude=" + latitude
+    );
+  }
+
 // ----------------------------------------------- COUNT PLACES METHODS ---------------
 
   public countAllPlaces(){
@@ -103,6 +113,13 @@ export class PlaceService {
 
   public createPlace(place: Place, idUser: number) {
     return this.http.post<Place>(this.placesUrl + "/add", place, { 
+      headers: {"idUser": idUser.toString()}
+    });
+  }
+
+  public createPlaceByCoordinates(longitude: string, latitude: string, idUser: number) {
+    return this.http.post<Place>(this.placesUrl + "/add/coordinates" + "?" + "longitude=" + longitude 
+    + "&" + "latitude=" + latitude , { 
       headers: {"idUser": idUser.toString()}
     });
   }

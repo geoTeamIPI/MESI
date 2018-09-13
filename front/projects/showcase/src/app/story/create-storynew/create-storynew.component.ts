@@ -5,7 +5,6 @@ import { UserService } from "../../services/user.service";
 import { Type } from "../../models/type.model";
 import { TypeService } from "../../services/type.service";
 import { Story } from "../../models/story.model";
-import { Router } from "@angular/router";
 import { StoryService } from "../../services/story.service";
 import { Place } from "../../models/place.model";
 import { PlaceService } from "../../services/place.service";
@@ -14,11 +13,11 @@ import { TimelapseService } from "../../services/timelapse.service";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: "create-story",
-  templateUrl: "./create-story.component.html",
-  styleUrls: ["./create-story.component.css"]
+  selector: "create-storynew",
+  templateUrl: "./create-storynew.component.html",
+  styleUrls: ["./create-storynew.component.css"]
 })
-export class CreateStoryComponent implements OnInit {
+export class CreateStoryNewComponent implements OnInit {
   user: User = new User();
   submitted: boolean = false;
   hideProfile = false;
@@ -51,18 +50,13 @@ export class CreateStoryComponent implements OnInit {
   content: FormControl;
 
   currentUser: User;
-  temp: string ; 
-  passageparmap: boolean = false;
-  placeOld: Place = new Place();
-  urlStory: string;
 
   constructor(
     private userService: UserService,
     private typeService: TypeService,
     private timelapseService: TimelapseService,
     private placeService: PlaceService,
-    private storyService: StoryService, 
-    private router: Router
+    private storyService: StoryService
   ) { }
 
   profiles = [
@@ -74,24 +68,11 @@ export class CreateStoryComponent implements OnInit {
 
 
   ngOnInit() {
-    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
-    this.temp = JSON.parse(sessionStorage.getItem("passageparmap") || '{}');
-    this.placeOld.longitude = JSON.parse(sessionStorage.getItem("longitude") || '{}');
-    this.placeOld.latitude = JSON.parse(sessionStorage.getItem("latitude") || '{}');
-    if (this.temp == "passageparmap") {
-      this.passageparmap = true;
-    } else {
-      this.passageparmap = false;
-    }
-    this.getIdPlaceJustCreated();
     this.getTypes();
     this.getTimelapses();
     this.getPlaces();
     this.controlFormUser();
     this.createFormUser();
-    sessionStorage.removeItem("longitude");
-    sessionStorage.removeItem("latitude");
-    sessionStorage.removeItem("passageparmap");
   }
 
   createUser() {
@@ -101,6 +82,7 @@ export class CreateStoryComponent implements OnInit {
   }
 
   createStory(){
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
     console.log("this.currentUser = " + this.currentUser.id);
     this.storyService
     .createStory(this.idPlace, this.idType, this.idTimelapse, this.currentUser.id, this.inputTitle, this.inputDescription, this.inputContent)
@@ -117,8 +99,6 @@ export class CreateStoryComponent implements OnInit {
     console.log("le timelapse = ", this.idTimelapse);
     console.log("l adresse = ", this.idPlace);
     this.createStory();
-    this.urlStory = "/demo/display-map"
-    this.router.navigate([this.urlStory]);
   }
 
   controlFormUser() {
@@ -175,15 +155,5 @@ export class CreateStoryComponent implements OnInit {
     this.placeService
       .findAllPlaces()
       .subscribe(places => { this.places = places, console.log(this.timelapses) }, err => console.log(err));
-  }
-
-  getIdPlaceJustCreated() {
-    this.placeService.findByCoordinates(this.placeOld.longitude, this.placeOld.latitude)
-      .toPromise()
-      .then(
-        idPlace => {
-          this.idPlace = idPlace;
-        }
-      );
   }
 }

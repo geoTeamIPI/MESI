@@ -1,0 +1,75 @@
+<div class="container">
+    <h2 class="text-center">Créer une nouvelle histoire</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div [formGroup]="userForm">
+            <!-- Title -->
+            <div class="form-group col-5 col-sm-12">
+                <label for="title">Titre</label>
+                <input type="text" formControlName="title" class="form-control" [ngClass]="{
+                            'is-invalid' : title.invalid && (title.dirty || title.touched),
+                            'is-valid' : title.valid && (title.dirty || title.touched)
+                        }" id="title" required [(ngModel)]="inputTitle" name="title" placeholder="Exemple : Fontaine de Jouvence">
+                <div class="invalid-feedback" *ngIf="title.errors && (title.dirty || title.touched)">
+                    <p>Titre obligatoire</p>
+                </div>
+            </div>
+            <!-- Description -->
+            <div class="form-group col-5 col-sm-12">
+                <label for="description">Description</label>
+                <input type="text" formControlName="description" class="form-control" [ngClass]="{
+                                'is-invalid' : description.invalid && (description.dirty || description.touched),
+                                'is-valid' : description.valid && (description.dirty || description.touched)
+                            }" id="description" required [(ngModel)]="inputDescription" name="description" placeholder="Description rapide">
+            </div>
+            <!-- Content -->
+            <div class="form-group col-5 col-sm-12">
+                <label for="content">Contenu</label>
+                <input type="text" formControlName="content" class="form-control" [ngClass]="{
+                                'is-invalid' : content.invalid && (content.dirty || content.touched),
+                                'is-valid' : content.valid && (content.dirty || content.touched)
+                            }" id="content" required [(ngModel)]="inputContent" name="content" placeholder="Exemple : Ecriture de votre histoire complète">
+            </div>
+            <!-- Types -->
+            <div class="form-group col-5 col-sm-12">
+                <label for="type">Type de profil</label>
+                <select class="form-control" id="type" required [(ngModel)]="idType" name="type" formControlName="type">
+                    <option *ngFor="let type of types" [value]="type.id" selected="selectedValue">{{type.id}} == {{type.name}}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="type.errors && (type.dirty || type.touched)">
+                    <p>Profil obligatoire</p>
+                </div>
+            </div>
+            <!-- Timelapses -->
+            <div class="form-group col-5 col-sm-12">
+                <label for="timelapse">Période historique</label>
+                <select class="form-control" id="timelapse" required [(ngModel)]="idTimelapse" name="timelapse" formControlName="timelapse">
+                    <option *ngFor="let timelapse of timelapses" [value]="timelapse.id" selected="selectedValue">{{timelapse.id}} == {{timelapse.period}}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="timelapse.errors && (timelapse.dirty || timelapse.touched)">
+                    <p>Profil obligatoire</p>
+                </div>
+            </div>
+            <!-- Places -->
+            <div class="form-group col-5 col-sm-12">
+                <label for="place">Adresse</label>
+                <select class="form-control" id="place" required [(ngModel)]="idPlace" name="place" formControlName="place">
+                    <option *ngFor="let place of places" [value]="place.id" selected="selectedValue">{{place.id}} == {{place.longitude}}-{{place.latitude}}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="place.errors && (place.dirty || place.touched)">
+                    <p>Profil obligatoire</p>
+                </div>
+            </div>
+            <div class="col-5 col-sm-12">
+                <button type="submit" class="btn btn-primary">Créer</button>
+            </div>
+        </div>
+    </form>
+    <div *ngIf="submitted">
+        <div *ngIf="userCreated">
+            <div class="alert alert-success">Ajout effectué avec succés</div>
+        </div>
+        <div *ngIf="!userCreated">
+            <div class="alert alert-danger">Erreur d'ajout</div>
+        </div>
+    </div>
+</div>

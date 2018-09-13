@@ -67,13 +67,9 @@ export class PopupOnClickComponent implements OnInit {
   constructor(private storyService: StoryService, private route: ActivatedRoute, private router: Router) { }
 
   async ngOnInit() {
-    this.earthquakes = await import('./earthquakestest.geo.json');
+    this.earthquakes = await import('./data.geo.json');
     console.log("this earthquakes = ", this.earthquakes);
-    //https://codepen.io/parry-drew/pen/wWYXmR
-    //this.storyService
-    //.findAllStories()
-    //.subscribe(stories => { this.stories = stories }, err => console.log(err));
-    //console.log("this earthquakes = " + this.earthquakes);
+    //console.log("this earthquakes = ", this.earthquakes);
     this.getStories();
     console.log("this stories = ",this.stories);
   }

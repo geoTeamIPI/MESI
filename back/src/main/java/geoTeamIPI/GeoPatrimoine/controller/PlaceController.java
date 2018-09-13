@@ -108,12 +108,27 @@ public class PlaceController {
 		return placeService.findAllEmptyPlaces();
 	}
 
+	// GET PLACE WITH COORDINATES
+	@RequestMapping(value = "/coordinates", method = RequestMethod.GET, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public Long findByCoordinates(
+			@RequestParam("longitude") String longitude,
+			@RequestParam("latitude") String latitude) {
+		return placeService.findByCoordinates(longitude, latitude);
+	}
+
 	// ------------------------------------ CRUD METHODS ------------------------
 
 	// CREATE A PLACE - ADMIN AND USER MODES
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces = APPLICATION_JSON_CHARSET_UTF_8)
 	public Place create(@RequestBody Place place, @RequestHeader(value = "idUser") Long idUser, BindingResult result) {
 		return this.placeService.createPlace(place, idUser);
+	}
+
+	// CREATE A PLACE BY COORDINATES - ADMIN AND USER MODES
+	@RequestMapping(value = "/add/coordinates", method = RequestMethod.POST, consumes = APPLICATION_JSON_CHARSET_UTF_8, produces = APPLICATION_JSON_CHARSET_UTF_8)
+	public Place create(@RequestParam("longitude") String longitude, @RequestParam("latitude") String latitude,
+			@RequestHeader(value = "idUser") Long idUser) {
+		return this.placeService.createPlace(longitude, latitude, idUser);
 	}
 
 	// DISPLAY A PLACE - ADMIN AND USER MODES

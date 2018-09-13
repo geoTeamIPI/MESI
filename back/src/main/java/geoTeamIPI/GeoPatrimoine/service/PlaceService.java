@@ -78,12 +78,27 @@ public class PlaceService {
 		return placeRepository.findByIdIn(missingsIds);
 	}
 
+	public Long findByCoordinates(String longitude, String latitude) {
+		List<Place> places = placeRepository.findByLongitudeAndLatitude(longitude, latitude);
+		return places.get(0).getId();
+	}
+
 	// ------------------------------------ CRUD METHODS ------------------------
 
 	public Place createPlace(Place place, Long idUser) {
 		LocalDate todaysDate = LocalDate.now();
 		place.setCreator(idUser);
 		place.setDateCreation(todaysDate);
+		return placeRepository.save(place);
+	}
+
+	public Place createPlace(String longitude, String latitude, Long idUser) {
+		LocalDate todaysDate = LocalDate.now();
+		Place place = new Place();
+		place.setCreator(idUser);
+		place.setDateCreation(todaysDate);
+		place.setLongitude(longitude);
+		place.setLatitude(latitude);
 		return placeRepository.save(place);
 	}
 

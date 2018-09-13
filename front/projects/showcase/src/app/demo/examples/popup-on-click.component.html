@@ -5,7 +5,7 @@
         enableHighAccuracy: true
       }" [trackUserLocation]="true"></mgl-control>
   <mgl-layer id="earthquakes" source="earthquakes" type="symbol" [layout]="{
-        'icon-image': '{icon}-15',
+        'icon-image': '{icon}',
         'icon-allow-overlap': true
       }" (click)="onClick($event)" (mouseEnter)="cursorStyle = 'pointer'" (mouseLeave)="cursorStyle = ''"></mgl-layer>
       <mgl-popup *ngIf="selectedPoint" [lngLat]="selectedPoint.geometry?.coordinates">
@@ -48,8 +48,6 @@
             </div>
           </div>
         </div>
-        
-    
       </mgl-popup>
   <mgl-control mglNavigation></mgl-control>
   <mgl-control mglScale unit="metric" position="top-right"></mgl-control>

@@ -3,28 +3,28 @@
   <div class="text-center">
     <table table mat-table class="text-center">
       <tr>
-        <th>Id</th>
+        <th *ngIf="isAdmin">Id</th>
         <th>Longitude</th>
         <th>Latitude</th>
         <th>N° rue</th>
         <th>Rue</th>
         <th>CP</th>
         <th>Ville</th>
-        <th>Créateur id</th>
+        <th *ngIf="isAdmin">Créateur id</th>
         <th>Date création</th>
         <th>Date modification</th>
-        <th *ngIf="isAdmin == true " colspan="3">Actions</th>
-        <th *ngIf="isAdmin == false ">Afficher</th>
+        <th *ngIf="isAdmin" colspan="3">Actions</th>
+        <th *ngIf="isAdmin">Afficher</th>
       </tr>
       <tr *ngFor="let place of places | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
-        <td>{{place.id}}</td>
+        <td *ngIf="isAdmin">{{place.id}}</td>
         <td>{{place.longitude}}</td>
         <td>{{place.latitude}}</td>
         <td>{{place.numberstreet}}</td>
         <td>{{place.street}}</td>
         <td>{{place.zipcode}}</td>
         <td>{{place.city}}</td>
-        <td>{{place.creator}}</td>
+        <td *ngIf="isAdmin">{{place.creator}}</td>
         <td>{{place.dateCreation}}</td>
         <td>{{place.dateUpdate}}</td>
         <td>

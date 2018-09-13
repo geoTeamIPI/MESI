@@ -53,6 +53,7 @@ export class PopupOnClickComponent implements OnInit {
   currentUser: User;
   isAdmin: string = "notConnected";
   idSelectedStory: number; 
+  typedisplay: string; 
   stories: Story[];
   icontime: string;
   selectedPoint: GeoJSON.Feature<GeoJSON.Point> | null;
@@ -66,24 +67,24 @@ export class PopupOnClickComponent implements OnInit {
   constructor(private storyService: StoryService, private route: ActivatedRoute, private router: Router) { }
 
   async ngOnInit() {
-    this.earthquakes = await import('./earthquakes.geo.json');
-    console.log("this earthquakes = " + this.earthquakes);
+    this.earthquakes = await import('./earthquakestest.geo.json');
+    console.log("this earthquakes = ", this.earthquakes);
     //https://codepen.io/parry-drew/pen/wWYXmR
     //this.storyService
     //.findAllStories()
     //.subscribe(stories => { this.stories = stories }, err => console.log(err));
     //console.log("this earthquakes = " + this.earthquakes);
     this.getStories();
-    console.log(this.stories);
+    console.log("this stories = ",this.stories);
   }
 
 
   onClick(evt: MapMouseEvent) {
     this.selectedPoint = (<any>evt).features[0];
     this.idSelectedStory = (<any>evt).features[0].properties.id;
-    this.icontime = (<any>evt).features[0].properties.type.substr((<any>evt).features[0].properties.type.indexOf('pathpicture')+14);
-    this.icontime = this.icontime.substr(0, this.icontime.length - 2);
+    this.icontime = (<any>evt).features[0].properties.color
     this.icontime = "../../../assets/" + this.icontime;
+    this.typedisplay = (<any>evt).features[0].properties.name
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
     if (this.currentUser.profile == "admin") {
       this.isAdmin = "admin";
@@ -101,5 +102,7 @@ export class PopupOnClickComponent implements OnInit {
       .findAllStories()
       .subscribe(stories => { this.stories = stories }, err => console.log(err));
     this.router.navigate([this.router.url]);
+    console.log(this.stories);
   }
+  
 }

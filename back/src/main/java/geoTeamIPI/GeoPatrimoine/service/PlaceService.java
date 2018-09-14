@@ -1,5 +1,7 @@
 package geoTeamIPI.GeoPatrimoine.service;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,20 +101,58 @@ public class PlaceService {
 		place.setDateCreation(todaysDate);
 		place.setLongitude(longitude);
 		place.setLatitude(latitude);
-		return placeRepository.save(place);
+		placeRepository.save(place);
+		return place;
 	}
 
 	public void deletePlace(Place place) {
 		placeRepository.delete(place);
 	}
 
-	public <T extends Place> T updatePlace(Long id, T place) {
+	public <T extends Place> void updatePlace(Long id, T place) {
 		LocalDate todaysDate = LocalDate.now();
+		place.setCreator((long) 1);
 		place.setId(id);
+		place.setDateCreation(todaysDate);
 		place.setDateUpdate(todaysDate);
-		return placeRepository.save(place);
+		placeRepository.save(place);
 	}
 
 	// ------------------------------------ SUB METHODS ------------------------
 
+	public void createGeoJson(List<Place> places) {
+		String featureCollection = "{\n\"type\": \"FeatureCollection\", \n\"features\": [ \n";
+		String point;
+
+		for (Place place : places) {
+			point = "{\"type\":\"Feature\",\"properties\": {\n \"id\": \""
+					+ place.getId() + "\",\n \"streetnumber\":\""
+					+ place.getNumberstreet() + "\",\n \"street\": \""
+					+ place.getStreet() + "\",\n \"zipcode\": \""
+					+ place.getZipcode() + "\",\n\"city\": \""
+					+ place.getCity() + "\",\n \"icon\":\""
+					+ "circle-15" + "\"\n}"
+					+ ", \"geometry\": { \"type\": \"Point\", \"coordinates\": ["
+					+ place.getLongitude() + ", " + place.getLatitude() + "] } }";
+			featureCollection = featureCollection + point + ",\n";
+		}
+		featureCollection = featureCollection.substring(0, featureCollection.length() - 2);
+		featureCollection = featureCollection + "\n ]\n }";
+
+		// try-with-resources statement based on post comment below :)
+		String path = System.getProperty("user.dir");
+		path = path.replace("\\back", "\\front\\projects\\showcase\\src\\app\\demo\\examples\\");
+		System.out.println(path);
+		try (
+				FileWriter file = new FileWriter(path + "dataplace.geo.json")) {
+			file.write(featureCollection);
+			System.out.println("Successfully Copied JSON Object to File...");
+			System.out.println("\nJSON Object: " + featureCollection);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block e.printStackTrace(); }
+		}
+
+		// output the result
+		System.out.println("featureCollection=" + featureCollection.toString());
+	}
 }

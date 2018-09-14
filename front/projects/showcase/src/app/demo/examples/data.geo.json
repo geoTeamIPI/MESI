@@ -63,7 +63,7 @@
 "period": "Temps révolutionnaires",
  "icon":"cemetery-15",
  "color": "tempsrevolutionnaires2.jpg"
-}, "geometry": { "type": "Point", "coordinates": [4.820878, 45.7550934] } },
+}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
 {"type":"Feature","properties": {
  "id": "8",
  "Title":"Bonchon Les Lyonnais ",
@@ -81,6 +81,51 @@
 "period": "Cinquième République",
  "icon":"cemetery-15",
  "color": "republique52.jpg"
-}, "geometry": { "type": "Point", "coordinates": [4.7974164, 45.7929315] } }
+}, "geometry": { "type": "Point", "coordinates": [4.7974164, 45.7929315] } },
+{"type":"Feature","properties": {
+ "id": "10",
+ "Title":"dfgdg",
+ "description": "dgfg",
+ "name": "Musée",
+"period": "Temps révolutionnaires",
+ "icon":"museum-15",
+ "color": "tempsrevolutionnaires2.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.860940309104137, 45.761718444484416] } },
+{"type":"Feature","properties": {
+ "id": "11",
+ "Title":"hh",
+ "description": "null",
+ "name": "Musée",
+"period": "Temps révolutionnaires",
+ "icon":"museum-15",
+ "color": "tempsrevolutionnaires2.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.860940309104137, 45.761718444484416] } },
+{"type":"Feature","properties": {
+ "id": "12",
+ "Title":"geneve story",
+ "description": "null",
+ "name": "Musical",
+"period": "Second Empire",
+ "icon":"music-15",
+ "color": "empire22.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.664516585515713, 46.44056879290633] } },
+{"type":"Feature","properties": {
+ "id": "13",
+ "Title":"Rome story",
+ "description": "null",
+ "name": "Animalier",
+"period": "Entre deux guerres",
+ "icon":"zoo-15",
+ "color": "entre22.jpg"
+}, "geometry": { "type": "Point", "coordinates": [12.46841273510455, 41.901422190288685] } },
+{"type":"Feature","properties": {
+ "id": "14",
+ "Title":"12h00 story",
+ "description": "null",
+ "name": "Nature",
+"period": "Première guerre mondiale",
+ "icon":"park-15",
+ "color": "ww12.jpg"
+}, "geometry": { "type": "Point", "coordinates": [4.860940309104137, 45.761718444484416] } }
  ]
  }

@@ -10,8 +10,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import geoTeamIPI.GeoPatrimoine.entity.Place;
 import geoTeamIPI.GeoPatrimoine.entity.Story;
 import geoTeamIPI.GeoPatrimoine.entity.User;
+import geoTeamIPI.GeoPatrimoine.repository.PlaceRepository;
 import geoTeamIPI.GeoPatrimoine.repository.StoryRepository;
 
 @Service
@@ -20,6 +22,12 @@ public class StoryService {
 
 	@Autowired
 	private StoryRepository storyRepository;
+
+	@Autowired
+	private PlaceRepository placeRepository;
+
+	@Autowired
+	private PlaceService placeService;
 
 	public Story findById(Long id) {
 		return storyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Failed to get a story with the id=" + id + "!!!"));
@@ -139,6 +147,8 @@ public class StoryService {
 		storyRepository.save(story);
 		List<Story> stories = storyRepository.findAll();
 		createGeoJson(stories);
+		List<Place> places = placeRepository.findAll();
+		placeService.createGeoJson(places);
 		return story;
 	}
 
@@ -149,6 +159,8 @@ public class StoryService {
 			storyRepository.delete(story);
 			List<Story> stories = storyRepository.findAll();
 			createGeoJson(stories);
+			List<Place> places = placeRepository.findAll();
+			placeService.createGeoJson(places);
 		} else {
 			// throw denied
 		}
@@ -166,6 +178,8 @@ public class StoryService {
 			storyRepository.save(story);
 			List<Story> stories = storyRepository.findAll();
 			createGeoJson(stories);
+			List<Place> places = placeRepository.findAll();
+			placeService.createGeoJson(places);
 		} else {
 			// throw denied
 		}

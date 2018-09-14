@@ -46,7 +46,7 @@ export class InfosPlaceComponent implements OnInit {
       this.pagination = values;
       console.log(this.pagination);
     });
-  }
+  } 
 
   getPlace() {
     const id = +this.route.snapshot.paramMap.get("id");
@@ -75,5 +75,5 @@ export class InfosPlaceComponent implements OnInit {
         },
         err => console.log(err)
       );
-  }
+  } 
 }

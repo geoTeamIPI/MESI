@@ -155,7 +155,7 @@ public class PlaceController {
 
 	// UPDATE A PLACE - ADMIN AND USER MODES
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-	public Place update(@PathVariable("id") Long id, @RequestBody Place place, @RequestHeader(value = "idUser") Long idUser) {
+	public void update(@PathVariable("id") Long id, @RequestBody Place place, @RequestHeader(value = "idUser") Long idUser) {
 		Boolean isAdmin = isAdmin(idUser);
 		if (!placeService.findById(id).getCreator().equals(idUser) && isAdmin.equals(false)) {
 			PlaceExceptionHandler.notTheCreator();
@@ -170,7 +170,7 @@ public class PlaceController {
 				}
 			}
 		}
-		return this.placeService.updatePlace(id, place);
+		this.placeService.updatePlace(id, place);
 	}
 
 	// ------------------------------------ SUB METHODS ------------------------^^

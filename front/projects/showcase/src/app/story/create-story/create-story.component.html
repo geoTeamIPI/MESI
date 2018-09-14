@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <!-- Places -->
-                <div *ngIf="!passageparmap" class="form-group col-5 col-sm-12">
+                <div *ngIf="!passageparmap && !passageparmapshortcut" class="form-group col-5 col-sm-12">
                     <label for="place">Adresse</label>
                     <select class="form-control" id="place" required [(ngModel)]="idPlace" name="place" formControlName="place">
                         <option *ngFor="let place of places" [value]="place.id" selected="selectedValue">{{place.id}} == {{place.longitude}}-{{place.latitude}}</option>

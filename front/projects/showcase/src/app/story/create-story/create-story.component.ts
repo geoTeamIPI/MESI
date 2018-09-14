@@ -52,7 +52,10 @@ export class CreateStoryComponent implements OnInit {
 
   currentUser: User;
   temp: string ; 
+  tempShortcut: string ; 
+  tempIdPlace: string ; 
   passageparmap: boolean = false;
+  passageparmapshortcut: boolean = false;
   placeOld: Place = new Place();
   urlStory: string;
 
@@ -76,12 +79,20 @@ export class CreateStoryComponent implements OnInit {
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
     this.temp = JSON.parse(sessionStorage.getItem("passageparmap") || '{}');
+    this.tempShortcut = JSON.parse(sessionStorage.getItem("passageparmapshortcut") || '{}');
     this.placeOld.longitude = JSON.parse(sessionStorage.getItem("longitude") || '{}');
     this.placeOld.latitude = JSON.parse(sessionStorage.getItem("latitude") || '{}');
     if (this.temp == "passageparmap") {
       this.passageparmap = true;
     } else {
       this.passageparmap = false;
+    }
+    if (this.tempShortcut == "passageparmapshortcut") {
+      this.passageparmapshortcut = true;
+      this.tempIdPlace = JSON.parse(sessionStorage.getItem("idPlace") || '{}');
+      this.idPlace =  parseInt(this.tempIdPlace);
+    } else {
+      this.passageparmapshortcut = false;
     }
     this.getIdPlaceJustCreated();
     this.getTypes();

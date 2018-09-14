@@ -1,0 +1,173 @@
+{
+"type": "FeatureCollection", 
+"features": [ 
+{"type":"Feature","properties": {
+ "id": "1",
+ "streetnumber":"49-43",
+ "street": "rue des Docks",
+ "zipcode": "69009",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.813071, 45.788307] } },
+{"type":"Feature","properties": {
+ "id": "2",
+ "streetnumber":"57-55",
+ "street": "rue du Sergent Michel Berthet",
+ "zipcode": "69009",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.805506, 45.766118] } },
+{"type":"Feature","properties": {
+ "id": "3",
+ "streetnumber":"47",
+ "street": "rue du Sergent Michel Berthet",
+ "zipcode": "69009",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.8059379, 45.7683916] } },
+{"type":"Feature","properties": {
+ "id": "4",
+ "streetnumber":"7-9",
+ "street": "rue Jean-Marie Leclair",
+ "zipcode": "69009",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.8056605, 45.7703256] } },
+{"type":"Feature","properties": {
+ "id": "5",
+ "streetnumber":"2",
+ "street": "Avenue Verguin",
+ "zipcode": "69006",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.8530257, 45.7774069] } },
+{"type":"Feature","properties": {
+ "id": "6",
+ "streetnumber":"10",
+ "street": "Avenue Verguin",
+ "zipcode": "69006",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.8545258, 45.7784452] } },
+{"type":"Feature","properties": {
+ "id": "7",
+ "streetnumber":"null",
+ "street": "Rue du Test update",
+ "zipcode": "69009",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [45.779557, 4.827420] } },
+{"type":"Feature","properties": {
+ "id": "8",
+ "streetnumber":"19",
+ "street": "Rue de la Bombarde",
+ "zipcode": "69005",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.8218358, 45.7618622] } },
+{"type":"Feature","properties": {
+ "id": "9",
+ "streetnumber":"26",
+ "street": "rue du Sergent Michel Berthet",
+ "zipcode": "69009",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.7974164, 45.7929315] } },
+{"type":"Feature","properties": {
+ "id": "10",
+ "streetnumber":"24",
+ "street": "rue du Sergent Michel Berthet",
+ "zipcode": "69009",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.7974164, 45.7930405] } },
+{"type":"Feature","properties": {
+ "id": "11",
+ "streetnumber":"22-24",
+ "street": "rue de la gare",
+ "zipcode": "69009",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.8097544, 45.7616621] } },
+{"type":"Feature","properties": {
+ "id": "12",
+ "streetnumber":"1",
+ "street": "Rue Lucien Sportisse",
+ "zipcode": "69001",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.8097544, 45.7618337] } },
+{"type":"Feature","properties": {
+ "id": "13",
+ "streetnumber":"8",
+ "street": "Place de Fourvière",
+ "zipcode": "69005",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.822626, 45.7622928] } },
+{"type":"Feature","properties": {
+ "id": "14",
+ "streetnumber":"8",
+ "street": "Quai Claude Bernard",
+ "zipcode": "69007",
+"city": "Lyon",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.8386325, 45.7535863] } },
+{"type":"Feature","properties": {
+ "id": "15",
+ "streetnumber":"hhhh",
+ "street": "null",
+ "zipcode": "null",
+"city": "null",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.860940309104137, 45.761718444484416] } },
+{"type":"Feature","properties": {
+ "id": "16",
+ "streetnumber":"ff",
+ "street": "null",
+ "zipcode": "null",
+"city": "null",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.860940309104137, 45.761718444484416] } },
+{"type":"Feature","properties": {
+ "id": "17",
+ "streetnumber":"null",
+ "street": "test 11h30",
+ "zipcode": "null",
+"city": "null",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.664516585515713, 46.44056879290633] } },
+{"type":"Feature","properties": {
+ "id": "18",
+ "streetnumber":"test 11h33",
+ "street": "null",
+ "zipcode": "null",
+"city": "null",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [-1.1628189604125225, 45.794608546964156] } },
+{"type":"Feature","properties": {
+ "id": "19",
+ "streetnumber":"geneve",
+ "street": "null",
+ "zipcode": "null",
+"city": "null",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [6.147081682263121, 46.19605966837972] } },
+{"type":"Feature","properties": {
+ "id": "20",
+ "streetnumber":"Rome",
+ "street": "null",
+ "zipcode": "null",
+"city": "Rome",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [12.46841273510455, 41.901422190288685] } },
+{"type":"Feature","properties": {
+ "id": "21",
+ "streetnumber":"null",
+ "street": "12h00",
+ "zipcode": "null",
+"city": "null",
+ "icon":"circle-15"
+}, "geometry": { "type": "Point", "coordinates": [4.860940309104137, 45.761718444484416] } }
+ ]
+ }

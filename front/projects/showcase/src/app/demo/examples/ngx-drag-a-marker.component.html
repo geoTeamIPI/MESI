@@ -1,32 +1,50 @@
-  <mgl-map
-    [style]="'mapbox://styles/mapbox/streets-v9'"
-    [zoom]="[3]" 
-    [center]="[4.827420, 45.779557]"
-  >
-    <mgl-marker
-      [lngLat]="[ 4.860940309104137, 45.761718444484416]"
-      mglDraggable
-      (dragStart)="onDragStart($event)"
-      (dragEnd)="onDragEnd($event)"
-      (drag)="onDrag($event)"
-    >
-      <svg
-        (mouseenter)="color = '#3bb2d0'"
-        (mouseleave)="color = '#3887be'"
-        height="20"
-        width="20"
-      >
-        <circle cx="10" cy="10" r="10" [attr.fill]="color" />
-      </svg>
-    </mgl-marker>
-    <mgl-control position="bottom-left">
-      <mat-card>
-        <div>Longitude:&nbsp;{{ coordinates[0]}}</div>
-        <div>Latitude:&nbsp;{{ coordinates[1]}}</div>
-        <div>
-            <a (click)="validateCoordinates(coordinates[0], coordinates[1])" routerLink="{{this.address}}"> Valider les coordonnées</a>
+<mgl-map [style]="'mapbox://styles/mapbox/streets-v9'" [zoom]="[3]" [center]="[4.827420, 45.779557]" [cursorStyle]="cursorStyle">
+  <mgl-geojson-source id="earthquakes" [data]="earthquakes"></mgl-geojson-source>
+  <mgl-control mglGeolocate [positionOptions]="{
+    enableHighAccuracy: true
+  }" [trackUserLocation]="true"></mgl-control>
+  <mgl-layer id="earthquakes" source="earthquakes" type="symbol" [layout]="{
+    'icon-image': '{icon}',
+    'icon-allow-overlap': true
+  }" (click)="onClick($event)" (mouseEnter)="cursorStyle = 'pointer'" (mouseLeave)="cursorStyle = ''"></mgl-layer>
+  <mgl-popup *ngIf="selectedPoint" [lngLat]="selectedPoint.geometry?.coordinates">
+    <div style="text-align: center; border-bottom: 2px solid red; text-transform: uppercase">
+      <p style="font-size: larger;">{{this.coordinatesdisplay}}</p>
+      <br>
+    </div>
+
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p style="font-size: larger;">Adresse : </p>
+          <p>{{this.address}}</p>
+          <p>{{this.addressend}}</p>
         </div>
-      </mat-card>
-    </mgl-control>
-  </mgl-map>
-  
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <a routerLink="{{this.urlToShortcut}}"> Sélectionner ces coordonnées</a>
+        </div> 
+      </div>
+    </div>
+  </mgl-popup>
+  <mgl-control mglNavigation></mgl-control>
+  <mgl-control mglScale unit="metric" position="top-right"></mgl-control>
+
+  <mgl-marker [lngLat]="[ 4.860940309104137, 45.761718444484416]" mglDraggable (dragStart)="onDragStart($event)" (dragEnd)="onDragEnd($event)"
+    (drag)="onDrag($event)">
+    <svg (mouseenter)="color = '#3bb2d0'" (mouseleave)="color = '#3887be'" height="20" width="20">
+      <circle cx="10" cy="10" r="10" [attr.fill]="color" />
+    </svg>
+  </mgl-marker>
+  <mgl-control position="bottom-left">
+    <mat-card>
+      <div>Longitude:&nbsp;{{ coordinates[0]}}</div>
+      <div>Latitude:&nbsp;{{ coordinates[1]}}</div>
+      <div>
+        <a (click)="validateCoordinates(coordinates[0], coordinates[1])" routerLink="{{this.urlTo}}"> Valider les coordonnées</a>
+      </div>
+    </mat-card>
+  </mgl-control>
+</mgl-map>
